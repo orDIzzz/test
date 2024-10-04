@@ -1,0 +1,15 @@
+##netris
+#ACCEPT pvpn:$vd_lobakov laf3:10.247.76.0/23 all
+#ACCEPT pvpn:$vd_lobakov laf3:10.247.210.0/23 all
+#ACCEPT pvpn:$vd_lobakov laf3:10.248.51.0/24 all
+##inopartnerstvo
+#ACCEPT pvpn:$vt_stefyuk loc:192.168.42.205 tcp 3389
+##kuzko_buh
+#ACCEPT pvpn:$kuzko_buh loc:192.168.42.205 tcp 3389
+##Soldatov-17.11.2022 na 4 nedeli
+#ACCEPT pvpn:$vs_parshin tvr:192.168.70.117,192.168.70.118,192.168.70.119 all
+## ITIL 23/11/2022
+#ACCEPT pvpn:$active_itil,$biznes_reshenie_itil dmz:192.168.2.134 tcp 80,443,22,1540-1541,1560-1591,9099,475
+#ACCEPT pvpn:$active_itil,$biznes_reshenie_itil dmz:192.168.2.135 all
+#ACCEPT pvpn:$active_itil test:192.168.14.204 tcp 3389
+#ACCEPT pvpn:$test_kmo dmz:192.168.2.134 tcp 80,443,22,1540-1541,1560-1591,9099,475
