@@ -106,7 +106,6 @@ ACCEPT pvpn:$vint_sn_pankratova,$vint_an_illarionova,$vint_vv_repin,$vint_vd_doc
 ##KMS Server
 ACCEPT pvpn gov:10.128.0.24 tcp 1688
 ##ConsultantPlus
-#ACCEPT pvpn ad:192.168.10.72 tcp 5504,3389
 ##RDS, Balanc
 ACCEPT pvpn ad:192.168.10.24 tcp 3389,5504,80,443
 ACCEPT pvpn ad:192.168.10.26 tcp 3389,5504,80,443
@@ -151,7 +150,6 @@ ACCEPT pvpn:$vint_bd_batalov gov:10.128.66.140 tcp 80,443
 ACCEPT pvpn:$vint_riseva gov:10.128.66.140 tcp 80,443
 ACCEPT pvpn:$vint_as_titova gov:10.128.66.140 tcp 80,443
 ACCEPT pvpn:$vint_ms_zhukova gov:10.128.66.140 tcp 80,443
-#ACCEPT pvpn:$vint_a_timofeeva gov:10.128.66.140 tcp 80,443
 ACCEPT pvpn:$vint_mv_kalinin gov:10.128.66.140 tcp 80,443
 ACCEPT pvpn:$vint_gubanovs gov:10.146.140.250 tcp 22,5432
 ACCEPT pvpn:$vint_aa_bogomolov gov:10.146.140.250 tcp 22,5432
@@ -169,8 +167,6 @@ ACCEPT pvpn:$vint_as_titova gov:10.146.140.250 tcp 22,5432
 ACCEPT pvpn:$vint_as_titova gov:10.146.136.64 tcp 22,5432
 ACCEPT pvpn:$vint_ms_zhukova gov:10.146.140.250 tcp 22,5432
 ACCEPT pvpn:$vint_ms_zhukova gov:10.146.136.64 tcp 22,5432
-#ACCEPT pvpn:$vint_a_timofeeva gov:10.146.140.250 tcp 22,5432
-#ACCEPT pvpn:$vint_a_timofeeva gov:10.146.136.64 tcp 22,5432
 ### 20461 ###
 ACCEPT pvpn:$vint_mp_khonelidze,$vint_pa_shoshina,$vint_oa_gorbunova gov:10.128.66.140 tcp 80,443
 ### 20452 ###
@@ -183,38 +179,16 @@ ACCEPT pvpn gov:10.146.136.22 tcp 80
 ACCEPT pvpn gov:10.146.138.154 tcp 80,443
 ACCEPT pvpn ad:192.168.10.3 tcp 80
 ACCEPT pvpn:$vint_pavel_ivanov test all
-#ACCEPT vpn:$vint_renta ad all 
-#ACCEPT vpn:$vint_renta asa all 
-#ACCEPT vpn:$vint_renta dmz all 
-#ACCEPT vpn:$vint_renta dmzt all 
-#ACCEPT vpn:$vint_renta edu all 
-#ACCEPT vpn:$vint_renta gov all 
-#ACCEPT vpn:$vint_renta iao all 
-#ACCEPT vpn:$vint_renta laf3 all 
-#ACCEPT vpn:$vint_renta loc all 
-#ACCEPT vpn:$vint_renta med all 
-#ACCEPT vpn:$vint_renta oop all 
-#ACCEPT vpn:$vint_renta phone all 
-#ACCEPT vpn:$vint_renta sec all 
-#ACCEPT vpn:$vint_renta test all 
-#ACCEPT vpn:$vint_renta vpn2 all 
-#ACCEPT vpn:$vint_renta wmz all 
-#ACCEPT vpn:$vint_renta grt all 
-ACCEPT pvpn:$vint_av_vorontsov wmz:192.168.3.235 tcp 22,80,3690
 ACCEPT pvpn:$vint_av_vorontsov gov:10.146.136.98 tcp 3690
-ACCEPT vpn:$vint_s_smirnov wmz:192.168.3.235 tcp 22,80,3690
 ACCEPT vpn:192.168.7.110 dmz:192.168.2.204 tcp 8780
 ACCEPT vpn:192.168.7.110 dmz:192.168.2.216 tcp 80
 ACCEPT vpn:192.168.7.110 dmz:192.168.2.32 tcp 80
-ACCEPT vpn:192.168.7.110 wmz:192.168.3.235 tcp 80
 ACCEPT pvpn:$vint_iv_petrov gov:10.128.0.20 all 
 ACCEPT pvpn:$vint_iv_petrov gov:10.128.0.24 all 
 ACCEPT pvpn:$vint_iv_petrov gov:10.128.0.25 all 
 ACCEPT pvpn:$vint_iv_petrov gov:10.146.136.25 all 
 ACCEPT pvpn:$vint_iv_petrov dmz:192.168.2.210 all 
 ACCEPT pvpn:$vint_mn_soldatov dmz:192.168.2.239 all 
-ACCEPT pvpn:$vint_av_kozhin wmz:192.168.3.235 tcp 22,80,3690
-ACCEPT vpn:192.168.7.126 wmz:192.168.3.235 tcp 22,80,3690
 ACCEPT pvpn:$vint_ys_lyahovitskaya dmz:192.168.14.227 all
 ACCEPT pvpn:$vint_ys_lyahovitskaya gov:10.146.137.224 tcp 8080
 ACCEPT pvpn:$vint_ys_lyahovitskaya gov:10.146.137.129 tcp 8080 
@@ -224,22 +198,15 @@ ACCEPT vpn:192.168.7.129 dmz:192.168.2.232 all
 ACCEPT vpn:192.168.7.129 dmz:192.168.2.244 all 
 ACCEPT vpn:192.168.7.129 dmz:192.168.2.63 all 
 ACCEPT vpn:$vint_kyrnyshev ad all 
-ACCEPT vpn:$vint_kyrnyshev asa all 
 ACCEPT vpn:$vint_kyrnyshev dmz all 
-ACCEPT vpn:$vint_kyrnyshev dmzt all 
 ACCEPT vpn:$vint_kyrnyshev edu all 
 ACCEPT vpn:$vint_kyrnyshev gov all 
 ACCEPT vpn:$vint_kyrnyshev iao all 
 ACCEPT vpn:$vint_kyrnyshev laf3 all 
 ACCEPT vpn:$vint_kyrnyshev loc all 
-#ACCEPT vpn:$vint_kyrnyshev med all 
-ACCEPT vpn:$vint_kyrnyshev oop all 
 ACCEPT vpn:$vint_kyrnyshev phone all 
 ACCEPT vpn:$vint_kyrnyshev sec all 
 ACCEPT vpn:$vint_kyrnyshev test all 
-ACCEPT vpn:$vint_kyrnyshev vpn2 all 
-ACCEPT vpn:$vint_kyrnyshev wmz all 
-ACCEPT vpn:$vint_kyrnyshev grt all
 ACCEPT vpn:$vint_kyrnyshev nr all
 ACCEPT vpn:$vint_kyrnyshev tvr all
 ACCEPT pvpn:$vint_ryabova dmz:192.168.2.207 tcp 22,80,5432,8080
@@ -247,14 +214,12 @@ ACCEPT pvpn:$vint_ryabova dmz:192.168.2.207 udp 5432
 ACCEPT pvpn:$vint_ryabova dmz:192.168.2.230 all 
 ACCEPT pvpn:$vint_ryabova gov:10.144.31.34 tcp 3389,5900,5901,5902,5903,5904,5905,5906
 ACCEPT pvpn:$vint_ryabova gov:192.168.9.128/26 all 
-ACCEPT vpn:192.168.7.141 wmz:192.168.3.235 tcp 80,3690
 ACCEPT pvpn:$vint_im_dementiev dmz:192.168.14.227 all 
 ACCEPT pvpn:$vint_im_dementiev dmz:192.168.2.243 tcp 22,80
 ACCEPT pvpn:$vint_im_dementiev dmz:192.168.2.46 tcp 22
 ACCEPT pvpn:$vint_im_dementiev dmz:192.168.2.66 tcp 22,5432
 ACCEPT pvpn:$vint_im_dementiev dmz:192.168.2.77 tcp 22,80,443
 ACCEPT vpn:192.168.7.147 dmz:192.168.2.32 tcp 80
-ACCEPT vpn:192.168.7.147 wmz:192.168.3.235 tcp 80
 ACCEPT pvpn:$vint_oi_pilugin dmz:217.195.78.246 tcp 80,3690
 ACCEPT pvpn:$vint_oi_pilugin gov:10.146.137.224 tcp 80,443
 ACCEPT pvpn:$vint_oi_pilugin gov:10.146.137.129 tcp 80,443
@@ -262,7 +227,6 @@ ACCEPT pvpn:$vint_oi_pilugin gov:10.146.137.243 tcp 80
 ACCEPT pvpn:$vint_oi_pilugin gov:10.146.137.36 tcp 80
 ACCEPT pvpn:$vint_oi_pilugin gov:10.146.137.118 tcp 80
 ACCEPT pvpn:$vint_oi_pilugin gov:10.146.137.3 tcp 80
-#ACCEPT pvpn:$vint_grechushkin loc,gov,nr,tvr all
 ACCEPT pvpn:$vint_ao_isachenkov gov:10.146.138.132-10.146.138.137 all
 ACCEPT pvpn:$vint_ao_isachenkov laf3:10.248.51.0/24 all
 ACCEPT pvpn:$vint_ao_isachenkov gov:10.146.139.27 all
@@ -279,7 +243,6 @@ ACCEPT vpn:$vint_maleev gov:10.146.136.14 tcp 80,443,3389,5432
 ACCEPT vpn:$vint_maleev gov:10.146.136.15 tcp 80,443,3389,5432
 ACCEPT vpn:$vint_maleev gov:10.146.136.16 tcp 7010,7020,7030,3389
 ACCEPT vpn:$vint_maleev gov:10.146.136.20 tcp 5432,3389
-ACCEPT vpn:$vint_maleev wmz all 
 ACCEPT vpn:192.168.7.182 dmz:192.168.2.9 tcp 80,443,22,8443
 ACCEPT pvpn:$vint_ai_gillung gov,sec all
 ACCEPT pvpn:$vint_oa_novoslugina gov:10.241.3.2,10.241.3.78,10.128.66.165 all
@@ -300,11 +263,9 @@ ACCEPT pvpn:$vint_ra_ivanov gov:10.128.66.82 tcp 80
 ACCEPT pvpn:$vint_ra_ivanov gov:10.128.66.83 tcp 8180
 ACCEPT pvpn:$vint_ra_ivanov gov:10.128.66.99 tcp 1521
 ACCEPT pvpn:$vint_ra_ivanov gov:10.146.136.21 tcp 1521
-#ACCEPT pvpn:$vint_sokolin gov:10.146.136.22 tcp 80,443
 ACCEPT pvpn:$vint_ra_ivanov gov:10.146.136.22 tcp 80,443
 ACCEPT pvpn:$vint_potapovich gov:10.146.136.22 tcp 80,443
 ACCEPT pvpn:$vint_vik_val_grigoryev gov:10.146.136.22 tcp 80,443
-#ACCEPT pvpn:$vint_sokolin gov:10.146.136.44 tcp 80,443
 ACCEPT pvpn:$vint_ra_ivanov gov:10.146.136.44 tcp 80,443
 ACCEPT pvpn:$vint_potapovich gov:10.146.136.44 tcp 80,443
 ACCEPT pvpn:$vint_vik_val_grigoryev gov:10.146.136.44 tcp 80,443
@@ -313,13 +274,10 @@ ACCEPT pvpn:$vint_ra_ivanov gov:10.146.136.251 tcp 8180
 ACCEPT pvpn:$vint_ra_ivanov gov:10.146.136.181 tcp 6473
 ACCEPT pvpn:$vint_ra_ivanov gov:10.128.66.105 tcp 1433
 ACCEPT pvpn:$vint_da_komlev gov:10.146.137.3 tcp 80
-#ACCEPT pvpn:$vint_matov gov:10.146.137.3 tcp 80
 ACCEPT pvpn:$vint_da_komlev gov:10.146.137.4 tcp 80,443
-#ACCEPT pvpn:$vint_matov gov:10.146.137.4 tcp 80,443
 ACCEPT pvpn:$vint_an_korolev gov:10.146.137.4 tcp 80,443
 ACCEPT pvpn:$vint_ys_lyahovitskaya gov:10.146.137.4 tcp 80,443
 ACCEPT pvpn:$vint_da_komlev gov:10.146.137.5 tcp 80,443
-#ACCEPT pvpn:$vint_matov gov:10.146.137.5 tcp 80,443
 ACCEPT pvpn:$vint_an_korolev gov:10.146.137.5 tcp 80,443
 ACCEPT pvpn:$vint_ys_lyahovitskaya gov:10.146.137.5 tcp 80,443
 ACCEPT pvpn:$vint_gv_talvinskiy dmz:10.10.16.0/24 tcp 22,80,1158,1521,8080,8180,8000
@@ -340,45 +298,16 @@ ACCEPT pvpn:$vint_gv_talvinskiy gov:192.168.9.66 tcp 22,1158
 ACCEPT pvpn:$vint_gv_talvinskiy gov:192.168.9.67 tcp 22,9600
 ACCEPT pvpn:$vint_gv_talvinskiy gov tcp 22,1521,3389,80,1158,5500,8080,8180
 ACCEPT pvpn:$vint_ra_ivanov gov:10.146.136.40 all
-#ACCEPT pvpn:$vint_kasyan gov:10.128.66.165 tcp 8005,6005
 ACCEPT pvpn:$vint_ryabova dmz:192.168.2.244 all
-#ACCEPT pvpn:$vint_kasyan gov:10.128.66.165 tcp 6104,8104
 ACCEPT vpn:$vint_papin dmz,gov,iao all
-#ACCEPT pvpn:$vint_sokolin dmz:192.168.2.16 all
-#ACCEPT pvpn:$vint_sokolin gov:10.146.136.251 tcp 8180
-#ACCEPT pvpn:$vint_sokolin gov:10.146.136.181 tcp 6473
-#ACCEPT pvpn:$vint_sokolin gov:10.128.66.105 tcp 1433
 ACCEPT pvpn:$vint_pozdnyakova dmz:192.168.2.243 tcp 80,443
-#ACCEPT pvpn:$vint_gavrilova dmz:192.168.2.243 tcp 80,443
-#ACCEPT pvpn:$vint_vsevladova dmz:192.168.2.243 tcp 80,443
 ACCEPT pvpn:$vint_pavel_ivanov dmz:10.128.66.103 tcp 80,443
 ACCEPT pvpn:$vint_oi_pilugin gov:10.146.139.3-10.146.139.10 all
 ACCEPT pvpn:$vint_ryabova gov:10.146.137.3 tcp 80
 ACCEPT pvpn:$vint_ryabova gov:10.146.137.36 tcp 80
 ACCEPT pvpn:$vint_ryabova gov:10.146.137.118 tcp 80
-#ACCEPT pvpn:$vint_a_smirnova gov:10.128.66.103 tcp 80
-#ACCEPT pvpn:$vint_vladimirov gov:10.128.66.178 tcp 1433,3389
-#ACCEPT pvpn:$vint_vladimirov gov:10.146.138.238 all
-#ACCEPT pvpn:$vint_vladimirov gov:10.146.138.239 all
-#ACCEPT pvpn:$vint_vladimirov gov:10.146.138.242 all
-#ACCEPT pvpn:$vint_vladimirov gov:10.146.139.207 all
-#ACCEPT pvpn:$vint_vladimirov laf3:10.248.51.86 all
-#ACCEPT pvpn:$vint_vladimirov laf3:10.248.51.115 all
-#ACCEPT pvpn:$vint_vladimirov gov:10.146.138.249
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.136.17 tcp 3389
 ACCEPT pvpn:$vint_pavel_ivanov gov:10.146.136.22 tcp 80
 ACCEPT pvpn:$vint_pavel_ivanov gov:10.146.136.44 tcp 80
-#ACCEPT vpn:$vint_nahabtseva dmz:$PERCH tcp 80,443
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.136.10 tcp 3389
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.136.124 tcp 3389
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.136.125 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.136.126 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.136.127 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.136.125 tcp 5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.136.127 tcp 5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.136.17 tcp 3389
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.128.28.24 tcp 3389
-#ACCEPT pvpn:$vint_ma_ivanko dmzt:192.168.19.9 tcp 22,80
 ACCEPT pvpn:$vint_ra_ivanov gov:10.144.2.37 tcp 7001
 ACCEPT pvpn:$vint_ea_sherstobitov dmz:192.168.2.16 tcp 3389,1433,7003,211
 ACCEPT pvpn:$vint_ea_sherstobitov dmz:192.168.2.17 tcp 3389,1433,7003,211
@@ -402,10 +331,6 @@ ACCEPT pvpn:$vint_ea_sherstobitov gov:10.146.139.44 tcp 80,443
 ACCEPT pvpn:$vint_ea_sherstobitov gov:10.146.136.162 tcp 80,443
 ACCEPT pvpn:$vint_ea_sherstobitov gov:192.168.9.14 tcp 1521
 ACCEPT pvpn:$vint_ea_sherstobitov gov:192.168.9.51 tcp 3389
-ACCEPT pvpn:$vint_ea_sherstobitov oop:192.168.12.10 tcp 80,445,1521,4040,3389,8080,7001
-ACCEPT pvpn:$vint_ea_sherstobitov oop:192.168.12.11 tcp 3389,445,80,1521,5151
-ACCEPT pvpn:$vint_ea_sherstobitov oop:192.168.12.12 tcp 22,1521,5151,5152
-ACCEPT pvpn:$vint_ea_sherstobitov oop:192.168.12.14 tcp 22,1521
 ACCEPT pvpn:$vint_ea_sherstobitov test:192.168.14.153 all
 ACCEPT pvpn:$vint_ka_puhtenok dmz:192.168.2.132 all
 ACCEPT pvpn:$vint_ka_puhtenok dmz:192.168.2.133 all
@@ -434,10 +359,6 @@ ACCEPT pvpn:$vint_ka_puhtenok gov:10.146.136.40 tcp 2241,1521,3389
 ACCEPT pvpn:$vint_ka_puhtenok gov:192.168.9.14 tcp 22,80,1521
 ACCEPT pvpn:$vint_ka_puhtenok iao:192.168.5.4 tcp 22,9090
 ACCEPT pvpn:$vint_ka_puhtenok iao:192.168.5.5 tcp 22,9090
-ACCEPT pvpn:$vint_ka_puhtenok oop:192.168.12.12 tcp 22,1521,5151,5152
-ACCEPT pvpn:$vint_ka_puhtenok oop:192.168.12.14 tcp 22,1521,3389
-ACCEPT pvpn:$vint_ka_puhtenok oop:192.168.12.19 tcp 1521,22,80
-ACCEPT pvpn:$vint_ka_puhtenok oop:192.168.12.19 tcp 22
 ACCEPT pvpn:$vint_my_palin gov:10.146.138.231 tcp 80,81,82
 ACCEPT pvpn:$vint_my_palin gov:10.146.138.230 tcp 80
 ACCEPT pvpn:$vint_my_palin laf3:10.248.51.115 tcp 8088
@@ -498,17 +419,7 @@ ACCEPT pvpn:$vint_av_kozhin gov:10.146.142.8 tcp 9080
 ACCEPT vpn:$vint_gubanovs gov:10.146.136.118 tcp 1521
 ACCEPT vpn:$vint_aleksandr_sidenko sec all
 ACCEPT pvpn:$vint_andrienko ad all
-#ACCEPT pvpn:$vint_kasyan dmz:192.168.2.95 all
-#ACCEPT pvpn:$vint_kasyan dmz:192.168.2.112 all
-#ACCEPT pvpn:$vint_vv_aleksandrov dmz:192.168.2.138 tcp 10180
 ACCEPT pvpn:$vint_ryabova gov:10.146.137.243 tcp 80
-#ACCEPT vpn:$vint_milchev gov:10.146.137.243 tcp 80
-#ACCEPT vpn:$vint_milchev gov:10.146.137.118 tcp 80
-#ACCEPT vpn:$vint_milchev gov:10.146.137.134 tcp 80,443
-#ACCEPT pvpn:$vint_zaharchenko gov:10.128.66.103 tcp 80,443
-#ACCEPT vpn:$vint_boyceva gov:10.128.66.103 tcp 80,443
-#ACCEPT pvpn:$vint_zaharchenko gov:10.146.136.22 tcp 80,443
-#ACCEPT vpn:$vint_boyceva gov:10.146.136.22 tcp 80,443
 ACCEPT pvpn:$vint_naumova gov:10.146.137.82 tcp 3389
 ACCEPT pvpn:$vint_naumova gov:10.146.137.81 tcp 22
 ACCEPT pvpn:$vint_naumova gov:10.146.137.3 tcp 80,443
@@ -583,23 +494,18 @@ ACCEPT pvpn:$vint_k_smotrov gov:10.146.138.204 tcp 80,7777
 ACCEPT pvpn:$vint_k_smotrov gov:10.146.138.204 tcp 9999
 ACCEPT pvpn:$vint_k_smotrov gov:10.146.138.89 tcp 80,443
 ACCEPT pvpn:$vint_k_smotrov gov:10.146.139.25 tcp 22,80,443,8080:8082
-ACCEPT pvpn:$vint_k_smotrov wmz:192.168.3.235 tcp 22,3690
 ACCEPT pvpn:$vint_elena_gracheva dmz,dmzt,gov,iao,nr all
 ACCEPT pvpn:$vint_aa_gefding gov:10.146.138.132 tcp 21,22,80,443,554,5432,8080:8089,14073,15073
 ACCEPT pvpn:$vint_aa_gefding gov:10.146.138.133 tcp 21,22,80,443,554,5432,8080:8089,14073,15073
 ACCEPT pvpn:$vint_aa_gefding gov:10.146.138.134 tcp 21,22,80,443,554,5432,8080:8089,14073,15073
 ACCEPT pvpn:$vint_aa_gefding gov:10.146.138.135 tcp 21,22,80,443,554,5432,8080:8089,14073,15073
 ACCEPT pvpn:$vint_aa_gefding gov:10.146.138.136 tcp 21,22,80,443,554,5432,8080:8089,14073,15073
-#ACCEPT pvpn:$vint_va_suvorov tvr:192.168.70.163 tcp 22,80,443
-#ACCEPT pvpn:$vint_va_suvorov tvr:192.168.70.165 tcp 22,80,443
-#ACCEPT pvpn:$vint_va_suvorov tvr:192.168.70.170 tcp 22,80,443
 ACCEPT pvpn:$vint_va_suvorov gov:10.146.143.249 tcp 22,80,443
 ACCEPT pvpn:$vint_va_suvorov gov:10.128.28.172 tcp 22,80,443
 ACCEPT pvpn:$vint_va_suvorov gov:10.146.143.249 tcp 3389
 ACCEPT pvpn:$vint_va_suvorov gov:10.241.0.104 tcp 22
 ACCEPT pvpn:$vint_va_suvorov gov:10.241.0.147 tcp 22
 ACCEPT pvpn:$vint_va_suvorov gov:10.241.0.117 tcp 5000
-#ACCEPT pvpn:$vint_va_suvorov tvr:192.168.70.169 tcp 22,80,443
 ACCEPT pvpn:$vint_va_suvorov gov:10.241.1.152 all
 ACCEPT pvpn:$vint_ni_slitkov gov:10.128.66.242 tcp msrdp,21,80,1433,1434
 ACCEPT pvpn:$vint_ni_slitkov gov:10.128.66.196 tcp msrdp,21,80,1433,1434
@@ -613,12 +519,6 @@ ACCEPT pvpn:$vint_ov_efremova gov:10.146.140.250,10.146.136.64 tcp 22,5432
 ACCEPT pvpn:$vint_ov_efremova gov:10.146.136.203 tcp 5432
 ACCEPT pvpn:$vint_ov_efremova gov:10.146.140.249 tcp 5432
 ACCEPT pvpn:$vint_ov_efremova gov:10.146.136.161 tcp 15432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.139.129 tcp 3389,80,8083,8086,8283
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.139.127 tcp 3389,80,8083,8086,8283
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.139.130 tcp 22,1251
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.139.128 tcp 22,1251
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.139.131 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.139.126 tcp 22,5432,8082
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.139.129 tcp 3389,80,8083,8086,8283
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.139.127 tcp 3389,80,8083,8086,8283
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.139.130 tcp 22,1251
@@ -637,74 +537,6 @@ ACCEPT pvpn:$vint_em_loktev gov:10.146.136.61 tcp 21,10180
 ACCEPT pvpn:$vint_em_loktev gov:10.146.137.2,10.146.137.242 tcp 8081
 ACCEPT pvpn:$vint_em_loktev gov:10.146.136.121,10.241.2.24 tcp 22
 ACCEPT pvpn:$vint_em_loktev gov:10.241.0.209 tcp 80,443
-#ACCEPT pvpn:$vint_d_demenko gov:10.1.222.19-10.1.222.38 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.128.5.130,10.128.5.132,10.128.5.134,10.128.5.232,10.128.5.238 tcp 22,80,443,1521,1148,8080:8083,9000
-#ACCEPT pvpn:$vint_d_demenko gov:10.128.5.160,10.128.5.170,10.128.5.180 tcp 3389
-#ACCEPT pvpn:$vint_d_demenko gov:10.128.5.230,10.128.5.231 tcp 22,80,443
-#ACCEPT pvpn:$vint_d_demenko gov:10.128.5.4,10.128.5.238,10.128.5.240 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.128.28.254 tcp 8081,8082,8083
-#ACCEPT pvpn:$vint_d_demenko gov:10.128.28.88 tcp 80,443
-#ACCEPT pvpn:$vint_d_demenko gov:10.128.66.15,10.128.66.20-10.128.66.25,10.128.66.48-10.128.66.49 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.128.66.50-10.128.66.56 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.128.66.67,10.128.66.75,10.128.66.97,10.128.66.98 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.128.66.110,10.128.66.111,10.128.66.120 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.128.66.159,10.128.66.184,10.128.66.206 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.128.66.227-10.128.66.231 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.128.213.253 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.136.90-10.146.136.99 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.136.143-10.146.136.148 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.136.110,10.146.136.174 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.136.205-10.146.136.207 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.136.223,10.146.136.224,10.146.136.58,10.146.136.130,10.146.136.217 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.136.45 tcp 22
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.136.219 tcp 22,80,443
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.136.11 tcp 22,80,443,7001,9001,9002,8080,8081
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.138.44,10.146.138.45,10.146.138.138,10.146.138.220 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.138.85-10.146.138.89 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.138.208-10.146.138.211 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.138.130,10.146.138.138 tcp 22,80,443
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.138.154,10.146.138.155,10.146.138.164,10.146.138.165 tcp 22,80,443
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.138.162,10.146.138.163 tcp 22,80,443,1521,7001,9001,9002
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.138.166 tcp 22,80,443,1521,1158,8080,8081,8082,5555,8083
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.138.167 tcp 22,80,443,1521,1158,8080,8081,8082,5555,8083
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.138.168-10.146.138.172 tcp 22,1521,1158
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.138.173 tcp 80,443
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.138.174 tcp 80,443,8080,8081,8082,5555,8083
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.138.131 tcp 80,443,3389,8530
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.138.203 tcp 22,1521,1158,8080,80,443,5432
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.138.204 tcp 22,1521,1158,8080,80,443,80,7777,9999
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.138.243 tcp 5672
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.139.62-10.146.139.64 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.139.106,10.146.139.160,10.146.139.170,10.146.139.240 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.139.166-10.146.139.168 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.139.251-10.146.139.255 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.139.25 tcp 40000:40008,50000:50008
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.139.25,10.146.139.26 tcp 4444
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.139.26 tcp 3000,9000,9090,9100
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.139.171 tcp 22,1521,1158
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.139.21-10.146.139.26 tcp 22
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.139.21,10.146.139.24 tcp 1158,1521
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.139.22,10.146.139.23 tcp 8080:8083,8090
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.139.23,10.146.139.26 tcp 80,443
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.139.25 tcp 80,443,8080:8082
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.139.43 tcp 22
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.140.198 tcp 5432
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.141.242,10.146.141.243,10.146.141.254 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.141.20-10.146.141.37 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.141.229-10.146.141.239 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.142.5-10.146.142.10 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.142.24-10.146.142.37,10.146.142.65 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.142.169-10.146.142.184 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.146.143.170,10.146.143.210,10.146.143.211 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.145.64.61-10.145.64.62,10.145.77.61-10.145.77.62 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.241.0.29-10.241.0.30 all
-#ACCEPT pvpn:$vint_d_demenko gov:10.241.0.76,10.241.0.77,10.241.0.108,10.241.0.199 all
-#ACCEPT pvpn:$vint_d_demenko tvr:192.168.70.16/29 all
-#ACCEPT pvpn:$vint_d_demenko tvr:192.168.70.34-192.168.70.43 all
-#ACCEPT pvpn:$vint_d_demenko tvr:192.168.70.96/27 all
-#ACCEPT pvpn:$vint_d_demenko dmz:192.168.2.30,192.168.2.31,192.168.2.237 all
-#ACCEPT pvpn:$vint_d_demenko dmz:192.168.2.138 tcp 10180
-#ACCEPT pvpn:$vint_d_demenko test:192.168.14.106 all
 ACCEPT pvpn:$vint_av_ivanov gov:10.128.66.140 tcp 22,80
 ACCEPT pvpn:$vint_av_ivanov gov:10.146.136.121-10.146.136.123 tcp 22,80,443
 ACCEPT pvpn:$vint_av_ivanov gov:10.146.136.202,10.146.143.158,10.146.140.249,10.146.136.203 tcp 22
@@ -776,17 +608,12 @@ ACCEPT pvpn:$vint_av_ivanov tvr:192.168.152.17 tcp 22,80,443,5432
 ACCEPT pvpn:$vint_av_ivanov tvr:192.168.152.18 tcp 22
 ACCEPT pvpn:$vint_av_ivanov tvr:192.168.152.21 tcp 22,80,443
 ACCEPT pvpn:$vint_av_ivanov tvr:192.168.152.3-192.168.152.9 tcp 22,80,443
-#ACCEPT pvpn:$vint_av_ivanov tvr:192.168.70.162-192.168.70.174 tcp 22,80,443
 ACCEPT pvpn:$vint_av_ivanov tvr:192.168.70.194,192.168.70.196 tcp 22,80,443
 ACCEPT pvpn:$vint_av_ivanov tvr:192.168.70.2,192.168.70.3 tcp 22
-#ACCEPT pvpn:$vint_av_ivanov tvr:192.168.70.163 tcp 22,80,443
 ###krutko###
 ACCEPT pvpn:$vint_krutko gov:10.146.136.24 tcp 80
 ###vint_anton_osipov###
-#ACCEPT pvpn:$vint_anton_osipov dmz:192.168.2.111 tcp 80
 ###eremeevskiy###
-#ACCEPT pvpn:$vint_eremeevskiy sec:192.168.4.0/24 all
-#ACCEPT pvpn:$vint_eremeevskiy gov:10.128.5.240 all
 ###aa_kondrashova###
 ACCEPT pvpn:$vint_aa_kondrashova gov:10.146.136.148 tcp 80,443,8080,22
 ###potapovich###
@@ -802,7 +629,6 @@ ACCEPT pvpn:$vint_ka_dolinova gov:10.146.137.82 tcp 3389
 ACCEPT pvpn:$vint_sa_yakushev ad:192.168.10.9 tcp 136,137,138,139,445
 ###nikita_kyrnyshev###
 ACCEPT pvpn:$vint_nikita_kyrnyshev dmz:192.168.2.111 tcp 80
-#ACCEPT pvpn:$vint_nikita_kyrnyshev tvr:192.168.70.169 tcp 22
 ###
 ACCEPT pvpn:$vint_vik_val_grigoryev gov:10.146.136.40 tcp 3392
 ACCEPT pvpn:$vint_kolokolov test:192.168.14.7 tcp 65432
@@ -826,8 +652,6 @@ ACCEPT pvpn:$vint_lopatin gov:10.146.137.80 tcp 80,8081
 ACCEPT pvpn:$vint_lopatin gov:10.146.137.82 tcp 22,80
 ACCEPT pvpn:$vint_lopatin gov:10.146.137.129 tcp 22,80
 ACCEPT pvpn:$vint_lopatin gov:10.146.137.81 tcp 22,80
-#ACCEPT pvpn:$vint_olga_bobova dmz:192.168.2.8 all
-#ACCEPT pvpn:$vint_olga_bobova ad:192.168.10.6 all
 ACCEPT pvpn:$vint_rs_nikitin gov:10.146.139.63 tcp 80
 ACCEPT pvpn:$vint_rs_nikitin gov:10.146.139.64 tcp 5000
 ACCEPT pvpn:$vint_rs_nikitin gov:10.146.139.57 tcp 22,8000:9000
@@ -856,23 +680,14 @@ ACCEPT pvpn:$vint_na_klesov gov:10.146.139.45 all
 ACCEPT pvpn:$vint_na_klesov gov:10.146.136.22 all
 ACCEPT pvpn:$vint_na_klesov gov:10.146.137.85 all
 ACCEPT pvpn:$vint_a_lukyanovich gov:10.146.137.85 all
-#ACCEPT pvpn:$vint_vladimirov gov:10.146.139.212 tcp 7777:7779
-#ACCEPT pvpn:$vint_sokolin ad:192.168.10.9 all
 ACCEPT pvpn:$vint_ra_ivanov ad:192.168.10.9 all
-#ACCEPT pvpn:$vint_sokolin loc all
 ACCEPT pvpn:$vint_ra_ivanov loc all
-#ACCEPT pvpn:$vint_sokolin  gov:10.128.0.67 all
-#ACCEPT pvpn:$vint_sokolin  gov:10.128.0.25 all
 ACCEPT pvpn:$vint_ra_ivanov  gov:10.128.0.67 all
 ACCEPT pvpn:$vint_ra_ivanov  gov:10.128.0.25 all
-#ACCEPT pvpn:$vint_sokolin gov:10.128.180.253 tcp 80,443,3389
 ACCEPT pvpn:$vint_ra_ivanov gov:10.128.180.253 tcp 80,443,3389
 ACCEPT pvpn:$vint_vik_val_grigoryev gov:10.128.180.253 tcp 80,443,3389
-#ACCEPT pvpn:$vint_sokolin gov:10.146.138.114 tcp 22,80,88,443,5432
 ACCEPT pvpn:$vint_ra_ivanov gov:10.146.138.114 tcp 22,80,88,443,5432
 ACCEPT pvpn:$vint_vik_val_grigoryev gov:10.146.138.114 tcp 22,80,88,443,5432
-#ACCEPT pvpn:$vint_sokolin gov:10.146.136.182 tcp 22,80,88,443,5432
-#ACCEPT pvpn:$vint_sokolin gov:10.146.140.225 tcp 22,80,88,443,5432
 ACCEPT pvpn:$vint_ra_ivanov gov:10.146.136.182 tcp 22,80,88,443,5432
 ACCEPT pvpn:$vint_ra_ivanov gov:10.146.140.225 tcp 22,80,88,443,5432
 ACCEPT pvpn:$vint_vik_val_grigoryev gov:10.146.136.182 tcp 22,80,88,443,5432
@@ -1006,7 +821,6 @@ ACCEPT pvpn:$vint_shlyahtin gov:10.248.51.95 all
 ACCEPT pvpn:$vint_iy_ponamarev tvr:192.168.152.5,192.168.152.11 tcp 22,80,443
 ### Forum Govnor ###
 ACCEPT pvpn:$vint_iv_petrov gov:10.146.136.130 tcp 80
-#ACCEPT pvpn:$vint_varentsova peer all
 ### Ticket 13628 ###
 ACCEPT pvpn:$vint_na_klesov gov:10.146.139.79 tcp 22
 ### Ticket 13791 ###
@@ -1026,34 +840,9 @@ ACCEPT pvpn:$vint_a_lukyanovich gov:10.146.139.44 tcp 8090,8091
 ### Repin AirCondition DC ###
 ACCEPT pvpn:$vint_shlyahtin gov:10.128.0.24 tcp 1688 
 ### Ticket 14184 ###
-#ACCEPT pvpn:$vint_fursov gov:10.146.139.84 tcp 22
-#ACCEPT pvpn:$vint_fursov gov:10.146.139.97-10.146.139.101 tcp 22
-#ACCEPT pvpn:$vint_fursov gov:10.146.138.238-10.146.138.244 tcp 22
-#ACCEPT pvpn:$vint_fursov gov:10.146.139.249 tcp 22
-#ACCEPT pvpn:$vint_fursov gov:10.146.139.250 tcp 22
-#ACCEPT pvpn:$vint_fursov gov:10.146.139.217-10.146.139.236 tcp 3389
-#ACCEPT pvpn:$vint_fursov gov:10.146.140.65-10.146.140.94 tcp 3389
-#ACCEPT pvpn:$vint_fursov gov:10.146.141.183 tcp 22,80,443
-#ACCEPT pvpn:$vint_fursov gov:10.146.138.136 tcp 80
-#ACCEPT pvpn:$vint_fursov gov:10.146.138.132 tcp 8085
-#ACCEPT pvpn:$vint_fursov gov:10.146.138.242 all
-#ACCEPT pvpn:$vint_fursov laf3:10.248.51.115 tcp 8088
-#ACCEPT pvpn:$vint_fursov laf3:10.248.51.86 tcp 2222
-#ACCEPT pvpn:$vint_fursov gov:10.146.139.134 tcp 2222,8088
-#ACCEPT pvpn:$vint_fursov gov:10.146.136.22 tcp 80
-#ACCEPT pvpn:$vint_fursov gov:10.146.141.213 tcp 80
-#ACCEPT pvpn:$vint_fursov gov:10.146.138.249 all
-#ACCEPT pvpn:$vint_fursov dmz:192.168.2.94 tcp 3128
-#ACCEPT pvpn:$vint_fursov gov:10.248.51.95 all
-#ACCEPT pvpn:$vint_fursov gov:10.144.2.32 tcp 80
-#ACCEPT pvpn:$vint_fursov oemts:10.5.18.128/26 tcp 22,80,443
-#ACCEPT pvpn:$vint_fursov gov:10.128.0.24 tcp 1688 
 ### Ticket 14235 ###
 ACCEPT pvpn:$vint_litvinchuk dmz:192.168.2.95 tcp 80,443,8081
 ### Ticket 14354 ###
-#ACCEPT pvpn:$vint_v_selezneva gov:10.146.140.220 tcp 1433,1434,3389
-#ACCEPT pvpn:$vint_v_selezneva gov:10.146.140.221 tcp 1433,1434,3389
-#ACCEPT pvpn:$vint_v_selezneva gov:10.128.66.242 tcp 1433,1434,3389
 ### Ticket 14377 ###
 ACCEPT pvpn:$vint_litvinchuk gov:10.146.141.156 tcp 80,443
 ### Ticket 14509 ###
@@ -1066,12 +855,10 @@ ACCEPT pvpn:$vint_an_ivanov gov:10.146.141.156 tcp 80,443
 ACCEPT pvpn:$vint_pa_fumelli gov:10.146.141.156 tcp 80,443
 ### Ticket 14639 ###
 ### Ticket 14642 ###
-#ACCEPT pvpn:$vint_vladimirov oemts:10.3.159.3 all
 ACCEPT pvpn:$vint_nv_pavlov oemts:10.3.159.3 all
 ### Ticket 14644 ###
 ACCEPT pvpn:$vbitrix_portal tvr:192.168.152.11 tcp 80,443
 ### Ticket 14523 ###
-#ACCEPT pvpn:$vint_av_filatov tvr:192.168.70.164 tcp 22,80,443
 ###
 ACCEPT pvpn:$vint_an_ivanov tvr:192.168.152.11 tcp 80,443
 ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.152.11 tcp 80,443
@@ -1082,14 +869,9 @@ ACCEPT pvpn:$vint_ryabova gov:10.146.137.115 tcp 8081
 ### Ticket 14795 ###
 ACCEPT pvpn:$vint_litvinchuk tvr:192.168.152.11 tcp 80,443
 ### Ticket 14884 ### ### Ticket 15031 ###
-#ACCEPT pvpn:$vint_vladimirov gov:10.146.141.213 tcp 80
 ACCEPT pvpn:$vint_iy_ponamarev tvr:192.168.152.14 tcp 22,80,443
 ### Ticket 15142 ###
-#ACCEPT pvpn:$vint_igor_andreev sec all
 ### Ticket 15184 ###
-#ACCEPT pvpn:$vint_v_selezneva gov:10.146.142.198 tcp 80,443,1434,1433,3389
-#ACCEPT pvpn:$vint_v_selezneva gov:10.146.142.199 tcp 80,443,1434,1433,3389
-#ACCEPT pvpn:$vint_v_selezneva gov:10.146.142.200 tcp 22,80,16574
 ### Ticket 15375 ###
 ACCEPT pvpn:$vint_rs_nikitin tvr:192.168.70.106 tcp 80
 ACCEPT pvpn:$vint_rs_nikitin tvr:192.168.70.108 tcp 80
@@ -1112,8 +894,6 @@ ACCEPT pvpn:$vint_ryabova gov:10.146.137.1 tcp 8081
 ACCEPT pvpn:$vint_ra_ivanov gov:10.146.143.34
 ACCEPT pvpn:$vint_potapovich gov:10.146.143.34
 ### Ticket 15955 ###
-#ACCEPT pvpn:$vint_ia_bobkov dmz:192.168.2.173 tcp 22
-#ACCEPT pvpn:$vint_ia_bobkov dmz:192.168.2.173 tcp 80
 ACCEPT pvpn:$vint_ia_bobkov dmz:192.168.2.186 tcp 22,8080
 ACCEPT pvpn:$vint_ia_bobkov dmz:192.168.2.190 tcp 22,80,5432,8080
 ACCEPT pvpn:$vint_ia_bobkov dmz:192.168.2.204 tcp 8990
@@ -1126,8 +906,6 @@ ACCEPT pvpn:$vint_ia_bobkov dmz:192.168.2.29 tcp 3389,21,8180
 ACCEPT pvpn:$vint_ia_bobkov dmz:192.168.2.58 tcp 3306
 ACCEPT pvpn:$vint_ia_bobkov dmz:192.168.2.85 tcp 5432
 ACCEPT pvpn:$vint_ia_bobkov dmz:192.168.2.85 tcp 80,443,22
-ACCEPT pvpn:$vint_ia_bobkov dmzt:192.168.19.2 tcp 8443
-ACCEPT pvpn:$vint_ia_bobkov dmzt:192.168.19.2 tcp 9191
 ACCEPT pvpn:$vint_ia_bobkov gov:10.128.66.108 tcp 8080
 ACCEPT pvpn:$vint_ia_bobkov gov:10.128.66.108 tcp 8080
 ACCEPT pvpn:$vint_ia_bobkov gov:10.128.66.108 tcp 22,80,8080,8081,10025
@@ -1149,8 +927,6 @@ ACCEPT pvpn:$vint_ia_bobkov gov:10.146.136.204 tcp 8280
 ACCEPT pvpn:$vint_ia_bobkov gov:10.146.136.204 tcp 9443
 ACCEPT pvpn:$vint_ia_bobkov gov:10.146.136.61 tcp 20,21
 ACCEPT pvpn:$vint_ia_bobkov gov:192.168.9.13 tcp 8080
-ACCEPT pvpn:$vint_ia_bobkov oop:192.168.12.12 tcp 22,1521
-ACCEPT pvpn:$vint_ia_bobkov oop:192.168.12.19 tcp 1521
 ACCEPT pvpn:$vint_ia_bobkov dmz:192.168.2.245 tcp 8281
 ACCEPT pvpn:$vint_ia_bobkov gov:10.146.141.81 tcp 22,80,8088
 ACCEPT pvpn:$vint_ia_bobkov gov:10.146.141.82 tcp 22
@@ -1168,12 +944,9 @@ ACCEPT pvpn:$vint_da_timonin gov:10.146.139.75 tcp 8080
 ACCEPT pvpn:$vint_da_timonin gov:10.146.137.116 tcp 8081
 ACCEPT pvpn:$vint_da_timonin gov:10.146.137.119 tcp 80
 ### 15979 ###
-#ACCEPT pvpn:$vint_igor_andreev gov:10.146.140.222 tcp 80,443
-#ACCEPT pvpn:$vint_igor_andreev tvr:192.168.152.42 tcp 22,80,443
 ### 15993 ###
 ### 15998 & 16009 ###
 ACCEPT pvpn:$vint_dg_vakarchuk gov:10.146.137.81 tcp 22,80
-#ACCEPT pvpn:$vint_pupenkov gov:10.146.137.81 tcp 22,80
 ACCEPT pvpn:$vint_dg_vakarchuk gov:10.146.137.82 tcp 80
 ACCEPT pvpn:$vint_dg_vakarchuk gov:10.146.137.20 tcp 80
 ACCEPT pvpn:$vint_dg_vakarchuk gov:10.146.137.129 tcp 80
@@ -1182,37 +955,14 @@ ACCEPT pvpn:$vint_dg_vakarchuk gov:10.146.137.118 tcp 80
 ACCEPT pvpn:$vint_dg_vakarchuk gov:10.146.137.12 tcp 80
 ACCEPT pvpn:$vint_dg_vakarchuk gov:10.146.137.119 tcp 80
 ACCEPT pvpn:$vint_dg_vakarchuk gov:10.146.137.80 tcp 80
-#ACCEPT pvpn:$vint_pupenkov gov:10.146.137.82 tcp 80
-#ACCEPT pvpn:$vint_pupenkov gov:10.146.137.20 tcp 80,443
-#ACCEPT pvpn:$vint_pupenkov gov:10.146.137.129 tcp 80,443
-#ACCEPT pvpn:$vint_pupenkov gov:10.146.137.3 tcp 80
-#ACCEPT pvpn:$vint_pupenkov gov:10.146.137.118 tcp 80
-#ACCEPT pvpn:$vint_pupenkov gov:10.146.137.12 tcp 80
-#ACCEPT pvpn:$vint_pupenkov gov:10.146.137.119 tcp 80
-#ACCEPT pvpn:$vint_pupenkov gov:10.146.137.80 tcp 80
 ACCEPT pvpn:$vint_dg_vakarchuk gov:10.146.137.1 tcp 8081
-#ACCEPT pvpn:$vint_pupenkov gov:10.146.137.1 tcp 8081
 ### 16015 ###
 ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.152.17 tcp 22,80,443
 ### 16006 ###
-#ACCEPT pvpn:$vint_tukalov gov:10.128.0.0/9 all
-#ACCEPT pvpn:$vint_i_balushkin gov:10.128.0.0/9 all
-#ACCEPT pvpn:$vint_mandrik gov:10.128.0.0/9 all
-#ACCEPT pvpn:$vint_shahbazov gov:10.128.0.0/9 all
 ACCEPT pvpn:$vint_chernigovskiy gov:10.128.0.0/9 all
 ACCEPT pvpn:$vint_arakelyan gov:10.128.0.0/9 all
-#ACCEPT pvpn:$vint_marchenko gov:10.128.0.0/9 all
-#ACCEPT pvpn:$vint_igonin gov:10.128.0.0/9 all
-#ACCEPT pvpn:$vint_eremeevskiy gov:10.128.0.0/9 all
-#ACCEPT pvpn:$vint_igor_andreev gov:10.128.0.0/9 all
-#ACCEPT pvpn:$vint_tukalov sec:192.168.4.0/24 all
-#ACCEPT pvpn:$vint_i_balushkin sec:192.168.4.0/24 all
-#ACCEPT pvpn:$vint_mandrik sec:192.168.4.0/24 all
-#ACCEPT pvpn:$vint_shahbazov sec:192.168.4.0/24 all
 ACCEPT pvpn:$vint_chernigovskiy sec:192.168.4.0/24 all
 ACCEPT pvpn:$vint_arakelyan sec:192.168.4.0/24 all
-#ACCEPT pvpn:$vint_marchenko sec:192.168.4.0/24 all
-#ACCEPT pvpn:$vint_igonin sec:192.168.4.0/24 all
 ### 16048 ###
 ACCEPT pvpn:$vint_av_gileva dmz:192.168.2.115 tcp 3389,12205,12347,445
 ACCEPT pvpn:$vint_av_gileva dmz:192.168.2.178 tcp 22,1199,8080,9010,9100
@@ -1865,7 +1615,6 @@ ACCEPT pvpn:$vint_vv_maslov gov:10.146.138.122 tcp 80,443
 ### 16086 ###
 ACCEPT pvpn:$vint_ev_bazarnov gov:10.146.138.132 all
 ACCEPT pvpn:$vint_dd_povshedniy gov:10.146.138.132 all
-#ACCEPT pvpn:$vint_ryabova dmz:192.168.2.63 tcp 80,443
 ACCEPT pvpn:$vint_ryabova dmz:192.168.2.244 tcp 80,443
 ACCEPT pvpn:$vint_ryabova gov:10.146.136.61 tcp 80,10180
 ACCEPT pvpn:$vint_ryabova gov:10.146.137.3 tcp 80
@@ -1901,7 +1650,6 @@ ACCEPT pvpn:$vint_ryabova gov:10.146.137.137 tcp 80
 ACCEPT pvpn:$vint_ryabova gov:10.146.137.19 tcp 80
 ACCEPT pvpn:$vint_ryabova gov:10.129.157.90 tcp 8080
 ACCEPT pvpn:$vint_ryabova gov:10.129.157.94 tcp 8080
-#ACCEPT pvpn:$vint_ys_lyahovitskaya dmz:192.168.2.63 tcp 80,443
 ACCEPT pvpn:$vint_ys_lyahovitskaya dmz:192.168.2.244 tcp 80,443
 ACCEPT pvpn:$vint_ys_lyahovitskaya gov:10.146.136.61 tcp 80,10180
 ACCEPT pvpn:$vint_ys_lyahovitskaya gov:10.146.137.3 tcp 80
@@ -1937,7 +1685,6 @@ ACCEPT pvpn:$vint_ys_lyahovitskaya gov:10.146.137.137 tcp 80
 ACCEPT pvpn:$vint_ys_lyahovitskaya gov:10.146.137.19 tcp 80
 ACCEPT pvpn:$vint_ys_lyahovitskaya gov:10.129.157.90 tcp 8080
 ACCEPT pvpn:$vint_ys_lyahovitskaya gov:10.129.157.94 tcp 8080
-#ACCEPT pvpn:$vint_da_komlev dmz:192.168.2.63 tcp 80,443
 ACCEPT pvpn:$vint_da_komlev dmz:192.168.2.244 tcp 80,443
 ACCEPT pvpn:$vint_da_komlev gov:10.146.136.61 tcp 80,10180
 ACCEPT pvpn:$vint_da_komlev gov:10.146.137.3 tcp 80
@@ -2008,43 +1755,6 @@ ACCEPT pvpn:$vint_av_koporushkin gov:10.146.137.137 tcp 80
 ACCEPT pvpn:$vint_av_koporushkin gov:10.146.137.19 tcp 80
 ACCEPT pvpn:$vint_av_koporushkin gov:10.129.157.90 tcp 8080
 ACCEPT pvpn:$vint_av_koporushkin gov:10.129.157.94 tcp 8080
-#ACCEPT pvpn:$vint_konnova dmz:192.168.2.63 tcp 80,443
-#ACCEPT pvpn:$vint_konnova dmz:192.168.2.244 tcp 80,443
-#ACCEPT pvpn:$vint_konnova gov:10.146.136.61 tcp 80,10180
-#ACCEPT pvpn:$vint_konnova gov:10.146.137.3 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.146.137.243 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.146.137.118 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.146.138.128 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.146.138.113 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.146.141.10 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.146.141.6 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.146.137.80 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.146.137.129 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.146.137.20 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.146.137.84 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.146.137.30 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.146.137.12 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.146.137.119 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.146.137.35 tcp 80,8081
-#ACCEPT pvpn:$vint_konnova gov:10.146.137.241 tcp 80,8081
-#ACCEPT pvpn:$vint_konnova gov:10.146.137.1 tcp 80,8081
-#ACCEPT pvpn:$vint_konnova gov:10.146.137.2 tcp 80,8081
-#ACCEPT pvpn:$vint_konnova gov:10.146.137.241 tcp 80,8081
-#ACCEPT pvpn:$vint_konnova gov:10.146.137.115 tcp 80,8081
-#ACCEPT pvpn:$vint_konnova gov:10.146.137.242 tcp 80,8081
-#ACCEPT pvpn:$vint_konnova gov:10.146.137.116 tcp 80,8081
-#ACCEPT pvpn:$vint_konnova gov:10.146.137.224 tcp 80,8080
-#ACCEPT pvpn:$vint_konnova gov:10.146.143.67 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.146.143.69 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.146.143.66 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.129.157.90 tcp 8090
-#ACCEPT pvpn:$vint_konnova gov:10.129.157.94 tcp 9090,8090
-#ACCEPT pvpn:$vint_konnova gov:10.146.137.246 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.146.137.137 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.146.137.19 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.129.157.90 tcp 8080
-#ACCEPT pvpn:$vint_konnova gov:10.129.157.94 tcp 8080
-#ACCEPT pvpn:$vint_fv_karpenko dmz:192.168.2.63 tcp 80,443
 ACCEPT pvpn:$vint_fv_karpenko dmz:192.168.2.244 tcp 80,443
 ACCEPT pvpn:$vint_fv_karpenko gov:10.146.136.61 tcp 80,10180
 ACCEPT pvpn:$vint_fv_karpenko gov:10.146.137.3 tcp 80
@@ -2080,7 +1790,6 @@ ACCEPT pvpn:$vint_fv_karpenko gov:10.146.137.137 tcp 80
 ACCEPT pvpn:$vint_fv_karpenko gov:10.146.137.19 tcp 80
 ACCEPT pvpn:$vint_fv_karpenko gov:10.129.157.90 tcp 8080
 ACCEPT pvpn:$vint_fv_karpenko gov:10.129.157.94 tcp 8080
-#ACCEPT pvpn:$vint_vi_derkach dmz:192.168.2.63 tcp 80,443
 ACCEPT pvpn:$vint_vi_derkach dmz:192.168.2.244 tcp 80,443
 ACCEPT pvpn:$vint_vi_derkach gov:10.146.136.61 tcp 80,10180
 ACCEPT pvpn:$vint_vi_derkach gov:10.146.137.3 tcp 80
@@ -2325,7 +2034,6 @@ ACCEPT pvpn:$vint_av_vorontsov gov:10.146.143.9 tcp 22,8080
 ACCEPT pvpn:$vint_av_vorontsov gov:10.146.143.10 tcp 22,5432
 ACCEPT pvpn:$vint_av_vorontsov gov:10.146.141.28 tcp 5601
 ### BUHS ###
-#ACCEPT pvpn:$vint_ostrovnaya peer:192.168.6.205 tcp 3389
 ACCEPT pvpn:$vint_y_zaloznaya peer:192.168.6.208 tcp 3389
 ACCEPT pvpn:$vint_y_fyodorova peer:192.168.6.204 tcp 3389
 ACCEPT pvpn:$vint_y_fyodorova peer:192.168.6.213 tcp 3389
@@ -2816,7 +2524,6 @@ ACCEPT pvpn:$vint_aa_parfenov tvr:192.168.70.99 tcp 80,443
 ACCEPT pvpn:$vint_aa_parfenov tvr:192.168.70.100 tcp 80,443
 
 ACCEPT pvpn:$vint_aa_parfenov tvr:192.168.70.105 tcp 80,3000
-#ACCEPT pvpn:$vint_aa_parfenov tvr:192.168.70.104 tcp 80,5601
 ACCEPT pvpn:$vint_aa_parfenov tvr:192.168.70.109 tcp 8081
 ACCEPT pvpn:$vint_aa_parfenov gov:10.146.140.198 tcp 5432
 ACCEPT pvpn:$vint_aa_parfenov tvr:192.168.70.98 all
@@ -2827,16 +2534,6 @@ ACCEPT pvpn:$vint_aa_parfenov tvr:192.168.70.109 tcp 8083
 ACCEPT pvpn:$vint_aa_parfenov gov:10.146.136.131 tcp 1521
 ACCEPT pvpn:$vint_aa_parfenov gov:10.146.139.63 tcp 80
 ### 16228 ###
-#ACCEPT pvpn:$vint_r_niyazova gov:10.146.137.20 tcp 80
-#ACCEPT pvpn:$vint_r_niyazova gov:10.146.137.129 tcp 80
-#ACCEPT pvpn:$vint_r_niyazova gov:10.146.137.3 tcp 80
-#ACCEPT pvpn:$vint_r_niyazova gov:10.146.137.118 tcp 80
-#ACCEPT pvpn:$vint_r_niyazova gov:10.146.137.12 tcp 80
-#ACCEPT pvpn:$vint_r_niyazova gov:10.146.137.119 tcp 80
-#ACCEPT pvpn:$vint_r_niyazova gov:10.146.137.80 tcp 80
-#ACCEPT pvpn:$vint_r_niyazova gov:10.146.138.128 tcp 80
-#ACCEPT pvpn:$vint_r_niyazova gov:10.146.137.10 tcp 80
-#ACCEPT pvpn:$vint_r_niyazova gov:10.146.137.11 tcp 80
 ACCEPT pvpn:$vint_uyrieva gov:10.146.137.20 tcp 80
 ACCEPT pvpn:$vint_uyrieva gov:10.146.137.129 tcp 80
 ACCEPT pvpn:$vint_uyrieva gov:10.146.137.3 tcp 80
@@ -2847,7 +2544,6 @@ ACCEPT pvpn:$vint_uyrieva gov:10.146.137.80 tcp 80
 ACCEPT pvpn:$vint_uyrieva gov:10.146.138.128 tcp 80
 ACCEPT pvpn:$vint_uyrieva gov:10.146.137.10 tcp 80
 ACCEPT pvpn:$vint_uyrieva gov:10.146.137.11 tcp 80
-#ACCEPT pvpn:$vint_r_niyazova gov:10.146.137.1 tcp 8081
 ACCEPT pvpn:$vint_uyrieva gov:10.146.137.1 tcp 8081
 ### 16243 ###
 ACCEPT pvpn:$vint_ds_bobov gov:10.146.137.249 tcp 80,443
@@ -3012,25 +2708,10 @@ ACCEPT pvpn:$vint_pa_fumelli gov:10.146.143.88 tcp 22,80,443
 ### 16287 ###
 ACCEPT pvpn:$vint_na_klesov gov:10.146.139.44 tcp 8090,8091
 ### 16272 ###
-#ACCEPT pvpn:$vint_mironov_a tvr:192.168.70.18 tcp 22,80,443,3128
-#ACCEPT pvpn:$vint_mironov_a tvr:192.168.70.98 tcp 22,80,443,8080:8089
-#ACCEPT pvpn:$vint_mironov_a tvr:192.168.70.99 tcp 22,80,443,8080:8089
-#ACCEPT pvpn:$vint_mironov_a tvr:192.168.70.100 tcp 22,80,443,8080:8089
-#ACCEPT pvpn:$vint_mironov_a tvr:192.168.70.101 tcp 22,5432
-#ACCEPT pvpn:$vint_mironov_a tvr:192.168.70.102 tcp 22,1521
-#ACCEPT pvpn:$vint_mironov_a tvr:192.168.70.103 tcp 22,1521
-#ACCEPT pvpn:$vint_mironov_a tvr:192.168.70.105 tcp 22,80,443,3000,9090
-#ACCEPT pvpn:$vint_mironov_a tvr:192.168.70.106 tcp 22,8080,80,443
-#ACCEPT pvpn:$vint_mironov_a tvr:192.168.70.107 tcp 22,80,443,8080
-#ACCEPT pvpn:$vint_mironov_a tvr:192.168.70.108 tcp 22,80,443,8080:8089,9080:9089
-#ACCEPT pvpn:$vint_mironov_a tvr:192.168.70.109 tcp 22,1099,2099,2181,8080,9092
-#ACCEPT pvpn:$vint_mironov_a tvr:192.168.70.110 tcp 22,1099,2099,2181,8080,9092
-#ACCEPT pvpn:$vint_mironov_a tvr:192.168.70.111 tcp 22,1099,2099,2181,8080,9092
 ### mail korona ###
 ACCEPT pvpn:$vint_la_kondrateva gov:10.146.143.110 tcp 22,80,443
 ACCEPT pvpn:$vint_la_kondrateva gov:10.146.143.111 tcp 22,5432
 ### 16291 ###
-#ACCEPT pvpn:$vint_mironov_a gov:10.146.139.63 tcp 80,443
 ### 16292 ###
 ACCEPT pvpn:$vint_aa_parfenov tvr:192.168.70.108 tcp 80
 ### 16290 ###
@@ -3079,16 +2760,10 @@ ACCEPT pvpn:$vint_ka_dolinova gov:10.146.137.25 tcp 1158
 ACCEPT pvpn:$vint_ka_dolinova gov:10.146.137.37 tcp 1158
 ACCEPT pvpn:$vint_ka_dolinova gov:10.146.137.23 tcp 54322
 ### 16296 ###
-#ACCEPT pvpn:$vint_mironov_a tvr:192.168.70.109 tcp 8081
 ### 16310 ###
-#ACCEPT pvpn:$vint_leshinova gov:10.146.137.20 tcp 80,443
 ### mail edits ###
-#ACCEPT pvpn:$vint_o_kazmina gov:10.146.136.130 tcp 80,443
-#ACCEPT pvpn:$vint_o_kazmina gov:10.146.141.232 tcp 80,443
 ### 16340 ###
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.136.134 tcp 5432
 ### 16342 ###
-#ACCEPT pvpn:$vint_vladimirov gov:10.144.2.35 tcp 80
 ###34446
 ACCEPT pvpn:$vint_da_ivanov gov:10.146.137.81 tcp 22
 ACCEPT pvpn:$vint_da_ivanov gov:10.146.138.128 tcp 80,443
@@ -3097,7 +2772,6 @@ ACCEPT pvpn:$vint_ea_sherstobitov gov:10.146.136.40 tcp 3389,2247,2262
 ACCEPT pvpn:$vint_ea_sherstobitov gov:10.146.136.161 tcp 3389,2247,2262
 ACCEPT pvpn:$vint_ea_sherstobitov gov:10.146.136.109 tcp 3389,2247,2262
 ### 16341 ###
-#ACCEPT pvpn:$vint_mironov_a tvr:192.168.70.107 tcp 6443
 ### 16330 ###
 ### 16363 ###
 ACCEPT pvpn:$vint_ds_bobov gov:10.146.137.246 tcp 8081
@@ -3114,8 +2788,6 @@ ACCEPT pvpn:$vint_la_kondrateva gov:10.146.136.55 tcp 23332,3000,10180,7780,7781
 ACCEPT pvpn:$vint_sa_suldin gov:10.146.136.55 tcp 23332,3000,10180,7780,7781,23322:23329
 ACCEPT pvpn:$vint_av_zhuravlev gov:10.146.136.55 tcp 23332,3000,10180,7780,7781,23322:23329
 ### 163898 ###
-#ACCEPT pvpn:$vint_an_ivanov tvr:192.168.70.170 tcp 80,443,22
-#ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.70.170 tcp 80,443,22
 ### 16346 ###
 ACCEPT pvpn:$vint_mn_soldatov dmz:10.10.16.0/24 tcp 22,80,1158,1521,8080,8180,8000
 ACCEPT pvpn:$vint_mn_soldatov tvr:192.168.70.32/27 all
@@ -3133,13 +2805,11 @@ ACCEPT pvpn:$vint_mn_soldatov dmz:192.168.2.67 tcp 22,1158
 ACCEPT pvpn:$vint_mn_soldatov dmz:192.168.2.68 tcp 22,8600:8610,9600:9610
 ACCEPT pvpn:$vint_mn_soldatov dmz:192.168.2.94 tcp 3389
 ACCEPT pvpn:$vint_mn_soldatov dmz:192.168.2.95 tcp 3389,8000:8010
-ACCEPT pvpn:$vint_mn_soldatov dmzt:192.168.19.8 tcp 7000:7999
 ACCEPT pvpn:$vint_mn_soldatov dmz tcp 22,1521,3389,80,1158,5500,8080,8180
 ACCEPT pvpn:$vint_mn_soldatov dmz tcp 9300,4848
 ACCEPT pvpn:$vint_mn_soldatov gov:10.128.44.20 tcp 22,9400
 ACCEPT pvpn:$vint_mn_soldatov gov:10.128.44.24 tcp 6473,3389
 ACCEPT pvpn:$vint_mn_soldatov gov:10.128.44.25 tcp 22,1521,1158
-#ACCEPT pvpn:$vint_mn_soldatov gov:10.128.66.140 tcp 8000,8100
 ACCEPT pvpn:$vint_mn_soldatov gov:10.128.66.148 tcp 22,1521,1158
 ACCEPT pvpn:$vint_mn_soldatov gov:10.146.136.111 tcp
 ACCEPT pvpn:$vint_mn_soldatov gov:10.146.136.112 tcp
@@ -3238,14 +2908,12 @@ ACCEPT pvpn:$vint_rs_nikitin gov:10.146.141.254 tcp 5432
 ACCEPT pvpn:$vint_av_filatov gov:10.146.139.44 tcp 8091
 ### 
 ACCEPT pvpn:$vint_im_dementiev tvr:192.168.70.100 tcp 80,443
-#ACCEPT pvpn:$vint_konnova tvr:192.168.70.100 tcp 80,443
 ### 16418 ###
 ACCEPT pvpn:$vint_ka_dolinova gov:10.146.143.71 tcp 22,80,443
 ### 16422 ###
 ACCEPT pvpn:$vint_va_krauze gov:10.146.142.24 tcp 8090,8091
 ACCEPT pvpn:$vint_va_krauze gov:10.146.142.184 tcp 8090,8091
 ### 16423 ###
-#ACCEPT pvpn:$vint_vladimirov laf3:10.248.51.95 tcp 80,443
 ### 16428 ###
 ACCEPT pvpn:$vint_av_filatov gov:10.146.139.44 tcp 8090
 ### 16430 ###
@@ -3253,51 +2921,31 @@ ACCEPT pvpn:$vint_av_filatov gov:10.146.136.44 tcp 80,443
 ### 16433 ###
 ACCEPT pvpn:$vint_av_filatov gov:10.146.136.22 tcp 80,443
 ###
-#ACCEPT pvpn:$vint_vladimirov gov:10.146.143.98 tcp 3128
 ### 16451 ###
 ACCEPT pvpn:$vint_litvinchuk gov:10.146.143.12 tcp 80,443
 ACCEPT pvpn:$vint_litvinchuk gov:10.146.142.11 tcp 80,443
 ### 16464 ###
-#ACCEPT pvpn:$vint_e_piksimova tvr:192.168.70.106 tcp 80
-#ACCEPT pvpn:$vint_e_piksimova gov:10.146.139.63 tcp 80,443
 ### 16478 ###
 ACCEPT pvpn:$vint_na_klesov gov:10.146.143.8 tcp 80,8081
 ### 16477 ###
-#ACCEPT pvpn:$vint_mironov_a gov:10.146.138.243 tcp 5672
 ### 16485 ###
 ACCEPT pvpn:$vint_yd_fisenko gov:10.146.136.125 tcp 5432
 ACCEPT pvpn:$vint_yd_fisenko gov:10.146.136.170 tcp 5432
 ### 16492 ###
-#ACCEPT pvpn:$vint_e_piksimova tvr:192.168.70.98 tcp 80,443
-#ACCEPT pvpn:$vint_e_piksimova tvr:192.168.70.99 tcp 80,443
-#ACCEPT pvpn:$vint_e_piksimova tvr:192.168.70.100 tcp 80,443
-#ACCEPT pvpn:$vint_e_piksimova tvr:192.168.70.101 tcp 80,443
-#ACCEPT pvpn:$vint_e_piksimova tvr:192.168.70.102 tcp 80,443
-#ACCEPT pvpn:$vint_e_piksimova tvr:192.168.70.103 tcp 80,443
-#ACCEPT pvpn:$vint_e_piksimova tvr:192.168.70.104 tcp 80,443
-#ACCEPT pvpn:$vint_e_piksimova tvr:192.168.70.105 tcp 80,443
-#ACCEPT pvpn:$vint_e_piksimova tvr:192.168.70.106 tcp 80,443
 ### 16496 ###
-#ACCEPT pvpn:$vint_e_piksimova gov:10.146.136.98 tcp 22,80,443,3690
 ### 16501 ###
 ACCEPT pvpn:$vint_bystrova gov:10.146.141.156 tcp 22,80,443
 ### 16502 ###
-#ACCEPT pvpn:$vint_leshinova gov:10.146.137.12 tcp 80
 ### 16509 ###
 ACCEPT pvpn:$vint_ds_bobov gov:10.146.137.241 tcp 9090
 ACCEPT pvpn:$vint_ys_gudin gov:10.146.137.241 tcp 9090
 ACCEPT pvpn:$vint_dd_chheidze gov:10.146.137.241 tcp 9090
 ACCEPT pvpn:$vint_ve_grinshtern gov:10.146.137.241 tcp 9090
 ### 16525 ###
-#ACCEPT pvpn:$vint_k_babenko gov:10.146.136.55 tcp 23332,3000,10180,7780,7781,23322:23329
 ### 16526 ###
-#ACCEPT pvpn:$vint_gavrilova gov:10.146.136.164 tcp 80,443,8080
 ### 16535 16658 ###
-#ACCEPT pvpn:$vint_leshinova gov:10.146.136.164 tcp 8080,80
 ###
-#ACCEPT pvpn:$vint_anton_osipov ad:192.168.10.21 tcp 888
 ### 16523 ###
-#ACCEPT pvpn:$vint_e_ezhova gov:10.146.141.156 tcp 80,443
 ### 16544 ###
 ACCEPT pvpn:$vint_ia_bobkov gov:10.146.138.177 tcp 80
 ACCEPT pvpn:$vint_ia_bobkov gov:10.128.66.190 tcp 80,8081,8082
@@ -3326,17 +2974,11 @@ ACCEPT pvpn:$vint_va_sorokin gov:10.146.136.22 tcp 80,443
 ACCEPT pvpn:$vint_va_sorokin gov:10.146.136.44 tcp 80,443
 ACCEPT pvpn:$vint_va_sorokin gov:10.146.139.44 tcp 8090,8091
 ### 16597 ###
-#ACCEPT pvpn:$vint_e_piksimova tvr:192.168.70.105 tcp 3000
 ### 16611 ###
-#ACCEPT pvpn:$vint_vladimirov gov:10.146.139.134 tcp 8088,2222
 ### 16610 ###
-#ACCEPT pvpn:$vint_vladimirov gov:10.146.138.136 tcp 80,443
 ### 16613 ###
 ACCEPT pvpn:$vint_shlyahtin laf3:10.248.51.95 tcp 80,443
 ### 16614 & 16615 ###
-#ACCEPT pvpn:$vint_vladimirov laf3:10.248.51.83-10.248.51.85 tcp 2222
-#ACCEPT pvpn:$vint_vladimirov laf3:10.248.51.103 tcp 2222
-#ACCEPT pvpn:$vint_vladimirov laf3:10.248.51.104 tcp 2222
 ACCEPT pvpn:$vint_shlyahtin laf3:10.248.51.83-10.248.51.85 tcp 2222
 ACCEPT pvpn:$vint_shlyahtin laf3:10.248.51.103 tcp 2222
 ACCEPT pvpn:$vint_shlyahtin laf3:10.248.51.104 tcp 2222
@@ -3357,9 +2999,7 @@ ACCEPT pvpn:$vint_an_ivanov gov:10.146.79.50 tcp 22
 ###
 ACCEPT pvpn:$vint_si_tarashnina gov:10.146.141.156 tcp 80,443
 ### 16723 ###
-#ACCEPT pvpn:$vint_mironov_a gov:10.146.136.98 tcp 3690
 ### 16721 ###
-#ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.70.166 tcp 22
 ### 16730 ###
 ACCEPT pvpn:$vint_va_krauze tvr:192.168.70.100 tcp 80,8080,443
 ### 16738 ###
@@ -3372,11 +3012,8 @@ ACCEPT pvpn:$vint_rs_nikitin tvr:192.168.70.109 tcp 9092
 ACCEPT pvpn:$vint_rs_nikitin tvr:192.168.70.110 tcp 9092
 ACCEPT pvpn:$vint_rs_nikitin tvr:192.168.70.111 tcp 9092
 ### 16761 ###
-#ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.70.171 tcp 22,80,443
 ### 16821 ###
-#ACCEPT pvpn:$vint_vladimirov gov:10.144.4.254 tcp 21,7721,1024:65535
 ### 16844 ###
-#ACCEPT pvpn:$vint_mironov_a gov:10.146.139.64 tcp 443
 ### 16845 ###
 ACCEPT pvpn:$vint_at_shirokiy gov:10.146.139.64 tcp 443
 ### 16852 ###
@@ -3387,15 +3024,12 @@ ACCEPT pvpn:$vint_vv_maslov gov:10.146.142.24 tcp 8090,8091
 ### 16861 ###
 ACCEPT pvpn:$vint_lopatin gov:10.146.137.85 tcp 80,8081
 ### 16863 ###
-#ACCEPT pvpn:$vint_mironov_a gov:10.146.139.59 tcp 6311
 ### 16840 ###
 ACCEPT pvpn:$vint_at_shirokiy gov:10.128.48.48 tcp 5041
 ACCEPT pvpn:$vint_av_kozhin gov:10.128.48.48 tcp 5041
 ACCEPT pvpn:$vint_aa_parfenov gov:10.128.48.48 tcp 5041
-#ACCEPT pvpn:$vint_mironov_a gov:10.128.48.48 tcp 5041
 ACCEPT pvpn:$vint_e_petrushenko gov:10.128.48.48 tcp 5041
 ACCEPT pvpn:$vint_s_smirnov gov:10.128.48.48 tcp 5041
-#ACCEPT pvpn:$vint_e_piksimova gov:10.128.48.48 tcp 5041
 ACCEPT pvpn:$vint_bystrova gov:10.128.48.48 tcp 5041
 ### 16887 ###
 ACCEPT pvpn:$vint_av_tokmantsev gov:10.146.137.135 tcp 80,443
@@ -3453,7 +3087,6 @@ ACCEPT pvpn:$vint_ve_grinshtern gov:10.146.143.151 tcp 80
 ACCEPT pvpn:$vint_a_lukyanovich gov:10.146.139.44 tcp 8093
 ### 16968 ###
 ACCEPT pvpn:$vint_litvinchuk gov:10.146.141.156 tcp 22,80,443
-#ACCEPT pvpn:$vint_grinchuk gov:10.146.141.156 tcp 22,80,443
 ACCEPT pvpn:$vint_latipov gov:10.146.141.156 tcp 22,80,443
 ### 16969 ###
 ACCEPT pvpn:$vint_astafev gov:10.146.136.22 tcp 80
@@ -3461,18 +3094,15 @@ ACCEPT pvpn:$vint_astafev gov:10.146.136.22 tcp 80
 ACCEPT pvpn:$vint_iy_ponamarev tvr:192.168.152.16 tcp 3306
 ### 16993 ###
 ACCEPT pvpn:$vint_da_komlev tvr:192.168.70.2 tcp 80,443
-#ACCEPT pvpn:$vint_pa_goncharova tvr:192.168.70.2 tcp 80,443
 ### 16997 ###
 ACCEPT pvpn:$vint_si_tarashnina gov:10.160.225.40 tcp 554,8000
 ACCEPT pvpn:$vint_bystrova gov:10.160.225.40 tcp 554,8000
-#ACCEPT pvpn:$vint_hamzina gov:10.160.225.40 tcp 554,8000
 ### 17033 & 17034 ###
 ACCEPT pvpn:$vint_m_yakovlev gov:10.146.136.99 tcp 22
 ACCEPT pvpn:$vint_m_yakovlev gov:10.128.66.230 tcp 22
 ### 17063 ###
 ACCEPT pvpn:$vint_m_yakovlev gov:10.146.136.99 tcp 1521
 ### 17080 ###
-#ACCEPT pvpn:$vint_e_piksimova tvr:192.168.70.101 tcp 5432
 ### 17070 ###
 ACCEPT pvpn:$vint_dd_povshedniy laf3:10.248.51.0/24 all
 ### 17092 ###
@@ -3487,7 +3117,6 @@ ACCEPT pvpn:$vint_av_kozhin tvr:192.168.70.2 tcp 80,443
 ###
 ACCEPT pvpn:$vint_my_palin gov:10.128.0.24 tcp 1688
 ### 17117 ###
-#ACCEPT pvpn:$vint_mironov_a gov:10.146.142.24 tcp 80,8091,3389
 ### 17195 ###
 ACCEPT pvpn:$vint_iy_ponamarev tvr:192.168.152.16 tcp 21
 ### 17196 ###
@@ -3503,7 +3132,6 @@ ACCEPT pvpn:$vint_at_shirokiy dmz:192.168.2.36 tcp 80
 ### 17251 ###
 ACCEPT pvpn:$vint_vv_maslov gov:10.146.143.170 tcp 8080
 ### 17264 ###
-#ACCEPT pvpn:$vint_e_piksimova gov:10.146.142.11 tcp 80,443
 ### 17282 ###
 ### 17303 ###
 ACCEPT pvpn:$vint_m_yakovlev gov:10.146.136.93 tcp 22,8080
@@ -3522,7 +3150,6 @@ ACCEPT pvpn:$vint_m_yakovlev gov:10.146.142.25 tcp 9200:9300
 ACCEPT pvpn:$vint_m_yakovlev gov:10.146.142.26 tcp 9200:9300
 ACCEPT pvpn:$vint_m_yakovlev gov:10.146.142.27 tcp 9200:9300
 #### 17368 ###
-#ACCEPT pvpn:$vint_e_piksimova gov:10.146.136.130 tcp 80,443
 ### 17382 ###
 ACCEPT pvpn:$vint_va_krauze gov:10.146.142.35 tcp 443
 ACCEPT pvpn:$vint_va_krauze gov:10.146.142.36 tcp 443
@@ -3539,7 +3166,6 @@ ACCEPT pvpn:$vint_litvinchuk gov:10.146.142.246 tcp 22,80,443
 ### 17454 ###
 ACCEPT pvpn:$vint_va_krauze edu:192.168.1.91 tcp 8082
 ### 17457 ###
-#ACCEPT pvpn:$vint_an_ivanov tvr:192.168.70.166 tcp 22,80,443
 ### 17485 ###
 ACCEPT pvpn:$vint_iy_ponamarev gov:10.146.143.220 tcp 22,80,443
 ### 17531 ###
@@ -3555,10 +3181,7 @@ ACCEPT pvpn:$vint_s_smirnov tvr:192.168.70.113 all
 ACCEPT pvpn:$vint_s_smirnov tvr:192.168.70.113 all
 ACCEPT pvpn:$vint_aa_parfenov tvr:192.168.70.113 tcp 80,443
 ACCEPT pvpn:$vint_aa_parfenov tvr:192.168.70.113 all
-#ACCEPT pvpn:$vint_mironov_a tvr:192.168.70.113 tcp 22,80,443,8080:8089
-#ACCEPT pvpn:$vint_e_ezhova tvr:192.168.70.113 tcp 80,443,8080:8089
 ACCEPT pvpn:$vint_mn_soldatov tvr:192.168.70.113 all
-#ACCEPT pvpn:$vint_e_piksimova tvr:192.168.70.113 tcp 80,443
 ACCEPT pvpn:$vint_rs_nikitin tvr:192.168.70.113 tcp 80
 ### 17537 ###
 ACCEPT pvpn:$vint_gv_talvinskiy tvr:192.168.70.112 all
@@ -3580,10 +3203,7 @@ ACCEPT pvpn:$vint_s_smirnov tvr:192.168.70.104 all
 ACCEPT pvpn:$vint_s_smirnov tvr:192.168.70.104 all
 ACCEPT pvpn:$vint_aa_parfenov tvr:192.168.70.104 tcp 80,443
 ACCEPT pvpn:$vint_aa_parfenov tvr:192.168.70.104 all
-#ACCEPT pvpn:$vint_mironov_a tvr:192.168.70.104 tcp 22,80,443,8080:8089
-#ACCEPT pvpn:$vint_e_ezhova tvr:192.168.70.104 tcp 80,443,8080:8089
 ACCEPT pvpn:$vint_mn_soldatov tvr:192.168.70.104 all
-#ACCEPT pvpn:$vint_e_piksimova tvr:192.168.70.104 tcp 80,443
 ACCEPT pvpn:$vint_rs_nikitin tvr:192.168.70.104 tcp 80
 ### 17599 ###
 ACCEPT pvpn:$vint_m_mironov gov:10.146.143.213 tcp 22,81,3389
@@ -3592,7 +3212,6 @@ ACCEPT pvpn:$vbitrix_portal gov:10.146.143.160 tcp 80,443
 ### 17635 ###
 ACCEPT pvpn:$vint_yd_fisenko gov:10.146.136.76 tcp 5432
 ### 17651 ###
-#ACCEPT pvpn:$vint_mironov_a gov:10.146.136.22 tcp 80
 ### 17672 ###
 ACCEPT pvpn:$vint_yd_fisenko gov:10.146.139.76 tcp 5432
 ### 17688 ###
@@ -3651,11 +3270,8 @@ ACCEPT pvpn:$vint_io_kontorina gov:10.146.141.6 all
 ACCEPT pvpn:$vint_pv_gluhoedova gov:10.146.141.4 tcp 8081,9003
 ACCEPT pvpn:$vint_ev_kravtsova gov:10.146.141.4 tcp 8081,9003
 ACCEPT pvpn:$vint_io_kontorina gov:10.146.141.4 tcp 8081,9003
-#ACCEPT pvpn:$vint_pv_gluhoedova dmz:192.168.2.63 tcp 80,443
 ACCEPT pvpn:$vint_pv_gluhoedova dmz:192.168.2.244 tcp 80,443
-#ACCEPT pvpn:$vint_ev_kravtsova dmz:192.168.2.63 tcp 80,443
 ACCEPT pvpn:$vint_ev_kravtsova dmz:192.168.2.244 tcp 80,443
-#ACCEPT pvpn:$vint_io_kontorina dmz:192.168.2.63 tcp 80,443
 ACCEPT pvpn:$vint_io_kontorina dmz:192.168.2.244 tcp 80,443
 ACCEPT pvpn:$vint_pv_gluhoedova gov:10.146.136.61 tcp 80,10180
 ACCEPT pvpn:$vint_ev_kravtsova gov:10.146.136.61 tcp 80,10180
@@ -3775,7 +3391,6 @@ ACCEPT pvpn:$vint_krutko gov:10.145.208.41 tcp 3389,5900
 ### 18034 ###
 ACCEPT pvpn:$vint_rs_nikitin tvr:192.168.70.108 tcp 9080
 ### 18050 ###
-#ACCEPT pvpn:$vint_av_kovalenko gov:10.146.136.134 tcp 5432
 ### 18116 ###
 ACCEPT pvpn:$vint_ba_bulatov tvr:192.168.70.98 tcp 80,443
 ACCEPT pvpn:$vint_ba_bulatov tvr:192.168.70.99 tcp 80,443
@@ -3802,19 +3417,13 @@ ACCEPT pvpn:$vint_av_kozhin gov:10.128.0.25 tcp 80,443
 ### 18180 ###
 ACCEPT pvpn:$vint_krutko gov:10.146.136.24 tcp 80
 ACCEPT pvpn:$vint_krutko gov:10.146.140.225 tcp 80
-#ACCEPT pvpn:$vint_sokolin gov:10.146.136.24 tcp 80
-#ACCEPT pvpn:$vint_sokolin gov:10.146.140.225 tcp 80
-#ACCEPT pvpn:$vint_sokolin gov:10.146.136.189 tcp 3389
 ### 18189 ###
 ACCEPT pvpn:$vint_iy_ponamarev tvr:192.168.152.11 tcp 21,22,80,443
 ### 18185 ###
-#ACCEPT pvpn:$vint_mironov_a gov:10.146.142.33 tcp 3000
 ### 18176 ###
-#ACCEPT pvpn:$vint_vladimirov gov:10.128.66.207 tcp 2226
 ### 18194 ###
 ACCEPT pvpn:$vint_potapovich gov:10.146.143.34 tcp 5432
 ### 18193 ###
-#ACCEPT pvpn:$vint_mironov_a tvr:192.168.70.105 tcp 3000
 ### 18196 ###
 ACCEPT pvpn:$vint_at_shirokiy tvr:192.168.70.108 tcp 9080
 ACCEPT pvpn:$vint_at_shirokiy gov:10.146.136.130 tcp 80,443
@@ -3830,34 +3439,26 @@ ACCEPT pvpn:$vint_ns_zhukova gov:10.146.136.84 tcp 80,443,1521,8000
 ACCEPT pvpn:$vint_ns_zhukova gov:10.146.136.78 tcp 80,443,1521,8000
 ### 18243 ###
 ACCEPT pvpn:$vint_da_komlev gov:10.241.0.27 tcp 80
-#ACCEPT pvpn:$vint_pa_goncharova gov:10.241.0.27 tcp 80
 ACCEPT pvpn:$vint_abeldyaev gov:10.241.0.27 tcp 80
 ACCEPT pvpn:$vint_ds_bobov gov:10.241.0.27 tcp 80
 ACCEPT pvpn:$vint_vi_derkach gov:10.241.0.27 tcp 80
 ACCEPT pvpn:$vint_la_kondrateva gov:10.241.0.27 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.241.0.27 tcp 80
 ### 18250 ###
 ACCEPT pvpn:$vint_s_smirnov gov:10.1.222.13 tcp 80
 ACCEPT pvpn:$vint_av_kozhin gov:10.1.222.13 tcp 80
-#ACCEPT pvpn:$vint_e_piksimova gov:10.1.222.13 tcp 80
 ACCEPT pvpn:$vint_rs_nikitin gov:10.1.222.13 tcp 80
-#ACCEPT pvpn:$vint_mironov_a gov:10.1.222.13 tcp 80
 ACCEPT pvpn:$vint_e_petrushenko gov:10.1.222.13 tcp 80
 ACCEPT pvpn:$vint_aa_parfenov gov:10.1.222.13 tcp 80
 ACCEPT pvpn:$vint_at_shirokiy gov:10.1.222.13 tcp 80
 ACCEPT pvpn:$vint_k_smotrov gov:10.1.222.13 tcp 80
 ACCEPT pvpn:$vint_si_tarashnina gov:10.1.222.13 tcp 80
-#ACCEPT pvpn:$vint_e_ezhova gov:10.1.222.13 tcp 80
-#ACCEPT pvpn:$vint_hamzina gov:10.1.222.13 tcp 80
 ACCEPT pvpn:$vint_bystrova gov:10.1.222.13 tcp 80
 ACCEPT pvpn:$vint_mn_soldatov gov:10.1.222.13 tcp 80
 ACCEPT pvpn:$vint_gv_talvinskiy gov:10.1.222.13 tcp 80
 ### 18291 ###
-#ACCEPT pvpn:$vint_mironov_a gov:10.146.136.44 tcp 80
 ### 18297 ###
 ACCEPT pvpn:$vint_gubanovs gov:10.128.0.24 tcp 1688
 ### 18315 ###
-#ACCEPT pvpn:$vint_av_kovalenko gov:10.146.139.76 tcp 5432
 ### 18318 ###
 ACCEPT pvpn:$vint_ra_ivanov gov:10.146.139.213 tcp 22,80,5432
 ACCEPT pvpn:$vint_ra_ivanov gov:10.146.139.214 tcp 22,80,5432
@@ -3871,7 +3472,6 @@ ACCEPT pvpn:$vint_t_golovataya gov:10.146.138.124 tcp 80
 ACCEPT pvpn:$vint_t_golovataya dmz:192.168.2.36 tcp 80
 ### 18338 ###
 ACCEPT pvpn:$vint_krutko gov:10.146.136.182 tcp 80
-#ACCEPT pvpn:$vint_sokolin gov:10.146.136.182 tcp 80
 ### 18343 ###
 ACCEPT pvpn:$vint_a_lukyanovich gov:10.146.136.178 tcp 5432
 ### 18365 ###
@@ -3891,9 +3491,7 @@ ACCEPT pvpn:$vint_m_mironov gov:10.146.143.214 tcp 22,80,443
 ACCEPT pvpn:$vint_pv_gluhoedova gov:10.241.0.27 tcp 80
 ###
 ACCEPT pvpn:$vint_karina_orlova gov:10.146.143.81 tcp 80,443
-#ACCEPT pvpn:$vint_a_meleshkin gov:10.146.143.81 tcp 80,443
 ##26868
-#ACCEPT pvpn:$vint_a_meleshkin gov:10.146.143.214 tcp 80,443
 ### 18513 ###
 ACCEPT pvpn:$vint_rs_nikitin gov:10.146.141.235 tcp 8090
 ### 18526 ###
@@ -3915,7 +3513,6 @@ ACCEPT pvpn:$vint_l_lisin gov:10.128.48.48 tcp 5040,5041
 ### 18543 ###
 ACCEPT pvpn:$vint_la_kondrateva gov:10.146.137.154 tcp 80
 ACCEPT pvpn:$vint_ds_bobov gov:10.146.137.154 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.146.137.154 tcp 80
 ACCEPT pvpn:$vint_io_kontorina gov:10.146.137.154 tcp 80
 ACCEPT pvpn:$vint_ryabova gov:10.146.137.154 tcp 80
 ACCEPT pvpn:$vint_fv_karpenko gov:10.146.137.154 tcp 80
@@ -3946,8 +3543,6 @@ ACCEPT pvpn:$vint_lev_belyakov gov:10.241.0.27 tcp 80
 ### 18583 ###
 ACCEPT pvpn:$vint_pa_fumelli gov:10.146.143.213 tcp 3389,22
 ### 18589 20236 ###
-#ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.70.172 tcp 22,80,443
-#ACCEPT pvpn:$vint_an_ivanov tvr:192.168.70.172 tcp 22,80,443
 ### 18626 ###
 ACCEPT pvpn:$vint_gv_talvinskiy gov:10.1.222.19-10.1.222.37 all
 ACCEPT pvpn:$vint_mn_soldatov gov:10.1.222.19-10.1.222.37 all
@@ -3962,20 +3557,17 @@ ACCEPT pvpn:$vint_oi_nikonova gov:10.128.0.27 tcp 80,443
 ACCEPT pvpn:$vint_ra_ivanov gov:10.146.137.22 tcp 22,80,443,5432
 ACCEPT pvpn:$vint_potapovich gov:10.146.137.22 tcp 22,80,443,5432
 ACCEPT pvpn:$vint_vik_val_grigoryev gov:10.146.137.22 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_sokolin gov:10.146.137.22 tcp 22,80,443,5432
 ### 18677 ###
 ACCEPT pvpn:$vint_bystrova gov:10.146.139.63 tcp 80,443
 ACCEPT pvpn:$vint_bystrova tvr:192.168.70.98 tcp 80,443
 ACCEPT pvpn:$vint_bystrova tvr:192.168.70.99 tcp 80,443
 ACCEPT pvpn:$vint_bystrova tvr:192.168.70.100 tcp 80,443
 ### 18690 ###
-#ACCEPT pvpn:$vint_vladimirov gov:10.146.136.130 tcp 80,443
 ### 18716 ###
 ACCEPT pvpn:$vint_shlyahtin gov:10.192.8.84-10.192.8.95 tcp 22
 ### 18715 ###
 ACCEPT pvpn:$vint_ia_bobkov gov:10.146.142.53 tcp 80
 ### 18734 ###
-#ACCEPT pvpn:$vint_d_grachev gov:10.128.66.154 tcp 3389
 ACCEPT pvpn:$vint_ds_bobov gov:10.128.66.154 tcp 3389
 ### 18739 ###
 ACCEPT pvpn:$vint_rs_nikitin tvr:192.168.70.109 tcp 8081
@@ -4013,14 +3605,12 @@ ACCEPT pvpn:$vint_ns_zhukova gov:10.241.0.68 tcp 22,1521,8000,80,443
 ACCEPT pvpn:$vint_ns_zhukova gov:10.241.0.69 tcp 22,1521,8000,80,443
 ### 18787 ###
 ACCEPT pvpn:$vint_kuzmin gov:10.241.0.27 tcp 80
-#ACCEPT pvpn:$vint_zhiguleva gov:10.241.0.27 tcp 80
 ### 18760 ###
 ACCEPT pvpn:$vint_gv_talvinskiy gov:10.1.222.38 all
 ACCEPT pvpn:$vint_mn_soldatov gov:10.1.222.38 all
 ### 18804 ###
 ACCEPT pvpn:$vint_m_mironov tvr:192.168.152.21 all
 ### 18800 ###
-#ACCEPT pvpn:$vint_leshinova gov:10.146.137.19 tcp 80
 ### 18875 ###
 ACCEPT pvpn:$vint_ia_bobkov gov:10.146.136.56 tcp 3306
 ### 18886 ###
@@ -4066,7 +3656,6 @@ ACCEPT pvpn:$vint_pa_fumelli gov:10.241.0.91 tcp 22
 ### 19037 ###
 ACCEPT pvpn:$vint_m_mironov gov:10.241.0.91 tcp 22,80,443
 ### 19041 ###
-#ACCEPT pvpn:$vint_pashkovskiy gov:10.146.140.206 tcp 22
 ### 19040 ###
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.139.31 tcp 22,80,443
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.138.233 tcp 22,80,443
@@ -4081,39 +3670,28 @@ ACCEPT pvpn:$vint_yd_fisenko gov:10.146.143.20 tcp 5432
 ### 19109 ###
 ACCEPT pvpn:$vint_m_mironov tvr:192.168.152.11 tcp 22,80,443
 ### 19111 ###
-#ACCEPT pvpn:$vint_d_grachev gov:10.241.0.93 tcp 22,8280
 ACCEPT pvpn:$vint_ds_bobov gov:10.241.0.93 tcp 22,8280
 ### 19108 ###
-#ACCEPT pvpn:$vint_mironov_a gov:10.146.142.172 tcp 5432
 ### 19099 ###
 ACCEPT pvpn:$vint_da_komlev gov:10.241.0.61 tcp 80
-#ACCEPT pvpn:$vint_pa_goncharova gov:10.241.0.61 tcp 80
 ACCEPT pvpn:$vint_abeldyaev gov:10.241.0.61 tcp 80
 ACCEPT pvpn:$vint_ds_bobov gov:10.241.0.61 tcp 80
 ACCEPT pvpn:$vint_vi_derkach gov:10.241.0.61 tcp 80
 ACCEPT pvpn:$vint_la_kondrateva gov:10.241.0.61 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.241.0.61 tcp 80
 ACCEPT pvpn:$vint_pv_gluhoedova gov:10.241.0.61 tcp 80
 ACCEPT pvpn:$vint_lev_belyakov gov:10.241.0.61 tcp 80
 ACCEPT pvpn:$vint_kuzmin gov:10.241.0.61 tcp 80
-#ACCEPT pvpn:$vint_zhiguleva gov:10.241.0.61 tcp 80
-#ACCEPT pvpn:$vint_d_grachev gov:10.241.0.61 tcp 80
 ACCEPT pvpn:$vint_anna_bogdanova gov:10.241.0.61 tcp 80
 ACCEPT pvpn:$vint_da_komlev gov:10.241.0.62 tcp 80
-#ACCEPT pvpn:$vint_pa_goncharova gov:10.241.0.62 tcp 80
 ACCEPT pvpn:$vint_abeldyaev gov:10.241.0.62 tcp 80
 ACCEPT pvpn:$vint_ds_bobov gov:10.241.0.62 tcp 80
 ACCEPT pvpn:$vint_vi_derkach gov:10.241.0.62 tcp 80
 ACCEPT pvpn:$vint_la_kondrateva gov:10.241.0.62 tcp 80
-#ACCEPT pvpn:$vint_konnova gov:10.241.0.62 tcp 80
 ACCEPT pvpn:$vint_pv_gluhoedova gov:10.241.0.62 tcp 80
 ACCEPT pvpn:$vint_lev_belyakov gov:10.241.0.62 tcp 80
 ACCEPT pvpn:$vint_kuzmin gov:10.241.0.62 tcp 80
-#ACCEPT pvpn:$vint_zhiguleva gov:10.241.0.62 tcp 80
-#ACCEPT pvpn:$vint_d_grachev gov:10.241.0.62 tcp 80
 ACCEPT pvpn:$vint_anna_bogdanova gov:10.241.0.62 tcp 80
 ### 19155 ###
-#ACCEPT pvpn:$vint_at_shirokiy gov:10.146.136.138 tcp 6473
 ### 19165 ###
 ACCEPT pvpn:$vint_yd_fisenko gov:10.146.138.98 tcp 80
 ### 19169 ###
@@ -4124,7 +3702,6 @@ ACCEPT pvpn:$vint_shlyahtin gov:10.241.0.96 tcp 3389
 ### 19174 ###
 ACCEPT pvpn:$vint_na_klesov gov:10.146.139.213 tcp 80
 ### 19173 ###
-#ACCEPT pvpn:$vint_mironov_a dmz:192.168.2.237 tcp 25
 ### 19177 ###
 ACCEPT pvpn:$vint_av_filatov gov:10.146.136.162 tcp 80
 ### 19178 ###
@@ -4133,18 +3710,12 @@ ACCEPT pvpn:$vint_bystrova gov:10.146.141.239 tcp 80
 ACCEPT pvpn:$vint_av_tokmantsev gov:10.241.0.61 tcp 80,443
 ACCEPT pvpn:$vint_av_tokmantsev gov:10.241.0.62 tcp 80,443
 ### 19190 ###
-#ACCEPT pvpn:$vint_av_kovalenko gov:10.146.136.125 tcp 5432
-#ACCEPT pvpn:$vint_av_kovalenko gov:10.146.136.170 tcp 5432
-#ACCEPT pvpn:$vint_av_kovalenko gov:10.146.136.172 tcp 5432
-#ACCEPT pvpn:$vint_av_kovalenko gov:10.146.139.74 tcp 5432
 ### 19193 ###
-#ACCEPT pvpn:$vint_mironov_a gov:10.146.142.32 tcp 80,5601
 ### 19207 ###
 ACCEPT pvpn:$vint_ev_kravtsova gov:10.146.137.82 tcp 3389
 ### 19211 ###
 ACCEPT pvpn:$vint_yulia_dryapko gov:10.146.143.249 tcp 3389
 ### 19241 ###
-#ACCEPT pvpn:$vint_vv_aleksandrov gov:10.146.142.10 tcp 22,8080
 ### 19252 ###
 ACCEPT pvpn:$vint_ns_zhukova gov:10.241.0.98 tcp 22,80,443,1521,8000
 ACCEPT pvpn:$vint_ns_zhukova gov:10.241.0.99 tcp 22,80,443,1521,8000
@@ -4153,39 +3724,24 @@ ACCEPT pvpn:$vint_pa_fumelli gov:10.241.0.100 tcp 22,80,433
 ACCEPT pvpn:$vint_an_ivanov gov:10.241.0.100 tcp 22,80,433
 ### 19301 ###
 ACCEPT pvpn:$vint_an_ivanov tvr:192.168.152.14 tcp 22
-#ACCEPT pvpn:$vint_an_ivanov tvr:192.168.70.162 tcp 22
-#ACCEPT pvpn:$vint_an_ivanov tvr:192.168.70.163 tcp 22,80,443
-#ACCEPT pvpn:$vint_an_ivanov tvr:192.168.70.165 tcp 22
 ACCEPT pvpn:$vint_an_ivanov tvr:192.168.152.9 tcp 22
-#ACCEPT pvpn:$vint_an_ivanov tvr:192.168.70.167 tcp 22
-#ACCEPT pvpn:$vint_an_ivanov tvr:192.168.70.166 tcp 22
 ACCEPT pvpn:$vint_an_ivanov tvr:192.168.152.4 tcp 22
 ACCEPT pvpn:$vint_an_ivanov tvr:192.168.152.6 tcp 22
 ACCEPT pvpn:$vint_an_ivanov tvr:192.168.152.11 tcp 22
 ACCEPT pvpn:$vint_an_ivanov tvr:192.168.152.16 tcp 22
 ACCEPT pvpn:$vint_an_ivanov tvr:192.168.152.5 tcp 22
-#ACCEPT pvpn:$vint_an_ivanov tvr:192.168.70.168 tcp 22
-#ACCEPT pvpn:$vint_an_ivanov tvr:192.168.70.169 tcp 22
 ACCEPT pvpn:$vint_an_ivanov tvr:192.168.152.18 tcp 22
 ACCEPT pvpn:$vint_an_ivanov tvr:192.168.152.21 tcp 22
 ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.152.14 tcp 22
-#ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.70.162 tcp 22
-#ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.70.163 tcp 22,80,443
-#ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.70.165 tcp 22
 ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.152.9 tcp 22
-#ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.70.167 tcp 22
-#ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.70.166 tcp 22
 ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.152.4 tcp 22
 ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.152.6 tcp 22
 ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.152.11 tcp 22
 ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.152.16 tcp 22
 ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.152.5 tcp 22
-#ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.70.168 tcp 22
-#ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.70.169 tcp 22
 ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.152.18 tcp 22
 ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.152.21 tcp 22
 ### 19344 ###
-#ACCEPT pvpn:$vint_pashkovskiy gov:10.146.136.130 tcp 80
 ### 19370 ###
 ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.152.3 tcp 22,80,443
 ACCEPT pvpn:$vint_an_ivanov tvr:192.168.152.3 tcp 22,80,443
@@ -4201,12 +3757,10 @@ ACCEPT pvpn:$vint_pa_fumelli gov:10.241.0.112 tcp 22
 ACCEPT pvpn:$vint_an_ivanov gov:10.241.0.111 tcp 22
 ACCEPT pvpn:$vint_an_ivanov gov:10.241.0.112 tcp 22
 ### 19435 ###
-#ACCEPT pvpn:$vint_vv_aleksandrov gov:10.241.0.108 tcp 80,443,8060,8080,8090
 ACCEPT pvpn:$vint_av_vorontsov gov:10.241.0.108 tcp 80,443,8060,8080,8090
 ACCEPT pvpn:$vint_av_zhivilo gov:10.241.0.108 tcp 80,443,8060,8080,8090
 ACCEPT pvpn:$vint_av_kozhin gov:10.241.0.108 tcp 80,443,8060,8080,8090
 ACCEPT pvpn:$vint_va_krauze gov:10.241.0.108 tcp 80,443,8060,8080,8090
-#ACCEPT pvpn:$vint_mironov_a gov:10.241.0.108 tcp 80,443,8060,8080,8090
 ACCEPT pvpn:$vint_vv_maslov gov:10.241.0.108 tcp 80,443,8060,8080,8090
 ACCEPT pvpn:$vint_rs_nikitin gov:10.241.0.108 tcp 80,443,8060,8080,8090
 ACCEPT pvpn:$vint_e_petrushenko gov:10.241.0.108 tcp 80,443,8060,8080,8090
@@ -4216,7 +3770,6 @@ ACCEPT pvpn:$vint_at_shirokiy gov:10.241.0.108 tcp 80,443,8060,8080,8090
 ACCEPT pvpn:$vint_m_yakovlev gov:10.241.0.108 tcp 80,443,8060,8080,8090
 ACCEPT pvpn:$vint_l_lisin gov:10.241.0.108 tcp 80,443,8060,8080,8090
 ACCEPT pvpn:$vint_v_muravev gov:10.241.0.108 tcp 80,443,8060,8080,8090
-#ACCEPT pvpn:$vint_e_piksimova gov:10.241.0.108 tcp 80,443,8060,8080,8090
 ACCEPT pvpn:$vint_bosikova gov:10.241.0.108 tcp 80,443,8060,8080,8090
 ACCEPT pvpn:$vint_ta_vasutin gov:10.241.0.108 tcp 80,443,8060,8080,8090
 ### 19463 ###
@@ -4229,8 +3782,6 @@ ACCEPT pvpn:$vint_m_mironov gov:10.146.143.249 udp 5060,30000:40000
 ### 19513 ###
 ACCEPT pvpn:$vint_av_kozhin gov:10.128.66.94 all
 ### 19527 ###
-#ACCEPT pvpn:$vint_k_melnik gov:10.146.142.195 all
-#ACCEPT pvpn:$vint_k_melnik gov:10.146.142.201 all
 ### 19534 ###
 ACCEPT pvpn:$vint_gubanovs gov:10.146.136.178 tcp 5432
 ### 19550 ###
@@ -4262,7 +3813,6 @@ ACCEPT pvpn:$vint_pa_fumelli gov:10.241.0.70 tcp 22
 ### 19660 ###
 ACCEPT pvpn:$vint_gubanovs gov:10.146.139.239 tcp 5432
 ###
-#ACCEPT pvpn:$vint_a_smirnova gov:10.146.136.22 tcp 80,443
 ### 19678 ###
 ACCEPT pvpn:$vbitrix_portal gov:10.241.0.116 tcp 80,443
 ### 19695 ###
@@ -4287,8 +3837,6 @@ ACCEPT pvpn:$vint_pa_fumelli gov:10.146.143.193 tcp 80,443,25,110,143,465,993,99
 ## 19750 ### 
 ACCEPT pvpn:$vint_oe_hoshtariya gov:10.241.0.108 tcp 80,443,8060,8080,8090
 ## 19763 ###
-#ACCEPT pvpn:$vint_an_ivanov tvr:192.168.70.170 tcp 22,80,443
-#ACCEPT pvpn:$ya_andreev tvr:192.168.70.170 tcp 22,80,443
 ## 19767 ###
 ACCEPT pvpn:$vint_io_kontorina gov:10.241.0.27 tcp 80,443
 ACCEPT pvpn:$vint_io_kontorina gov:10.241.0.61 tcp 80,443
@@ -4306,17 +3854,12 @@ ACCEPT pvpn:$vint_m_mironov gov:10.241.0.146 tcp 22,80,443,8010
 ### 19896 ###
 ACCEPT pvpn:$vint_av_tkachenko gov:10.146.137.249 tcp 80,443
 ###
-#ACCEPT pvpn:$vint_a_meleshkin tvr:192.168.152.18 tcp 22
 ### 19951 ###
 ACCEPT pvpn:$vint_m_mironov gov:10.241.0.136 tcp 22,80,443
-#ACCEPT pvpn:$vint_m_mironov tvr:192.168.70.170 tcp 22,80,443
 ### 19970 ###
-#ACCEPT pvpn:$vint_vv_aleksandrov gov:10.146.138.124 tcp 8101 
-#ACCEPT pvpn:$vint_vv_aleksandrov gov:10.146.139.58 tcp 8101 
 ### 19973 ###
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.140.197 tcp 22,80,443
 ###
-#ACCEPT pvpn:$vint_k_melnik gov:10.241.0.161 tcp 3389
 ### 19988 ###
 ACCEPT pvpn:$vint_av_kozhin gov:10.1.222.19 tcp 22,80,443
 ACCEPT pvpn:$vint_av_kozhin gov:10.1.222.20 tcp 22,80,443
@@ -4380,9 +3923,7 @@ ACCEPT pvpn:$vint_m_mironov gov:10.146.136.84 tcp 3389
 ### 20204 ###
 ACCEPT pvpn:$vint_k_nizamutdinova gov:10.146.137.80 tcp 80,443
 ### 20219 ###
-#ACCEPT pvpn:$vint_vladimirov gov:10.241.0.96 tcp 80,443
 ### 20214 ###
-#ACCEPT pvpn:$vint_vv_aleksandrov gov:10.146.139.240 tcp 9000
 ### 20287 ###
 ACCEPT pvpn:$vint_va_krauze gov:10.128.66.231 tcp 1433
 ### 20288 ###
@@ -4397,11 +3938,8 @@ ACCEPT pvpn:$vint_nv_pavlov gov:10.128.66.152 tcp 22,80,443
 ### 20331 ###
 ACCEPT pvpn:$vint_nv_pavlov gov:10.144.2.31 tcp 80,443
 ### 20370 ###
-#ACCEPT pvpn:$vint_e_krylova gov:10.241.0.173 tcp 22
 ###
-#ACCEPT pvpn:$vint_k_melnik nr:192.168.31.29 tcp 3389
 ### 20439 ###
-#ACCEPT pvpn:$vint_zhiguleva gov:10.146.137.224 tcp 80
 ### 20482 ###
 ACCEPT pvpn:$vint_av_kozhin gov:10.146.143.249 tcp 80,443
 ### 20485 ###
@@ -4420,7 +3958,6 @@ ACCEPT pvpn:$vint_nv_pavlov gov:10.146.138.136 tcp 22
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.138.137 tcp 22
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.139.27 tcp 22
 ### 20528 ###
-#ACCEPT pvpn:$vint_e_ezhova gov:10.241.0.108 tcp 80,443
 ### 20531 ###
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.138.133 tcp 8085
 ### 
@@ -4429,7 +3966,6 @@ ACCEPT pvpn:$vint_d_feldman gov:10.128.66.71 tcp 3389,139,445
 ACCEPT pvpn:$vint_an_ivanov gov:10.241.0.195 tcp 22,80,443
 ACCEPT pvpn:$vint_pa_fumelli gov:10.241.0.195 tcp 22,80,443
 ### 20503 ###
-#ACCEPT pvpn:$vint_pashkovskiy tvr:192.168.152.17 tcp 80,443
 ### 20583 ###
 ACCEPT pvpn:$vint_la_kondrateva gov:10.241.0.195 tcp 8080,8443
 ### 20596 ###
@@ -4507,7 +4043,6 @@ ACCEPT pvpn:$vint_pa_fumelli gov:10.241.0.211 tcp 22,80,443,587
 ACCEPT pvpn:$vint_an_zykova gov:10.146.143.214 tcp 80,443
 ### 20990 ###
 ACCEPT pvpn:$vint_ni_slitkov gov:10.128.66.140 tcp 80
-#ACCEPT pvpn:$vint_v_selezneva gov:10.128.66.140 tcp 80
 ACCEPT pvpn:$vint_vs_budko gov:10.128.66.140 tcp 80
 ACCEPT pvpn:$vint_sa_yakushev gov:10.128.66.140 tcp 80
 ACCEPT pvpn:$vint_n_balberina gov:10.128.66.140 tcp 80
@@ -4544,8 +4079,6 @@ ACCEPT pvpn:$vint_aa_bogomolov gov:10.146.136.64 tcp 22,5432
 ACCEPT pvpn:$vint_aa_bogomolov gov:10.128.66.140 tcp 80
 ### 09.06.2021 14:35 telegram###
 ### 20389 ###
-#ACCEPT pvpn:$vint_a_timofeeva gov:10.146.140.250 tcp 22,5432
-#ACCEPT pvpn:$vint_a_timofeeva gov:10.128.66.140 tcp 80
 ### 21036 ###
 ACCEPT pvpn:$vint_im_dementiev gov:10.146.143.213 tcp 22
 ### 21044 ###
@@ -4588,7 +4121,6 @@ ACCEPT pvpn:$vint_im_dementiev gov:10.146.143.224 tcp 80,443,22
 ### 21227 ###
 ACCEPT pvpn:$vint_oi_nikonova gov:10.146.143.214 tcp 80,443
 ### 21232 ###
-#ACCEPT pvpn:$vint_av_kovalenko gov:10.146.140.198 tcp 5432
 ### 21244 ###
 ACCEPT pvpn:$vint_m_mironov gov:10.146.136.123 tcp 5432
 ### 21253 ###
@@ -4598,48 +4130,6 @@ ACCEPT pvpn:$vint_a_lukyanovich gov:10.146.136.123 tcp 22,80,443,5432
 ### 21270 ###
 ACCEPT pvpn:$vint_oi_zherebyateva gov:10.146.136.130 tcp 80
 ### 21290 ###
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.139.250 tcp 22
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.139.84 tcp 22
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.139.249 tcp 22
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.138.238 tcp 22
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.138.239 tcp 22
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.138.240 tcp 22
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.138.241 tcp 22
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.138.242 tcp 22
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.138.243 tcp 22
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.138.244 tcp 22
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.139.97 tcp 22
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.139.98 tcp 22
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.139.99 tcp 22
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.139.100 tcp 22
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.139.101 tcp 22
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.139.217 tcp 3389
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.140.65-10.146.140.94 tcp 3389
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.139.218-10.146.139.236 tcp 3389
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.141.183 tcp 22,80,443
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.138.136 tcp 80
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.138.132 tcp 8085
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.138.242 all
-#ACCEPT pvpn:$vint_aa_kazakov laf3:10.248.51.115 tcp 8088
-#ACCEPT pvpn:$vint_aa_kazakov laf3:10.248.51.86 tcp 2222
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.139.134 tcp 2222,8088
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.136.22 tcp 80
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.141.213 tcp 80
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.138.249 all
-#ACCEPT pvpn:$vint_aa_kazakov dmz:192.168.2.94 tcp 3128
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.248.51.95 all
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.144.2.32 tcp 80
-#ACCEPT pvpn:$vint_aa_kazakov oemts:10.5.18.128/26 tcp 22,80,443
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.128.0.24 tcp 1688 
-#ACCEPT pvpn:$vint_aa_kazakov laf3:10.248.51.95 tcp 80,443
-#ACCEPT pvpn:$vint_aa_kazakov laf3:10.248.51.83 tcp 2222
-#ACCEPT pvpn:$vint_aa_kazakov laf3:10.248.51.84 tcp 2222
-#ACCEPT pvpn:$vint_aa_kazakov laf3:10.248.51.85 tcp 2222
-#ACCEPT pvpn:$vint_aa_kazakov laf3:10.248.51.103 tcp 2222
-#ACCEPT pvpn:$vint_aa_kazakov laf3:10.248.51.104 tcp 2222
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.192.8.84-10.192.8.95 tcp 22
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.241.0.95 tcp 3389
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.241.0.96 tcp 3389
 ### 21301 ###
 ACCEPT pvpn:$vint_nv_pavlov gov:10.144.2.10 tcp 22
 ### 21302 ###
@@ -4699,9 +4189,7 @@ ACCEPT pvpn:$vint_a_pashchenko gov:10.146.143.67 tcp 8081
 ### 21457 ###
 ACCEPT pvpn:$vint_a_pashchenko gov:10.146.138.128 tcp 80,443
 ### 21463 ###
-#ACCEPT pvpn:$vint_im_dementiev tvr:192.168.70.172 tcp 22,80,443
 ### 21466 ###
-#ACCEPT pvpn:$vint_as_vasilev tvr:192.168.70.112 tcp 22,389,636
 ### 21452 ###
 ACCEPT pvpn:$vint_bosikova tvr:192.168.70.115 tcp 22,80,443
 ACCEPT pvpn:$vint_av_kozhin tvr:192.168.70.115 tcp 22,80,443
@@ -4709,7 +4197,6 @@ ACCEPT pvpn:$vint_aa_kondrashova tvr:192.168.70.115 tcp 22,80,443
 ACCEPT pvpn:$vint_va_krauze tvr:192.168.70.115 tcp 22,80,443
 ACCEPT pvpn:$vint_egor_krupnyi tvr:192.168.70.115 tcp 22,80,443
 ACCEPT pvpn:$vint_vv_maslov tvr:192.168.70.115 tcp 22,80,443
-#ACCEPT pvpn:$vint_mironov_a tvr:192.168.70.115 tcp 22,80,443
 ACCEPT pvpn:$vint_rs_nikitin tvr:192.168.70.115 tcp 22,80,443
 ACCEPT pvpn:$vint_aa_parfenov tvr:192.168.70.115 tcp 22,80,443
 ACCEPT pvpn:$vint_e_petrushenko tvr:192.168.70.115 tcp 22,80,443
@@ -4723,23 +4210,17 @@ ACCEPT pvpn:$vint_ta_vasutin tvr:192.168.70.115 tcp 22,80,443
 ACCEPT pvpn:$vint_si_tarashnina tvr:192.168.70.115 tcp 22,80,443
 ACCEPT pvpn:$vint_bystrova tvr:192.168.70.115 tcp 22,80,443
 ACCEPT pvpn:$vint_ei_vybornov tvr:192.168.70.115 tcp 22,80,443
-#ACCEPT pvpn:$vint_o_kazmina tvr:192.168.70.115 tcp 22,80,443
 ACCEPT pvpn:$vint_y_lakhina tvr:192.168.70.115 tcp 22,80,443
 ACCEPT pvpn:$vint_ba_bulatov tvr:192.168.70.115 tcp 22,80,443
-#ACCEPT pvpn:$vint_e_ezhova tvr:192.168.70.115 tcp 22,80,443
-#ACCEPT pvpn:$vint_hamzina tvr:192.168.70.115 tcp 22,80,443
-#ACCEPT pvpn:$vint_e_vinogradova tvr:192.168.70.115 tcp 22,80,443
 ACCEPT pvpn:$vint_av_gorodinskiy tvr:192.168.70.115 tcp 22,80,443
 ACCEPT pvpn:$vint_frey tvr:192.168.70.115 tcp 22,80,443
 ACCEPT pvpn:$vint_oe_hoshtariya tvr:192.168.70.115 tcp 22,80,443
 ACCEPT pvpn:$vint_gv_talvinskiy tvr:192.168.70.115 tcp 22,80,443
 ACCEPT pvpn:$vint_mn_soldatov tvr:192.168.70.115 tcp 22,80,443
 ACCEPT pvpn:$vint_v_grachyov tvr:192.168.70.115 tcp 22,80,443
-#ACCEPT pvpn:$vint_as_vasilev tvr:192.168.70.115 tcp 22,80,443
 ACCEPT pvpn:$vint_v_muravev tvr:192.168.70.115 tcp 22,80,443
 ACCEPT pvpn:$vint_a_kurilova tvr:192.168.70.115 tcp 22,80,443
 ### 21442 ###
-#ACCEPT pvpn:$vint_e_krylova gov:10.129.157.90 tcp 8080
 ### 21504 ###
 ACCEPT pvpn:$vint_av_myadelec gov:10.146.143.214 tcp 80,443
 ### 21531 ###
@@ -4776,23 +4257,17 @@ ACCEPT pvpn:$vint_i_malyshev gov:10.128.66.140 tcp 80
 ###26871###
 ACCEPT pvpn:$vint_i_malyshev gov:10.146.140.251 tcp 80
 ### 21592 ###
-#ACCEPT pvpn:$vint_as_vasilev gov:10.146.139.62 tcp 22
-#ACCEPT pvpn:$vint_as_vasilev gov:10.146.139.64 tcp 22
 ### 21608 ###
 ACCEPT pvpn:$vint_v_gagin gov:10.146.136.98 tcp 3690
 ### 21609 ###
 ACCEPT pvpn:$vint_gubanovs gov:10.146.136.202 tcp 22
 ACCEPT pvpn:$vint_gubanovs gov:10.146.143.158 tcp 22
 ACCEPT pvpn:$vint_gubanovs gov:10.146.136.203 tcp 5432
-#ACCEPT pvpn:$vint_olga gov:10.146.136.203 tcp 5432
 ACCEPT pvpn:$vint_ms_zhukova gov:10.146.136.203 tcp 5432
-#ACCEPT pvpn:$vint_a_timofeeva gov:10.146.136.203 tcp 5432
 ACCEPT pvpn:$vint_mv_kalinin gov:10.146.136.203 tcp 5432
 ACCEPT pvpn:$vint_riseva gov:10.146.136.203 tcp 5432
 ACCEPT pvpn:$vint_gubanovs gov:10.146.140.249 tcp 5432
-#ACCEPT pvpn:$vint_olga gov:10.146.140.249 tcp 5432
 ACCEPT pvpn:$vint_ms_zhukova gov:10.146.140.249 tcp 5432
-#ACCEPT pvpn:$vint_a_timofeeva gov:10.146.140.249 tcp 5432
 ACCEPT pvpn:$vint_mv_kalinin gov:10.146.140.249 tcp 5432
 ACCEPT pvpn:$vint_riseva gov:10.146.140.249 tcp 5432
 ### 21613 ###
@@ -4803,16 +4278,11 @@ ACCEPT pvpn:$vint_islanova gov:10.146.143.249 tcp 80
 ### 21649 ###
 ACCEPT pvpn:$vint_sa_suldin gov:10.146.137.80 tcp 80
 ### 21665 ###
-#ACCEPT pvpn:$vint_d_grachev gov:10.146.137.81 tcp 22
 ### 21671 ###
-#ACCEPT pvpn:$vint_e_krylova gov:10.241.0.117 tcp 22
 ### 21676 ###
-#ACCEPT pvpn:$vint_d_grachev loc:192.168.43.192 tcp 22
 ### 21680 ###
-#ACCEPT pvpn:$vint_d_grachev gov:10.146.141.1 tcp 8443
 ### 21682 ###
 ### 21689 ###
-#ACCEPT pvpn:$vint_vladimirov iao:192.168.5.251 tcp 80
 ### 21692 ###
 ACCEPT pvpn:$vint_vik_val_grigoryev gov:10.146.139.44 tcp 8091
 ACCEPT pvpn:$vint_vik_val_grigoryev gov:10.146.139.44 icmp
@@ -4824,17 +4294,13 @@ ACCEPT pvpn:$vint_pa_fumelli gov:10.146.143.95 tcp 22,80
 ### 21711 ###
 ACCEPT pvpn:$vint_im_dementiev gov:10.241.0.32 tcp 22
 ### 21695 ###
-#ACCEPT pvpn:$vint_pashkovskiy iao:192.168.5.251 tcp 80
 ### 21723 ###
-#ACCEPT pvpn:$vint_r_shamiev iao:192.168.5.251 tcp 80,443
 ### 21758 ###
 ACCEPT pvpn:$vint_an_zykova gov:10.146.143.95 tcp 80,443
 ### 21778 ###
 ACCEPT pvpn:$vint_n_petrochenko gov:10.241.0.108 tcp 80
 ACCEPT pvpn:$vint_n_petrochenko gov:10.146.136.130 tcp 80
 ### 21824 ###
-#ACCEPT pvpn:$vint_leshinova gov:10.146.137.129 tcp 80
-#ACCEPT pvpn:$vint_leshinova gov:10.146.137.137 tcp 80
 ### 21837 ###
 ACCEPT pvpn:$vint_ev_bolgova gov:10.241.0.196 tcp 22,80,443,6379,6380,27017
 ACCEPT pvpn:$vint_ev_bolgova gov:10.241.0.128 tcp 22,80,443,6379,6380,27017
@@ -4852,7 +4318,6 @@ ACCEPT pvpn:$vint_av_kozhin gov:10.146.139.63 tcp 22
 ACCEPT pvpn:$vint_av_kozhin iao:192.168.5.251 tcp 80
 ACCEPT pvpn:$vint_av_vorontsov iao:192.168.5.251 tcp 80
 ### 21875 ###
-#ACCEPT pvpn:$vint_e_krylova gov:10.241.0.117 tcp 5000
 ### 21899 ###
 ACCEPT pvpn:$vint_an_ivanov gov:10.146.142.11 tcp 22,80,443
 ACCEPT pvpn:$vint_an_ivanov gov:10.146.141.156 tcp 22,80,443
@@ -4865,14 +4330,8 @@ ACCEPT pvpn:$vint_bd_batalov gov:10.146.136.121 tcp 80
 ACCEPT pvpn:$vint_bd_batalov gov:10.146.136.122 tcp 80
 ACCEPT pvpn:$vint_bd_batalov gov:10.146.136.123 tcp 80
 ### 21941 ###
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.241.0.130 tcp 3389
 ACCEPT pvpn:$vint_nv_pavlov gov:10.241.0.130 tcp 3389
 ### 21946 ###
-#ACCEPT pvpn:$vint_e_piksimova tvr:192.168.70.98 tcp 80,443
-#ACCEPT pvpn:$vint_e_piksimova tvr:192.168.70.99 tcp 80,443
-#ACCEPT pvpn:$vint_e_piksimova tvr:192.168.70.100 tcp 80,443
-#ACCEPT pvpn:$vint_e_piksimova tvr:192.168.70.113 tcp 80,443
-#ACCEPT pvpn:$vint_e_piksimova tvr:192.168.70.104 tcp 80,443
 ## 21951 ## 21963 ## 34192
 ACCEPT pvpn:$vint_ev_metelkova gov:10.146.137.20 tcp 80,443
 ACCEPT pvpn:$vint_ev_metelkova gov:10.146.137.129 tcp 80,443
@@ -4880,19 +4339,13 @@ ACCEPT pvpn:$vint_ev_metelkova gov:10.146.137.19 tcp 80,443
 ACCEPT pvpn:$vint_ev_metelkova gov:10.146.137.250 tcp 80,443
 ACCEPT pvpn:$vint_ev_metelkova gov:10.146.137.82 tcp 5432
 ### 21974 ###
-#ACCEPT pvpn:$vint_a_meleshkin iao:192.168.5.251 tcp 80,443
 ### 21105 ###
-#ACCEPT pvpn:$vint_pa_fumelli tvr:192.168.70.164 tcp 22 
-#ACCEPT pvpn:$vint_an_ivanov tvr:192.168.70.164 tcp 22 
 ### 22159 ###
-#ACCEPT pvpn:$vint_o_kazmina gov:10.128.48.48 tcp 5040,5041
 ### 22209 ###
 ACCEPT pvpn:$vint_ns_zhukova gov:10.146.136.29 tcp 5432
 ### 22253 ###
 ACCEPT pvpn:$vint_gubanovs gov:10.146.136.161 tcp 15432
 ### 22279 ###
-#ACCEPT pvpn:$vint_vladimirov gov:10.241.0.209 tcp 80,443
-#ACCEPT pvpn:$vint_vladimirov gov:10.241.0.210 tcp 80,443
 ### 22285 ###
 ACCEPT pvpn:$vint_l_lisin gov:10.146.141.230 tcp 443
 ACCEPT pvpn:$vint_l_lisin gov:10.146.141.231 tcp 443
@@ -4905,10 +4358,6 @@ ACCEPT pvpn:$vint_n_petrochenko tvr:192.168.70.100 tcp 80,443
 ACCEPT pvpn:$vint_n_petrochenko tvr:192.168.70.113 tcp 80,443
 ACCEPT pvpn:$vint_n_petrochenko tvr:192.168.70.104 tcp 80,443
 ### 22350 ###
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.138.14-10.146.138.30 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.138.119 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.138.120 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.138.125 tcp 22
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.138.14-10.146.138.30 tcp 22
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.138.119 tcp 22
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.138.120 tcp 22
@@ -4971,10 +4420,6 @@ ACCEPT pvpn:$vint_nv_pavlov gov:10.146.138.77 tcp 22
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.138.118 tcp 22
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.138.48 tcp 22
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.138.49 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.138.66-10.146.138.77 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.138.118 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.138.48 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.138.49 tcp 22
 ### 22387 ###
 ACCEPT pvpn:$vint_ns_zhukova gov:10.241.0.133 tcp 5433
 ### 22420 ###
@@ -4991,7 +4436,6 @@ ACCEPT pvpn:$vint_aa_gefding gov:10.146.141.175 tcp 21,22,80,443,554,8080,8083
 ACCEPT pvpn:$vint_mn_soldatov iao:192.168.5.251 tcp 80,443
 ACCEPT pvpn:$vint_gv_talvinskiy iao:192.168.5.251 tcp 80,443
 ### 22046 ###
-#ACCEPT pvpn:$vint_as_vasilev tvr:192.168.70.96/27 all
 ### 22614 ###
 ACCEPT pvpn:$vint_iy_ponamarev gov:10.146.141.156 tcp 22,80,443
 ### 22615 ###
@@ -4999,11 +4443,9 @@ ACCEPT pvpn:$vint_iy_ponamarev gov:10.146.143.71 tcp 22,80,443
 ### 22618 ###
 ACCEPT pvpn:$vint_iy_ponamarev gov:10.146.143.160 tcp 22,80,443
 ### 22634 ###
-#ACCEPT pvpn:$vladimirov gov:10.20.6.253 tcp 80
 ### 22639 ###
 ACCEPT pvpn:$vint_iy_ponamarev gov:10.146.142.11 tcp 22,80,443
 ### 22655 ###
-#ACCEPT pvpn:$vint_d_grachev gov:10.241.0.129 tcp 80,443
 ### 22664 ###
 ACCEPT pvpn:$vint_e_zaharova gov:10.146.139.79 tcp 80
 ACCEPT pvpn:$vint_e_zaharova gov:10.146.139.201 tcp 80
@@ -5028,19 +4470,15 @@ ACCEPT pvpn:$vint_av_filatov gov:10.146.136.161 tcp 15432
 ### 22722 ###
 ACCEPT pvpn:$vint_av_filatov gov:10.146.136.61 tcp 10180
 ### 22732 ###
-#ACCEPT pvpn:$vint_as_vasilev gov:10.241.0.108 tcp 80,443
 ### 22785 ###
 ACCEPT pvpn:$vint_y_lakhina gov:10.160.225.90 tcp 8000
 ACCEPT pvpn:$vint_av_gorodinskiy gov:10.160.225.90 tcp 8000
-#ACCEPT pvpn:$vint_p_svechnikov gov:10.160.225.90 tcp 8000
 ACCEPT pvpn:$vint_o_kamalova gov:10.160.225.90 tcp 8000
-#ACCEPT pvpn:$vint_hamzina gov:10.160.225.90 tcp 8000
 ACCEPT pvpn:$vint_ba_bulatov gov:10.160.225.90 tcp 8000
 ACCEPT pvpn:$vint_si_tarashnina gov:10.160.225.90 tcp 8000
 ### 22804 ###
 ACCEPT pvpn:$vint_va_sorokin gov:10.146.136.161 tcp 80,18080,15432
 ### 22809 ###
-#ACCEPT pvpn:$vint_sv_zatsepilova dmz:192.168.2.63 tcp 80,443
 ACCEPT pvpn:$vint_sv_zatsepilova dmz:192.168.2.244 tcp 80,443
 ACCEPT pvpn:$vint_sv_zatsepilova gov:10.146.136.61 tcp 80,10180
 ACCEPT pvpn:$vint_sv_zatsepilova gov:10.146.137.3 tcp 80
@@ -5082,8 +4520,6 @@ ACCEPT pvpn:$vint_sv_zatsepilova gov:10.146.137.154 tcp 80
 ACCEPT pvpn:$vint_sv_zatsepilova gov:10.241.0.61 tcp 80
 ACCEPT pvpn:$vint_sv_zatsepilova gov:10.241.0.62 tcp 80
 ### 22819 ###
-#ACCEPT pvpn:$vint_e_piksimova gov:10.160.225.90 tcp 8000
-#ACCEPT pvpn:$vint_mironov_a gov:10.160.225.90 tcp 8000
 ACCEPT pvpn:$vint_av_kozhin gov:10.160.225.90 tcp 8000
 ### 22824 ###
 ACCEPT pvpn:$vint_gv_talvinskiy gov:10.160.225.90 tcp 8000,554
@@ -5091,10 +4527,7 @@ ACCEPT pvpn:$vint_gv_talvinskiy gov:10.160.225.90 udp 554
 ACCEPT pvpn:$vint_mn_soldatov gov:10.160.225.90 tcp 8000,554
 ACCEPT pvpn:$vint_mn_soldatov gov:10.160.225.90 udp 554
 ### 2283 ###
-#ACCEPT pvpn:$vint_as_vasilev gov:10.160.225.90 tcp 554,8000
-#ACCEPT pvpn:$vint_as_vasilev gov:10.160.225.90 udp 554
 ### 22865 ###
-#ACCEPT pvpn:$vint_m_mironov tvr:192.168.70.163 tcp 22,80,443
 ### 22872 ###
 ACCEPT pvpn:$vint_vi_derkach gov:10.146.137.246 tcp 8081
 ### 22873 ###
@@ -5105,36 +4538,25 @@ ACCEPT pvpn:$vint_m_mironov dmz:192.168.2.174 tcp 80,22
 ### 22883 ###
 ACCEPT pvpn:$vint_av_filatov gov:10.146.136.178 tcp 5432
 ### 22884 ###
-#ACCEPT pvpn:$vint_vladimirov gov:10.146.136.123 tcp 5432
 ### 22889 ###
-#ACCEPT pvpn:$vint_e_krylova gov:10.129.157.94 tcp 8080
 ### 22903 ###
-#ACCEPT pvpn:$vint_mironov_a gov:10.146.136.130 tcp 80
 ### 22906 ###
-#ACCEPT pvpn:$vint_vladimirov gov:10.148.33.42 tcp 3389
 ### 22897 ###
-#ACCEPT pvpn:$vint_d_grachev gov:10.146.137.134 tcp 8443
 ACCEPT pvpn:$vint_ds_bobov gov:10.146.137.134 tcp 8443
 ### 22920 ###
 ACCEPT pvpn:$vint_m_mironov gov:10.241.0.97 tcp 5432
 ACCEPT pvpn:$vint_m_mironov gov:10.146.141.68 tcp 5432
 ### 22942 ###
-#ACCEPT pvpn:$vint_vladimirov gov:10.241.0.210 tcp 80
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.241.0.210 tcp 80
 ACCEPT pvpn:$vint_bd_batalov gov:10.241.0.210 tcp 80
 ACCEPT pvpn:$vint_va_sorokin gov:10.241.0.210 tcp 80
 ACCEPT pvpn:$vint_a_lukyanovich gov:10.241.0.210 tcp 80
-#ACCEPT pvpn:$vint_av_kovalenko gov:10.241.0.210 tcp 80
 ACCEPT pvpn:$vint_av_kosirev gov:10.241.0.210 tcp 80
 ACCEPT pvpn:$vint_yd_fisenko gov:10.241.0.210 tcp 80
 ACCEPT pvpn:$vint_nv_pavlov gov:10.241.0.210 tcp 80
 ACCEPT pvpn:$vint_gubanovs gov:10.241.0.210 tcp 80
-#ACCEPT pvpn:$vint_vladimirov gov:10.241.1.36 tcp 80
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.241.1.36 tcp 80
 ACCEPT pvpn:$vint_bd_batalov gov:10.241.1.36 tcp 80
 ACCEPT pvpn:$vint_va_sorokin gov:10.241.1.36 tcp 80
 ACCEPT pvpn:$vint_a_lukyanovich gov:10.241.1.36 tcp 80
-#ACCEPT pvpn:$vint_av_kovalenko gov:10.241.1.36 tcp 80
 ACCEPT pvpn:$vint_av_kosirev gov:10.241.1.36 tcp 80
 ACCEPT pvpn:$vint_yd_fisenko gov:10.241.1.36 tcp 80
 ACCEPT pvpn:$vint_nv_pavlov gov:10.241.1.36 tcp 80
@@ -5148,12 +4570,9 @@ ACCEPT pvpn:$vint_gubanovs gov:10.146.136.161 tcp 3389,15432
 ### 22972 ###
 ACCEPT pvpn:$vint_gubanovs gov:10.146.139.213 tcp 80
 ### 22973 ###
-#ACCEPT pvpn:$vint_vladimirov gov:10.241.1.37 tcp 5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.241.1.37 tcp 5432
 ACCEPT pvpn:$vint_bd_batalov gov:10.241.1.37 tcp 5432
 ACCEPT pvpn:$vint_va_sorokin gov:10.241.1.37 tcp 5432
 ACCEPT pvpn:$vint_a_lukyanovich gov:10.241.1.37 tcp 5432
-#ACCEPT pvpn:$vint_av_kovalenko gov:10.241.1.37 tcp 5432
 ACCEPT pvpn:$vint_av_kosirev gov:10.241.1.37 tcp 5432
 ACCEPT pvpn:$vint_yd_fisenko gov:10.241.1.37 tcp 5432
 ACCEPT pvpn:$vint_nv_pavlov gov:10.241.1.37 tcp 5432
@@ -5161,7 +4580,6 @@ ACCEPT pvpn:$vint_gubanovs gov:10.241.1.37 tcp 5432
 ### 22979 ###
 ACCEPT pvpn:$vint_gubanovs gov:10.146.139.44 tcp 8091
 ### 23031 ###
-#ACCEPT pvpn:$vint_a_manuylov gov:10.146.136.61 tcp 10180
 ### 23032 ###
 ACCEPT pvpn:$vint_m_mironov tvr:192.168.70.115 tcp 22,80
 ### 23045 ###
@@ -5169,8 +4587,6 @@ ACCEPT pvpn:$vint_im_dementiev gov:10.241.0.116 tcp 443,80,22
 ### 23056 ###
 ACCEPT pvpn:$vint_m_mironov gov:10.146.142.9 tcp 22,80
 ### 23062 ###
-#ACCEPT pvpn:$vint_vladimirov gov:10.128.16.100 tcp 8443
-#ACCEPT pvpn:$vint_vladimirov gov:10.128.16.101 tcp 8443
 ### 23070 ###
 ACCEPT pvpn:$vint_av_vorontsov gov:10.128.66.184 tcp 22
 ## 23071 ###
@@ -5181,7 +4597,6 @@ ACCEPT pvpn:$vint_av_filatov gov:10.146.139.213 tcp 80
 ACCEPT pvpn:$vint_vv_maslov gov:10.241.0.29 tcp 22
 ### 23113 ###
 ACCEPT pvpn:$vint_ds_bobov gov:10.146.141.1 tcp 5000
-#ACCEPT pvpn:$vint_d_grachev gov:10.146.141.1 tcp 5000
 ACCEPT pvpn:$vint_dd_chheidze gov:10.146.141.1 tcp 5000
 ACCEPT pvpn:$vint_ve_grinshtern gov:10.146.141.1 tcp 5000
 ACCEPT pvpn:$vint_la_kondrateva gov:10.146.141.1 tcp 5000
@@ -5189,13 +4604,11 @@ ACCEPT pvpn:$vint_la_kondrateva gov:10.146.141.1 tcp 5000
 ACCEPT pvpn:$vint_m_mironov gov:10.241.1.40 tcp 22,80,443
 ACCEPT pvpn:$vint_m_mironov gov:10.241.1.41 tcp 22,80,443
 ### 23172 ###
-#ACCEPT pvpn:$vint_p_svechnikov tvr:192.168.70.115 tcp 22,80,443
 ### 23183 ###
 ACCEPT pvpn:$vint_bd_batalov gov:10.241.1.42 tcp 80
 ### 23217 ###
 ACCEPT pvpn:$vint_gubanovs gov:10.146.136.40 tcp 18983
 ##
-#ACCEPT pvpn:$vint_as_vasilev gov:10.241.0.253 all
 ##23315
 ACCEPT pvpn:$vint_km_moskalik gov:10.146.142.173 tcp 5432
 ACCEPT pvpn:$vint_km_moskalik gov:10.146.142.174 tcp 5432
@@ -5228,7 +4641,6 @@ ACCEPT pvpn:$vint_gubanovs gov:10.146.136.40 tcp 40021
 ### 23414 ###
 ACCEPT pvpn:$vint_gubanovs gov:10.146.136.40 tcp 38080
 ##23422
-#ACCEPT pvpn:$vint_vv_aleksandrov gov:10.241.0.253 all
 ##23463
 ACCEPT pvpn:$vint_bd_batalov gov:10.241.0.209 tcp 80
 ##23462
@@ -5236,14 +4648,6 @@ ACCEPT pvpn:$vint_e_zaharova gov:10.128.66.140 tcp 80,443
 ##23443
 ACCEPT pvpn:$vint_va_krauze gov:10.128.66.184 tcp 22
 ##23516 ##23517
-#ACCEPT pvpn:$vint_e_darmogray gov:10.241.1.43 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.241.1.44 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.241.1.45 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.241.0.114 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.136.11 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.241.1.71 tcp 22,80,443,5432,6443
-#ACCEPT pvpn:$vint_e_darmogray gov:10.241.1.72 tcp 22,80,443,5432,6443
-#ACCEPT pvpn:$vint_e_darmogray gov:10.241.1.70 tcp 22,80,443,5432,6443
 ##23537 ##34076 ##24110 ##35321
 ACCEPT pvpn:$vint_na_budnov,$vint_av_kozhin gov:10.241.0.233 tcp 22,80,443
 ACCEPT pvpn:$vint_na_budnov,$vint_av_kozhin gov:10.241.0.234 tcp 22,80,443
@@ -5368,11 +4772,9 @@ ACCEPT pvpn:$vint_gubanovs gov:10.146.139.44 tcp 80
 ##23751
 ACCEPT pvpn:$vint_oi_zherebyateva gov:10.146.143.249 tcp 22
 ##23744
-#ACCEPT pvpn:$vint_mironov_a gov:10.146.141.239 tcp 80
 ##a.tyueva
 ACCEPT pvpn:$vint_a_tyueva gov:10.241.1.46 tcp 80
 ACCEPT pvpn:$vint_ay_minaev gov:10.241.1.46 tcp 80
-#ACCEPT pvpn:$vint_eg_podchufarova gov:10.241.1.46 tcp 80
 ##23771
 ACCEPT pvpn:$vint_gubanovs gov:10.146.137.85 tcp 8081
 ##23761
@@ -5387,15 +4789,12 @@ ACCEPT pvpn:$vint_iv_rogov gov:10.146.137.82 tcp 3389
 ACCEPT pvpn:$vint_ve_grinshtern gov:10.146.137.81 tcp 22
 ACCEPT pvpn:$vint_ve_grinshtern gov:10.146.137.82 tcp 3389
 ##23828
-#ACCEPT pvpn:$vint_is_alekseev gov:10.146.136.98 tcp 80,443
 ##23896
 ACCEPT pvpn:$vint_a_lukyanovich gov:192.168.70.108 tcp 80,443,9080,9081
 ##23943
 ACCEPT pvpn:$vint_mv_kalinin gov:10.146.138.114 tcp 5432
 ##23969
-#ACCEPT pvpn:$vint_mironov_a gov:10.146.138.250 tcp 5672
 ##23947
-#ACCEPT pvpn:$vint_a_manuylov gov:10.146.138.114 tcp 5432
 ##23927
 ACCEPT pvpn:$vint_la_kondrateva gov:10.146.137.249 tcp 80,443
 ACCEPT pvpn:$vint_la_kondrateva gov:10.146.137.242 tcp 8081,8081	 
@@ -5431,7 +4830,6 @@ ACCEPT pvpn:$vint_la_kondrateva gov:10.146.137.253 tcp 1521
 ##23974
 ACCEPT pvpn:$vint_yd_fisenko gov:10.146.136.134 tcp 22
 ##23515
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.213 tcp 5432
 ##24011
 ACCEPT pvpn:$vint_belynkin gov:192.168.1.213 all
 ##24015
@@ -5446,10 +4844,7 @@ ACCEPT pvpn:$vint_ys_gudin gov:10.146.137.86  tcp 8200,8500
 ACCEPT pvpn:$vint_dd_chheidze gov:10.146.137.86  tcp 8200,8500
 ACCEPT pvpn:$vint_ve_grinshtern gov:10.146.137.86  tcp 8200,8500
 ACCEPT pvpn:$vint_la_kondrateva gov:10.146.137.86  tcp 8200,8500
-#ACCEPT pvpn:$vint_em_vasilev gov:10.146.137.86  tcp 8200,8500
-#ACCEPT pvpn:$vint_mv_kozlova gov:10.146.137.86  tcp 8200,8500
 ACCEPT pvpn:$vint_iv_rogov gov:10.146.137.86  tcp 8200,8500
-#ACCEPT pvpn:$vint_d_grachev gov:10.146.137.86  tcp 8200,8500
 ##23861
 ACCEPT pvpn:$vint_am_ivanova gov:10.146.137.81 tcp 22,80
 ACCEPT pvpn:$vint_am_ivanova gov:10.146.137.20 tcp 80
@@ -5464,13 +4859,6 @@ ACCEPT pvpn:$vint_am_ivanova gov:10.146.137.80 tcp 80
 ACCEPT pvpn:$vint_ay_minaev,$vint_ev_fedorova gov:10.241.1.71 tcp 80,443,8443,8000,3000,3002,8001
 ACCEPT pvpn:$vint_ay_minaev gov:10.241.1.46 tcp 2408,2409
 ##24000
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.138.118 tcp 80
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.138.142 tcp 80
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.138.125 tcp 80
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.138.160 tcp 80
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.138.161 tcp 80
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.139.31 tcp 80
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.140.197 tcp 80
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.138.118 tcp 80
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.138.142 tcp 80
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.138.125 tcp 80
@@ -5478,17 +4866,6 @@ ACCEPT pvpn:$vint_nv_pavlov gov:10.146.138.160 tcp 80
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.138.161 tcp 80
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.139.31 tcp 80
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.140.197 tcp 80
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.140.205-10.146.140.207 tcp 22,5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.140.182-10.146.140.202 tcp 22,5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.140.203 tcp 22,5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.140.204 tcp 22,5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.143.171 tcp 22,5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.143.188 tcp 22,5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.143.189 tcp 22,5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.143.191 tcp 5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.143.192 tcp 5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.143.195-10.146.143.200 tcp 22,5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.241.0.152 tcp 22
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.140.205-10.146.140.207 tcp 22,5432
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.140.182-10.146.140.202 tcp 22,5432
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.140.203 tcp 22,5432
@@ -5518,28 +4895,6 @@ ACCEPT pvpn:$vint_nv_pavlov gov:10.146.138.62 tcp 22
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.139.75 tcp 22
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.139.76 tcp 22
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.139.200  tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.136.74 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.136.125-10.146.136.127 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.138.98-10.146.138.100 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.138.142 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.139.73 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.139.74 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.143.20  tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.143.21 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.143.233-10.146.143.240 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.241.0.56 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.241.0.198 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.136.170-10.146.136.172 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.138.12 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.138.50 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.138.62 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.139.75 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.139.76 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.139.200  tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.241.0.130 tcp 3389
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.136.218 tcp 3389
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.143.157 tcp 3389
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.136.169 tcp 3389
 ACCEPT pvpn:$vint_nv_pavlov gov:10.241.0.130 tcp 3389
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.136.218 tcp 3389
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.143.157 tcp 3389
@@ -5555,17 +4910,6 @@ ACCEPT pvpn:$vint_nv_pavlov gov:10.146.143.239 tcp 5432
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.143.20 tcp 5432
 ACCEPT pvpn:$vint_nv_pavlov gov:10.146.143.233 tcp 5432
 ACCEPT pvpn:$vint_nv_pavlov gov:10.241.0.56  tcp 5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.139.76 tcp 5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.136.170 tcp 5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.136.172 tcp 5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.136.125 tcp 5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.136.127 tcp 5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.138.100 tcp 5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.139.74 tcp 5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.143.239 tcp 5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.143.20 tcp 5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.143.233 tcp 5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.241.0.56  tcp 5432
 ##24110 ##34076
 ACCEPT pvpn:$vint_na_budnov,$vint_av_kozhin gov:10.146.136.93 tcp 22,80,443,8080
 ACCEPT pvpn:$vint_na_budnov,$vint_av_kozhin gov:10.146.136.94 tcp 22,80,443,8080
@@ -5616,97 +4960,24 @@ ACCEPT pvpn:$vint_iy_ponamarev gov:10.146.136.40 tcp 22,80,443,2251
 ACCEPT pvpn:$vint_iy_ponamarev gov:10.241.0.116 tcp 22,80,443
 ACCEPT pvpn:$vint_iy_ponamarev gov:10.241.0.91 tcp 22,80,443
 ##24103
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.138.4 tcp 5432,5433
 ##24043
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.12 tcp 5432,5433
 ##24149
 ACCEPT pvpn:$vint_m_mironov gov:10.146.139.20 tcp 22,80,443,5432
 ACCEPT pvpn:$vint_m_mironov gov:10.146.139.21 tcp 22,80,443,5432
 ##24157
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.138.88 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.102 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.85 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.53 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.51 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.52 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.138.3 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.241.1.109 tcp 22,80,443,5432
 ##24160
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.189 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.136.69 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.190 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.191 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.176 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.177 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.182 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.136.150 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.241.1.111 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.178 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.179 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.180 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.181 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.183 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.136.149 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.184 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.185 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.186 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.187 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.188 tcp 22,80,443,5432
 ##24135
 ACCEPT pvpn:$vint_bd_batalov gov:10.146.136.44 tcp 80
 ##24171
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.138.4 tcp 22,80,443,5432
 ##24177
 ACCEPT pvpn:$vint_km_moskalik gov:10.146.142.172 tcp 5432
 ##24175
 ACCEPT pvpn:$vint_ra_ivanov,$vint_potapovich,$vint_vik_val_grigoryev,$vint_na_ivanov,$vint_abeldyaev gov:10.146.139.214 tcp 80,443,5032
 ##24175
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.214 tcp 22,80,443,5432
 ##24252
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.142.227 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.241.0.80 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.241.0.203 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.142.225 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.142.226 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.142.232 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.142.233 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.142.234 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.142.235 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.142.236 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.142.237 tcp 22,80,443,5432 
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.142.238 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.142.239 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.142.240 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.142.241 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.142.242 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.142.243 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.142.244 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.142.245 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.143.161 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.143.162 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.136.106 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.138.103 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.138.104 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.136.104 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.136.105 tcp 22,80,443,5432  
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.143.168 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.143.169 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.138.10 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.139.89 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.142.228 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.142.229 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.142.230 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.142.231 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.143.156 tcp 22,80,443,5432 
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.143.155 tcp 22,80,443,5432  
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.143.154 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.143.153 tcp 22,80,443,5432
-#ACCEPT pvpn:$vint_e_darmogray gov:10.146.143.152 tcp 22,80,443,5432
 ##
 ACCEPT pvpn:$vint_iv_petrov dmz:192.168.2.191 tcp 22,80,443
 ##24204
-#ACCEPT pvpn:$vint_eg_podchufarova gov:10.146.136.130 tcp 80,443
-#ACCEPT pvpn:$vint_eg_podchufarova gov:10.146.141.156 tcp 80,443
 ##24303
 ACCEPT pvpn:$vint_d_kyrchanov gov:10.146.137.81 tcp 22,80
 ACCEPT pvpn:$vint_d_kyrchanov gov:10.146.137.82 tcp 22,80
@@ -5721,26 +4992,7 @@ ACCEPT pvpn:$vint_d_kyrchanov gov:10.146.137.80 tcp 80
 ##
 ACCEPT pvpn:$vint_im_dementiev dmz:192.168.2.173 tcp 80,443
 ##24405
-#ACCEPT pvpn:$vint_as_vasilev gov:10.1.222.19 all
-#ACCEPT pvpn:$vint_as_vasilev gov:10.1.222.20 all
-#ACCEPT pvpn:$vint_as_vasilev gov:10.1.222.36 all
-#ACCEPT pvpn:$vint_as_vasilev gov:10.1.222.21 all
-#ACCEPT pvpn:$vint_as_vasilev gov:10.1.222.22 all
-#ACCEPT pvpn:$vint_as_vasilev gov:10.1.222.23 all
-#ACCEPT pvpn:$vint_as_vasilev gov:10.1.222.24 all
-#ACCEPT pvpn:$vint_as_vasilev gov:10.1.222.25 all
-#ACCEPT pvpn:$vint_as_vasilev gov:10.1.222.35 all
-#ACCEPT pvpn:$vint_as_vasilev gov:10.1.222.26 all
-#ACCEPT pvpn:$vint_as_vasilev gov:10.1.222.27 all
-#ACCEPT pvpn:$vint_as_vasilev gov:10.1.222.28 all
-#ACCEPT pvpn:$vint_as_vasilev gov:10.1.222.29 all
-#ACCEPT pvpn:$vint_as_vasilev gov:10.1.222.30 all
-#ACCEPT pvpn:$vint_as_vasilev gov:10.1.222.31 all
-#ACCEPT pvpn:$vint_as_vasilev gov:10.1.222.32 all
-#ACCEPT pvpn:$vint_as_vasilev gov:10.1.222.37 all
-#ACCEPT pvpn:$vint_as_vasilev gov:10.1.222.33 all
 ##24393
-#ACCEPT pvpn:$vint_v_ilyanov gov:10.146.139.75 tcp 22
 ##24336
 ACCEPT pvpn:$vint_m_mironov gov:10.241.0.108 tcp 80,443
 ##24401
@@ -5749,14 +5001,10 @@ ACCEPT pvpn:$vint_ys_gudin gov:10.146.141.1 all
 ACCEPT pvpn:$vint_dd_chheidze gov:10.146.141.1 all
 ACCEPT pvpn:$vint_ve_grinshtern gov:10.146.141.1 all
 ACCEPT pvpn:$vint_la_kondrateva gov:10.146.141.1 all
-#ACCEPT pvpn:$vint_em_vasilev gov:10.146.141.1 all
-#ACCEPT pvpn:$vint_mv_kozlova gov:10.146.141.1 all
 ACCEPT pvpn:$vint_iv_rogov gov:10.146.141.1 all
-#ACCEPT pvpn:$vint_d_grachev gov:10.146.141.1 all
 ##24540
 ACCEPT pvpn:$vint_m_mironov gov:10.128.66.207 tcp 80,443
 ##
-#ACCEPT pvpn:$vint_pashkovskiy dmz:192.168.2.94 tcp 3128
 ##
 ACCEPT pvpn:$vint_pa_fumelli,$vint_an_ivanov gov:10.146.136.21 tcp 3389
 ##26653
@@ -5770,11 +5018,6 @@ ACCEPT pvpn:$vint_an_ivanov,$vint_pa_fumelli gov:10.146.136.202 tcp 22
 ACCEPT pvpn:$vint_an_ivanov,$vint_pa_fumelli gov:10.146.143.159 tcp 22
 ACCEPT pvpn:$vint_an_ivanov,$vint_pa_fumelli gov:10.146.140.250 tcp 22
 ##24678
-#ACCEPT pvpn:$vint_e_vorotnikova gov:10.146.136.161 tcp 84,18080 
-#ACCEPT pvpn:$vint_e_vorotnikova gov:10.146.139.45 tcp 80
-#ACCEPT pvpn:$vint_e_vorotnikova gov:10.146.136.162 tcp 80
-#ACCEPT pvpn:$vint_e_vorotnikova gov:10.146.136.44 tcp 80
-#ACCEPT pvpn:$vint_e_vorotnikova gov:10.146.136.22 tcp 80
 ##24923
 ACCEPT pvpn:$vint_an_ivanov,$vint_pa_fumelli gov:10.241.1.94 tcp 22,80,443
 ##24963
@@ -5791,18 +5034,13 @@ ACCEPT pvpn:$vint_an_ivanov,$vint_pa_fumelli gov:10.146.136.202,10.146.143.158,1
 ACCEPT pvpn:$vint_a_kiryukhin phone:192.168.20.10 all
 ACCEPT phone:192.168.20.10 pvpn:$vint_a_kiryukhin  all
 ##25149
-#ACCEPT pvpn:$vint_vladimirov gov:10.241.1.94 tcp 80
-#ACCEPT pvpn:$vint_vladimirov gov:10.241.1.126 tcp 80
 ##25085
-#ACCEPT pvpn:$vint_mironov_a gov:10.146.141.230 tcp 80,443
 ##25279
 ACCEPT pvpn:$vint_gubanovs gov:10.146.136.161 tcp 1521
 ##25341
 ACCEPT pvpn:$vint_an_ivanov,$vint_pa_fumelli gov:10.241.0.209 tcp 80,443
 ##
-#ACCEPT pvpn:$vint_r_shamiev gov:10.146.143.214 tcp 80,443
 ##25073
-#ACCEPT pvpn:$vint_zhiguleva gov:10.146.137.82 tcp 80,443
 ##24683
 ACCEPT pvpn:$vint_v_gagin gov:10.241.1.103 tcp 3389,5432,80,443
 ##25386
@@ -5815,7 +5053,6 @@ ACCEPT pvpn:$vint_e_iseeva peer:192.168.6.214 udp 3389
 ##25585
 ACCEPT pvpn:$vint_pa_fumelli  gov:10.146.143.224,10.146.143.214 tcp 22,80
 ##25626
-#ACCEPT pvpn:$vint_r_shamiev gov:10.146.142.11 tcp 80,443
 ##25610
 ACCEPT pvpn:$vint_m_yakovlev gov:10.146.141.235 tcp 8091,8090
 ##25637
@@ -5831,11 +5068,7 @@ ACCEPT pvpn:$vint_oe_hoshtariya,$vint_k_smotrov tvr:192.168.70.104 tcp 80,443
 ACCEPT pvpn:$vint_oe_hoshtariya,$vint_k_smotrov tvr:192.168.70.115 tcp 80,443,22
 ACCEPT pvpn:$vint_oe_hoshtariya,$vint_k_smotrov gov:10.241.0.108 tcp 80,443
 ##25639
-#ACCEPT pvpn:$vint_e_krylova tvr:192.168.70.163 tcp 5001,22,80,443
-#ACCEPT pvpn:$vint_e_krylova tvr:192.168.70.72 tcp 80,443
-#ACCEPT pvpn:$vint_e_krylova gov:10.241.0.117 tcp 5001
 ##25684
-#ACCEPT pvpn:$vint_r_shamiev gov:10.146.142.11 tcp 80,443
 ##25712
 ACCEPT pvpn:$vint_an_ivanov,$vint_pa_fumelli gov:10.241.1.201,10.241.1.200 tcp 22
 ##25687
@@ -5873,7 +5106,6 @@ ACCEPT pvpn:$vint_av_myadelec gov:10.146.142.11 tcp 443
 ##25935
 ACCEPT pvpn:$vint_av_kosirev gov:10.146.136.172 tcp 5432
 ##25755
-#ACCEPT pvpn:$vint_e_piksimova gov:10.128.0.24 tcp 1688
 ##
 ACCEPT pvpn:$vint_d_sherbakov ad:192.168.10.10 tcp 445,137,139,135
 ACCEPT pvpn:$vint_d_sherbakov ad:192.168.10.10 udp 445,137,139,135
@@ -5882,10 +5114,6 @@ ACCEPT pvpn:$vint_pa_fumelli gov:10.146.143.214 tcp 22,80,443
 ##26056
 ACCEPT pvpn:$vint_av_vorontsov gov:10.146.143.170,10.146.136.223,10.146.136.224 tcp 22
 ##26028
-#ACCEPT pvpn:$vint_mironov_a gov:10.1.222.26 tcp 443
-#ACCEPT pvpn:$vint_mironov_a gov:10.1.222.27 tcp 443
-#ACCEPT pvpn:$vint_mironov_a gov:10.1.222.28 tcp 443
-#ACCEPT pvpn:$vint_mironov_a gov:10.1.222.29 tcp 443
 ##
 ACCEPT pvpn:$vint_d_umnikov gov:10.128.66.87 all
 ##26009
@@ -5918,7 +5146,6 @@ ACCEPT pvpn:$vint_gs_alekseenko tvr:192.168.70.107 tcp 6443
 ACCEPT pvpn:$vint_gs_alekseenko gov:10.146.141.238 tcp 80,443
 ACCEPT pvpn:$vint_gs_alekseenko gov:10.241.5.62-10.241.5.75 all
 ##26185
-#ACCEPT pvpn:$vint_m_kubryak_notebook tvr:192.168.152.8 all
 ##26151
 ACCEPT pvpn:$vint_ev_ponyukhov gov:10.146.136.93 tcp 22,80,443,8080
 ACCEPT pvpn:$vint_ev_ponyukhov gov:10.146.136.94 tcp 22,80,443,8080
@@ -5966,8 +5193,6 @@ ACCEPT pvpn:$vint_ev_ponyukhov gov:10.146.142.9 tcp 80,443
 ACCEPT pvpn:$vint_im_dementiev gov:10.146.143.214  all
 ACCEPT pvpn:$vint_im_dementiev gov:10.146.143.224  all
 ##26196
-#ACCEPT pvpn:$vint_av_kovalenko gov:10.146.137.250 tcp 80,443
-#ACCEPT pvpn:$vint_av_kovalenko tvr:192.168.70.72 tcp 80,443
 ##26248 ##35820
 ACCEPT pvpn:$vint_ea_kartavchenko gov:10.241.0.197 tcp 5432
 ACCEPT pvpn:$vint_ea_kartavchenko gov:10.241.1.41 tcp 22,80,443
@@ -5977,10 +5202,7 @@ ACCEPT pvpn:$vint_ei_vybornov gov:10.241.0.108 tcp 80,443
 ##26311
 ACCEPT pvpn:$vint_an_ivanov,$vint_pa_fumelli gov:10.146.143.224 tcp 22,80,443
 ##26367
-#ACCEPT pvpn:$vint_ke_akbashev gov:10.146.137.81 tcp 22
-#ACCEPT pvpn:$vint_ke_akbashev gov:10.146.137.82 tcp 3389
 ##26292
-#ACCEPT pvpn:$vint_mironov_a gov:10.146.141.229 tcp 6443
 ##26150
 ACCEPT pvpn:$vint_va_krauze gov:10.146.143.170 tcp 22,80,8080
 ##26411
@@ -6080,41 +5302,6 @@ ACCEPT pvpn:$vint_vik_val_grigoryev vnet:10.10.138.11-10.10.138.30 all
 ACCEPT pvpn:$vint_vik_val_grigoryev gov:10.146.138.44,10.146.139.170,10.128.66.23,10.128.66.20,10.128.66.53,10.128.66.54,10.128.66.25,10.128.66.55,10.241.0.29 tcp 22,8080
 ACCEPT pvpn:$vint_vik_val_grigoryev gov:10.146.143.210 tcp 22,5432
 ##26569
-#ACCEPT pvpn:$vint_as_vasilyev gov:10.1.222.19,10.1.222.20,10.1.222.21,10.1.222.22,10.1.222.23,10.1.222.24,25,10.1.222.26,10.1.222.27,10.1.222.28,10.1.222.29,10.1.222.30,10.1.222.31,10.1.222.32,10.1.222.33,10.1.222.35,10.1.222.37 all
-#ACCEPT pvpn:$vint_as_vasilyev gov:10.146.141.239,10.146.141.238 tcp 22,80
-#ACCEPT pvpn:$vint_as_vasilyev gov:10.146.141.254 tcp 22,5432
-#ACCEPT pvpn:$vint_as_vasilyev gov:10.146.141.233,10.146.141.232,10.146.141.231,10.146.141.230 tcp 22,80,443
-#ACCEPT pvpn:$vint_as_vasilyev gov:10.146.141.229 tcp 22,80,443,6443
-#ACCEPT pvpn:$vint_as_vasilyev gov:10.146.141.235 tcp 8090,8091,22
-#ACCEPT pvpn:$vint_as_vasilyev gov:10.146.136.131 tcp 22,1521
-#ACCEPT pvpn:$vint_as_vasilyev gov:10.146.139.166 tcp 22,8080,8081,9092
-#ACCEPT pvpn:$vint_as_vasilyev gov:10.146.139.167,10.146.139.168 tcp 22,9092
-#ACCEPT pvpn:$vint_as_vasilyev gov:10.146.139.106,10.146.142.158,10.146.139.240,10.146.136.58,10.146.138.85,10.146.138.87,10.146.139.18,10.241.1.106,10.241.1.110,10.146.138.210,10.146.138.211,10.146.142.156,10.146.142.157,10.146.139.136,10.241.0.253,10.241.1.107,10.241.1.153,10.146.138.208,10.146.138.209,10.241.1.156,10.241.1.161,10.241.1.162 all
-#ACCEPT pvpn:$vint_as_vasilyev gov:10.146.142.9 tcp 22,80
-#ACCEPT pvpn:$vint_as_vasilyev gov:10.146.142.10 tcp 22,80,8080
-#ACCEPT pvpn:$vint_as_vasilyev gov:10.146.142.8 tcp 22,80,8080:8089,9080:9089
-#ACCEPT pvpn:$vint_as_vasilyev vnet:10.10.138.11-10.10.138.30 all
-#ACCEPT pvpn:$vint_as_vasilyev gov:10.146.141.33,10.146.141.23 tcp 22,80,443
-#ACCEPT pvpn:$vint_as_vasilyev gov:10.146.141.30,10.146.141.34 tcp 22,8080,80
-#ACCEPT pvpn:$vint_as_vasilyev gov:10.146.141.32 tcp 22,80,8080:8089,9080:9089
-#ACCEPT pvpn:$vint_as_vasilyev tvr:192.168.70.98 tcp 22,80,443
-#ACCEPT pvpn:$vint_as_vasilyev tvr:192.168.70.99 tcp 22,80,443
-#ACCEPT pvpn:$vint_as_vasilyev tvr:192.168.70.100 tcp 22,80,443
-#ACCEPT pvpn:$vint_as_vasilyev tvr:192.168.70.113 tcp 22,80,443
-#ACCEPT pvpn:$vint_as_vasilyev tvr:192.168.70.104 tcp 22,80,443
-#ACCEPT pvpn:$vint_as_vasilyev tvr:192.168.70.101 tcp 22,5432
-#ACCEPT pvpn:$vint_as_vasilyev tvr:192.168.70.102 tcp 22
-#ACCEPT pvpn:$vint_as_vasilyev tvr:192.168.70.103 tcp 22
-#ACCEPT pvpn:$vint_as_vasilyev tvr:192.168.70.106 tcp 22,80
-#ACCEPT pvpn:$vint_as_vasilyev tvr:192.168.70.107 tcp 22,80,443,6443
-#ACCEPT pvpn:$vint_as_vasilyev tvr:192.168.70.108 tcp 22,9080-9083
-#ACCEPT pvpn:$vint_as_vasilyev tvr:192.168.70.109 tcp 22,8080,9092,9093,2181
-#ACCEPT pvpn:$vint_as_vasilyev tvr:192.168.70.110 tcp 22,8080,9092,9093,2181
-#ACCEPT pvpn:$vint_as_vasilyev tvr:192.168.70.111 tcp 22,8080,9092,9093,2181
-#ACCEPT pvpn:$vint_as_vasilyev tvr:192.168.70.112 tcp 22,636,389
-#ACCEPT pvpn:$vint_as_vasilyev tvr:192.168.70.114 tcp 22
-#ACCEPT pvpn:$vint_as_vasilyev tvr:192.168.70.115 tcp 22,80,443
-#ACCEPT pvpn:$vint_as_vasilyev gov:10.241.0.108  tcp 80,443
 ##26634
 ACCEPT pvpn:$vint_va_krauze gov:10.241.0.29 tcp 8080
 ACCEPT pvpn:$vint_va_krauze gov:10.146.143.210 tcp 5432
@@ -6158,7 +5345,6 @@ ACCEPT pvpn:$vint_i_chernikova peer:192.168.6.225 all
 ACCEPT pvpn:$vint_i_chernikova ad:192.168.10.10 tcp 135,137,139,445
 ACCEPT pvpn:$vint_i_chernikova ad:192.168.10.10 udp 135,137,139
 ACCEPT pvpn:$vint_i_chernikova tvr:192.168.152.45 tcp 3389,443
-#ACCEPT pvpn:$vint_m_kozlov tvr:192.168.152.45 tcp 3389,443
 ACCEPT pvpn:$vint_i_chernikova dmz:192.168.2.134 tcp 1541:1565,80,443
 ##26721
 ACCEPT pvpn:$vint_ki_biks gov:10.146.136.44 tcp 80,443
@@ -6191,7 +5377,6 @@ ACCEPT pvpn:$vint_ai_gillung gov:10.146.141.203 tcp 3389,22
 ACCEPT pvpn:$vint_ai_gillung gov:10.146.136.52 tcp 80,22
 ACCEPT pvpn:$vint_ai_gillung gov:10.146.136.67 tcp 3389,22
 ###26854###
-#ACCEPT pvpn:$vint_vv_aleksandrov gov:10.146.143.246 tcp 22
 ##26899
 ACCEPT pvpn:$vint_av_surzhikov,$vint_md_polyak,$vint_a_tyueva gov:10.241.1.46,10.241.1.73 tcp 22,80,443,2408,2409,5050,5432,8080
 ACCEPT pvpn:$vint_av_surzhikov,$vint_md_polyak,$vint_a_tyueva gov:10.241.1.47,10.241.1.48,10.241.1.49,10.241.1.54,10.241.1.55,10.241.1.56 tcp 22,9200
@@ -6210,8 +5395,6 @@ ACCEPT pvpn:$vint_oi_nikonova gov:10.178.208.27 tcp 8888
 ##27080
 ACCEPT pvpn:$vint_iy_ponamarev gov:10.146.143.214,10.146.143.224 tcp 22,80,443
 ##27086
-#ACCEPT pvpn:$vint_as_vasilyev tvr:192.168.70.108 tcp 22,80,9080:9083
-#ACCEPT pvpn:$vint_as_vasilyev gov:10.146.136.98 tcp 22,80,3690
 ##27133
 ACCEPT pvpn:$vint_ea_kartavchenko gov:10.241.1.154 tcp 22
 ##27136
@@ -6226,7 +5409,6 @@ ACCEPT pvpn:$vint_m_mironov,$vint_av_surzhikov,$vint_nf_urusova gov:10.241.2.23 
 ##27288
 ACCEPT pvpn:$vint_vik_val_grigoryev gov:10.146.142.32 tcp 80,443,5601
 ##27300
-#ACCEPT pvpn:$vint_vv_aleksandrov gov:10.146.139.57 tcp 22
 ##27271 ##32779
 ACCEPT pvpn:$vint_d_korzhavina,$vint_av_pupenkov gov:10.146.137.81 tcp 22,80,443
 ACCEPT pvpn:$vint_d_korzhavina,$vint_av_pupenkov gov:10.146.137.82 tcp 3389
@@ -6253,7 +5435,6 @@ ACCEPT pvpn:$vint_d_korzhavina,$vint_av_pupenkov gov:10.146.137.6 tcp 8081
 ACCEPT pvpn:$vint_d_korzhavina,$vint_av_pupenkov gov:10.146.137.122 tcp 80,443
 ACCEPT pvpn:$vint_d_korzhavina,$vint_av_pupenkov gov:10.146.137.249 tcp 80,443
 ACCEPT pvpn:$vint_d_korzhavina,$vint_av_pupenkov gov:10.146.138.128 tcp 80,443
-#ACCEPT pvpn:$vint_d_korzhavina,$vint_av_pupenkov dmz:192.168.2.63 tcp 80,443
 ##27261
 ACCEPT pvpn:$vint_va_stepanova gov:10.146.138.128 tcp 80,443
 ACCEPT pvpn:$vint_va_stepanova gov:10.146.136.55 tcp 3000
@@ -6279,21 +5460,10 @@ ACCEPT pvpn:$vint_m_filippova tvr:192.168.70.115 tcp 80,443,22
 ACCEPT pvpn:$vint_m_filippova gov:10.241.0.108 all
 ACCEPT pvpn:$vint_m_filippova gov:10.146.136.98 tcp 3690
 ## 27375
-#ACCEPT pvpn:$vint_d_grachev gov:10.146.137.82 tcp 3389
-#ACCEPT pvpn:$vint_d_grachev gov:10.146.137.81 tcp 22
 ##27367
 ACCEPT pvpn:$vint_vik_val_grigoryev gov:10.241.0.125 all
 ##27389
-#ACCEPT pvpn:$vint_e_vorotnikova gov:10.146.139.44 tcp 8090,8091
 ##27390 new VipNet ##
-#ACCEPT pvpn:$vint_is_alekseev gov:10.146.142.5,10.146.142.6,10.146.142.28-10.146.142.31,10.146.142.173-10.146.142.180 tcp 5432
-#ACCEPT pvpn:$vint_is_alekseev gov:10.146.142.25-10.146.142.27,10.146.142.169-10.146.142.171 tcp 9200,9300
-#ACCEPT pvpn:$vint_is_alekseev gov:10.146.142.34,10.146.142.181 tcp 6443
-#ACCEPT pvpn:$vint_is_alekseev gov:10.146.142.9,10.146.142.10,10.146.142.35-10.146.142.37 tcp 80
-#ACCEPT pvpn:$vint_is_alekseev gov:10.146.142.32 tcp 5601
-#ACCEPT pvpn:$vint_is_alekseev gov:10.146.142.33 tcp 80,9090,3000
-#ACCEPT pvpn:$vint_is_alekseev gov:10.146.142.8 tcp 80,8081,9080,9081,9082
-#ACCEPT pvpn:$vint_is_alekseev vnet:10.10.138.11-10.10.138.30 all
 ##27387
 ACCEPT pvpn:$vint_a_prohorov gov:10.146.136.93,10.146.136.94 tcp 22,80,443,8080
 ACCEPT pvpn:$vint_a_prohorov gov:10.146.136.95,10.146.136.96,10.146.136.145,10.146.136.146 tcp 22,8080,873
@@ -6316,7 +5486,6 @@ ACCEPT pvpn:$vint_a_prohorov gov:10.146.143.170 tcp 22,8080
 ACCEPT pvpn:$vint_a_prohorov gov:10.241.0.125,10.241.0.126 tcp 22
 ACCEPT pvpn:$vint_a_prohorov gov:10.241.0.108,10.241.0.109 tcp 80
 ##27404
-#ACCEPT pvpn:$vint_vv_aleksandrov gov:10.128.28.253 tcp 22,25,110,143,465,993,995
 ##27420
 ACCEPT pvpn:$vint_ii_pogodin gov:10.146.143.224 tcp 80,443
 ##27419
@@ -6331,7 +5500,6 @@ ACCEPT pvpn:$vint_va_stepanova gov:10.146.137.10 tcp 80,443
 ACCEPT pvpn:$vint_va_stepanova gov:10.146.137.80 tcp 80,443
 ACCEPT pvpn:$vint_va_stepanova gov:10.128.28.124 tcp 80,443
 ACCEPT pvpn:$vint_va_stepanova gov:10.146.137.134 tcp 80,443
-#ACCEPT pvpn:$vint_va_stepanova gov:
 ##27501
 ACCEPT pvpn:$vint_gs_yagnyshev gov:10.241.0.233-10.241.0.235,10.146.136.148,10.146.139.160 tcp 22,80,443
 ACCEPT pvpn:$vint_gs_yagnyshev gov:10.128.66.20,10.128.66.23,10.128.66.25,10.128.66.53-10.128.66.55,10.128.66.111,10.146.136.93-10.146.136.98,10.146.136.110,10.146.136.223,10.146.136.224,10.146.138.44,10.146.139.170,10.146.141.242,10.146.141.243,10.146.143.170,10.241.0.29,10.241.0.30 tcp 22,8080
@@ -6352,10 +5520,7 @@ ACCEPT pvpn:$vint_gs_yagnyshev gov:10.146.142.34-10.146.142.37 tcp 22,80,443,808
 ACCEPT pvpn:$vint_gs_yagnyshev gov:10.146.142.24 tcp 22,8090,8091
 ACCEPT pvpn:$vint_gs_yagnyshev gov:10.241.0.108 tcp 22,80,443,8060,8080,8090
 ##27509
-#ACCEPT pvpn:$vint_as_vasilyev gov:10.146.141.238 tcp 22,9080-9083,80,443
-#ACCEPT pvpn:$vint_as_vasilyev gov:10.241.0.199 tcp 22,389,636
 ##27500
-#ACCEPT pvpn:$vint_vv_aleksandrov vnet:10.10.138.132 all
 ##27528
 ACCEPT pvpn:$vint_i_malyshev gov:10.146.139.44 tcp 8090,80
 ##27543 ##35123 ##35125 ##35736 ##35762
@@ -6364,25 +5529,19 @@ ACCEPT pvpn:$vint_av_surzhikov gov:10.162.110.99,10.241.5.84,10.128.72.254,10.14
 ACCEPT pvpn:$vint_av_surzhikov gov:10.146.143.149 tcp 80,443
 ACCEPT pvpn:$vint_av_surzhikov gov:10.241.5.110,10.128.180.1,10.128.168.1,10.128.168.220,10.241.5.120 all
 ##27548
-#ACCEPT pvpn:$vint_as_vasilyev gov:10.1.222.36 tcp 22,80,443
 ##27558
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.128.0.24 tcp 1688
 ##27562
 ACCEPT pvpn:$vint_mv_kalinin gov:10.241.1.200 tcp 80
 ##27563
-#ACCEPT pvpn:$vint_is_alekseev vnet:10.10.138.132 all
 ##27574
 ACCEPT pvpn:$vint_an_korolev,$vint_mv_enicheva,$vint_oi_zherebyateva gov:10.241.1.232 tcp 8081,8082
 ##27589
 ACCEPT pvpn:$vint_i_malyshev gov:10.146.136.61 tcp 10180
 ##27587
-#ACCEPT pvpn:$vint_is_alekseev gov:10.146.136.93-10.146.136.96,10.146.143.170,10.146.136.223,10.146.136.145,10.146.136.146,10.146.136.224,10.146.141.242,10.146.141.243,10.146.136.205,10.146.136.206 tcp 8080,22
-#ACCEPT pvpn:$vint_is_alekseev gov:10.146.142.24 tcp 8090,8091,22
 ##27597
 ACCEPT pvpn:$vint_k_selyanin gov:10.146.139.44 tcp 8090
 ACCEPT pvpn:$vint_vik_val_grigoryev gov:10.146.136.145,10.146.136.146 tcp 80,443
 ##27608
-#ACCEPT pvpn:$vint_d_grachev gov:10.146.143.70,10.146.143.151 tcp 80,443
 ##27607
 ACCEPT pvpn:$vint_an_korolev,$vint_da_mullin gov:10.146.137.250 tcp 80,443
 ##27610
@@ -6400,7 +5559,6 @@ ACCEPT pvpn:$vint_km_moskalik gov:10.146.142.182,10.146.142.36 tcp 22,8080
 ##27632
 ACCEPT pvpn:$vint_av_zhivilo gov:10.146.142.182,10.146.138.44,10.146.139.170,10.241.0.29,10.241.0.30,10.128.66.20,10.128.66.23,10.128.66.25,10.128.66.53-10.128.66.55 tcp 80,443,8080
 ##27650
-#ACCEPT pvpn:$vint_vladimirov gov:10.160.58.147-10.160.58.157 all
 ##27651
 ACCEPT pvpn:$vint_km_moskalik gov:10.146.142.9,10.146.142.10 tcp 80
 ACCEPT pvpn:$vint_km_moskalik gov:10.146.142.33 tcp 80,9090,3000
@@ -6427,9 +5585,6 @@ ACCEPT pvpn:$vint_km_moskalik gov:10.241.0.108 tcp 80,443
 ACCEPT pvpn:$vint_km_moskalik gov:10.146.142.5,10.146.142.28,10.146.142.29 tcp 22,5432
 ACCEPT pvpn:$vint_km_moskalik gov:10.146.142.172 tcp 5432
 ##27654
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.141.217,10.146.141.219-10.146.141.221 tcp 3389
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.141.219 tcp 80
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.141.220 tcp 1433
 ##27667
 ACCEPT pvpn:$vint_ov_vesman tvr:192.168.70.100 tcp 80,443
 ##27681
@@ -6441,17 +5596,13 @@ ACCEPT pvpn:$vint_nv_pavlov gov:10.241.2.66 tcp 22,5432
 ##27721
 ACCEPT pvpn:$vint_nv_pavlov gov:10.241.2.68 tcp 22,80
 ##27703
-#ACCEPT pvpn:$vint_in_lobach gov:10.241.0.209 tcp 80,443
 ##27725
-#ACCEPT pvpn:$vint_d_grachev gov:10.146.137.84 tcp 80 
 ##27732
-#ACCEPT pvpn:$vint_d_grachev gov:10.146.136.50 tcp 80,443
 ##27777
 ACCEPT pvpn:$vint_nv_pavlov gov:10.241.2.69,10.241.2.71,10.241.2.73,10.241.2.76,10.241.2.77 tcp 22
 ACCEPT pvpn:$vint_nv_pavlov gov:10.241.2.70,10.241.2.72,10.241.2.75 tcp 22,5432
 ACCEPT pvpn:$vint_nv_pavlov gov:10.241.2.74 tcp 22,80
 ##27785
-#ACCEPT pvpn:$vint_dd_chheidze dmz:192.168.2.63 tcp 80,443
 ##27802
 ACCEPT pvpn:$vint_abeldyaev gov:10.146.136.182 tcp 80,443
 ##27791
@@ -6467,7 +5618,6 @@ ACCEPT pvpn:$vint_da_mullin gov:10.146.137.82 tcp 3389
 ##27819
 ACCEPT pvpn:$vint_k_selyanin gov:10.146.139.239,10.146.138.252 tcp 5432
 ## 27853
-#ACCEPT pvpn:$vint_av_kovalenko gov:10.241.2.65 tcp 22
 ## 27863
 ACCEPT pvpn:$vint_nv_pavlov gov:10.241.2.79,10.241.2.80 tcp 22
 ## 27874
@@ -6497,9 +5647,7 @@ ACCEPT pvpn:$vint_ay_minaev gov:10.241.0.78 tcp 80,443
 ##27973
 ACCEPT pvpn:$vint_ev_bazarnov laf3:10.248.51.0/24 all
 ##28004
-#ACCEPT pvpn:$vint_ke_akbashev gov:10.146.143.70,10.146.137.20,10.146.138.128 tcp 80,443
 ##28023
-#ACCEPT pvpn:$vint_n_sokolovskiy gov:10.146.136.130,10.146.141.230-10.146.141.233 tcp 80,443
 ##28035
 ACCEPT pvpn:$vint_im_dementiev gov:10.241.0.198 tcp 22
 ##28022
@@ -6511,7 +5659,6 @@ ACCEPT pvpn:$vint_vik_val_grigoryev gov:10.241.0.233,10.241.0.234 tcp 22
 ACCEPT pvpn:$vint_md_polyak gov:10.241.0.197 tcp 5432
 ACCEPT pvpn:$vint_md_polyak gov:10.146.136.226,10.146.136.227,10.146.136.228 all
 ##28128
-#ACCEPT pvpn:$vint_dd_mastickiy gov:10.241.0.197 tcp 5432
 ##28134
 ACCEPT pvpn:$vint_e_steshina gov:10.146.137.80 tcp 80,443
 ##28159
@@ -6521,11 +5668,9 @@ ACCEPT pvpn:$vint_a_sadohin gov:10.146.141.1 tcp 80,443,8443
 ##28180 ##34218
 ACCEPT pvpn:$vint_av_gileva,$vint_vik_val_grigoryev,$vint_aa_kondrashova,$vint_na_budnov vnet:10.10.138.12-10.10.138.50,10.10.138.132,10.10.130.103 all
 ##28193
-#ACCEPT pvpn:$vint_ke_akbashev gov:10.146.137.86 tcp 80,443
 ##28191 ##29564
 ACCEPT pvpn:$vint_a_pechurin,$vint_ra_beresnev gov:10.146.136.0/21,10.241.0.0/20,10.128.66.0/24 all
 ##28208
-#ACCEPT pvpn:$vint_is_alekseev gov:10.128.66.231 all
 ##28229
 ACCEPT pvpn:$vint_i_malyshev gov:10.146.136.178 tcp 5432
 ##28237
@@ -6541,13 +5686,8 @@ ACCEPT pvpn:$vint_ys_nikityuk gov:10.146.136.55 tcp 23332,7780,7781,80,443
 ##28203
 ACCEPT pvpn:$vint_an_zykova gov:10.146.136.22,10.146.136.44,10.146.141.156 tcp 80,443
 ##28276
-#ACCEPT pvpn:$vint_rs_jernovaya gov:10.146.137.81,10.146.137.82 tcp 80,22
-#ACCEPT pvpn:$vint_rs_jernovaya gov:10.146.137.20,10.146.137.129,10.146.137.3,10.146.137.118,10.146.137.12,10.146.137.119,10.146.137.80 tcp 80,443
-#ACCEPT pvpn:$vint_rs_jernovaya gov:10.146.137.1 tcp 8081
 ##28187
-#ACCEPT pvpn:$vint_do_tuz gov:10.128.66.140 tcp 80,443
 ##28280
-#ACCEPT pvpn:$vint_ke_gergenreder gov:10.241.1.126,10.241.1.94,10.241.1.37,10.241.0.209 tcp 80,443
 ##28341
 ACCEPT pvpn:$vint_m_kolokolova peer:192.168.6.225 all
 ##temp till 01.01.2023
@@ -6564,9 +5704,7 @@ ACCEPT pvpn:$vint_ds_bobov gov:10.146.137.86 tcp 80,443,8200
 ACCEPT pvpn:$vint_ev_ponyukhov gov:10.146.142.9,10.241.0.108,10.241.0.108,10.146.142.10 tcp 80,443
 ACCEPT pvpn:$vint_ev_ponyukhov gov:10.146.142.8 tcp 80,443,8081
 ##28475
-#ACCEPT pvpn:$vint_av_kovalenko gov:10.241.2.66 tcp 5432
 ##28478
-#ACCEPT pvpn:$vint_e_krylova gov:10.129.157.174,10.129.157.102 tcp 82
 ##28431
 ACCEPT pvpn:$vint_md_polyak gov:10.241.2.155 tcp 22
 ##28568
@@ -6591,21 +5729,16 @@ ACCEPT pvpn:$vint_md_polyak gov:10.241.1.76 tcp 80,443
 ##28676
 ACCEPT pvpn:$vint_va_krauze gov:10.146.142.36 tcp 8086
 ##28638
-#ACCEPT pvpn:$vint_eg_podchufarova gov:10.241.1.46-10.241.1.61,10.241.1.73-10.241.1.82 tcp 22,80,443,8443
 ##28722
 ACCEPT pvpn:$vint_a_lukyanovich gov:10.241.0.209 tcp 80,443
 ##28739
-#ACCEPT pvpn:$vint_n_sokolovskiy tvr:192.168.70.100 tcp 31010,32010
 ##28737 ##35229 ##35226
 ACCEPT pvpn:$vint_gp_samoylenko gov:10.146.136.44 tcp 80,443
 ACCEPT pvpn:$vint_gp_samoylenko gov:10.146.136.109 tcp 80,443,18080
 ACCEPT pvpn:$vint_gp_samoylenko gov:10.146.139.44 tcp 80,443,8090
 ##28756
-#ACCEPT pvpn:$vint_mv_kozlova gov:10.146.143.151 tcp 80,443
 ##28758
-#ACCEPT pvpn:$vint_is_alekseev gov:10.146.142.181-10.146.142.183 tcp 22,80,8080-8089,9100
 ##28789
-#ACCEPT pvpn:$vint_is_alekseev gov:10.146.142.172-10.146.142.174 all
 ##28809
 ACCEPT pvpn:$vint_im_dementiev gov:10.241.1.215 tcp 22
 ##28901
@@ -6615,7 +5748,6 @@ ACCEPT pvpn:$vint_na_mihaylov gov:10.146.143.249 tcp 80,443
 ##28914 ##28925
 ACCEPT pvpn:$vint_gp_samoylenko gov:10.146.137.242,10.146.137.119,10.146.137.116 tcp 8080,8081,80,443
 ##28945
-#ACCEPT pvpn:$vint_ya_naumenko gov:10.146.143.214,10.146.142.11,10.146.141.156,10.241.1.46 tcp 80,443
 ##28955
 ACCEPT pvpn:$vint_nv_pavlov gov:10.241.2.167,10.241.2.168 tcp 22
 ACCEPT pvpn:$vint_nv_pavlov,$vint_av_kosirev,$vint_yd_fisenko gov:10.241.2.168 tcp 5432
@@ -6644,20 +5776,15 @@ ACCEPT pvpn:$vint_md_polyak gov:10.241.1.53 tcp 3000,80,443
 ##29052
 ACCEPT pvpn:$vint_md_polyak,$vint_av_surzhikov gov:10.241.1.46-10.241.1.61,10.241.1.73-10.241.1.82 tcp 80:10000
 ##29067
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.146.136.121-10.146.136.123,10.241.1.35-10.241.1.37,10.241.2.24,10.241.0.209,10.241.0.210,10.241.1.126 tcp 22
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.241.1.37,10.146.136.123 tcp 5432
-#ACCEPT pvpn:$vint_ma_ivanko gov:10.241.0.209,10.241.0.210 tcp 80
 ##29069
 ACCEPT pvpn:$vint_md_polyak,$vint_av_surzhikov gov:10.241.2.155 tcp 5432
 ##29173
 ACCEPT pvpn:$vint_av_filatov gov:10.146.137.119 tcp 80,443
 ##29197
-#ACCEPT pvpn:$vint_e_vorotnikova gov:10.146.136.44 tcp 80,443
 ##29201
 ACCEPT pvpn:$vint_sa_pavlova gov:10.146.141.1 tcp 8443
 ACCEPT pvpn:$vint_sa_pavlova gov:10.146.143.151 tcp 80,443
 ##29203
-#ACCEPT pvpn:$vint_av_reyli gov:10.146.143.249 tcp 80,443
 ##29246
 ACCEPT pvpn:$vint_nv_pavlov gov:10.241.0.148 tcp 22,5432
 ##29270
@@ -6674,9 +5801,6 @@ ACCEPT pvpn:$vint_sa_pavlova gov:10.146.137.250 tcp 80,443
 ##28904
 ACCEPT pvpn:$vint_ev_sergeeva gov:10.241.1.46-10.241.1.61,10.241.1.73-10.241.1.82 all
 ##29384 ##29389
-#ACCEPT pvpn:$vint_v_ilyanov gov:10.241.0.148 tcp 22,5432
-#ACCEPT pvpn:$vint_v_ilyanov gov:10.241.2.65 tcp 22
-#ACCEPT pvpn:$vint_v_ilyanov gov:10.241.2.66 tcp 5432
 ##29421 ##29436 ##29279
 ACCEPT pvpn:$vint_a_lukyanovich gov:10.241.1.36,10.146.139.134 all
 ##29423
@@ -6727,8 +5851,6 @@ ACCEPT pvpn:$vint_vik_val_grigoryev tvr:192.168.70.98-192.168.70.100,192.168.70.
 ##30741
 ACCEPT pvpn:$vint_dv_maksimova gov:10.146.137.250 tcp 80,443
 ##30762
-#ACCEPT pvpn:$vint_v_selezneva gov:10.146.142.198,10.128.66.242,10.241.2.227 tcp 3389,80,443,8080,8081
-#ACCEPT pvpn:$vint_v_selezneva gov:10.241.2.226,10.241.2.228,10.241.2.229 tcp 3389,80,443,8080,8081,1433,1434
 ##30826
 ACCEPT pvpn:$vint_av_filatov tvr:192.168.70.68 tcp 80,443
 ##30825
@@ -6742,16 +5864,10 @@ ACCEPT pvpn:$vint_av_zhivilo,$vint_km_moskalik,$vint_a_prohorov,$vint_vv_maslov,
 ACCEPT pvpn:$vint_va_krauze,$vint_gs_yagnyshev,$vint_ev_ponyukhov,$vint_av_vorontsov,$vint_val_val_grigoryev gov:10.241.3.9 tcp 22,80,443,8080-8090
 ACCEPT pvpn:$vint_av_gileva,$vint_at_shirokiy gov:10.241.3.9 tcp 22,80,443,8080-8090
 ##31010
-#ACCEPT pvpn:$vint_as_vasilyev gov:10.146.136.130 tcp 22,80,443
 ##30770
 ACCEPT pvpn:$vint_eo_dedinkina gov:10.146.137.20,10.146.137.3,10.146.137.224,10.146.137.129,10.146.137.10,10.146.137.80,10.146.138.128 tcp 80,443
 ACCEPT pvpn:$vint_eo_dedinkina dmz:192.168.2.86 tcp 80,443
 ##31000
-#ACCEPT pvpn:$vint_aa_zhukova gov:10.146.137.81 tcp 22,80,443
-#ACCEPT pvpn:$vint_aa_zhukova gov:10.146.137.82 tcp 3389
-#ACCEPT pvpn:$vint_aa_zhukova gov:10.146.137.20,10.146.137.129,10.146.137.3,10.146.137.118,10.146.137.12,10.146.137.119,10.146.137.122,10.146.138.128 tcp 80,443
-#ACCEPT pvpn:$vint_aa_zhukova gov:10.146.137.80,10.146.137.250,10.146.137.243,10.146.137.224,10.146.137.128,10.146.137.250,10.146.137.249 tcp 80,443
-#ACCEPT pvpn:$vint_aa_zhukova gov:10.146.137.1,10.146.137.241,10.146.137.246,10.146.137.137,10.146.137.115,10.146.137.19,10.146.143.67,10.146.137.6 tcp 8081
 ##31067
 ACCEPT pvpn:$vint_va_stepanova gov:10.146.143.151 tcp 80,443
 ##31092
@@ -6760,7 +5876,6 @@ ACCEPT pvpn:$vint_nv_pavlov gov:10.241.1.176-10.241.1.194 tcp 22
 ACCEPT pvpn:$vint_md_polyak gov:10.241.3.20-10.241.3.54 tcp 22-10000
 ACCEPT pvpn:$vint_av_surzhikov gov:10.241.3.20-10.241.3.42,10.241.3.44,10.241.3.46-10.241.3.54 tcp 22-10000
 ##31161
-#ACCEPT pvpn:$vint_eg_podchufarova gov:10.146.136.13 tcp 5432
 ##31155
 ACCEPT pvpn:$vint_gs_yagnyshev gov:10.241.3.9 tcp 22,80,443,8080
 ##31172
@@ -6785,7 +5900,6 @@ ACCEPT pvpn:$vint_io_olenchuk gov:10.241.1.154,10.241.0.117 tcp 22
 ACCEPT pvpn:$vint_io_olenchuk gov:10.241.0.197 tcp 5432
 ACCEPT pvpn:$vint_io_olenchuk gov:10.128.72.254,10.241.0.117 all
 ##31443
-#ACCEPT pvpn:$vint_e_krylova gov:10.146.136.13 tcp 5432,22
 ##31536
 ACCEPT pvpn:$vint_ev_bolgova gov:10.241.0.209 tcp 80,443
 ##31598
@@ -6803,7 +5917,6 @@ ACCEPT pvpn:$vint_tr_urguev gov:10.241.4.210,10.241.4.211,10.241.3.8 all
 ##31688
 ACCEPT pvpn:$vint_av_gileva,$vint_av_zhivilo,$vint_km_moskalik,$vint_a_prohorov,$vint_vv_maslov,$vint_at_shirokiy,$vint_va_krauze,$vint_gs_yagnyshev,$vint_ev_ponyukhov,$vint_av_vorontsov,$vint_vik_val_grigoryev,$vint_val_val_grigoryev gov:10.241.0.125 tcp 22,80-90,443:447,8080:8090,9000:9010
 ##31710
-#ACCEPT pvpn:$vint_is_alekseev gov:10.128.66.23,10.146.138.44,10.128.66.20,10.128.66.53,10.128.66.54,10.128.66.25,10.128.66.55,10.146.139.170 tcp 22,8080
 ##buh
 ACCEPT pvpn:$vint_na_abushek peer:192.168.6.209 all
 ACCEPT pvpn:$vint_nn_ostrovnaya peer:192.168.6.205 all
@@ -6845,14 +5958,7 @@ ACCEPT pvpn:$vint_ia_nikanorov,$vint_yd_fisenko,$vint_aa_altukhov gov:10.146.136
 ACCEPT pvpn:$vint_ia_nikanorov,$vint_yd_fisenko,$vint_aa_altukhov gov:10.241.2.168,10.241.2.167,10.146.136.134,10.146.139.75,10.146.139.74,10.146.139.73 tcp 22
 ACCEPT pvpn:$vint_ia_nikanorov,$vint_yd_fisenko,$vint_aa_altukhov gov:10.146.136.74,10.146.136.127,10.241.2.66,10.241.2.65,10.146.139.134,10.146.143.238,10.146.139.200 tcp 22
 ##32043
-#ACCEPT pvpn:$vint_mv_kozlova gov:10.146.137.86 tcp 80,443,8200
-#ACCEPT pvpn:$vint_mv_kozlova gov:10.146.137.82 tcp 3389
-#ACCEPT pvpn:$vint_mv_kozlova gov:10.146.137.85 tcp 80,443
 ##zayavka vipnet 08.2023
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.138.242,10.146.138.249,10.146.138.213 tcp 80,8080
-#ACCEPT pvpn:$vint_aa_kazakov gov:10.146.139.134 tcp 8088,2222
-#ACCEPT pvpn:$vint_aa_kazakov laf3:10.248.51.83-10.248.51.86,10.248.51.95 all
-#ACCEPT pvpn:$vint_aa_kazakov laf3:10.248.51.103-10.248.51.106 all
 ##32067,31984
 ACCEPT pvpn:$vint_av_kosirev,$vint_rs_makhmadkadamov,$vint_ia_nikanorov,$vint_yd_fisenko,$vint_aa_altukhov gov:10.146.136.125 tcp 5432
 ACCEPT pvpn:$vint_av_kosirev,$vint_rs_makhmadkadamov,$vint_ia_nikanorov,$vint_yd_fisenko,$vint_aa_altukhov gov:10.146.136.127 tcp 22,5432
@@ -6887,11 +5993,9 @@ ACCEPT pvpn:$vint_ev_ponyukhov gov:10.146.142.173-10.146.142.180 tcp 22,5432
 ACCEPT pvpn:$vint_av_gileva,$vint_vik_val_grigoryev,$vint_aa_kondrashova vnet:10.10.130.103 all
 ACCEPT pvpn:$vint_vv_maslov,$vint_va_krauze,$vint_av_zhivilo,$vint_km_moskalik,$vint_a_prohorov,$vint_at_shirokiy,$vint_gs_yagnyshev,$vint_av_vorontsov,$vint_ev_ponyukhov vnet:10.10.130.103 all
 ##32241
-#ACCEPT pvpn:$vint_ke_akbashev gov:10.146.141.1,10.146.137.134 tcp 8443
 ##32256
 ACCEPT pvpn:$vint_ii_pogodin gov:10.241.1.83 tcp 80,443
 ##32284
-#ACCEPT pvpn:$vint_is_alekseev gov:10.146.136.98 tcp 22,80,443,3690
 ##32307 ##32370
 ACCEPT pvpn:$vint_iy_ponamarev gov:10.146.136.40 tcp 25432,1521
 ACCEPT pvpn:$vint_iy_ponamarev gov:10.146.137.116 tcp 8081
@@ -6924,9 +6028,7 @@ ACCEPT pvpn:$vint_ea_sherstobitov,$vint_na_budnov gov:10.241.0.129 tcp 80,443
 ACCEPT pvpn:$vint_md_polyak gov:10.146.136.117,10.146.136.118 tcp 22,1521
 ACCEPT pvpn:$vint_md_polyak gov:10.241.4.210 all
 ##32429
-#ACCEPT pvpn:$vint_is_alekseev gov:10.146.139.160 tcp 22,80,443,3690
 ##32424
-#ACCEPT pvpn:$vint_e_krylova gov:10.146.136.12 tcp 80,443
 ##32442
 ACCEPT pvpn:$vint_vik_val_grigoryev gov:10.146.143.9 tcp 22,80,443,8080-8090
 ACCEPT pvpn:$vint_vik_val_grigoryev gov:10.146.143.10 tcp 22,80,443,5432
@@ -6990,7 +6092,6 @@ ACCEPT pvpn:$vint_ev_pavlov gov:10.146.139.239 tcp 5432
 ##32932
 ACCEPT pvpn:$vint_md_polyak gov:10.241.4.62,10.241.4.64 tcp 5000,80,8000,8080,443,8443,5432
 ##33020
-#ACCEPT pvpn:$vint_aa_kosanev gov:10.241.0.209 tcp 80,443
 ##32896
 ACCEPT pvpn:$vint_ae_gorbunov gov:10.241.4.118-10.241.4.121,10.241.4.127 tcp 22,80,443
 ##32969
@@ -7004,7 +6105,6 @@ ACCEPT pvpn:$vint_la_kondrateva gov:10.129.157.173 tcp 80,443
 ##33103
 ACCEPT pvpn:$vint_aa_gefding,$vint_ao_isachenkov,$vint_ev_bazarnov gov:10.241.4.130 tcp 22
 ##33028
-#ACCEPT pvpn:$vint_d_grachev gov:10.146.137.248 tcp 80,443
 ##33110
 ACCEPT pvpn:$vint_oi_zherebyateva gov:10.241.3.203 tcp 80,443
 ##33114 ##33121
@@ -7021,7 +6121,6 @@ ACCEPT pvpn:$vint_aa_altukhov,$vint_sv_stadnichenko gov:10.241.2.15 tcp 8123
 ##33227
 ACCEPT pvpn:$vint_me_nagornykh,$vint_ka_dolinova gov:10.147.70.252,10.147.70.253 tcp 5432
 ##33246
-#ACCEPT pvpn:$vint_sv_velezhinskiy gov:10.241.3.43 tcp 5000,80
 ##33261 ##33288
 ACCEPT pvpn:$vint_av_surzhikov gov:10.241.4.149-10.241.4.155,10.241.2.249 tcp 3389
 ##33303
@@ -7029,7 +6128,6 @@ ACCEPT pvpn:$vint_ay_minaev gov:10.241.4.62 tcp 80,5000
 ##33332
 ACCEPT pvpn:$vint_ag_surmin gov:10.147.70.252,10.147.70.253 tcp 5432,80,443
 ##33336
-#ACCEPT pvpn:$vint_e_krylova gov:10.241.0.117 tcp 5050
 ##33340 ##34943
 ACCEPT pvpn:$vint_sa_feoktistov gov:10.146.136.93,10.146.136.94,10.146.136.148,10.146.142.10,10.241.3.9 tcp 22,80,443,8080
 ACCEPT pvpn:$vint_sa_feoktistov gov:10.146.136.95,10.146.136.96,10.146.136.145,10.146.136.146 tcp 22,8080,873
@@ -7069,7 +6167,6 @@ ACCEPT pvpn:$vint_ev_bolgova gov:10.146.140.221,10.241.2.228 tcp 1433
 ACCEPT pvpn:$vint_ev_bolgova gov:10.241.3.241,10.241.3.242 all
 ACCEPT pvpn:$vint_ev_bolgova gov:10.146.137.238,10.146.137.239 tcp 22,443,3389
 ##33405
-#ACCEPT pvpn:$vint_vv_aleksandrov gov:10.148.217.0/24 all
 ##33437 ##33495 ##34971
 ACCEPT pvpn:$vint_fr_shiyanov gov:10.146.137.242 tcp 80,443,8081
 ACCEPT pvpn:$vint_fr_shiyanov gov:10.146.136.40 tcp 1521,25432
@@ -7093,9 +6190,7 @@ ACCEPT pvpn:$vint_or_ostanina gov:10.241.4.164-10.241.4.177,10.146.138.76 tcp 22
 ACCEPT pvpn:$vint_or_ostanina gov:10.146.137.250 tcp 80,443
 ACCEPT pvpn:$vint_or_ostanina gov:10.146.138.49 tcp 22
 ##33505
-#ACCEPT pvpn:$vint_mv_chizhikov gov:10.162.0.0/16 all
 ##33515
-#ACCEPT pvpn:$vint_pa_goncharova gov:10.146.137.250 tcp 80,443
 ##33516
 ACCEPT pvpn:$vint_md_polyak gov:10.241.2.155 all
 ##33532
@@ -7127,9 +6222,7 @@ ACCEPT pvpn:$vint_aa_altukhov gov:10.241.4.181 all
 ##33772 ##33894
 ACCEPT pvpn:$vint_av_surzhikov gov:10.130.51.254,10.128.100.10 all
 ##33770
-#ACCEPT pvpn:$vint_pa_goncharova gov:10.146.143.151 tcp 80,443
 ##33711
-#ACCEPT pvpn:$vint_d_grachev gov:10.241.4.231-10.241.4.234 tcp 8500,80,443
 ##33785
 ACCEPT pvpn:$vint_yd_fisenko gov:10.146.138.6 tcp 8123
 ##33778
@@ -7194,7 +6287,6 @@ ACCEPT pvpn:$vint_vik_val_grigoryev gov:10.146.136.137 all
 ACCEPT pvpn:$vint_vik_val_grigoryev gov:10.146.136.138 tcp 3389,6473
 ACCEPT pvpn:$vint_vik_val_grigoryev gov:10.146.138.52 tcp 22,80,443
 ##34327
-#ACCEPT pvpn:$vint_om_kasyan_kahovskaya gov:10.128.66.140 tcp 80,443
 ##34284
 ACCEPT pvpn:$vint_ay_minaev,$vint_sv_velezhinskiy,$vint_ev_kozlova gov:10.241.4.255 all
 ##34379 ##34484 ##34532 ##34790 ##35041
@@ -7220,7 +6312,6 @@ ACCEPT pvpn:$vint_av_ivanov,$vint_pa_fumelli,$vint_an_ivanov,$vint_va_suvorov,$v
 ##34568
 ACCEPT pvpn:$vint_na_alekseeva gov:10.162.0.252 all
 ##34571
-#ACCEPT pvpn:$vint_am_nasibullin tvr:192.168.70.98-192.168.70.101,192.168.70.108,192.168.70.115 all
 ##34595 ##35321
 ACCEPT pvpn:$vint_s_smirnov,$vint_av_vorontsov,$vint_av_gileva gov:10.241.5.62-10.241.5.75 all
 ACCEPT pvpn:$vint_va_krauze,$vint_vv_maslov,$vint_km_moskalik,$vint_av_zhivilo gov:10.241.5.62-10.241.5.75 all
