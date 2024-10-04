@@ -329,6 +329,7 @@ ACCEPT peer iao:192.168.5.251 all
 ACCEPT iao:192.168.5.251 peer all
 
 ####a.lifanov###
+ACCEPT dmz:192.168.2.193 laf3 all
 ACCEPT tvr:192.168.152.24 dmz:192.168.2.130 tcp 389
 ACCEPT ad:192.168.10.6 iao:192.168.5.72,192.168.5.235 all
 ACCEPT loc:$ta_vasutin net:37.18.112.29 all
@@ -558,6 +559,8 @@ ACCEPT loc:$abramova_guravleva gov:192.168.9.128/26 all
 ACCEPT loc:$abramov gov:10.128.66.210 all 
 
 ACCEPT loc:$abramov gov:192.168.9.54,192.168.9.55 tcp 80,4040,3389
+ACCEPT loc:$abramov laf3:10.248.51.115 tcp 8088
+ACCEPT loc:$abramov laf3:10.248.51.86 tcp 2222
 ACCEPT loc:$abramov net:109.167.128.68 tcp 1968
 ACCEPT loc:$abramov net:195.208.25.161 tcp 80
 ACCEPT loc:$abramov net:217.195.78.242 tcp 80,443
@@ -579,6 +582,7 @@ ACCEPT loc:$ai_gillung,$va_ermakov dmz:192.168.2.15 tcp 22
 ACCEPT loc:$ai_gillung,$va_ermakov iao,sec,net all
 ACCEPT gov:10.162.32.110 iao:192.168.5.110 all
 ACCEPT loc:$a_isachenkov gov:10.146.138.132-10.146.138.137 all
+ACCEPT loc:$a_isachenkov laf3:10.248.51.0/24 all
 ACCEPT loc:$a_isachenkov test:192.168.14.132 tcp 22,80,554,14073,15073
 ACCEPT loc:$aleksandr_zaharov dmz:192.168.2.228 tcp 8080
 ACCEPT loc:$aleksandr_zaharov dmz:192.168.2.243 tcp 22,21,80,443,3306
@@ -1008,6 +1012,7 @@ ACCEPT loc:$eremeevskiy sec all
 ACCEPT loc:$frey gov:10.128.66.142 tcp 3389
 ACCEPT loc:$aa_gefding gov:10.146.138.132-10.146.138.137,10.146.138.13,10.241.5.82 all
 ACCEPT loc:$aa_gefding gov:10.146.139.27 tcp 22,80,443
+ACCEPT loc:$aa_gefding laf3:10.248.51.0/24 all
 ACCEPT loc:$av_gileva dmz:192.168.2.115 tcp 3389,12205,12347,445
 ACCEPT loc:$av_gileva dmz:192.168.2.178,192.168.2.200 tcp 22,1199,8080,9010,9100
 ACCEPT loc:$av_gileva dmz:192.168.2.214 tcp 1521
@@ -2440,6 +2445,7 @@ ACCEPT loc:$vyatkina gov:10.128.66.148 tcp 1521
 ACCEPT loc:$vyatkina gov:10.128.66.99 tcp 22,1521
 ACCEPT loc:$vyatkina gov:10.146.136.117 tcp 1521
 ACCEPT loc:$vyatkina gov:10.146.136.27 tcp 1521
+ACCEPT loc:$vyatkina laf3:10.248.51.0/24 all
 ACCEPT loc:$vyatkina net:174.129.197.48 all 
 ACCEPT loc:$vyatkina net:193.29.19.28 tcp 1194
 ACCEPT loc:$vyatkina net:87.250.250.106,213.180.193.106,213.180.204.106,77.88.21.106 tcp 80,443
