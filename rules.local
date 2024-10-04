@@ -2996,6 +2996,7 @@ ACCEPT loc:$korchagin gov:10.146.139.171 tcp 1521
 ### Ticket 13637 ###
 ACCEPT loc:$va_krauze tvr:192.168.70.106 tcp 80,8080
 ### Ticket 13641 ###
+ACCEPT loc:$arefkina,$linkova tvr:192.168.152.5 tcp 80,443 
 ### Ticket 13647 ###
 ACCEPT loc:$a_lukyanovich gov:10.146.141.212 tcp 3306
 ### Ticket 13650 ###
@@ -3216,6 +3217,7 @@ ACCEPT loc:$k_petrov gov:10.146.138.138 tcp 22
 ### Ticket 14688 ###
 ACCEPT loc:$kv_smotrov gov:10.130.222.2 tcp 6666
 ### Ticket 14692 ###
+ACCEPT loc:$arefkina tvr:192.168.152.11 tcp 80,443
 ### Ticket 14693 ###
 ACCEPT loc:$kv_smotrov gov:10.146.138.86,10.146.138.220,10.146.138.87,10.146.139.106 tcp 22,80,443,4444
 ACCEPT loc:$kv_smotrov gov:10.146.139.240,10.146.138.87 tcp 22,80,9200,9300
@@ -5859,6 +5861,7 @@ ACCEPT loc:$mv_enicheva gov:10.241.0.236 tcp 8081
 ##32289 ##32297
 ACCEPT loc:$aa_altuhov gov:10.146.136.135,10.146.140.182-10.146.140.207,10.146.142.143,10.146.143.171,10.146.143.188,10.146.143.198-10.146.143.200,10.146.143.215,10.241.0.152 tcp 22,80,5432
 ##32292 ##34635
+ACCEPT loc:$nk_tregubova gov:10.241.2.23,10.128.72.250 all
 ##32300
 ACCEPT loc:$kolokolov_pokaz gov:10.128.72.250 tcp 3389
 ##32293
@@ -5898,6 +5901,8 @@ ACCEPT loc:$lv_appakova,$ev_metelkova,$mv_lazurenko,$em_titova,$do_selyakina gov
 ##32603
 ACCEPT loc:$kolokolov_pokaz gov:10.128.72.254 tcp,udp 6432
 ##32626 ##32762 ##33008
+ACCEPT loc:$nk_tregubova gov:10.160.121.10,10.149.235.5 all
+ACCEPT loc:$nk_tregubova gov:10.128.132.248 tcp 3389
 ##32627
 ACCEPT loc:$nv_pavlov gov:10.146.138.6 tcp 22,8123,9000
 ##32613
@@ -6002,6 +6007,7 @@ ACCEPT loc:$gis_arhivy_rnbalakerev gov:10.128.28.253 tcp 22,25,110,143,465,993,9
 ##33252
 ACCEPT loc:$da_timonin gov:10.146.137.12 tcp 80,443
 ##33261
+ACCEPT loc:$nk_tregubova gov:10.241.4.149-10.241.4.155 tcp 3389
 ##33263
 ACCEPT loc:$av_stasevich gov:10.241.3.63 tcp 8123
 ACCEPT loc:$av_stasevich gov:10.241.4.111 tcp 5432
@@ -6070,6 +6076,7 @@ ACCEPT loc:$av_stasevich gov:10.241.1.138 all
 ##33754
 ACCEPT loc:$av_gileva vnet:10.10.138.132,10.10.138.12-10.10.138.30 all
 ##33772
+ACCEPT loc:$nk_tregubova gov:10.130.51.254 all
 ##33712
 ACCEPT loc:$gv_talvinskiy,$mn_soldatov gov:10.241.4.230 all
 ##33785
