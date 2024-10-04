@@ -329,6 +329,7 @@ ACCEPT peer iao:192.168.5.251 all
 ACCEPT iao:192.168.5.251 peer all
 
 ####a.lifanov###
+ACCEPT dmz:192.168.2.193 laf3 all
 ACCEPT tvr:192.168.152.24 dmz:192.168.2.130 tcp 389
 ACCEPT ad:192.168.10.6 iao:192.168.5.72,192.168.5.235 all
 ACCEPT loc:$ta_vasutin net:37.18.112.29 all
@@ -341,10 +342,12 @@ ACCEPT loc:$dm_pankratov dmz:192.168.2.200 tcp 5432
 ACCEPT loc dmz:192.168.2.180,192.168.2.115 tcp 80,443
 ACCEPT skud:192.168.90.0/24 dmz:192.168.2.4 tcp smtp,ssmtp,pop3,pop3s,imap,imaps,www,https,587
 ACCEPT dmz:192.168.2.201 test:192.168.14.253 tcp 80,443
+ACCEPT iao:192.168.5.254 reg all
 ACCEPT loc:$vahta video all
 ACCEPT loc:$as_shakirov peer all
 ACCEPT loc:$as_shakirov dmz:192.168.2.220,192.168.2.200 all
 ACCEPT loc:$nv_yakunina net:74.125.250.0/24,142.250.82.0/24 all
+ACCEPT ad ctl all
 
 ##medblank
 ACCEPT loc:$av_rizhik dmz:192.168.2.208 tcp 22,80,8080,443,10180
@@ -390,6 +393,7 @@ ACCEPT loc:$sa_rogovenko video:192.168.101.200 all
 ACCEPT loc:$to_petrova gov:10.241.3.243 all
 ACCEPT loc:$mikityukov_nout video:192.168.101.200 all
 ACCEPT dmz:192.168.2.94 gov:10.128.28.100 tcp 80,443
+ACCEPT dmz:192.168.5.254 ctl all
 ACCEPT iao:192.168.5.254 gov:10.163.0.63 all
 ACCEPT iao:192.168.5.247 dmz:192.168.2.99 all
 ACCEPT video:192.168.101.0/24 dmz:192.168.2.4 udp 123
@@ -558,6 +562,8 @@ ACCEPT loc:$abramova_guravleva gov:192.168.9.128/26 all
 ACCEPT loc:$abramov gov:10.128.66.210 all 
 
 ACCEPT loc:$abramov gov:192.168.9.54,192.168.9.55 tcp 80,4040,3389
+ACCEPT loc:$abramov laf3:10.248.51.115 tcp 8088
+ACCEPT loc:$abramov laf3:10.248.51.86 tcp 2222
 ACCEPT loc:$abramov net:109.167.128.68 tcp 1968
 ACCEPT loc:$abramov net:195.208.25.161 tcp 80
 ACCEPT loc:$abramov net:217.195.78.242 tcp 80,443
@@ -579,6 +585,7 @@ ACCEPT loc:$ai_gillung,$va_ermakov dmz:192.168.2.15 tcp 22
 ACCEPT loc:$ai_gillung,$va_ermakov iao,sec,net all
 ACCEPT gov:10.162.32.110 iao:192.168.5.110 all
 ACCEPT loc:$a_isachenkov gov:10.146.138.132-10.146.138.137 all
+ACCEPT loc:$a_isachenkov laf3:10.248.51.0/24 all
 ACCEPT loc:$a_isachenkov test:192.168.14.132 tcp 22,80,554,14073,15073
 ACCEPT loc:$aleksandr_zaharov dmz:192.168.2.228 tcp 8080
 ACCEPT loc:$aleksandr_zaharov dmz:192.168.2.243 tcp 22,21,80,443,3306
@@ -601,6 +608,7 @@ ACCEPT loc:$aleksandr_zaharov gov:10.146.137.4 tcp 80,443
 ACCEPT loc:$aleksandr_zaharov gov:10.146.138.177 tcp 80,443
 ACCEPT loc:$aleksandr_zaharov gov:10.146.138.229 tcp 80
 ACCEPT loc:$aleksandr_zaharov gov:192.168.9.13 tcp 8080
+ACCEPT loc:$aleksandr_zaharov oop:192.168.12.19 tcp 1521
 #####################
 #SEREGA
 ######################
@@ -644,6 +652,15 @@ ACCEPT loc:$a_petrov net:81.1.236.100 tcp 22,80,443,5432,8080,8081,8088,4848,222
 ACCEPT loc:$a_petrov net:81.1.236.102,81.1.236.99 tcp 80,443,2222,4848,5432
 ACCEPT loc:$a_petrov net:91.215.221.45 tcp 25,465,110,995,143,993,5000,8090
 ACCEPT loc:$a_petrov net:91.215.221.45 udp 5000
+ACCEPT loc:$a_petrov oop:192.168.12.10 tcp 80,445,1521,4040,3389,8080,7001
+ACCEPT loc:$a_petrov oop:192.168.12.11 tcp 3389,445,80,1521,5151
+ACCEPT loc:$a_petrov oop:192.168.12.12 tcp 22,1521,5151,5152
+ACCEPT loc:$a_petrov oop:192.168.12.14 tcp 22,1521,3389
+ACCEPT loc:$a_petrov oop:192.168.12.15 tcp 22,7001
+ACCEPT loc:$a_petrov oop:192.168.12.17 all
+ACCEPT loc:$a_petrov oop:192.168.12.18 tcp 22,80,443
+ACCEPT loc:$a_petrov oop:192.168.12.19 tcp 1521,22,80
+ACCEPT loc:$a_petrov wmz:192.168.3.40 all
 
 ACCEPT loc:$arakelyan gov:10.146.139.109 tcp 22,5432
 ACCEPT loc:$arakelyan sec all
@@ -654,6 +671,7 @@ ACCEPT loc:$armkzags1 gov:10.128.5.170 udp 13000
 ACCEPT loc:$armkzags1 gov:10.146.138.164,10.146.138.165,10.146.138.173 tcp 80,443
 ACCEPT loc:$aa_bogomolov gov:10.128.66.165 tcp 8107
 ACCEPT loc:$aa_bogomolov gov:10.146.138.252,10.146.139.239 tcp 5432
+ACCEPT loc asa:192.168.25.2 tcp 80,443,8080
 ACCEPT loc:$as dmz:192.168.2.242 tcp 22,1521
 ACCEPT loc:$as gov:192.168.9.14 tcp 1521
 ACCEPT loc:$aslanova gov:10.128.66.103,10.128.66.104 tcp 80,443
@@ -669,6 +687,8 @@ ACCEPT loc:$as net:91.215.221.45 udp 5000
 ACCEPT loc:$go_astafev,$vv_ivanova gov:10.128.28.62,10.128.66.144,10.128.66.146,10.146.136.21 tcp 3389
 ACCEPT loc:$go_astafev,$vv_ivanova gov:10.128.66.145,10.128.66.146,10.146.136.11,10.146.136.25 tcp 1521,5151
 ACCEPT loc:$go_astafev,$vv_ivanova gov:192.168.9.14 tcp 1521
+ACCEPT loc:$go_astafev,$vv_ivanova oop:192.168.12.11 tcp 3389,445,80,1521,5151
+ACCEPT loc:$go_astafev,$vv_ivanova oop:192.168.12.12 tcp 22,1521,5151,5152
 
 ACCEPT loc:$asya_zaharyeva dmz:192.168.2.16,192.168.2.17 tcp 1433,3389
 ACCEPT loc:$asya_zaharyeva gov:10.128.66.105 tcp 8180
@@ -765,6 +785,7 @@ ACCEPT loc:$ia_bobkov dmz:192.168.2.243 tcp 22,21,80,443,3306
 ACCEPT loc:$ia_bobkov dmz:192.168.2.245 tcp 22,80,9443,8243,8280,8080
 ACCEPT loc:$ia_bobkov dmz:192.168.2.29 tcp 3389,21,8180
 ACCEPT loc:$ia_bobkov dmz:192.168.2.85 tcp 80,443,22,3306,5432
+ACCEPT loc:$ia_bobkov dmzt:192.168.19.2 tcp 8443,9191
 ACCEPT loc:$ia_bobkov gov:10.128.66.108 tcp 22,80,8080,8081,10025
 ACCEPT loc:$ia_bobkov gov:10.128.66.150,10.128.66.161,10.128.66.162 tcp 22,3389,80,5432,10022:10025
 ACCEPT loc:$ia_bobkov gov:10.128.66.161 tcp 8080
@@ -778,8 +799,11 @@ ACCEPT loc:$ia_bobkov gov:10.146.136.180 tcp 1521
 ACCEPT loc:$ia_bobkov gov:10.146.136.204 tcp 22,80,443,8080,8081,8280,9443
 ACCEPT loc:$ia_bobkov gov:10.146.136.61 tcp 20,21
 ACCEPT loc:$ia_bobkov gov:192.168.9.13 tcp 8080
+ACCEPT loc:$ia_bobkov oop:192.168.12.12 tcp 22,1521
+ACCEPT loc:$ia_bobkov oop:192.168.12.19 tcp 1521
 ACCEPT loc:$ds_bobov dmz:192.168.2.138 tcp 10180
 ACCEPT loc:$ds_bobov dmz:192.168.2.245 tcp 8280,80
+ACCEPT loc:$ds_bobov dmzt:192.168.19.2 tcp 22,80,443,8081
 ACCEPT loc:$ds_bobov gov:10.128.66.144,10.128.66.154 tcp 3389
 ACCEPT loc:$ds_bobov gov:10.128.66.207 all 
 ACCEPT loc:$ds_bobov gov:10.146.137.149,10.146.137.224 tcp 80
@@ -884,6 +908,7 @@ ACCEPT loc:$av_shasherin gov:10.144.4.253 tcp 80,8080,22
 ACCEPT loc:$av_shasherin gov:192.168.9.145 tcp 80,443
 ACCEPT loc:$av_shasherin net:109.124.72.145 tcp 80
 ACCEPT loc:$av_shasherin net:62.152.80.2 all 
+ACCEPT loc:$av_shasherin oop:192.168.12.11 tcp 3389,445,80,1521,5151
 ACCEPT loc:$av_shasherin phone:192.168.20.10 tcp 22,80,5060
 ### Создать алиас $otdel_uib и включить в него следующие алиасы $as_bychenkov,$in_rukina,$ra_trifonov,$aa_polikarpov,$ia_kozlov,$pu_shpakova
 ACCEPT loc:$otdel_uib dmz:192.168.2.89 tcp 3389
@@ -896,13 +921,17 @@ ACCEPT loc:$chernyatina net:178.63.47.5,95.79.103.42,95.79.54.204 tcp 21,20,80,4
 ACCEPT loc:$chernyatina net:62.76.103.168 tcp 1935
 ACCEPT loc:$chernyatina net:77.222.40.109 tcp 21,20,22
 ACCEPT loc:$chernyatina net:85.192.36.73 tcp 1935
+ACCEPT loc:$chernyatina wmz:192.168.3.223,217.195.78.217 tcp 21,22,80,443,3306,3389
 ACCEPT loc:$dementiev dmz:192.168.2.243,192.168.2.46 tcp 22
 ACCEPT loc:$dementiev dmz:192.168.2.66 tcp 22,5432
 ACCEPT loc:$dementiev dmz:192.168.2.77 tcp 22,80,443
+ACCEPT loc:$dementiev dmzt:192.168.19.7 tcp 22
 ACCEPT loc:$dementiev gov:192.168.9.131 tcp 22
 ACCEPT loc:$dm_chunin net:84.204.33.180 tcp 5002,5003
 ACCEPT loc:$dmitrieva gov:10.128.28.62,10.128.66.144,10.128.66.153,10.146.136.21,10.146.66.144 tcp 3389
 ACCEPT loc:$dmitrieva gov:10.128.66.145,10.128.66.146 tcp 1521,5151,5152
+ACCEPT loc:$dmitrieva oop:192.168.12.11 tcp 80,3389
+ACCEPT loc:$dmitrieva oop:192.168.12.12 tcp 22,1521,5151,5152
 ACCEPT loc:$dmitry_chernov gov:10.128.66.142 tcp 3389
 ACCEPT loc:$ds_rodin dmz:192.168.2.245 tcp 22,5432,8280,9443
 ACCEPT loc:$ds_rodin gov:10.128.66.108,10.128.66.161 tcp 8080
@@ -937,6 +966,7 @@ ACCEPT loc:$dolinova net:212.19.15.81,212.19.15.82,212.19.15.83 all
 ACCEPT loc:$dolinova net:81.1.236.100 tcp 22,80,443,5432,8080,8081,8088,4848,2228:2230,5433,5434
 ACCEPT loc:$dolinova net:81.1.236.102,81.1.236.99 tcp 80,443,2222,4848,5432
 ACCEPT loc:$dolinova net:91.225.128.2 tcp 1723
+ACCEPT loc:$dolinova oop:192.168.12.14 tcp 22,1521,3389
 ACCEPT loc:$dorofeeva gov:10.146.136.21 tcp 3389
 ACCEPT loc:$dorofeeva gov:10.146.136.40,10.146.136.161 tcp 3389
 ACCEPT loc:$dorofeeva gov:10.146.138.252,10.146.139.121,10.146.139.153 tcp 5432
@@ -955,6 +985,7 @@ ACCEPT loc:$drozhzhin dmz:192.168.2.67 tcp 22,1158
 ACCEPT loc:$drozhzhin dmz:192.168.2.68 tcp 22,8600:8610,9600:9610
 ACCEPT loc:$drozhzhin dmz:192.168.2.94 tcp 3389
 ACCEPT loc:$drozhzhin dmz:192.168.2.95 tcp 3389,8000:8010
+ACCEPT loc:$drozhzhin dmzt:192.168.19.8 tcp 7000:7999
 ACCEPT loc:$drozhzhin dmz tcp 22,1521,3389,80,1158,5500,8080,8180
 ACCEPT loc:$drozhzhin dmz tcp 9300,4848
 ACCEPT loc:$drozhzhin gov:10.128.44.20 tcp 22,9400
@@ -999,7 +1030,13 @@ ACCEPT loc:$elena dmz:192.168.2.28 tcp 22,80,1521,8443,443
 ACCEPT loc:$elena gov:10.128.66.142,10.146.136.21 tcp 3389
 ACCEPT loc:$elena gov:10.128.66.99,10.146.136.21,10.146.136.40 tcp 1521
 ACCEPT loc:$elena gov:10.128.66.99 tcp 22
+ACCEPT loc:$elena oop:192.168.12.12 tcp 22,1521,5151,5152
+ACCEPT loc:$elena oop:192.168.12.14 tcp 22,1521,3389
 ACCEPT loc:$elena_smirnova gov:10.128.66.142 tcp 3389
+ACCEPT loc:$elena_smirnova kfin tcp 1433
+ACCEPT loc:$elena_smirnova kfin tcp 20
+ACCEPT loc:$elena_smirnova kfin tcp 21
+ACCEPT loc:$elena_smirnova kfin tcp 445
 ACCEPT loc:$eremeevskiy gov:10.128.5.180 tcp 3389
 ACCEPT loc:$eremeevskiy gov:10.128.5.240 all 
 ACCEPT loc:$eremeevskiy gov:10.146.139.118,10.146.139.119,10.146.139.120 tcp 3389,17490:17499
@@ -1008,6 +1045,7 @@ ACCEPT loc:$eremeevskiy sec all
 ACCEPT loc:$frey gov:10.128.66.142 tcp 3389
 ACCEPT loc:$aa_gefding gov:10.146.138.132-10.146.138.137,10.146.138.13,10.241.5.82 all
 ACCEPT loc:$aa_gefding gov:10.146.139.27 tcp 22,80,443
+ACCEPT loc:$aa_gefding laf3:10.248.51.0/24 all
 ACCEPT loc:$av_gileva dmz:192.168.2.115 tcp 3389,12205,12347,445
 ACCEPT loc:$av_gileva dmz:192.168.2.178,192.168.2.200 tcp 22,1199,8080,9010,9100
 ACCEPT loc:$av_gileva dmz:192.168.2.214 tcp 1521
@@ -1071,6 +1109,9 @@ ACCEPT loc:$goryainov gov:10.146.136.21 tcp 3389
 ACCEPT loc:$goryainov gov:10.146.136.47 tcp 8080
 ACCEPT loc:$goryainov gov:192.168.9.14 tcp 1521
 ACCEPT loc:$goryainov net:37.143.23.182 all
+ACCEPT loc:$goryainov oop:192.168.12.10 tcp 80,445,1521,4040,3389,8080,7001
+ACCEPT loc:$goryainov oop:192.168.12.11 tcp 1521,5151,80,3389
+ACCEPT loc:$goryainov oop:192.168.12.12 tcp 22,1521,5151,5152
 ACCEPT loc:$gotovskaya gov:10.146.136.119 tcp 80,443
 ACCEPT loc gov:10.128.216.6 tcp 3389
 ACCEPT loc gov:10.146.136.22 tcp 80
@@ -1092,6 +1133,7 @@ ACCEPT loc:$grigoryev gov:10.146.136.35 tcp 80
 ACCEPT loc:$grigoryev gov:10.146.136.40 all 
 ACCEPT loc:$grigoryev gov:10.146.136.47 tcp 8080
 ACCEPT loc:$grigoryev net:37.143.23.182 all
+ACCEPT loc:$grigoryev oop:192.168.12.11 tcp 80,443,3389
 ACCEPT loc:$hamidullina gov:10.128.0.68,10.128.0.69,10.128.0.73 tcp 80,8081,9080,8080,110
 ACCEPT loc:$hamidullina gov:10.128.66.165 tcp 6104
 ACCEPT loc:$igor dmz:192.168.2.132,192.168.2.133,192.168.2.138 all
@@ -1118,6 +1160,9 @@ ACCEPT loc:$igor gov:10.146.136.40 tcp 2241,1521,3389
 ACCEPT loc:$igor gov:192.168.9.11 tcp 1521
 ACCEPT loc:$igor gov:192.168.9.14 tcp 22,80,1521
 ACCEPT loc:$igor iao:192.168.5.4,192.168.5.5 tcp 22,9090
+ACCEPT loc:$igor oop:192.168.12.12 tcp 22,1521,5151,5152
+ACCEPT loc:$igor oop:192.168.12.14 tcp 22,1521,3389
+ACCEPT loc:$igor oop:192.168.12.19 tcp 1521,22,80
 ACCEPT loc:$ilinkin gov:10.128.66.142 all 
 ACCEPT loc:$ilinkin gov:192.168.9.14 tcp 1521
 ACCEPT loc:$iluschenko gov:10.128.66.142 tcp 3389
@@ -1159,6 +1204,8 @@ ACCEPT loc:$kalinin net:81.1.236.100 tcp 22,80,443,5432,8080,8081,8088,4848,2228
 ACCEPT loc:$kalinin net:91.215.227.17 tcp 5902
 ACCEPT loc:$kalinin net:91.225.128.2 tcp 1723
 ACCEPT loc:$kalinin sec:192.168.4.5 all 
+ACCEPT loc:$kalinin wmz:192.168.3.40 all 
+ACCEPT loc:$kalinin wmz:217.195.78.217 tcp 21
 ACCEPT loc:$kapustina dmz:192.168.2.51,192.168.2.91 tcp 22,80,8082
 ACCEPT loc:$kapustina dmz:192.168.2.52 tcp 3389,1433
 ACCEPT loc:$kapustina edu all 
@@ -1216,6 +1263,7 @@ ACCEPT loc:$kondratyeva iao:192.168.5.4,192.168.5.5 tcp 22,9090
 ACCEPT loc:$kondratyeva net:91.215.221.45 tcp 25,465,110,995,143,993,5000,8090
 ACCEPT loc:$kondratyeva net:91.215.221.45 udp 5000
 ACCEPT loc:$kondratyeva sec:192.168.4.5 all 
+ACCEPT loc:$kondratyeva wmz:192.168.3.40 all 
 ACCEPT loc:$kopysov gov all 
 ACCEPT loc:$kopysov iao:192.168.5.23,192.168.5.24,192.168.5.26-192.168.5.28 all 
 ACCEPT loc:$kopysov net:185.14.28.145,195.8.36.219,46.32.70.16 all 
@@ -1457,6 +1505,7 @@ ACCEPT loc:$leschinskiy net:193.37.157.31 tcp 443
 ACCEPT loc:$leschinskiy net:91.215.221.45 tcp 25,465,110,995,143,993,5000,8090
 ACCEPT loc:$leschinskiy net:91.215.221.45 udp 5000
 ACCEPT loc:$leschinskiy net:91.232.246.43 tcp 443
+ACCEPT loc:$leschinskiy wmz:192.168.3.40 all 
 ACCEPT loc:$lesovoi dmz:10.10.16.0/24 tcp 22,80,1158,1521,8080,8180,8000
 ACCEPT loc:$lesovoi dmz:192.168.2.175 tcp 3389
 ACCEPT loc:$lesovoi dmz:192.168.2.242 tcp 9200,9201
@@ -1468,6 +1517,7 @@ ACCEPT loc:$lesovoi gov:192.168.9.67 tcp 22,9600
 ACCEPT loc:$lesovoi net:91.215.221.45 tcp 25,465,110,995,143,993,5000,8090
 ACCEPT loc:$lesovoi net:91.215.221.45 udp 5000
 ACCEPT loc:$lesovoi net:91.242.171.5 tcp 22,80,1158,1521,8080,8180,8000
+ACCEPT loc:$lesovoi oop:192.168.12.11 tcp 80,443
 ACCEPT loc:$lg_lisin dmz:192.168.2.70 tcp 21,20,1352
 ACCEPT loc:$lg_lisin dmz:192.168.2.71 tcp 80
 ACCEPT loc:$lg_lisin gov:10.146.139.78 tcp 3389
@@ -1510,6 +1560,7 @@ ACCEPT loc:$maleev net:91.215.221.45 tcp 25,465,110,995,143,993,5000,8090
 ACCEPT loc:$maleev net:91.215.221.45 udp 5000
 ACCEPT loc:$maleev net:94.199.115.7 tcp 22
 ACCEPT loc:$maleev sec:192.168.4.5 all 
+ACCEPT loc:$maleev wmz:192.168.3.40 all 
 ACCEPT loc:$mandrik sec all 
 ACCEPT loc:$margo dmz:192.168.2.215 tcp 80,5357,445,3389,8080
 ACCEPT loc:$margo dmz:192.168.2.224 tcp 1521
@@ -1529,6 +1580,10 @@ ACCEPT loc:$martinov gov:10.146.136.61 tcp 10180
 ACCEPT loc:$martinov gov:10.146.137.28 tcp 8280
 ACCEPT loc:$ag_masnik net:213.24.57.15 tcp 80,443,444
 ACCEPT loc:$ag_masnik net:77.222.40.109 tcp 21,20,22
+ACCEPT loc:$ag_masnik wmz:192.168.2.223 tcp 8080
+ACCEPT loc:$ag_masnik wmz:192.168.3.223 tcp 21,22,80,443,3306,3389
+ACCEPT loc:$ag_masnik wmz:217.195.78.217 tcp 21,22,80,443,3306,3389
+ACCEPT loc:$ag_masnik wmz:217.195.78.217 tcp 8080
 ACCEPT loc:$oa_melnikova dmz:10.10.16.0/24 tcp 22,80,1158,1521,8080,8180,8000
 ACCEPT loc:$oa_melnikova dmz:192.168.2.175 tcp 3389
 ACCEPT loc:$oa_melnikova dmz:192.168.2.91 tcp 22,80,8082
@@ -1568,11 +1623,14 @@ ACCEPT loc:$aytkulov gov:10.146.138.181 tcp 22,80
 ACCEPT loc:$aytkulov gov:192.168.9.14 tcp 1521
 ACCEPT loc:$aytkulov gov:192.168.9.51 tcp 3389
 ACCEPT loc:$aytkulov net:37.130.192.13,37.130.194.13,139.18.2.226,151.101.84.209,216.105.38.10 tcp 80,1935
+ACCEPT loc:$aytkulov oop:192.168.12.10 tcp 80,445,1521,4040,3389,8080,7001
+ACCEPT loc:$aytkulov oop:192.168.12.14 tcp 22,1521
 ACCEPT loc:$aytkulov gov:10.146.136.201 tcp 80,22
 ACCEPT loc:$aytkulov gov:10.146.136.63 tcp 80
 ACCEPT loc:$nv_pavlov net:176.97.37.44,84.204.33.180 all
 ACCEPT loc:$nv_pavlov dmz:192.168.2.110 tcp 22,4444,5900
 ACCEPT loc:$nv_pavlov dmz:192.168.2.110 udp 4444,5900
+ACCEPT loc:$nv_pavlov dmzt:192.168.19.9 tcp 22
 ACCEPT loc:$nv_pavlov gov:10.128.66.178 tcp 3389
 ACCEPT loc:$nv_pavlov gov:10.128.66.210 tcp 22
 ACCEPT loc:$nv_pavlov gov:10.128.66.210 tcp 80,81,82,83
@@ -1638,6 +1696,7 @@ ACCEPT loc:$rs_nikitin dmz:192.168.2.138 tcp 10180
 ACCEPT loc:$rs_nikitin dmz:192.168.2.140 all 
 ACCEPT loc:$rs_nikitin dmz:192.168.2.245 tcp 8280,80
 ACCEPT loc:$rs_nikitin dmz:192.168.2.81 tcp 22
+ACCEPT loc:$rs_nikitin dmzt:192.168.19.2  all
 ACCEPT loc:$rs_nikitin gov:10.128.66.190 tcp 8080
 ACCEPT loc:$rs_nikitin gov:10.128.66.207 all 
 ACCEPT loc:$rs_nikitin gov:10.146.136.61 tcp 10180
@@ -1673,6 +1732,7 @@ ACCEPT loc:$ys_nikityuk gov:10.128.72.254 all
 ACCEPT loc:$ys_nikityuk gov:172.21.65.6 all 
 ACCEPT loc:$ys_nikityuk iao:192.168.5.4 tcp 22,9090
 ACCEPT loc:$ys_nikityuk iao:192.168.5.5 tcp 22,9090
+ACCEPT loc:$ys_nikityuk wmz:192.168.3.40 all 
 ACCEPT loc:$n_kondratyev gov:10.146.136.55 tcp 23330,23331
 ACCEPT loc:$n_kondratyev net:109.207.1.97 all 
 ACCEPT loc:$n_kondratyev net:178.20.236.164 all 
@@ -1742,6 +1802,8 @@ ACCEPT loc:$otdel_20_1 gov:10.128.28.24 tcp 3389
 ACCEPT loc:$otdel_20_1 net:84.204.33.180 tcp 5002,5003
 ACCEPT loc:$otdel_27_secure_arm_01 gov:10.128.5.170 tcp 13000,13001,14000,14001
 ACCEPT loc:$otdel_27_secure_arm_01 gov:10.128.5.170 udp 13000
+ACCEPT loc:$otdel_56 wmz:192.168.3.223 tcp 8080
+ACCEPT loc:$otdel_56 wmz:217.195.78.217 tcp 8080
 ACCEPT loc:$pakhomova gov:10.146.137.82 tcp 3389
 ACCEPT loc:$paskin dmz:192.168.2.201 tcp 22,80,443,8080,8443
 ACCEPT loc:$paskin gov:10.128.66.105 tcp 1433
@@ -1816,6 +1878,8 @@ ACCEPT loc:$aa_potapovich gov:10.146.138.223 tcp 22,80,1521
 ACCEPT loc:$dd_povshedniy test:192.168.14.132 tcp 22,80,554,14073,15073
 ACCEPT loc:$ms_pozdnyakova dmz:192.168.2.101 tcp 8090
 ACCEPT loc:$ivanov_i dmz:192.168.2.245 tcp 22,80,9443,8243,8280,8080
+ACCEPT loc:$ivanov_i dmzt:192.168.19.2 tcp 8443
+ACCEPT loc:$ivanov_i dmzt:192.168.19.2 tcp 9191
 ACCEPT loc:$ivanov_i gov:10.128.66.108 tcp 80,8080,8081
 ACCEPT loc:$ivanov_i gov:10.128.66.190 tcp 9001,9002
 ACCEPT loc:$ivanov_i gov:10.128.66.150 tcp 10026
@@ -1870,6 +1934,10 @@ ACCEPT loc:$ka_puhtenok gov:10.146.138.252,10.146.139.121,10.146.139.153 tcp 543
 ACCEPT loc:$ka_puhtenok gov:192.168.9.14 tcp 22,80,1521
 ACCEPT loc:$ka_puhtenok iao:192.168.5.4 tcp 22,9090
 ACCEPT loc:$ka_puhtenok iao:192.168.5.5 tcp 22,9090
+ACCEPT loc:$ka_puhtenok oop:192.168.12.12 tcp 22,1521,5151,5152
+ACCEPT loc:$ka_puhtenok oop:192.168.12.14 tcp 22,1521,3389
+ACCEPT loc:$ka_puhtenok oop:192.168.12.19 tcp 1521,22,80
+ACCEPT loc:$ka_puhtenok oop:192.168.12.19 tcp 22
 ACCEPT loc:$av_pupenkov gov:10.146.137.149 tcp 80
 ACCEPT loc:$av_pupenkov gov:10.146.137.224 tcp 80
 ACCEPT loc:$av_rizhik dmz:192.168.2.180 tcp 22,3306
@@ -1910,6 +1978,7 @@ ACCEPT loc:$tg_riseva gov:192.168.9.11 tcp 80,22,1521,7575,7576
 ACCEPT loc:$tg_riseva gov:192.168.9.14 tcp 1521
 ACCEPT loc:$tg_riseva net:91.215.221.45 tcp 25,465,110,995,143,993,5000,8090
 ACCEPT loc:$tg_riseva net:91.215.221.45 udp 5000
+ACCEPT loc:$tg_riseva oop:192.168.12.19 tcp 1521,22,80
 ACCEPT loc:$di_rogovaya dmz:192.168.2.214 tcp 1521
 ACCEPT loc:$di_rogovaya dmz:192.168.2.218 tcp 1521
 ACCEPT loc:$di_rogovaya gov:10.128.66.147 tcp 22,1521
@@ -1922,6 +1991,8 @@ ACCEPT loc:$di_rogovaya gov:10.146.136.21 tcp 3389
 ACCEPT loc:$di_rogovaya gov:10.146.136.40,10.146.136.161 tcp 1521
 ACCEPT loc:$di_rogovaya gov:10.146.136.40 tcp 3392
 ACCEPT loc:$di_rogovaya gov:192.168.9.14 tcp 1521
+ACCEPT loc:$di_rogovaya oop:192.168.12.12 tcp 22,1521
+ACCEPT loc:$di_rogovaya oop:192.168.12.19 tcp 1521,22,80
 ACCEPT loc:$ra_ivanov dmz:192.168.2.16 tcp 1433,3389
 ACCEPT loc:$ra_ivanov dmz:192.168.2.17 tcp 1433,3389
 ACCEPT loc:$ra_ivanov gov:10.128.180.253 tcp 3389
@@ -1959,6 +2030,10 @@ ACCEPT loc:$sadaykin net:193.29.19.203,193.29.19.28,193.29.19.20 all
 ACCEPT loc:$sadaykin net:193.29.19.20 udp
 ACCEPT loc:$sagalova gov:10.146.137.149 tcp 80
 ACCEPT loc:$sagalova gov:10.146.137.4,10.146.137.5 tcp 80,443
+ACCEPT loc:$sa_alekseev wmz:192.168.2.223 tcp 8080
+ACCEPT loc:$sa_alekseev wmz:192.168.3.223 tcp 21,22,80,443,3306,3389
+ACCEPT loc:$sa_alekseev wmz:217.195.78.217 tcp 21,22,80,443,3306,3389,8080
+ACCEPT loc:$sa_alekseev wmz:217.195.78.217 tcp 8080
 ACCEPT loc:$samohovets dmz:192.168.2.245 tcp 8280
 ACCEPT loc:$samohovets gov:10.128.72.254 tcp 80
 ACCEPT loc:$samohovets gov:10.144.31.34 tcp 3389,5900,5901,5902,5903,5904,5905,5906,1194
@@ -1994,6 +2069,7 @@ ACCEPT loc:$savkov gov:10.146.136.116 tcp 8081
 ACCEPT loc:$savkov gov:10.146.136.117 tcp 1521
 ACCEPT loc:$savkov gov:10.146.136.119 tcp 22,80
 ACCEPT loc:$savkov gov:192.168.9.14 tcp 1521
+ACCEPT loc:$savkov oop:192.168.12.19 tcp 1521
 ACCEPT loc:$sheremetev dmz:192.168.2.236 tcp 22,80
 ACCEPT loc:$sheremetev dmz:192.168.2.245 tcp 8080
 ACCEPT loc:$sheremetev dmz:192.168.2.245 tcp 8280
@@ -2021,6 +2097,10 @@ ACCEPT loc:$ea_sherstobitov gov:10.146.138.252,10.146.139.121,10.146.139.153 tcp
 ACCEPT loc:$ea_sherstobitov gov:10.146.139.239 tcp 5432
 ACCEPT loc:$ea_sherstobitov gov:192.168.9.14 tcp 1521
 ACCEPT loc:$ea_sherstobitov gov:192.168.9.51 tcp 3389
+ACCEPT loc:$ea_sherstobitov oop:192.168.12.10 tcp 80,445,1521,4040,3389,8080,7001
+ACCEPT loc:$ea_sherstobitov oop:192.168.12.11 tcp 3389,445,80,1521,5151
+ACCEPT loc:$ea_sherstobitov oop:192.168.12.12 tcp 22,1521,5151,5152
+ACCEPT loc:$ea_sherstobitov oop:192.168.12.14 tcp 22,1521
 ACCEPT loc:$shevchenko net tcp 80,443
 ACCEPT loc:$shishkanova dmz:192.168.2.180 tcp 22
 ACCEPT loc:$shishkanova dmz:192.168.2.224 tcp 1521
@@ -2033,6 +2113,7 @@ ACCEPT loc:$shushkina peer all
 ACCEPT loc:$slizovskaya gov:10.146.137.17 tcp 8090
 ACCEPT loc:$yy_smusina dmz:192.168.2.51 tcp 22,80,8082
 ACCEPT loc:$yy_smusina dmz:192.168.2.52 tcp 3389,1433
+ACCEPT loc:$yy_smusina dmzt:192.168.19.8 tcp 9301
 ACCEPT loc:$yy_smusina dmz:192.168.2.91 tcp 22,80,8082
 ACCEPT loc:$yy_smusina gov:10.128.66.105 tcp 80,211,1433
 ACCEPT loc:$yy_smusina gov:10.128.66.109 tcp 3389
@@ -2058,6 +2139,9 @@ ACCEPT loc:$sobolev dmz:192.168.2.39 tcp 22,80,8080
 ACCEPT loc:$sobolev dmz:192.168.2.77 tcp ssh
 ACCEPT loc:$sobolev dmz:192.168.2.81 tcp 22
 ACCEPT loc:$sobolev dmz:192.168.2.82 tcp 22
+ACCEPT loc:$sobolev dmzt:192.168.19.2 tcp 22,80,443,8081
+ACCEPT loc:$sobolev dmzt:192.168.19.6 tcp 22,80,443,8081
+ACCEPT loc:$sobolev dmzt:192.168.19.7 tcp 22
 ACCEPT loc:$sobolev gov:10.128.14.30 tcp 3389
 ACCEPT loc:$sobolev gov:10.146.141.1 tcp 4444,8080
 ACCEPT loc:$sobolev gov:10.128.66.190 tcp 8080
@@ -2089,6 +2173,7 @@ ACCEPT loc:$mn_soldatov dmz:192.168.2.67 tcp 22,1158
 ACCEPT loc:$mn_soldatov dmz:192.168.2.68 tcp 22,8600:8610,9600:9610
 ACCEPT loc:$mn_soldatov dmz:192.168.2.94 tcp 3389
 ACCEPT loc:$mn_soldatov dmz:192.168.2.95 tcp 3389,8000:8010
+ACCEPT loc:$mn_soldatov dmzt:192.168.19.8 tcp 7000:7999
 ACCEPT loc:$mn_soldatov dmz tcp 22,1521,3389,80,1158,5500,8080,8180
 ACCEPT loc:$mn_soldatov dmz tcp 9300,4848
 ACCEPT loc:$mn_soldatov gov:10.128.44.20 tcp 22,9400
@@ -2155,6 +2240,7 @@ ACCEPT loc:$suldin net:213.59.255.182-213.59.255.182,46.243.177.48 all
 ACCEPT loc:$suldin net:91.215.221.45 tcp 25,465,110,995,143,993,5000,8090
 ACCEPT loc:$suldin net:91.215.221.45 udp 5000
 ACCEPT loc:$suldin sec:192.168.4.5 all 
+ACCEPT loc:$suldin wmz:192.168.3.40 all 
 ACCEPT loc:$support dmz:192.168.2.111 tcp 80,443
 ACCEPT loc:$support phone:192.168.20.10 tcp 80,443
 ACCEPT loc:$sveta gov:10.146.136.222 tcp 1521
@@ -2186,6 +2272,7 @@ ACCEPT loc:$gv_talvinskiy dmz:192.168.2.67 tcp 22,1158
 ACCEPT loc:$gv_talvinskiy dmz:192.168.2.68 tcp 22,8600:8610,9600:9610
 ACCEPT loc:$gv_talvinskiy dmz:192.168.2.94 tcp 3389
 ACCEPT loc:$gv_talvinskiy dmz:192.168.2.95 tcp 3389,8000:8010
+ACCEPT loc:$gv_talvinskiy dmzt:192.168.19.8 tcp 7000:7999
 ACCEPT loc:$gv_talvinskiy dmz tcp 22,1521,3389,80,1158,5500,8080,8180
 ACCEPT loc:$gv_talvinskiy gov:10.128.44.20 tcp 22,9400
 ACCEPT loc:$gv_talvinskiy gov:10.128.44.25 tcp 22,1521,1158
@@ -2252,7 +2339,12 @@ ACCEPT loc:$ma_terzhevik gov:10.146.136.35 tcp 80
 ACCEPT loc:$ma_terzhevik gov:10.146.136.47 tcp 8080
 ACCEPT loc:$ma_terzhevik gov:192.168.9.14 tcp 1521
 ACCEPT loc:$ma_terzhevik net:37.143.23.182 all
+ACCEPT loc:$ma_terzhevik oop:192.168.12.10 tcp 80,445,1521,4040,3389,8080,7001
+ACCEPT loc:$ma_terzhevik oop:192.168.12.11 tcp 3389,445,80,1521,5151
+ACCEPT loc:$ma_terzhevik oop:192.168.12.12 tcp 22,1521,5151,5152
+ACCEPT loc:$ma_terzhevik oop:192.168.12.19 tcp 1521
 ACCEPT loc:$ma_terzhevik gov:10.146.136.40 tcp 3392,1521,137,22,80,443,8081,3389
+ACCEPT loc:$timonin dmzt:192.168.19.5 tcp 22,5432
 ACCEPT loc:$timonin gov:10.128.66.104 tcp 80,22
 ACCEPT loc:$timonin gov:10.146.136.21 tcp 22,2250
 ACCEPT loc:$timonin gov:10.128.66.122,10.128.66.156,10.128.66.148,10.128.66.121,10.128.66.114 tcp 22,3389
@@ -2282,6 +2374,8 @@ ACCEPT loc:$timonin gov:10.146.139.73,10.146.139.74 tcp 22
 ACCEPT loc:$timonin gov:10.146.139.74 tcp 5432
 ACCEPT loc:$timonin gov:10.146.139.75,10.146.139.76 tcp 22
 ACCEPT loc:$timonin gov:10.146.139.76 tcp 5432
+ACCEPT loc:$timonin oop:192.168.12.11 tcp 3389,445,80,1521,5151
+ACCEPT loc:$timonin oop:192.168.12.12 tcp 22,1521,5151,5152
 ACCEPT loc:$as_titova gov:10.146.136.180 tcp 1521
 ACCEPT loc:$ra_trifonov dmz:192.168.2.89 all 
 ACCEPT loc:$ra_trifonov dmz:192.168.2.90 tcp 2002
@@ -2307,6 +2401,7 @@ ACCEPT loc:$ta_vasutin dmz:10.10.16.0/24 tcp 22,80,1158,1521,8080,8180,8000
 ACCEPT loc:$ta_vasutin dmz:192.168.2.175 tcp 3389
 ACCEPT loc:$ta_vasutin dmz:192.168.2.224 tcp 1521
 ACCEPT loc:$ta_vasutin dmz:192.168.2.36 tcp 5432
+ACCEPT loc:$ta_vasutin dmzt:192.168.19.8 tcp 7000:7999
 ACCEPT loc:$ta_vasutin gov:10.128.30.65 tcp 80,3389,1521
 ACCEPT loc:$ta_vasutin net:37.230.144.25 tcp 8443
 ACCEPT loc:$ta_vasutin gov:10.128.66.148 tcp 1521
@@ -2318,6 +2413,8 @@ ACCEPT loc:$ta_vasutin gov:10.146.139.60 tcp 22
 ACCEPT loc:$ta_vasutin net:91.215.221.45 tcp 25,465,110,995,143,993,5000,8090
 ACCEPT loc:$ta_vasutin net:91.215.221.45 udp 5000
 ACCEPT loc:$ta_vasutin net:91.242.171.5 tcp 22,80,1158,1521,8080,8180,8000
+ACCEPT loc:$ta_vasutin oop:192.168.12.12 tcp 22,1521,5151,5152
+ACCEPT loc:$ta_vasutin oop:192.168.12.19 tcp 1521
 ACCEPT loc:$VideoWall_ gov:10.128.66.37 all 
 ACCEPT loc:$VideoWall_ gov all
 ACCEPT loc:$VideoWall_ net all
@@ -2345,6 +2442,7 @@ ACCEPT loc:$viktoria_stepanova net:78.108.85.6 tcp 25
 ACCEPT loc:$viktoria_stepanova net:91.215.221.45 tcp 25,465,110,995,143,993,5000,8090
 ACCEPT loc:$viktoria_stepanova net:91.215.221.45 udp 5000
 ACCEPT loc:$viktoria_stepanova sec:192.168.4.5 all 
+ACCEPT loc:$viktoria_stepanova wmz:192.168.3.40 all 
 ACCEPT loc:$vjacheslavova gov:10.146.139.33,10.146.139.34 tcp 22,80,443,10100:10150,60022
 ACCEPT loc:$vjacheslavova gov:10.146.139.35,10.146.139.36,10.146.139.37,10.146.139.38,10.146.139.39 tcp 22
 ACCEPT loc:$vjacheslavova gov:10.146.139.39 tcp 9810
@@ -2354,6 +2452,7 @@ ACCEPT loc:$vladkorn net:109.167.128.68 tcp 1968
 ACCEPT loc:$volschukov gov:10.128.66.142 tcp 3389
 ACCEPT loc:$volschukov gov:10.128.66.83 tcp 8180
 ACCEPT loc:$volschukov gov:10.146.136.21 tcp 
+ACCEPT loc:$volschukov oop:192.168.12.10 tcp 80,445,1521,4040,3389,8080,7001
 ACCEPT loc:$vorontsov dmz:192.168.2.115 tcp 3389,12205,12347,445
 ACCEPT loc:$vorontsov gov:10.130.222.2 tcp 6666
 ACCEPT loc:$vorontsov dmz:192.168.2.170 tcp 22,80,443,8080,8180
@@ -2440,12 +2539,16 @@ ACCEPT loc:$vyatkina gov:10.128.66.148 tcp 1521
 ACCEPT loc:$vyatkina gov:10.128.66.99 tcp 22,1521
 ACCEPT loc:$vyatkina gov:10.146.136.117 tcp 1521
 ACCEPT loc:$vyatkina gov:10.146.136.27 tcp 1521
+ACCEPT loc:$vyatkina laf3:10.248.51.0/24 all
 ACCEPT loc:$vyatkina net:174.129.197.48 all 
 ACCEPT loc:$vyatkina net:193.29.19.28 tcp 1194
 ACCEPT loc:$vyatkina net:87.250.250.106,213.180.193.106,213.180.204.106,77.88.21.106 tcp 80,443
+ACCEPT loc:$vyatkina oop:192.168.12.12 tcp 22,1521,5151,5152
+ACCEPT loc:$vyatkina oop:192.168.12.19 tcp 1521
 ACCEPT loc:$yahovitskaya dmz:192.168.2.216 tcp 22,80,3306
 ACCEPT loc:$yahovitskaya dmz:192.168.2.243 tcp 22,21,80,443,3306
 ACCEPT loc:$yahovitskaya dmz:192.168.2.46 tcp 22,22
+ACCEPT loc:$yahovitskaya dmzt:192.168.19.7 tcp 22,22
 ACCEPT loc:$yahovitskaya gov:10.146.137.4 tcp 80,443
 ACCEPT loc:$yahovitskaya gov:10.146.137.5 tcp 80,443
 ACCEPT loc:$yahovitskaya gov:192.168.9.128/26 all 
@@ -2497,6 +2600,7 @@ ACCEPT loc:$y_vasilyeva iao:192.168.5.4 tcp 22,9090
 ACCEPT loc:$y_vasilyeva iao:192.168.5.5 tcp 22,9090
 ACCEPT loc:$y_vasilyeva net:91.215.221.45 tcp 25,465,110,995,143,993,5000,8090
 ACCEPT loc:$y_vasilyeva net:91.215.221.45 udp 5000
+ACCEPT loc:$y_vasilyeva wmz:192.168.3.40 all 
 ACCEPT loc:$zaharova peer all
 ACCEPT loc:$yn_zaharov gov,net,peer all 
 ACCEPT loc:$zhdanova dmz:10.10.16.0/24 tcp 22,80,1158,1521,8080,8180,8000
@@ -2523,6 +2627,7 @@ ACCEPT loc:$ms_zhukova gov:10.146.136.21 tcp 1521
 ACCEPT loc:$ms_zhukova gov:10.146.136.21 tcp 3389
 ACCEPT loc:$ms_zhukova gov:10.146.136.222 tcp 1521
 ACCEPT loc:$ms_zhukova gov:192.168.9.14 tcp 1521
+ACCEPT loc:$ms_zhukova oop:192.168.12.19 tcp 1521
 ACCEPT loc:$av_zhuravlev dmz:192.168.2.132 all 
 ACCEPT loc:$av_zhuravlev dmz:192.168.2.133 all 
 ACCEPT loc:$av_zhuravlev dmz:192.168.2.138 all 
@@ -2546,6 +2651,7 @@ ACCEPT loc:$av_zhuravlev net:213.59.255.182-213.59.255.182,46.243.177.48 all
 ACCEPT loc:$av_zhuravlev net:91.215.221.45 tcp 25,465,110,995,143,993,5000,8090
 ACCEPT loc:$av_zhuravlev net:91.215.221.45 udp 5000
 ACCEPT loc:$av_zhuravlev sec:192.168.4.5 all 
+ACCEPT loc:$av_zhuravlev wmz:192.168.3.40 all 
 ACCEPT loc:$id_zlokazov dmz:192.168.2.243 tcp 3306
 ACCEPT loc:$id_zlokazov dmz:192.168.2.245 tcp 22,80,9443,8243,8280,8080
 ACCEPT loc:$id_zlokazov gov:10.128.66.108 tcp 22,80
@@ -2556,6 +2662,7 @@ ACCEPT loc:$id_zlokazov gov:10.128.66.188 tcp 22,1521
 ACCEPT loc:$id_zlokazov gov:10.128.66.189 tcp 21,20,22,443,80,5432,8080:8082
 ACCEPT loc:$id_zlokazov gov:10.146.136.204 tcp 22,5432,8080,8280,9443
 ACCEPT loc:$id_zlokazov gov:10.20.31.210 tcp 80
+ACCEPT loc:$id_zlokazov oop:192.168.12.19 tcp 1521
 ACCEPT loc:$zubkova peer:192.168.6.217 tcp 445,1433,1540:1591
 ACCEPT loc:$zubkova peer:192.168.6.2 tcp 445,1433,1540:1591
 ACCEPT loc:$zudinov gov:10.128.66.142 tcp 3389
@@ -2582,6 +2689,7 @@ ACCEPT loc:$ra_ivanov,$a_lapin gov:10.146.140.225 tcp 80
 ACCEPT loc:$a_lapin gov:10.146.140.226 tcp 22
 ACCEPT loc:$bulanenko net:46.243.177.181 all
 ACCEPT loc gov:10.146.138.222 all
+ACCEPT dmzt:192.168.19.5 gov:10.146.136.175 tcp 7007
 ACCEPT loc:$ia_bobkov dmz:192.168.2.245 tcp 8281
 ACCEPT dmiac:$pc_105kab gov:10.146.136.55,10.146.139.67 all
 ACCEPT dmiac loc all
@@ -2814,6 +2922,7 @@ ACCEPT loc:$a_lukyanovich gov:10.146.139.79 tcp 22
 ### Ticket 12921 ###
 ACCEPT loc:$gv_talvinskiy,$mn_soldatov gov:10.146.136.98 tcp 3690
 ### Ticket 12925 ###
+ACCEPT loc:$av_nikitenkova wmz:217.195.78.217 tcp 8080
 ### Ticket 12928 ###
 ACCEPT loc:$kv_smotrov tvr:192.168.70.98-192.168.70.108,192.168.70.18 all
 ### Ticket 12938 ###
@@ -2996,6 +3105,7 @@ ACCEPT loc:$korchagin gov:10.146.139.171 tcp 1521
 ### Ticket 13637 ###
 ACCEPT loc:$va_krauze tvr:192.168.70.106 tcp 80,8080
 ### Ticket 13641 ###
+ACCEPT loc:$arefkina,$linkova tvr:192.168.152.5 tcp 80,443 
 ### Ticket 13647 ###
 ACCEPT loc:$a_lukyanovich gov:10.146.141.212 tcp 3306
 ### Ticket 13650 ###
@@ -3023,8 +3133,12 @@ ACCEPT loc:$vakarchuk gov:10.146.137.82 tcp 3389
 ACCEPT loc:$korchagin gov:10.128.66.55 tcp 22,8080
 ### Ticket 13723 ###
 ACCEPT loc:$av_shasherin tvr:192.168.70.27 tcp 22,80,8080,443,10180
+ACCEPT loc:$chursinov wmz:192.168.2.223 tcp 8080
+ACCEPT loc:$ag_masnik wmz:192.168.2.223 tcp 8080
 ACCEPT loc:$av_rizhik tvr:192.168.70.27 tcp 22,80,8080,443,10180
+ACCEPT loc:$sa_alekseev wmz:192.168.2.223 tcp 8080
 ACCEPT loc:$sitnikov tvr:192.168.70.27 tcp 22,80,8080,443,10180
+### TEMP 105 AUDITOR ###
 ACCEPT dmiac:~4C-ED-FB-12-08-1C,~2C-56-DC-2B-15-45,~2C-D0-5A-D1-8B-6E,~70-8B-CD-43-B9-B4,~4C-ED-FB-13-E6-7E peer:192.168.6.217,192.168.6.225 all
 ### Ticket 12880 ###
 ACCEPT loc:$av_gileva,$vorontsov gov:10.146.142.5,10.146.142.6,10.146.142.28-10.146.142.31,10.146.142.172-10.146.142.180 tcp 22,5432
@@ -3216,6 +3330,7 @@ ACCEPT loc:$k_petrov gov:10.146.138.138 tcp 22
 ### Ticket 14688 ###
 ACCEPT loc:$kv_smotrov gov:10.130.222.2 tcp 6666
 ### Ticket 14692 ###
+ACCEPT loc:$arefkina tvr:192.168.152.11 tcp 80,443
 ### Ticket 14693 ###
 ACCEPT loc:$kv_smotrov gov:10.146.138.86,10.146.138.220,10.146.138.87,10.146.139.106 tcp 22,80,443,4444
 ACCEPT loc:$kv_smotrov gov:10.146.139.240,10.146.138.87 tcp 22,80,9200,9300
@@ -3412,6 +3527,7 @@ ACCEPT loc:$ev_krupniy,$vorontsov gov:10.146.142.32 tcp 5601
 ACCEPT loc:$ev_krupniy,$vorontsov gov:10.146.142.35-10.146.142.37 tcp 22,80,8080:8090
 ### Kondratyev Astra VC ###
 ACCEPT loc:$n_kondratyev iao:192.168.5.110,192.168.5.120-192.168.5.123,192.168.5.125,192.168.5.126 all
+ACCEPT loc:$n_kondratyev vdi:192.168.24.147 all
 ### Ticket 15565 ###
 ACCEPT loc:$ed_bosikova gov:10.146.142.35-10.146.142.37 tcp 80
 ### Ticket 15579 ###
@@ -5859,6 +5975,7 @@ ACCEPT loc:$mv_enicheva gov:10.241.0.236 tcp 8081
 ##32289 ##32297
 ACCEPT loc:$aa_altuhov gov:10.146.136.135,10.146.140.182-10.146.140.207,10.146.142.143,10.146.143.171,10.146.143.188,10.146.143.198-10.146.143.200,10.146.143.215,10.241.0.152 tcp 22,80,5432
 ##32292 ##34635
+ACCEPT loc:$nk_tregubova gov:10.241.2.23,10.128.72.250 all
 ##32300
 ACCEPT loc:$kolokolov_pokaz gov:10.128.72.250 tcp 3389
 ##32293
@@ -5898,6 +6015,8 @@ ACCEPT loc:$lv_appakova,$ev_metelkova,$mv_lazurenko,$em_titova,$do_selyakina gov
 ##32603
 ACCEPT loc:$kolokolov_pokaz gov:10.128.72.254 tcp,udp 6432
 ##32626 ##32762 ##33008
+ACCEPT loc:$nk_tregubova gov:10.160.121.10,10.149.235.5 all
+ACCEPT loc:$nk_tregubova gov:10.128.132.248 tcp 3389
 ##32627
 ACCEPT loc:$nv_pavlov gov:10.146.138.6 tcp 22,8123,9000
 ##32613
@@ -6002,6 +6121,7 @@ ACCEPT loc:$gis_arhivy_rnbalakerev gov:10.128.28.253 tcp 22,25,110,143,465,993,9
 ##33252
 ACCEPT loc:$da_timonin gov:10.146.137.12 tcp 80,443
 ##33261
+ACCEPT loc:$nk_tregubova gov:10.241.4.149-10.241.4.155 tcp 3389
 ##33263
 ACCEPT loc:$av_stasevich gov:10.241.3.63 tcp 8123
 ACCEPT loc:$av_stasevich gov:10.241.4.111 tcp 5432
@@ -6070,6 +6190,7 @@ ACCEPT loc:$av_stasevich gov:10.241.1.138 all
 ##33754
 ACCEPT loc:$av_gileva vnet:10.10.138.132,10.10.138.12-10.10.138.30 all
 ##33772
+ACCEPT loc:$nk_tregubova gov:10.130.51.254 all
 ##33712
 ACCEPT loc:$gv_talvinskiy,$mn_soldatov gov:10.241.4.230 all
 ##33785
