@@ -1,1 +1,1751 @@
-# /etc/shorewall/rules ## Rules in this file govern connection establishment. Requests and# responses are automatically allowed using connection tracking.## In most places where an IP address or subnet is allowed, you# can preceed the address/subnet with "!" (e.g., !192.168.1.0/24) to# indicate that the rule matches all addresses except the address/subnet# given. Notice that no white space is permitted between "!" and the# address/subnet.## If any of the following columns contain the word "none" then the rule# is ignored:## PORT(S), CLIENT PORT(S), CLIENT(S) and SERVER.## Columns are:#### icmp-unreachable packet.## May optionally be followed by ":" and a syslog log# logged at the specified level.## CLIENT(S) Hosts permitted to be clients. May be a zone defined# in /etc/shorewall/zones or $FW to indicate the# firewall itself.## Clients may be further restricted to a list of subnets# and/or hosts by appending ":" and a comma-separated# list of subnets and/or hosts. Hosts may be specified # by IP or MAC address; mac addresses must begin with# "~" and must use "-" as a separator.## dmz:192.168.2.2 Host 192.168.2.2 in the DMZ## net:155.186.235.0/24 Subnet 155.186.235.0/24 on the# Internet## loc:192.168.1.1,192.168.1.2# Hosts 192.168.1.1 and# 192.168.1.2 in the local zone.# loc:~00-A0-C9-15-39-78 Host in the local zone with # MAC address 00:A0:C9:15:39:78.## Alternatively, clients may be specified by interface# by appending ":" followed by the interface name. For# example, loc:eth1 specifies a client that# communicates with the firewall system through eth1.## SERVER Location of Server. May be a zone defined in# /etc/shorewall/zones or $FW to indicate the firewall# itself.## The server may be further restricted to a particular# subnet, host or interface by appending ":" and the# subnet, host or interface. See above.## The port that the server is listening on may be# included and separated from the server's IP address by# ":". If omitted, the firewall will not modifiy the# destination port.## Example: loc:192.168.1.3:8080 specifies a local# server at IP address 192.168.1.3 and listening on port# 8080. The port number MUST be specified as an integer# and not as a name from /etc/services.## PROTO Protocol - Must be "tcp", "udp", "icmp", a number,# "all" or "related". If "related", the remainder of the# entry must be omitted and connection requests that are# related to existing requests will be accepted.## PORT(S) Destination Ports. A comma-separated list of Port# names (from /etc/services), port numbers or port# ranges; if the protocol is "icmp", this column is# interpreted as the destination icmp-type(s).## This column is ignored if PROTOCOL = all but must be# entered if any of the following ields are supplied.# In that case, it is suggested that this field contain# "-"## CLIENT PORT(S) (Optional) Port(s) used by the client. If omitted,# any source port is acceptable. Specified as a comma-# separated list of port names, port numbers or port# ranges.## If you don't want to restrict client ports but need to# in this column.## address given in the SERVER column, this is an address# on some interface on the firewall and connections to# that address will be forwarded to the IP and port# specified in the SERVER column.## If the special value "all" is used, then requests from# the client zone given in the CLIENT(s) column with the# destination port given in PORT(s) will be forwarded to# the IP address given in SERVER. The value "all" is# intended to be used when your internet IP address is# dynamic and you want to do port forwarding or you want# to do proxy redirection. IT SHOULD NOT BE USED IN ANY# OTHER SITUATION.## The address (or "all") may optionally be followed by# a colon (":") an an IP address. This causes Shorewall# to use the specified IP address as the source address# in forwarded packets. See the Shorewall documentation# for restrictions concerning this feature. If no source# IP address is given, the original source address is not# altered.## Example: Forward all ssh and http connection requests from the internet# to local system 192.168.1.3### Example: Redirect all locally-originating www connection requests to# port 8080 on the firewall (Squid running on the firewall# system)except when the destination address is 192.168.2.2################################################################################-------------------------------------------------------------------------------Ping/ACCEPT	all	all	-	-	-	-	-ACCEPT	all	dmz:192.168.2.4	tcp,udp	123,53	-	-	-ACCEPT	all	ad:192.168.10.19,192.168.10.23,192.168.10.30	tcp,udp	123,5314:20	-	-	-ACCEPT	pvpn	ad:192.168.10.10	icmp	-	-	-	-ACCEPT	dmz	pvpn	all	-	-	-	-##########DROP	all	net:$block_dst_web	tcp	80,443	-	-	-DROP	net:69.6.0.0/16,103.104.0.0/16,110.0.0.0/8,79.132.0.0/16,45.16.0.0/16,173.212.0.0/16,196.0.0.0/8,118.64.0.0/10,141.98.10.0/24,45.9.0.0/16,13.235.0.0/16	all	tcp	25,110,143,465,587,993,995,53,22,3389	-	-	-DROP	all	net:5.9.159.14	tcp	9001	-	-	-DROP	all	net:204.11.50.131	tcp	9001	-	-	-DROP	all	net:85.248.227.164	tcp	9002	-	-	-DROP	all	net:217.79.190.25	tcp	9090	-	-	-DROP	all	net:128.31.0.39	tcp	9101	-	-	-DROP	all	net:$block_dst	all	-	-	-	-DROP	net:$block_src	all	all	-	-	-	-DROP	net:92.27.39.134	dmz:$MUKSUN	tcp	pop3,imap	-	-	-DROP	net:92.27.39.134	dmz:$ODELLE	tcp	pop3,imap	-	-	-ACCEPT	loc:$router_tr6	net	all	-	-	-	-REJECT	loc:$router_tr6	any	-	-	-	-	-### TEMP tung2 ###ACCEPT	test:192.168.14.244	net	all	-	-	-	-ACCEPT	test:192.168.14.244	dmz:192.168.2.4	tcp	smtp,ssmtp,pop3,pop3s,imap,imaps,www,https,587	-	-	-ACCEPT	test:192.168.14.244	tvr:192.168.152.11	all	-	-	-	-REJECT	test:192.168.14.244	any		-	-	-	-ACCEPT	test:192.168.14.244	loc:192.168.41.100	all	-	-	-	-ACCEPT	peer:192.168.6.225	test:192.168.14.244	all	-	-	-	-ACCEPT	tvr:192.168.152.11	test:192.168.14.244	tcp	80	-	-	-ACCEPT	test:192.168.14.244	peer:192.168.6.255	all	-	-	-	-ACCEPT	test:192.168.14.244	pvpn:192.168.29.126	all	-	-	-	-ACCEPT	pvpn:192.168.29.126	test:192.168.14.244	tcp	3389	-	-	-### TEMP RUFF2 ###ACCEPT	test:192.168.14.245	net	all	-	-	-	-ACCEPT	test:192.168.14.245	loc:192.168.41.100	all	-	-	-	-ACCEPT	loc:192.168.41.100,192.168.41.41	test:192.168.14.245	all	-	-	-	-REJECT	test:192.168.14.245	any	-	-	-	-	-REJECT	ad	test:192.168.14.245	all	-	-	-	-REJECT	dmz	test:192.168.14.245	all	-	-	-	-REJECT	loc	test:192.168.14.245	all	-	-	-	-REJECT	loc:~EE-EE-EE-EE-EE-01	all	-	-	-	-	-ACCEPT		net	tcp	80,443	-	-	-ACCEPT	dmz:192.168.154.161	loc	all	-	-	-	-REJECT	dmz:192.168.154.0/24	any	-	-	-	-	-ACCEPT	loc	gov:10.144.2.39,10.144.2.43	tcp	8080	-	-	-ACCEPT	loc	gov:10.146.138.128	tcp	80	-	-	-ACCEPT	loc	gov:10.146.136.50	tcp	9090	-	-	-ACCEPT	loc	gov:10.146.136.161	tcp	8200	-	-	-ACCEPT	loc	gov:10.146.137.245,10.146.137.247	tcp	80,443	-	-	-ACCEPT	loc	gov:10.146.138.201,10.146.138.202	all	-	-	-	-ACCEPT	loc:192.168.40.91	test:192.168.14.88	all	-	-	-	-ACCEPT	test:192.168.14.88	dmz:192.168.2.118	tcp	22	-	-	-ACCEPT	test:192.168.14.88	gov:10.149.218.109	tcp	8443	-	-	-### illegal router###DROP	loc:~00-1C-F0-D4-F2-DA	any	all	-	-	-	-ACCEPT	loc	iao:192.168.5.240	tcp	80,443	-	-	-##KK notebookACCEPT	loc:~F8-A9-63-DB-24-84	all	-	-	-	-	-###ACCEPT	loc	nr	tcp	80,443	-	-	-######IPERF UDP 24567ACCEPT	all	$FW	udp	24567	-	-	-######Grechushkin TVACCEPT	loc:192.168.41.22,192.168.41.26,192.168.41.95	net	all	-	-	-	-ACCEPT	loc:192.168.41.26	dmz	-	-	-	-	-ACCEPT	loc:192.168.41.26	gov	-	-	-	-	-###Phone 114ACCEPT	loc:192.168.41.5	net	-	-	-	-	-#####TEST SMEV-TMPACCEPT	loc	gov:10.146.136.55	tcp	-	-	-	-#CUD SMEVACCEPT	gov	sec:192.168.4.5	tcp	80	-	-	-####GU-TEMPACCEPT	loc	net:176.97.34.43	tcp	80,443	-	-	-###GARANTSP PRODACCEPT	loc	gov:10.146.138.222	tcp	5051	-	-	-ACCEPT		edu	all	-	-	-	-ACCEPT		loc:192.168.40.72	all	-	-	-	-ACCEPT	edu	ad:$GHOST	all	-	-	-	-ACCEPT	ad:$GHOST	edu	all	-	-	-	-ACCEPT	loc:$router_32_dev	net	all	-	-	-	-DROP	loc:$router_32_dev	all	-	-	-	-	-DROP	loc:$RouterTr6_	net:$VK	all	-	-	-	-ACCEPT	loc:$RouterTr6_	net	all	-	-	-	-REJECT	loc:$RouterTr6_	dmz,loc,gov,edu,vpn,iao,sec,test,phone,ad,oemts	all	-	-	-	-ACCEPT	loc	gov:10.146.136.49-10.146.136.50	tcp	80,443,8080,9200	-	-	-### Helpdesk ####ACCEPT	loc,nr,pvpn,peer,dmiac	dmz:$HELPDESK	tcp	80,443###	vpn	stuff	###ACCEPT	pvpn:192.168.36.0/23	loc,nr	all	-	-	-	-ACCEPT	pvpn:192.168.26.0/23	loc,nr	all	-	-	-	-ACCEPT	pvpn	dmz:192.168.2.86	tcp	80,443	-	-	-### Bank Rossiya ###ACCEPT	pvpn:192.168.26.0/23,192.168.36.0/23	net:193.232.104.86,82.138.40.68,193.232.104.75	all	-	-	-	-### 16683 ###ACCEPT	pvpn	net:217.195.78.192/26	tcp	80,443	-	-	-### VKS IOGV ###ACCEPT	pvpn:192.168.26.0/23,192.168.36.0/23	gov:10.128.2.102	tcp	80,443	-	-	-ACCEPT	loc	gov:10.128.2.102	tcp	80,443	-	-	-ACCEPT	pvpn:192.168.26.0/23,192.168.36.0/23	gov:10.128.2.98-10.128.2.101	all	-	-	-	-ACCEPT	loc	gov:10.128.2.98-10.128.2.101	-	-	-	-	-#auditACCEPT	loc:~90-2B-34-9B-79-E8	peer	all	-	-	-	-ACCEPT	loc:~00-50-56-B6-7C-84	net	all	-	-	-	-#opros.iac.spb.ruACCEPT	gov	dmz:192.168.2.74	tcp	80,443,8080	-	-	-ACCEPT	pvpn	dmz:192.168.2.74	tcp	80,443,8080	-	-	-########################## Administrators ########################### Work places in IACACCEPT	ad	loc	udp	-	-	-	-ACCEPT	sec:192.168.4.3,192.168.4.51,$SEC_PROXMOX	iao,ad	all	-	-	-	-ACCEPT	ad	sec:192.168.4.3,192.168.4.51,$SEC_PROXMOX	all	-	-	-	-DNAT	loc,pvpn	dmz:192.168.2.4	tcp	smtp,ssmtp,pop3,pop3s,imap,imaps,www,https,587	-	217.195.78.199	-DNAT	vpn,net,peer,sec,gov,iao,test,edu,ad,dmiac,phone	dmz:192.168.2.4	tcp	smtp,ssmtp,pop3,pop3s,imap,imaps,www,https	-	217.195.78.199	-#Moodle-testDNAT	net	dmz:192.168.2.10	tcp	www,https	-	195.144.238.220	-####### Phone zone ########ACCEPT	loc	phone:192.168.20.10	tcp	80	-	-	-ACCEPT	pvpn:~58-BF-EA-11-68-E6	phone	all	-	-	-	-#### Temp rule for necro ####ACCEPT	test:192.168.14.23	net	all	-	-	-	-#### access to update.maxpatrol.com ###ACCEPT	sec:$MAXPATROL_	net:194.87.255.12	tcp	2002,https	-	-	-ACCEPT	gov	sec:192.168.4.16	tcp	2002	-	-	-ACCEPT	sec:192.168.4.16,192.168.4.90	iao:$USB_HUB	all	-	-	-	-ACCEPT	dmz:$HAKE	iao:$USB_HUB	all	-	-	-	-ACCEPT	loc	dmz:$HAKE	tcp	6473	-	-	-ACCEPT	sec:192.168.4.16	net:213.247.168.194	tcp	https,2002	-	-	-ACCEPT	sec:192.168.4.16	net:217.28.246.15	tcp	2002	-	-	-### Maxpatrol Reserve ###ACCEPT	sec:192.168.4.16	net:192.70.197.143,192.70.197.145	tcp	2002	-	-	-#######ACCEPT	gov	sec:192.168.4.40	tcp	80,ftp-data,ftp,ssh	-	-	-###192.168.2.90###ACCEPT	dmz:$LATES	iao:$USB_HUB	all	-	-	-	-ACCEPT	dmz:$LATES	sec:192.168.4.16	tcp	2002	-	-	-ACCEPT	dmz:$LATES	gov:10.248.51.2-10.248.51.254	all	-	-	-	-ACCEPT	dmz:$LATES	gov:10.146.138.178	tcp	3333	-	-	-ACCEPT	dmz:$LATES	gov:10.146.136.73	tcp	443	-	-	-### Papin resilio ACCEPT	iao:192.168.5.54	gov	all	-	-	-	-REJECT	iao:192.168.5.54	net	all	-	-	-	-ACCEPT	gov	iao:192.168.5.54	all	-	-	-	-#### Temp for Belyankin and NetrikaACCEPT	edu	net	tcp	http,https,9999	-	-	-# Remote administration from X11 forwardingACCEPT	loc	vpn	tcp	x11	-	-	-ACCEPT	loc	vpn	udp	x11	-	-	-########################## Departmens ###############################ACCEPT	peer:$Doronina_	gov:10.128.0.11	tcp	3128	-	-	-########################## Buhgalteria ############################## SED KISACCEPT	peer:192.168.6.225	dmz:192.168.2.4	tcp	465,995		-	-############### From EMTS access to local services ##################ACCEPT	gov	dmz:$NS	tcp,udp	domain	-	-	-ACCEPT	gov	dmz:$MAILER	tcp	smtp	-	-	-### edu zone to bk.ru ###ACCEPT	edu	net:94.100.177.2	tcp	smtp,2525	-	-	-ACCEPT	edu	net:94.100.180.86	tcp	pop3	-	-	-############## From different local's to EMTS resources ############ACCEPT	loc,dmz,test,sec,iao,pvpn	gov:10.128.66.160	tcp	80,443	-	-	-# Antispam from our to global net (reject access to smtp port), exclude our mail server#==================================================================================================================ACCEPT	loc,tvr,dmiac	dmz:$MAILER	tcp	smtp,ssmtp,pop3,pop3s,imap,imaps,www,https,587	-	-	-ACCEPT	loc	dmz:$MUKSUN	tcp	smtp,ssmtp,pop3,pop3s,imap,imaps,www,https	-	$MUKSUN_NET	-ACCEPT	dmiac	dmz:$MUKSUN	tcp	smtp,ssmtp,pop3,pop3s,imap,imaps,www,https,587	-	$MUKSUN_NET	-### Ticket 12891 ###ACCEPT	test:192.168.14.153	net:46.243.177.13	tcp	25	-	-	-ACCEPT	edu,dmz,sec,iao,peer,vpn,pvpn,test,phone,ad	dmz:$MAILER	tcp	smtp,ssmtp,pop3,pop3s,imap,imaps,www,https,587	-	-	-ACCEPT	edu,dmz,sec,iao,peer,vpn,pvpn,test,phone,ad	dmz:$ODELLE	tcp	smtp,ssmtp,pop3,pop3s,imap,imaps,www,https	-	$ODELLE_NET	-ACCEPT	loc,net	dmz:$ODELLE	tcp	smtp,ssmtp,pop3,pop3s,imap,imaps,www,https,587	-	$ODELLE_NET	-ACCEPT	dmz:$MAILER_	net	tcp	smtp	-	-	-ACCEPT	dmz:$MAILSPBARCHIVES_	net	tcp	smtp	-	-	-REJECT	edu,dmz,sec,peer,vpn,pvpn,test,phone,ad	net	tcp	smtp	-	-	-ACCEPT	net	dmz:$MUKSUN	tcp	smtp,ssmtp,pop3,pop3s,imap,imaps,www,https	-	$MUKSUN_NET	-# Mail boxes from our users on Smolniy Post ServerACCEPT	loc	gov:10.128.0.10	tcp	smtp,pop3	-	-	-#==================================================================================================================ACCEPT	loc,edu,dmz,sec,iao,peer,vpn,test,phone,ad	dmz:$NS	tcp,udp	domain	-	-	-ACCEPT	dmz:$NS_	net	tcp	domain	-	-	-ACCEPT	dmz:$NS_	net	udp	domain	-	-	-ACCEPT	net,loc,dmz	dmz:$ODELLE	tcp,udp	domain	-	$ODELLE_NET	-ACCEPT	net,loc,dmz	dmz:192.168.2.100	tcp,udp	domain	-	$MUKSUN_NET	-ACCEPT	gov	dmz:$ODELLE	tcp,udp	53	-	$ODELLE_NET	-# LDAP ServersACCEPT	loc,peer,vpn,test,ad	dmz:$LDAP	tcp	ldap	-	-	-ACCEPT	ad:192.168.10.15	loc	all	-	-	-	-ACCEPT	loc	ad:192.168.10.15	all	-	-	-	-# KRB###AD###ACCEPT	dmz,loc,vpn,test,peer,gov	ad:$AD_SRV	all	-	-	-	-ACCEPT	sec	ad:192.168.10.19,192.168.10.23	all	-	-	-	-ACCEPT	ad:192.168.10.3,192.168.10.23,192.168.10.19,192.168.10.6,192.168.10.7	loc,gov	all	-	-	-	-###AD####SCUDACCEPT	ad:192.168.10.52	loc:192.168.41.32	all	-	-	-	-# NTP serversACCEPT	all	dmz:$NTP	udp	ntp	-	-	-# Antivirus serversACCEPT	sec:$WARTHOG	gov:10.128.67.2	tcp	ftp,ftp-data,41000:41010	-	-	-#Solncev goverment antivirusACCEPT	gov	sec:192.168.4.12	tcp	20,21,6000,6001	-	-	-ACCEPT	sec:192.168.4.14	net:87.242.75.215	tcp	80,443	-	-	-# WSUS server wsus.adc.vpnACCEPT	loc,peer,ad,test,sec,dmz	gov:10.128.66.99	tcp	8530	-	-	-# ====== почиститьACCEPT	ad:$WSUS_	net	allACCEPT	loc,sec,peer	ad:192.168.10.20	all	-ACCEPT	ad,loc,test,sec,peer,nr,dmz	gov:10.128.0.20,10.128.0.24,10.128.0.25	all	-	-	-	-### UC EMTS #ACCEPT	loc,test,sec,peer,dmz	gov:10.128.31.65	tcp	http	-	-	-# Corporate chat (TEMPORARY)ACCEPT	peer	ad:$PIKE	tcp	9750	-	-	-# Monitoring servers# System administrators monitoring system (nagios)ACCEPT	dmz:$LAN_MONITOR_	net	tcp	http	-	-	-ACCEPT	dmz:$LAN_MONITOR_	gov	udp,tcp	snmp	-	-	-ACCEPT	dmz:192.168.2.48	loc	tcp,udp	snmp	-	-	-##### ovirug.adc.spb ########ACCEPT	loc	gov:$DB_OVIRUG_ADC	tcp	http,https	-	-	-ACCEPT	test:$GRIFFON	gov:10.128.66.99	tcp	ssh,oracle	-	-	-ACCEPT	test:$GRIFFON	gov:10.128.66.101	tcp	1521	-	-	-ACCEPT	gov:10.128.66.2-10.128.66.254	test:$GRIFFON	tcp	1521	-	-	-ACCEPT	gov:10.146.136.0/21	test:$GRIFFON	tcp	1521	-	-	-##### iac to cod sr.adc.spb ########ACCEPT	loc	gov:10.128.66.103,10.128.66.104	tcp	22,80	-	-	-##### iac to cod odb.acs-ucs ########ACCEPT	loc	gov:$COD_ODB_ACS_UCS	tcp	1433,7007	-	-	-ACCEPT	dmz:$DUNKEN_,$ECHIDNA_	gov:$COD_ODB_ACS_UCS	tcp	1433,msrdp	-	-	-##### IAC to COD TORIS TEST ######ACCEPT	edu:$YakovkinEDU_	gov:10.128.66.109	tcp	msrdp	-	-	-##### IAC to MFC TEST ########ACCEPT	loc	gov:10.146.138.113,10.146.137.31,10.146.137.30	tcp	80	-	-	-# DmitrievACCEPT	loc	dmz:$WATERBUCK	tcp	http,https,ssh,1521,1158,8000	-	-	-# Aleksandrov monitoringACCEPT	gov	sec:$SZI_MONITOR	tcp	80	-	-	-ACCEPT	sec:$SZI_MONITOR	net	tcp	5222	-	-	-# Data storagesACCEPT	sec	dmz	tcp,udp	nfs	-	-	-ACCEPT	sec	dmz	tcp,udp	sunrpc	-	-	-ACCEPT	sec	dmz	tcp,udp	32764:32769	-	-	-ACCEPT	sec:$SEC_PM	dmz:192.168.2.250	all	-	-	-	-ACCEPT	sec:192.168.4.10	net:83.69.4.14	tcp	9022	-	-	-ACCEPT	sec:192.168.4.10	net:83.69.4.14	udp	500,4500	-	-	-ACCEPT	sec:192.168.4.10	net:83.69.4.14	50	-	-	-	-#### Zastava #####ACCEPT	sec:217.195.78.231	net	50	-	-	-	-ACCEPT	sec:217.195.78.231	net	51	-	-	-	-ACCEPT	sec:217.195.78.231	net	tcp	9022	-	-	-ACCEPT	sec:217.195.78.231	net	udp	500,4500	-	-	-ACCEPT	net:83.69.4.14,80.245.116.102,31.28.8.93	sec:217.195.78.231	50	-	-	-	-ACCEPT	net	sec:217.195.78.231	50	-	-	-	-ACCEPT	net	sec:217.195.78.231	udp	500,4500,5001	-	-	-ACCEPT	net	sec:217.195.78.231	tcp	5001	-	-	-################## Other Administration ############################################# PROGECTS ################################################# AIS Medspravka ####################### Access from external usersACCEPT	gov	dmz:$SNAKE	tcp	http,tomcat,https,10180	-	-	-# Access to MIACACCEPT	dmz:$SNAKE_	gov:10.144.4.250	tcp	ms-sql-s	-	-	-ACCEPT	dmz:$SNAKE_	gov:10.144.4.253	tcp	tomcat	-	-	-# Access to MFCACCEPT	test:$WOMBAT	net	tcp	443	-	-	-ACCEPT	test:$WOMBAT	dmz:192.168.2.138	tcp	10180	-	-	-ACCEPT	test:$WOMBAT	dmz:$SPARROW	tcp	8280	-	-	-ACCEPT	test:192.168.14.220	gov:10.146.136.44,10.20.31.198	tcp	80	-	-	-#2850 kudu -> technology of processing (port 80)ACCEPT	dmz:$KUDU	gov:10.146.65.2	tcp	http	-	-	-##################### PORTAL IAC.SPB.RU #####################ACCEPT	loc	dmz:$NGINX	tcp	http	-	-	-ACCEPT	dmz:$RHINOCEROS	net	tcp	http	-	-	-####################### PORTAL (IOGV) Currently moved to 23 dept.(Belkina) ######################## I.Bezginov support & develope GAS "Intellekt" on server TIGERNEWACCEPT	gov:10.128.66.99	dmz:$FROGVM	tcp	1521	-	-	-ACCEPT	gov:10.128.66.101	dmz:$FROGVM	tcp	1521	-	-	-ACCEPT	gov:10.128.66.102	dmz:$FROGVM	tcp	1521	-	-	-ACCEPT	test:$GRASSHOPPER	dmz:$FROGVM	tcp	oracle	-	-	-ACCEPT	test:$GRASSHOPPER	dmz:192.168.2.138	tcp	10180	-	-	-ACCEPT	test:$GRASSHOPPER,192.168.14.27	dmz:$HYENA	tcp	1521	-	-	-########################## E-MOST ###########################ACCEPT	gov	dmz:$UEK	tcp	tomcat	-	-	-#### CUD TORIS ############ACCEPT	dmiac:$ANALITIC_105_	dmz:$CUDVM	tcp	http,https	-	-	-ACCEPT	dmiac:$ANALITIC_105_	gov:10.146.136.44		-	-	-	-ACCEPT	dmiac:$ANALITIC_105_	gov:10.146.136.148	tcp	80,443,8080,8081	-	-	-ACCEPT	dmiac:$ANALITIC_105_	dmz:192.168.2.95	tcp	80,443	-	-	-ACCEPT	test:$EEL_	dmz:$CUDVM	tcp	80,443	-	-	-ACCEPT	loc	dmz:$CUDVM	tcp	80,443	-	-	-ACCEPT	gov	dmz:$CUDVM	tcp	80,443,oracle	-	-	-##################### AIS TO #############################ACCEPT	dmiac:$ANALITIC_105_	dmz:192.168.2.108	tcp	msrdp	-	-	-ACCEPT	loc	dmz:$TAPIR	tcp	oracle,1158	-	-	-ACCEPT	loc	dmz:$ASPIS	tcp	5019,22	-	-	-# Project antinarACCEPT	loc	gov:$XZEBRA,$XZEBRA_EMTS	tcp	http	-	-	-ACCEPT	test:$ANT	dmz:$TAPIR	tcp	oracle	-	-	-ACCEPT	test:$ANT	dmz:192.168.2.219	tcp	1521	-	-	-ACCEPT	gov:$COD_DB_REG_GIS_TEST	dmz:$TAPIR	tcp	oracle	-	-	-# For project omsu-anapolitic-mpsr databaseACCEPT	gov:$XZEBRA	dmz:$RAVEN	tcp	8011,8012	-	-	-# For project omsu-anapolitic projectACCEPT	iao:192.168.5.102	dmz:192.168.2.69	tcp	8200:8210,9200:9210,22,80,443,21,20	-	-	-### ticket2574ACCEPT	test:192.168.14.107	gov:10.128.28.41	tcp	80,443	-	-	-ACCEPT	test:192.168.14.107	gov:10.128.28.57	tcp	80,443,4040	-	-	-ACCEPT	test:192.168.14.107	gov:10.128.28.58	tcp	1521	-	-	-ACCEPT	test:192.168.14.107	gov:10.128.28.81	tcp	8180,8280,8380,8480,8580	-	-	-ACCEPT	test:192.168.14.107	gov:10.128.28.82	tcp	80,8180,8280	-	-	-ACCEPT	test:192.168.14.107	gov:10.128.28.15	tcp	7001	-	-	-########################### EAS ############################## KOBR SchoolfoodACCEPT	test:$SCHOOLFOOD_TEST_	gov:10.128.72.254	tcp	8080	-	-	-#!!!!!!!!!!!ACCEPT	test:$SCHOOLFOOD_TEST_	net	tcp	80,443	-	-	-######################### AIS OOPP ########################## KIS server activate Microsoft productsACCEPT		gov:10.128.0.20	all	-	-	-	-# NTP ServerACCEPT		gov:10.128.0.2	udp	ntp	-	-	-# DNS ServersACCEPT		gov:10.128.0.9	udp,tcp	domain	-	-	-########################### DATA POWER ####################### Administrators DPACCEPT	sec:$SEC_AP_	dmz:$DP1_E0,$DP2_E0,192.168.2.138	all	-	-	-	-ACCEPT	sec:$SEC_AP_	iao:$DP1_M,$DP2_M	all	-	-	-	-ACCEPT	iao:$DP1_M_,$DP2_M_	sec:$SEC_AP	tcp	http	-	-	-ACCEPT	dmz:$DP1_E0_,$DP2_E0_,192.168.2.138	sec:$SEC_AP	tcp	http	-	-	-# Misc rules for projects with DPACCEPT	gov	dmz:$DP1_E0,$DP2_E0,192.168.2.138	tcp	6060,7070,10080,10180,10220,10240,10210	-	-	-ACCEPT	iao:$DP1_M_,$DP2_M_	gov:10.128.4.64	tcp	8080,8180	-	-	-ACCEPT	dmz:$DP1_E0_,$DP2_E0_,192.168.2.138	gov:10.128.4.64	tcp	8080,8180	-	-	-ACCEPT	iao:$DP1_M_,$DP2_M_	gov:10.128.4.65	all	-	-	-	-ACCEPT	dmz:$DP1_E0_,$DP2_E0_,192.168.2.138	gov:10.128.4.65	all	-	-	-	-ACCEPT	iao:$DP1_M_,$DP2_M_	gov:10.128.56.36	tcp	8080	-	-	-ACCEPT	dmz:$DP1_E0_,$DP2_E0_,192.168.2.138	gov:10.128.56.36	tcp	8080	-	-	-ACCEPT	dmz:$DP1_E0_,$DP2_E0_,192.168.2.138	gov:10.128.176.10	tcp	8001	-	-	-ACCEPT	test:$FLS_EDO_DEVELOPMENT	dmz:192.168.2.138	tcp	10180	-	-	-### ESIA service ###ACCEPT	test:$FLS_EDO_DEVELOPMENT	net:46.61.231.6	tcp	7777	-	-	-###################### EDUCATION (K. Orlova) #####################ACCEPT	gov	dmz:$SPARROW	tcp	22,80,5432,6556,9443,8243,8280,8080	-	-	-#temp rules do 15.11.13ACCEPT	sec:$VIPNET_AP_	net	tcp	5222	-	-	-ACCEPT	sec:$VIPNET_AP	gov:10.128.114.154,10.128.114.153,10.149.160.190	tcp	22	-	-	-ACCEPT	sec:$SEC_AP_	net:87.226.159.124,77.222.40.117,109.207.14.3,194.50.152.26,83.222.213.248	tcp	http	-	-	-ACCEPT	sec:$SEC_AP_	gov:10.20.1.8	tcp	http	-	-	-# Access from Support group# demo centr################## ELECTRONNIY KURIER #######################ACCEPT	loc	dmz:$SWAN,$SWAN_NET	tcp	80,443	-	-	-# MIAC access to mantisACCEPT	gov:10.144.4.254	dmz:$SWAN	tcp	http,https	-	-	-###################### COD ####################ACCEPT	gov:10.0.0.0/8	sec:192.168.4.90	tcp	http,https	-	-	-ACCEPT	gov	sec:192.168.4.14	tcp	http	-	-	-ACCEPT	gov	sec:192.168.4.90	tcp	http,https	-	-	-# Full access from developers to COD-CGALI, COD-CGA VMs# COD-CGALI# COD-CGAACCEPT	test:$FOSS_	gov:10.128.66.231	tcp	1433	-	-	-ACCEPT	dmz:$SPARROW	gov:10.128.66.189	tcp	http,8081	-	-	-ACCEPT	test:$SPARROW_DEV_	net:195.88.249.125	tcp	80	-	-	-ACCEPT	dmiac:$ANALITIC_105_	gov:10.128.66.190,10.128.66.189,10.128.66.188,10.128.66.210	tcp	ssh,81,9001:9006	-	-	-ACCEPT	dmiac:$ANALITIC_105_	gov:10.128.66.142	tcp	msrdp	-	-	-ACCEPT	edu:~E8-40-F2-E1-68-14	gov:10.128.66.142	tcp	msrdp	-	-	-#################### WIKI & SVN & CRM ######################## Project service systemACCEPT	loc	dmz:$PERCH	all	-	-	-	-ACCEPT	vpn	dmz:$PERCH	all	-	-	-	-ACCEPT	pvpn	dmz:$PERCH	all	-	-	-	-# SVN############################ CA ################################Dokumentooborot AETP##### Access to caiac.ru to administrators CA###################### TEST MFC CHR ########################## Access to federal gosreestr, chr gosreestr (port 8090)##################### PROGECT ARCHIVES ####################### RDP Access for Archive team to KFFD archive on Tavricheskaya### Post server for x.spbarchives.ruACCEPT	loc,dmz,net	dmz:$MAILSPBARCHIVES_NET	tcp	smtp,smtps,pop3,pop3s,imap,imaps,ssmtp,587	-	-	-ACCEPT	gov	dmz:$MAILSPBARCHIVES	tcp	smtp,smtps,pop3,pop3s,imap,imaps,ssmtp,587,143,993	-	-	-# Connect from clients to OSSEC serviceACCEPT	gov	dmz:$MAILSPBARCHIVES	udp	1514	-	-	-ACCEPT	dmz:$ECHIDNA_,$DUNKEN_	gov:10.128.216.33	tcp	7003	-	-	-ACCEPT	gov	dmz:$ECHIDNA,$DUNKEN	tcp	3389	-	-	-ACCEPT	dmz:$ECHIDNA_,$DUNKEN_	gov:10.144.36.37	tcp	msrdp	-	-	-######################### TORIS #############################ACCEPT	edu	gov:192.168.9.50	tcp	18080,18180,18543,19543	-	-	-ACCEPT	edu	gov:192.168.9.51	tcp	28180,28543	-	-	-ACCEPT	loc	gov:10.146.138.205	tcp	80	-	-	-##################### IP-telephone ###########################ACCEPT	phone:$DIPPER_VOIP	net:178.16.26.122,144.76.42.108	all	-	-	-	-DNAT	oemts	phone:$DIPPER_VOIP	icmp	-	-	10.225.4.161	-DNAT	oemts	phone:$DIPPER_VOIP	udp	5060,5090,7078	-	10.225.4.161	-DNAT	oemts	phone:$DIPPER_VOIP	tcp	5060,5090,7078	-	10.225.4.161	-ACCEPT	gov	phone:$DIPPER_VOIP	icmp		-	-	-ACCEPT	gov	phone:$DIPPER_VOIP	udp,tcp	5060,5090,7078	-	-	-ACCEPT	gov	phone:$DIPPER_VOIP	udp	10000:20000	-	-	-ACCEPT	loc	dmz:$CRM	tcp	80,443	-	-	-ACCEPT	phone:$DIPPER_VOIP	dmz:$CRM	tcp	80,443	-	-	-################## ROSTELECOM #################################### From zone net to internal resources (Proxy ARP) ####### Backdoor for IAC lan (webcache.lan.iac.spb.ru)ACCEPT	net	dmz:$SWAN_NET	tcp	80,443	-	-	-### For Letsencrypt ##############openvpn-natDNAT	net	pvpn:192.168.7.6	tcp	1026	-	217.195.78.228	-DNAT	net	pvpn:192.168.7.6	tcp	1027	-	217.195.78.228	-DNAT	net	pvpn:192.168.7.6	tcp	1033	-	217.195.78.228	-DNAT	net	pvpn:192.168.7.6	tcp	1034	-	217.195.78.228	-DNAT	net	pvpn:192.168.7.6	tcp	1069	-	217.195.78.228	-DNAT	net	pvpn:192.168.7.6	tcp	1420	-	217.195.78.228	-DNAT	net	pvpn:192.168.7.7	udp	1425	-	217.195.78.228	-##openvpn-nat### TEMP RULE FOR KIWI ######### Артефакт – не удалять #####ebanoe srochnoe pravilo lkz udzlcovskogo govna do 25.02.2014!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!###For Exigen to MFC maket (Hardware Servers)# In Telesyn add static record arp address# Access from GIRC to mfc-portal-n2 throught Internet zone (applied 3-6.12.2012)ACCEPT	gov	dmz:192.168.2.40	tcp	http	-	-	-########################## Test Zone ##########################ACCEPT	test:$GRASSHOPPER_	dmz:$FROGVM	tcp	1521	-	-	-ACCEPT	gov:$XZEBRA	dmz:$HAKE	tcp	6473	-	-	-ACCEPT	gov	test:192.168.14.11	tcp	80	-	-	-ACCEPT	gov	test:192.168.14.48	tcp	8090	-	-	-#################################################################### Video ######ACCEPT	loc	gov:10.128.2.100	all	-	-	-	-##################################################IAS MFC BEGINACCEPT	dmz:$XANT_	gov:10.128.72.254	tcp	8050,80	-	-	-ACCEPT	loc	dmz:$XANT	tcp	80,8080	-	-	-# GRN#-------------------------------------------------------------------------------# Allow DEVELOPMENT#ACCEPT	peer:$Yakovleva_,$Doronina_	net:$UFMSREG	tcp	http,https	-	-	-###### TEMP FOR S.Smirnov till 24/02/2014ACCEPT	edu	loc	tcp	msrdp	-	-	-ACCEPT	dmiac:$ANALITIC_105_	loc	tcp	msrdp,http,3050	-	-	-# Security Department zone access#------------------------------------------------------------------------------ACCEPT	dmz:$XANT_	sec:$SEC_AP	tcp	80	-	-	-ACCEPT	dmiac:$ANALITIC_105_	sec	all	-	-	-	-ACCEPT	$FW	net	tcp	ssh	-	-	-ACCEPT	loc	gov:172.21.70.137	all	-	-	-	-########################################## InfomatyACCEPT	loc	dmz:$AXIS	tcp	http	-	-	-ACCEPT	dmz:$AXIS	oemts:10.220.5.195,10.227.28.132,10.229.0.67,10.24.135.67,10.238.1.131,10.238.1.198	tcp	5900:5906	-	-	-ACCEPT	dmz:$AXIS	oemts:10.238.1.131	tcp	4899	-	-	-ACCEPT	dmz:$AXIS	oemts:10.130.229.242,10.130.215.134	tcp	4499,4899,5900:5906	-	-	-ACCEPT	dmz:$AXIS	oemts:10.220.5.195,10.227.28.132,10.229.0.67,10.24.135.67,10.238.1.131,10.238.1.198,10.130.215.134,10.130.229.242	icmp	-	-	-	-ACCEPT	gov	dmz:$AXIS	tcp	-	-	-	-# Komitet po sportu# IOGV################### Temp access for Bakhtiarov to his projectACCEPT	loc	sec:192.168.4.3	all	-	-	-	-ACCEPT	dmz	sec	tcp	nfs	-	-	-ACCEPT		sec	tcp	nfs	-	-	-# Temp access server with bacula to clients for debuging# For development bugtracker & crm & subversion system# DC-Track# Gosreestr tempACCEPT	gov	test:192.168.14.29	tcp	8090,5432	-	-	-ACCEPT	loc	gov:10.144.2.36	tcp	8090	-	-	-ACCEPT	loc	dmz:192.168.2.14	tcp	5432,8090,8010	-	-	-############### GNK #####################ACCEPT	dmiac:~14-da-e9-6d-4f-ac	test:192.168.14.31	tcp	7878	-	-	-ACCEPT	gov:10.128.4.66	test:192.168.14.63	tcp	8081	-	-	-ACCEPT	gov:10.128.4.67	test:192.168.14.63	tcp	8081	-	-	-####### Grechushkin dlya SolncevaACCEPT	gov	sec:192.168.4.13	all	-	-	-	-###### TEMP RULE FOR EDU EXPIRE 31.08.2012 ##################ACCEPT	edu	net	tcp	http,https	-	-	-#### RENTAWEB DO NOT TOUCH############# med-llo-hd ############################## TEMP RULES ############ACCEPT	ad:192.168.10.15	dmz:192.168.2.4	tcp	22	-	-	-ACCEPT	dmiac:$ANALITIC_105_	net:195.88.249.106	tcp	20003	-	-	-ACCEPT	dmiac:$ANALITIC_105_	loc:192.168.11.142,192.168.11.122	tcp	msrdp	-	-	-### temp AGFA ###### for videoconferenc with minzdrav ######## For I. Udaltsov ####### TEMP EMTS MAP MONITORACCEPT	sec:192.168.4.90	gov:192.168.9.34	tcp	6473	-	-	-### GIT IAC###ACCEPT	test:192.168.14.44,192.168.14.42	net	all	-	-	-	-ACCEPT	test:192.168.14.44	gov:172.21.65.6	tcp	80,443	-	-	-ACCEPT	test:192.168.14.44	dmz:192.168.2.138	tcp	10180	-	-	-##### DS ######### Kom Fin #####ACCEPT		loc:192.168.41.10	tcp	5900	-	-	-ACCEPT		loc:192.168.41.11	tcp	5900	-	-	-##### ВИСИТ-СПБ! VISIT-PETERSBURG #####ACCEPT	dmz:192.168.2.66	net	all	-	-	-	-#### kyrnyshev ####ACCEPT	iao:192.168.5.58	loc:192.168.43.131	all	-	-	-	-ACCEPT	test:192.168.14.85	net	all	-	-	-	-#### nod32 ####ACCEPT	ad:$GHOST	net	all	-	-	-	-ACCEPT	ad:$GHOST	loc	all	-	-	-	-ACCEPT	loc	ad:$GHOST	all	-	-	-	-ACCEPT	peer	ad:$GHOST	all	-	-	-	-ACCEPT	ad:$GHOST	peer	all	-	-	-	-###Temp DEMO (Grechushkin)##TEMP BUGHACCEPT	peer:~94-de-80-48-2b-ca	net	all	-	-	-	-########### ZendTo (Grechushkin)ACCEPT	loc	dmz:192.168.2.12	tcp	80	-	-	-ACCEPT	loc	dmz:192.168.2.12	tcp	443	-	-	-######Temp Ticket 2198 31.08.2014 Почистить Cisco-ASAACCEPT	loc	net:195.144.238.206	tcp	80,443	-	-	-# MFC ADC ################# INFRA ################### access serverACCEPT	loc	gov:10.146.137.81	tcp	ssh	-	-	-ACCEPT	vpn	gov:10.146.137.81	tcp	ssh	-	-	-ACCEPT	pvpn	gov:10.146.137.81	tcp	ssh	-	-	-ACCEPT	loc	gov:10.146.138.127	tcp	8001,8002	-	-	-# some rules# jiraACCEPT	loc	gov:10.146.137.80	tcp	ssh,http,https	-	-	-ACCEPT	vpn	gov:10.146.137.80	tcp	ssh,http,https	-	-	-# some rules# INFRA END# PRODUCTION ############## PRODUCTION END# TEST #################### TEST END ################ EDU ##################### VMWare machines moved from IAC# oracle rac# new portal on power7# EDU END ################# DEVELOPMENT ############# DEVELOPMENT END ######### MFC ADC END ############ACCEPT	dmiac:$ANALITIC_105_,$TROT_	gov:10.146.136.22	tcp	80	-	-	-# colt soft installationACCEPT	test:192.168.14.104	net	tcp	80,443	-	-	-ACCEPT	test:192.168.14.45	gov	tcp	22	-	-	-#######ПОКАЗ НОУТ НЕТ В ФАЙЛЕ######################ACCEPT	test:192.168.14.212,192.168.14.217,192.168.14.231,192.168.14.237,192.168.14.244,192.168.14.247	net	all	-	-	-	-ACCEPT	peer	test:192.168.14.219	tcp	443,3389	-	-	-#До 13 ноябряACCEPT	test:192.168.14.5	gov:10.128.4.63	tcp	8080	-	-	-ACCEPT	sec:192.168.4.54	phone:192.168.20.10	all	-	-	-	-ACCEPT	phone:192.168.20.10	net	tcp	5065,5060	-	-	-ACCEPT	phone:192.168.20.10	net	udp	5060	-	-	-ACCEPT	phone:192.168.20.10	gov:10.128.66.58	udp	-	-	-	-ACCEPT	gov:192.168.9.140	net:176.97.34.16	tcp	80,443	-	-	-ACCEPT	test:192.168.14.222	gov:10.146.137.131	tcp	1521	-	-	-ACCEPT	gov:10.146.137.131	test:192.168.14.222	tcp	1521	-	-	-ACCEPT	dmiac:$ANALITIC_105_	test:192.168.14.31	tcp	8180	-	-	-ACCEPT	loc,vpn,pvpn	gov:10.146.137.82	tcp,udp	3389,445,137,138,139ACCEPT	gov	dmz:192.168.2.224	tcpACCEPT	loc:$ya_andreev	net	tcp	80,443	-	-	-ACCEPT	gov	sec:192.168.4.92	tcp	8080	-	-	-ACCEPT	test:192.168.14.82	net:195.88.249.110	tcp	80,443	-	-	-ACCEPT	test:192.168.14.82	gov:10.146.136.203	tcp	1521	-	-	-ACCEPT	gov	test:192.168.14.22	tcp	80,443	-	-	-ACCEPT	gov	test:192.168.14.145	tcp	8080	-	-	-ACCEPT	test:192.168.14.145	dmz:192.168.2.19	tcp	80	-	-	-ACCEPT	dmz:192.168.2.245	gov:10.146.137.1,10.146.132.1	tcp	8081	-	-	-ACCEPT	dmz:192.168.2.245	gov:10.146.136.56	tcp	80	-	-	-ACCEPT	dmz:192.168.2.245	gov:100.127.255.6	tcp	8088	-	-	-ACCEPT	test:$WOMBAT	gov:10.146.137.3	tcp	80	-	-	-ACCEPT	test:$WOMBAT	gov:10.146.137.1	tcp	8081	-	-	-ACCEPT	gov:10.146.137.2	dmz:192.168.2.138	tcp	10230	-	-	-ACCEPT	peer	loc:192.168.42.236	tcp,udp	5001	-	-	-ACCEPT	test:192.168.14.56	dmz:192.168.2.177	tcp	1521	-	-	-ACCEPT	dmiac:~14-da-e9-6d-4f-ac	loc:192.168.44.29	tcp	3389	-	-	-ACCEPT	loc:~3C-97-0E-25-31-ED,~3C-97-0E-25-31-EC,~3C-97-0E-25-31-37	dmz:192.168.2.90	all	-	-	-	-ACCEPT	test:192.168.14.82	net:46.61.231.190,212.116.96.45	tcp	80	-	-	-ACCEPT	test:192.168.14.82	dmz:192.168.2.74	tcp	3128	-	-	-ACCEPT	test:192.168.14.82	gov:10.146.136.118	tcp	1521	-	-	-ACCEPT	sec:192.168.4.43	iao:192.168.5.126	all	-	-	-	-ACCEPT	phone:192.168.20.10	net:185.45.152.160/27,185.45.152.129,185.45.152.130	all	-	-	-	-ACCEPT	gov:10.146.0.0/16,10.128.0.0/16	dmz:192.168.2.138	tcp	10180	-	-	-ACCEPT	sec:192.168.4.52	gov	tcp	10050,5900,5901,4899	-	-	-ACCEPT	sec:192.168.4.52	gov	icmp	-	-	-	-ACCEPT	sec:192.168.4.52	gov:10.146.136.52,10.128.3.251	tcp	80	-	-	-ACCEPT	sec:192.168.4.52	gov:10.146.136.240	udp	161,162		-	-ACCEPT	sec:192.168.4.13	gov:10.128.67.114,10.128.67.115	all	-	-	-	-ACCEPT	sec:192.168.4.13	gov:10.0.0.0/8	tcp	13000,13291,14000,14001,15000	-	-	-ACCEPT	sec:192.168.4.13	gov:10.0.0.0/8	udp	13000,15000		-	-ACCEPT	sec:192.168.4.13	net	tcp	80,443	-	-	-#####Доступ для svn.iac.spb.ru#####ACCEPT	loc,vpn	dmz:$LYNX	tcp	80,443	-	-	-##################################ACCEPT	loc	test:192.168.14.15	tcp	3389,4899	-	-	-ACCEPT	loc	dmz:192.168.2.98	tcp	3389	-	-	-ACCEPT	loc:192.168.42.7	dmz:192.168.2.91	tcp	20,21,22	-	-	-ACCEPT	loc	dmz:192.168.2.91	tcp	22,80	-	-	-ACCEPT	loc:$i_petrov	gov:10.128.66.97	all	-	-	-	-### Infowatch Traffic Monitor ###ACCEPT	gov	dmz:192.168.2.90	tcp	2002,135,139,445,593,15003,15004,15101,15505,15506	-	-	-ACCEPT	gov	dmz:192.168.2.90	udp	137,138,15100	-	-	-ACCEPT	dmz:192.168.2.90	gov:10.128.66.57,10.129.157.56,10.148.33.3	tcp	2002	-	-	-ACCEPT	dmz:192.168.2.90	gov:10.128.1.254	tcp	2002,135,139,445,593,15003,15004,15101,15505,15506	-	-	-ACCEPT	dmz:192.168.2.90	gov:10.128.1.254	udp	137,138,15100	-	-	-ACCEPT	test:192.168.14.83	net:91.189.89.223	all	-	-	-	-ACCEPT	gov:192.168.9.2	dmz:192.168.2.93	all	-	-	-	-ACCEPT	dmz:192.168.2.93	gov:192.168.9.2	all	-	-	-	-ACCEPT	loc,peer,vpn	ad:$IACFS,192.168.10.9	tcp	445,136,137,139	-	-	-ACCEPT	pvpn:192.168.26.0/23,192.168.36.0/23	ad:$IACFS,192.168.10.9	tcp	445,136,137,139	-	-	-ACCEPT	ad:$IACFS,192.168.10.9	iao	tcp	80,443,8543	-	-	-ACCEPT	loc,vpn	ad:$PIKE	tcp	445,136,137,139	-	-	-ACCEPT	ad:$PIKE	loc	tcp	445,136,137,139	-	-	-### till 30.09 ###ACCEPT	test:192.168.14.59	net	tcp	80	-	-	-ACCEPT	test:192.168.14.59	gov:10.128.66.101	tcp	1521		-	-####################################ACCEPT	test:192.168.14.240	net	all	-	-	-	-###ipam###ACCEPT	loc	dmz:192.168.2.83	tcp	80,443	-	-	-ACCEPT	vpn	dmz:192.168.2.83	tcp	80,443	-	-	-#############ACCEPT	loc	dmz:192.168.2.74	tcp	80,443,3128	-	-	-ACCEPT	peer	dmz:192.168.2.74	tcp	80,443,3128	-	-	-ACCEPT	sec	dmz:192.168.2.74	tcp	80,443,3128	-	-	-ACCEPT	ad	dmz:192.168.2.74	tcp	80,443,3128	-	-	-ACCEPT	loc	gov:10.146.137.85	tcp	22	-	-	-ACCEPT	vpn	gov:10.146.137.85	tcp	22	-	-	-### confluence.hcs.adc.spb ###ACCEPT	loc	gov:10.128.66.41	tcp	80,443	-	-	-### confluence.hcs.adc.spb ###ACCEPT	loc	gov:10.128.66.42	tcp	80,443	-	-	-ACCEPT	sec:$SEC_AP	net:83.229.175.11	all	-	-	-	-###NTPACCEPT	ad:$SKUNK	gov:10.128.0.2	udp	123	-	-	-####ACCEPT	test:192.168.14.119	dmz:192.168.2.224	tcp	1521	-	-	-ACCEPT	test:192.168.14.119	dmz:192.168.2.223	tcp	8080	-	-	-ACCEPT	test:192.168.14.119	dmz:192.168.2.21	tcp	1433	-	-	-###Security Department###ACCEPT	sec	gov:10.146.138.129	all	-	-	-	-######temp###ACCEPT	loc:~00-1d-60-24-d5-54,~44-8a-5b-8e-3e-0e	peer	all	-	-	-	-#####ACCEPT	gov	dmz:192.168.2.105	all	-	-	-	-ACCEPT	dmz:192.168.2.105	gov	all	-	-	-	-ACCEPT	edu:$EDU_110	gov:10.146.136.22,10.146.136.44,10.146.136.148,10.146.136.24,10.146.136.87	tcp	80,443	-	-	-ACCEPT	edu:$EDU_110	gov:10.146.136.205,10.146.136.206	tcp	8080	-	-	-ACCEPT	edu:$EDU_110	gov:10.146.136.111,10.146.136.162,10.146.136.182,10.146.138.3,10.146.136.130	tcp	80	-	-	-ACCEPT	edu:$EDU_110	dmz:192.168.2.16	tcp	3389	-	-	-ACCEPT	edu:$EDU_110	gov:10.128.66.111	tcp	8082	-	-	-ACCEPT	edu:$EDU_110	gov:10.128.66.105	tcp	80,211,1433	-	-	-ACCEPT	edu:$EDU_110	gov:10.146.136.175	tcp	80,211,1433,1434	-	-	-ACCEPT	edu:$EDU_110	gov:10.146.139.57	tcp	8201	-	-	-ACCEPT	edu:$EDU_110	gov:10.146.136.181	tcp	6473,1433,80	-	-	-ACCEPT	edu:$EDU_110	gov:192.168.19.8	tcp	8701	-	-	-ACCEPT	edu:$EDU_110	net	all	-	-	-	-ACCEPT	loc,peer,sec,ad	dmz:192.168.2.94	tcp	80,443,3128	-	-	-ACCEPT	gov:192.168.9.10,192.168.9.11	dmz:192.168.2.94	tcp	80,443,3128	-	-	-ACCEPT	sec:192.168.4.5	net:109.207.0.0/16	all	-	-	-	-ACCEPT	sec:192.168.4.5	net:95.161.154.197,85.143.127.77	tcp	80,443	-	-	-ACCEPT	gov:192.168.9.11	dmz:192.168.2.97	tcp	22	-	-	-###До 1.12ACCEPT	dmiac:$ANALITIC_105_	gov:10.146.136.24	tcp	80	-	-	-ACCEPT	dmiac:$ANALITIC_105_	dmz:192.168.2.19	tcp	80	-	-	-###ACCEPT	loc	ad:192.168.10.3	tcp	80	-	-	-ACCEPT	test:192.168.14.119	dmz:192.168.2.222	tcp	5432	-	-	-###Antinar###ACCEPT	dmz:192.168.2.36	gov:10.146.136.111	tcp	22,80,443,6311,6473,8000:8250,9000:9250,10050	-	-	-ACCEPT	dmz:192.168.2.36	gov:10.146.136.112	tcp	22,1158,1521	-	-	-ACCEPT	loc	gov:10.146.136.112	tcp	22,1158,1521,10050	-	-	-ACCEPT	dmz:192.168.2.36	gov:10.146.136.113	tcp	22,80,443,8000:8100,9000:9100,10050	-	-	-ACCEPT	gov:10.146.136.0/21	dmz:192.168.2.36	tcp	80,10051,10052	-	-	-ACCEPT	loc	gov:10.146.136.113	tcp	22,80,443,8000:8100,9000:9100,10050	-	-	-ACCEPT	loc	gov:10.146.136.136	tcp	3389,10050,80,443,8080,8443,8011,8012,8001,8002	-	-	-#######Analytica###ACCEPT	loc	gov:10.146.136.130	tcp	22,80,443,6473,8000:8250,9000:9250,10050	-	-	-ACCEPT	loc	gov:10.146.136.131	tcp	22,10050,1521,1158	-	-	-ACCEPT	loc	gov:10.146.136.132	tcp	22,10050,8000:8250,9000:9250,80,443	-	-	-ACCEPT	loc	gov:10.146.136.137	tcp	3389,10050,80,443,8080,8443,8011,8012,8001,8002	-	-	-ACCEPT	loc	gov:10.146.136.138	tcp	3389,10050,6473	-	-	-ACCEPT	loc	gov:10.146.136.139	tcp	3389,10050,80,443,8000:8100	-	-	-ACCEPT	loc	gov:10.146.136.141	tcp	22,10050,8560,8580,8590,8180,5450,8569,8589,8599,8181,8561,8581,8591,8080,7980,8343,7080,7443,6969	-	-	-ACCEPT	loc	gov:10.146.136.111	tcp	22,10050,8000:8250,9000:9250,6311,80,443	-	-	-###ACCEPT	test:192.168.14.119	dmz:192.168.2.241	tcp	22,3000,7780	-	-	-ACCEPT	loc	gov:10.128.66.140	tcp	8001,8002,8101,8102	-	-	-##TEMP 5485###drweb-iogv###ACCEPT	gov	sec:192.168.4.17	tcp		-	-	-ACCEPT	sec:192.168.4.17	gov	all	-	-	-	-###ACCEPT	test:192.168.14.85	net	all	-	-	-	-ACCEPT	sec:192.168.4.54	gov:10.146.136.52	tcp	80	-	-	-ACCEPT	loc	dmz:192.168.2.111	tcp	80,443	-	-	-ACCEPT	loc	dmz:192.168.2.238	tcp	8300:8350	-	-	-###POB###ACCEPT	loc,vpn	gov:10.146.136.124,10.146.136.125,10.146.136.126	tcp	80,443	-	-	-######for 109###ACCEPT	loc:~e8-40-f2-18-ee-25	net	all	-	-	-	-###ACCEPT	gov	dmz:192.168.2.106	tcp	8080,50001	-	-	-ACCEPT	loc	net:46.61.231.6	tcp	7777	-	-	-####105!!!ACCEPT	dmiac	any	icmp	-	-	-	-ACCEPT	dmiac	gov,net	all	-	-	-	-ACCEPT	dmiac	dmz:192.168.2.9	all	-	-	-	-ACCEPT	dmiac	any	udp	53	-	-	-ACCEPT	dmiac	dmz:217.195.78.215	tcp	80,443	-	-	-#############ASOV03###ACCEPT	loc:~74-d0-2b-0e-a0-08	gov:10.146.24.11,10.146.24.12,10.146.82.11,10.146.103.11,10.147.80.11,10.146.22.13,10.146.21.11	tcp	8080	-	-	-ACCEPT	loc:~74-d0-2b-0e-a0-08	gov:192.168.9.49	all	-	-	-	-######router_stepanov_v33###ACCEPT	loc:$router_stepanov_v33	net	all	-	-	-	-DROP	loc:$router_stepanov_v33	all	-	-	-	-	-######Роутер Вани Петрова##ACCEPT	loc:$router101	net	all	-	-	-	-DROP	loc:$router101	all	-	-	-	-	-###ACCEPT	loc	gov:10.146.136.162	tcp	80,443	-	-	-ACCEPT	test:192.168.14.220	net:84.17.20.254	tcp	8080	-	-	-ACCEPT	gov:10.146.136.0/24,10.128.66.0/24	dmz:192.168.2.222	tcp	5432	-	-	-###5799###ACCEPT	loc	gov:10.146.136.161	tcp	2200:2299,1521,3389	-	-	-######5867##ACCEPT	loc,vpn	gov:10.146.137.241,10.146.137.242	tcp	8081	-	-	-ACCEPT	loc	gov:10.146.137.243	tcp	80	-	-	-######6018ACCEPT	gov:10.146.136.139,10.146.136.141	test:192.168.14.59	tcp	1521	-	-	-ACCEPT	gov:10.146.136.131,10.146.136.112,10.146.139.60,10.146.139.69	test:192.168.14.59	tcp	22	-	-	-######До битрикса gu и gu pre###ACCEPT	vpn	net:46.243.177.206,46.243.177.207,46.243.177.201,46.243.177.205,46.243.177.211,46.243.177.220,46.243.177.221,46.243.177.222,46.243.177.233	tcp	80,443	-	-	-###ACCEPT	loc	net:46.243.177.17	tcp	8569,8589,8181,8599	-	-	-ACCEPT	dmiac	ad:192.168.10.10	tcp	445	-	-	-ACCEPT	test:192.168.14.236	net	all	-	-	-	-ACCEPT	loc	gov:10.146.137.137	tcp	8081	-	-	-###temp# shiryaev##ACCEPT		gov	all	-	-	-	-ACCEPT	dmz:192.168.2.245	net:85.143.127.133	tcp	7500	-	-	-ACCEPT	test:192.168.14.82	net:85.143.127.133	tcp	7500	-	-	-ACCEPT	sec:192.168.4.54	gov	all	-	-	-	-ACCEPT	sec:192.168.4.54	net:198.23.135.230	tcp	9023		-	-###Video confACCEPT	loc	gov:10.146.136.198	all	-	-	-	-ACCEPT	test:192.168.14.205	gov:10.128.66.190	tcp	8080	-	-	-ACCEPT	test:192.168.14.82	net:85.143.127.199	tcp	7500	-	-	-ACCEPT	test:192.168.14.59	gov:10.146.136.112	tcp	1521	-	-	-ACCEPT	loc	net:195.5.155.66	tcp	5555	-	-	-###to vc.fire.iac ###ACCEPT	gov	iao:192.168.5.110	all	-	-	-	-###ACCEPT	loc	gov:10.128.66.64	tcp	80,443	-	-	-ACCEPT	loc	gov:10.146.136.162	tcp	80	-	-	-ACCEPT	dmiac	net	all	-	-	-	-ACCEPT	dmiac	gov	all	-	-	-	-###Proektor 214 ACCEPT	loc:$pr_214	gov:10.146.136.32	tcp	80	-	-	-ACCEPT	gov	dmz:192.168.2.94	tcp	3128	-	-	-####ACCEPT	loc	gov:10.146.137.150	tcp	80,443	-	-	-###Sitnikiv 6996###ACCEPT	gov:10.144.2.0/24,10.128.66.24	dmz:192.168.2.86	tcp	80	-	-	-ACCEPT	test:192.168.14.37	gov:10.144.2.254	tcp	880	-	-	-ACCEPT	test:192.168.14.37	dmz:192.168.2.94	tcp	3128	-	-	-######Stop VK###DROP	loc:$dementiev	net:$VK	all	-	-	-	-###ACCEPT	loc	gov:10.146.136.245	tcp	80,443	-	-	-###pypi###ACCEPT	loc,test,dmz	gov:10.128.66.129	tcp	80,443	-	-	-###ACCEPT	loc:~78-2B-CB-E5-EB-E4,~FC-3F-DB-32-FD-D2,~E8-9D-87-AA-02-28,~98-ee-cb-18-72-34	peer	all	-	-	-	-###ACCEPT	loc	gov:10.146.137.85	tcp	80,8081,18081	-	-	-ACCEPT	loc	gov:10.146.137.20	tcp	80	-	-	-###ROUTER-202ACCEPT	loc:~54-E6-FC-C1-EA-1B	net,vpn	all	-	-	-	-DROP	loc:~54-E6-FC-C1-EA-1B	all	-	-	-	-	-### ###ACCEPT	edu:$EDU_110	gov:10.146.136.181	tcp	6473,1433,80	-	-	-ACCEPT	edu:$EDU_110	gov:10.146.136.87	tcp	80,443	-	-	-ACCEPT	edu:$EDU_110	gov:192.168.19.8	tcp	8701	-	-	-ACCEPT	peer	test:192.168.14.45	all	-	-	-	-ACCEPT	sec:192.168.4.93,192.168.4.94	gov:10.146.136.52,10.146.136.198	tcp	80	-	-	-ACCEPT	sec:192.168.4.93,192.168.4.94	gov:10.146.136.52,10.146.136.198	icmp	-	-	-	-##ESEDDACCEPT	pvpn	gov:10.128.66.165	all	-	-	-	-###ЭОACCEPT	loc,dmiac,pvpn,nr	dmz:192.168.2.95	tcp	80,443,8081	-	-	-ACCEPT	loc,gov,nr,dmiac,pvpn,peer,edu	ad:192.168.10.50	tcp	80,443,8081	-	-	-###VPN-gate-Kolokolov###ACCEPT	net:91.220.218.252	dmz:195.144.238.221,192.168.2.15	all	-	-	-	-###ACCEPT	loc	gov:10.146.138.3	tcp	80	-	-	-ACCEPT	gov	sec:192.168.4.93	all	-	-	-	-ACCEPT	test:192.168.14.47	gov:10.128.66.104	tcp	22	-	-	-ACCEPT	loc	gov:10.146.138.152	tcp	80,443	-	-	-###Доступ до vCenter###ACCEPT	loc	gov:10.128.66.85,10.128.66.65	tcp	80,443,9443,902	-	-	-ACCEPT	loc	gov:10.146.140.222	tcp	80,443,8444	-	-	-ACCEPT	loc	gov:10.146.140.229	tcp	80,443	-	-	-ACCEPT	pvpn	gov:10.146.140.229	tcp	80,443	-	-	-### BLOCK KISU from Grechushkin ###ACCEPT	pvpn	gov:10.146.140.222	tcp	80,443,8444	-	-	-###ACCEPT	loc	gov:10.146.138.95	tcp	80,443	-	-	-ACCEPT	loc	gov:10.146.138.91	tcp	1521	-	-	-ACCEPT	loc	gov:10.146.138.94	tcp	22	-	-	-ACCEPT	loc	gov:10.146.138.117	tcp	22,80	-	-	-###NewVpn##ACCEPT	pvpn:192.168.9.210	net	all	-	-	-	-ACCEPT	pvpn:192.168.9.210	gov:10.128.66.160	tcp	80	-	-	-ACCEPT	pvpn:192.168.9.210	dmz:192.168.2.4,192.168.2.100	tcp	389	-	-	-ACCEPT	pvpn:192.168.9.210	dmz:192.168.2.4	udp	123	-	-	-ACCEPT	pvpn:192.168.9.210	dmz:192.168.2.118	tcp	22	-	-	-ACCEPT	pvpn:192.168.9.210	dmz:192.168.2.120	all		-	-	-ACCEPT	pvpn:192.168.9.210,192.168.7.6	dmz:192.168.2.130	tcp	389	-	-	-ACCEPT	sec:192.168.4.16,192.168.4.93	gov:10.146.138.178	udp	138,137	-	-	-ACCEPT	sec:192.168.4.16,192.168.4.93	gov:10.146.138.178	tcp	139,445	-	-	-ACCEPT	sec:192.168.4.16,192.168.4.93	gov:10.146.138.178	tcp	1024:65535	-	-	-ACCEPT	sec:192.168.4.95	gov:10.146.138.178	tcp	3389,5671,5672	-	-	-ACCEPT	sec:192.168.4.93,192.168.4.94,192.168.4.95	gov:10.146.139.109	tcp	5432	-	-	-ACCEPT	gov	sec:192.168.4.95	tcp	3389	-	-	-ACCEPT	gov:192.168.9.49	dmz:192.168.2.4	udp	123	-	-	-###For all from IAC### IAC ACCEPT	loc	gov:10.146.139.57,10.146.139.58,10.146.139.65,10.146.139.67	tcp	8000:8999	-	-	-ACCEPT	loc	gov:10.146.139.59,10.146.139.61,10.146.139.69	tcp	1521,1158	-	-	-ACCEPT	loc	gov:10.146.139.70,10.146.139.62	tcp	5432	-	-	-ACCEPT	loc	gov:10.146.139.66,10.146.139.79	tcp	80,443	-	-	-ACCEPT	loc	gov:10.146.138.60,10.146.138.61,10.146.138.206,10.146.136.24,10.146.139.44,10.146.137.224,10.146.139.46,10.146.139.47	tcp	80	-	-	-ACCEPT	gov:10.128.28.60	dmz:217.195.78.199,192.168.2.4	tcp	25	-	-	-ACCEPT	loc	gov:10.146.139.63	tcp	80,443,5432	-	-	-ACCEPT	loc	gov:10.146.139.64	tcp	443,5000	-	-	-ACCEPT	loc	gov:10.146.139.60	tcp	1521	-	-	-ACCEPT	sec:192.168.4.78	phone:192.168.20.10	all	-	-	-	-ACCEPT	loc	gov:10.146.139.45	tcp	22,80	-	-	-ACCEPT	test:192.168.14.13	gov:10.146.136.40	tcp	1521	-	-	-ACCEPT	ad:192.168.10.6	gov:172.21.65.6	tcp	80	-	-	-ACCEPT	ad:192.168.10.6	gov:172.21.65.6	icmp	-	-	-	-ACCEPT	ad:192.168.10.20	iao	all	-	-	-	-ACCEPT	loc	gov:10.146.136.28	tcp	8280	-	-	-ACCEPT	loc	gov:10.146.139.65	tcp	8800:8810	-	-	-ACCEPT	loc	gov:10.146.139.65	tcp	8080,8081	-	-	-ACCEPT	test:192.168.14.133,192.168.14.134,192.168.14.143,192.168.14.141	net	tcp	80,443	-	-	-ACCEPT	loc	gov:10.146.139.33	tcp	9614	-	-	-ACCEPT	test:192.168.14.133	dmz:192.168.2.120	udp	2055	-	-	-ACCEPT	phone:192.168.20.11	dmz:192.168.2.94	tcp	80,443,3128	-	-	-ACCEPT	loc	gov:10.146.139.59,10.146.139.68	tcp	6311	-	-	-ACCEPT	dmiac	gov:10.146.139.79	tcp	80,443	-	-	-ACCEPT	test:192.168.14.88	dmz:192.168.2.119,192.168.2.94,192.168.2.98,192.168.2.65,192.168.2.100,192.168.2.97,192.168.2.244,192.168.2.4,192.168.2.19,192.168.2.120	tcp	22	-	-	-ACCEPT	test:192.168.14.88	pvpn:192.168.9.210	tcp	22	-	-	-ACCEPT	net	sec:$ZASTAVA_INET	all	-	-	-	-ACCEPT	test:192.168.14.143	net:46.243.177.13	tcp	25,465	-	-	-ACCEPT	test:192.168.14.146	net	all	-	-	-	-ACCEPT	test:192.168.14.143	gov:10.146.137.242	tcp	8081	-	-	-ACCEPT	edu	gov	all		-	-	-ACCEPT	edu	loc:192.168.42.158	all	-	-	-	-ACCEPT	edu	ad:192.168.10.10	all	-	-	-	-ACCEPT	sec:192.168.4.59	net	tcp	80,443	-	-	-ACCEPT	test:192.168.14.147	gov:10.146.139.159,10.149.222.0/28	all	-	-	-	-###VUPSAR###ACCEPT	test:192.168.14.153	net	tcp	80,443	-	-	-ACCEPT	test:192.168.14.153	gov:10.146.139.45	tcp	80	-	-	-###ACCEPT	gov	test:192.168.14.45	all	-	-	-	-ACCEPT	gov	dmz:192.168.2.89	tcp	80,443	-	-	-###VDI##ACCEPT		gov:10.128.0.24	tcp	1688	-	-	-ACCEPT		ad:192.168.10.19,192.168.10.23,192.168.10.11	all	-	-	-	-ACCEPT		iao:192.168.5.45	all	-	-	-	-ACCEPT	loc	iao:192.168.5.45	all	-	-	-	-#######inv#########uzk###ACCEPT	test:192.168.14.155	net	tcp	80,443	-	-	-ACCEPT	test:192.168.14.155	gov:10.146.139.45	tcp	80	-	-	-###ACCEPT	loc,peer	gov:10.128.66.165	tcp	8104,6104,10000,7104,445	-	-	-###zabbix для Кудрявцева###ACCEPT	test:192.168.14.154	gov:10.146.137.81	all	-	-	-	-ACCEPT	test:192.168.14.154	gov:10.146.137.20	tcp	80	-	-	-###ACCEPT	edu	peer:192.168.6.225	all	-	-	-	-###ACCEPT	gov:10.162.19.4,10.146.140.228	$FW	all	-	-	-	-ACCEPT	nr	$FW	all	-	-	-	-ACCEPT	$FW	nr	all	-	-	-	-ACCEPT	tvr	$FW	all	-	-	-	-ACCEPT	$FW	tvr	all	-	-	-	-ACCEPT	loc	gov:10.146.141.1,10.146.141.55	tcp	80	-	-	-ACCEPT	ad	tvr:192.168.152.0/23	all	-	-	-	-ACCEPT	tvr:192.168.152.0/23	ad	all	-	-	-	-ACCEPT	tvr:192.168.70.0/28	net	tcp	80,443	-	-	-ACCEPT	tvr	gov:10.128.66.160	tcp	80,443	-	-	-ACCEPT	sec:192.168.4.40	ad,loc	all	-	-	-	-ACCEPT	sec:192.168.4.40	dmz:192.168.2.5	tcp	80,443	-	-	-ACCEPT	sec:192.168.4.40	dmz:192.168.2.95	tcp	80,443	-	-	-ACCEPT	loc	ad:192.168.10.24	all	-	-	-	-ACCEPT	test:192.168.14.158	net	all	-	-	-	-ACCEPT	dmiac	test:192.168.14.152	tcp	80	-	-	-ACCEPT	test:192.168.14.88	dmz:192.168.2.130	tcp	22	-	-	-ACCEPT	gov	dmz:192.168.2.245	tcp	8281	-	-	-ACCEPT	loc	tvr:192.168.70.2	tcp	9890,9443,80	-	-	-ACCEPT	nr:192.168.31.0/24	tvr:192.168.70.0/28	all	-	-	-	-ACCEPT	tvr:192.168.152.0/24	dmz:192.168.2.4/24	tcp	25,465	-	-	-ACCEPT	loc	dmz:192.168.2.19	all	-	-	-	-ACCEPT	pvpn	dmz:192.168.2.19	tcp	80,443	-	-	-ACCEPT	loc	gov:10.146.141.1	tcp	8443	-	-	-ACCEPT	loc	gov:10.146.138.154	tcp	80,443	-	-	-ACCEPT	test:192.168.14.153	gov:10.146.136.22	tcp	80,443	-	-	-ACCEPT	loc	gov:10.146.138.154	all	-	-	-	-ACCEPT	loc	net:46.243.177.93	tcp	22,80,443	-	-	-ACCEPT	gov:10.146.136.0/21,10.128.66.0/24	iao:192.168.5.127	all	-	-	-	-ACCEPT	gov:10.162.19.4	dmz:192.168.2.111	tcp	80	-	-	-ACCEPT	loc	gov:10.146.141.57	tcp	8000:8250	-	-	-ACCEPT	tvr:192.168.152.9	ad	all	-	-	-	-ACCEPT	loc	tvr:192.168.152.9	tcp	80,443,8008,8443,8843	-	-	-ACCEPT	loc	tvr:192.168.152.3	tcp	80,443	-	-	-ACCEPT	pvpn	tvr:192.168.152.5	all	-	-	-	-ACCEPT	pvpn:192.168.9.210	tvr:192.168.152.9	all	-	-	-	-ACCEPT	dmz:192.168.2.94	tvr:192.168.152.9	tcp	80,443,8008,8443,8843	-	-	-ACCEPT	tvr	dmz:192.168.2.4	all	-	-	-	-ACCEPT	tvr	ad:192.168.10.19	all	-	-	-	-ACCEPT	oemts:10.5.18.160,10.3.189.23	fw	all	-	-	-	-ACCEPT	loc	gov:10.146.141.156	tcp	80,443	-	-	-ACCEPT	loc	net:46.243.177.168	all	-	-	-	-ACCEPT	loc	gov:10.146.139.64	tcp	7000	-	-	-ACCEPT	loc	gov:10.146.141.103	tcp	5432	-	-	-ACCEPT	loc	gov:10.146.139.58	tcp	9200,9300,9600,5601	-	-	-ACCEPT	dmz:192.168.2.36	gov:10.146.141.103	tcp	10051	-	-	-ACCEPT	loc	gov:10.146.139.64	tcp	7000:7010	-	-	-ACCEPT	loc	gov:10.146.139.58,10.146.141.104,10.146.141.105	tcp	8000:9000	-	-	-ACCEPT	tvr:192.168.70.32/27	net	all		-	-	-ACCEPT	tvr:192.168.152.42	net	all	-	-	-	-### Gitlab Jira ###ACCEPT	tvr:192.168.70.64/27	net	all	-	-	-	-ACCEPT	loc,gov,pvpn	tvr:192.168.70.68,192.168.70.69,192.168.70.73,192.168.70.76	tcp	80,443	-	-	-ACCEPT	tvr:192.168.70.73	net	all	-	-	-	-DNAT	net,loc,pvpn,dmz	tvr:192.168.70.68	tcp	80	-	217.195.78.226	-DNAT	net,loc,pvpn,dmz	tvr:192.168.70.68	tcp	443	-	217.195.78.226	-DNAT	net,loc,pvpn,dmz	tvr:192.168.70.68	tcp	4567	-	217.195.78.226	-ACCEPT	net	tvr:217.195.78.226	tcp	80,443	-	-	-ACCEPT	tvr:192.168.70.72	gov:10.146.136.210	all	-	-	-	-ACCEPT	loc,nr,pvpn,peer,dmiac,dmz	tvr:$GITLAB	tcp	22,80,443	-	-	-ACCEPT	loc,nr,pvpn,peer,dmiac	tvr:$GITLAB_PROXY	tcp	22,80,443	-	-	-ACCEPT	dmz:192.168.2.120	tvr:192.168.70.63/27	tcp	9100	-	-	-### Gitlab ###ACCEPT	net	tvr:192.168.70.72	tcp	22,80,443	-	-	-ACCEPT	loc,nr,pvpn,peer,dmiac,edu,dmz,ad,test	tvr:192.168.70.72	tcp	22,80,443	-	-	-### Nalbandyan (Ticket 12436) ###ACCEPT	tvr:192.168.152.9	dmz:192.168.2.4	tcp	993	-	-	-### vpn to gitlab ###ACCEPT	pvpn:192.168.9.210	tvr:192.168.70.65/27	tcp	22,80,443	-	-	-ACCEPT	tvr:192.168.70.0/24	gov:10.146.136.214	all	-	-	-	-### Ticket 12512 ###ACCEPT	gov:10.146.136.21	net:77.234.204.251	tcp	18180	-	-	-### Ticket 12549 (6) ###ACCEPT	tvr:192.168.70.16/29,192.168.70.96/27	gov:10.146.139.63	tcp	80	-	-	-### Ticket 12549 (4) ### 27781DNAT	net	tvr:192.168.70.18	tcp	80,443	-	195.144.238.227	-DNAT	net,dmz,loc,edu	tvr:192.168.70.18	tcp	80	-	195.144.238.227	-DNAT	net,dmz,loc,edu	tvr:192.168.70.18	tcp	443	-	195.144.238.227	-ACCEPT	tvr:192.168.70.18	net	all	-	-	-	-ACCEPT	net	tvr:192.168.70.18	tcp	80,443	-	-	-### Ticket 12549 (5) ###ACCEPT	tvr:192.168.70.106,192.168.70.108	net	tcp	80,443	-	-	-### Ticket 12549 (1) ###ACCEPT	gov	tvr:192.168.70.106	all	-	-	-	-### Ticket 12570 ###ACCEPT	gov:10.146.136.21	net:176.97.38.169	tcp	18180	-	-	-ACCEPT	loc,pvpn	gov:10.128.66.83	tcp	80,443,9443,902	-	-	-ACCEPT	ad:192.168.10.28	peer:192.168.6.255	all	-	-	-	-ACCEPT	gov:10.146.139.64	tvr:192.168.70.106	tcp	80,8080	-	-	-### Ticket 12680 ###### Ticket 12691  portal.iac.spb.ru ###ACCEPT	loc,nr,pvpn,peer,dmiac,edu	tvr:$PORTAL	tcp	80,443,25,5222,5223,8890,8891,8893,8894	-	-	-### Ticket 12702 ###ACCEPT	tvr:192.168.152.9	net	all	-	-	-	-### Ticket 12738 ###ACCEPT	tvr:192.168.70.32/27	gov:10.128.66.160,10.146.139.63	tcp	80	-	-	-### Ticket 12879 ###ACCEPT	tvr:192.168.70.98-192.168.70.100	net	tcp	80,443	-	-	-ACCEPT	tvr:192.168.70.98-192.168.70.100	gov:10.146.136.61	tcp	10180	-	-	-### Ticket 12882 ###ACCEPT	test:192.168.14.153	net:46.243.177.13	tcp	25,587,465	-	-	-### Ticket 12899 ###ACCEPT	tvr:192.168.70.40	gov:10.146.136.61	tcp	10180	-	-	-### Ticket 12895 ###ACCEPT	tvr:192.168.152.41	net	all	-	-	-	-ACCEPT	tvr:192.168.152.41	phone:192.168.20.10	all		-	-	-### Ticket 12928 ###ACCEPT	gov	tvr:192.168.70.18,192.168.70.35	all	-	-	-	-### Ticket 13001 ###ACCEPT	tvr:192.168.70.72	gov:10.146.141.183	tcp	80,443,6443	-	-	-### Ticket 13015 ###ACCEPT	tvr:192.168.70.98-192.168.70.100	net:213.59.255.129	tcp	7500		-	-### Ticket 13040 ###ACCEPT	tvr:192.168.70.72	gov:10.146.139.110	tcp	8080	-	-	-ACCEPT	tvr:192.168.152.8	gov:10.128.66.99	all	-	-	-	-ACCEPT	tvr:192.168.152.8	gov:10.128.0.24	tcp	1688	-	-	-### Ticket 13068 ###ACCEPT	tvr:192.168.70.72	gov:10.146.136.210	tcp	9090	-	-	-### Ticket 13106 ###ACCEPT	edu	tvr:192.168.70.98-192.168.70.100	tcp	80,443	-	-	-ACCEPT	gov	tvr:192.168.70.40	all	-	-	-	-ACCEPT	tvr:192.168.70.40	gov	all	-	-	-	-### Ticket 13245 ###ACCEPT	loc	gov:10.146.136.75	tcp	80	-	-	-### Ticket 13323 ###ACCEPT	loc	tvr:192.168.70.36,192.168.70.38	tcp	80	-	-	-### Ticket 13342 ###ACCEPT	loc	tvr:192.168.70.18	tcp	80,443	-	-	-ACCEPT	loc	gov:10.128.28.88	tcp	80,443	-	-	-ACCEPT	pvpn	ad	tcp	3268,3269	-	-	-### cloud.iac.spb.ru from 105 ###ACCEPT	dmiac	dmz:192.168.2.65	all	-	-	-	-### Ticket 13496 ###ACCEPT	edu	net:95.213.245.117	tcp	80,81	-	-	-### Ticket 13503 ###ACCEPT	gov	tvr:192.168.70.108	all	-	-	-	-### Proxmox 61 otd ###ACCEPT	sec:192.168.4.41,192.168.4.42,192.168.4.44,192.168.4.62-192.168.4.64	gov:10.162.32.0/24	tcp	22,11,2049		-	-ACCEPT	sec:192.168.4.41,192.168.4.42,192.168.4.44,192.168.4.62-192.168.4.64	gov:10.162.32.0/24	udp	11,2049	-	-	-ACCEPT	gov:10.162.32.0/24	sec:192.168.4.41,192.168.4.42,192.168.4.44,192.168.4.62-192.168.4.64	tcp	22,11,2049	-	-	-ACCEPT	gov:10.162.32.0/24	sec:192.168.4.41,192.168.4.42,192.168.4.44,192.168.4.62-192.168.4.64	udp	11,2049	-	-	-ACCEPT	sec	loc:192.168.41.52	all	-	-	-	-### Ticket 13532 (Sitnikov VOIP) ###ACCEPT	phone:192.168.20.5	net	all	-	-	-	-### Server to storage Slava Zakirov ###### Ticket 13632 ###ACCEPT	loc	gov:10.146.139.44	tcp	8090:8093	-	-	-### Ticket 13572, 13586, 13630, 13723 (Medspravka Sitnikov) ###ACCEPT	tvr:192.168.70.27	net	all	-	-	-	-ACCEPT	tvr:192.168.70.27	dmz:192.168.2.21	tcp	1433	-	-	-ACCEPT	tvr:192.168.70.27	dmz:$MAILER	tcp	smtp,ssmtp	-	-	-ACCEPT	tvr:192.168.70.27	gov:10.144.4.250	tcp	ms-sql-s	-	-	-ACCEPT	tvr:192.168.70.27	gov:10.144.4.253	tcp	tomcat	-	-	-ACCEPT	test:192.168.14.119	tvr:192.168.70.27	tcp	8080	-	-	-ACCEPT	gov	tvr:192.168.70.27	tcp	http,tomcat,https,10180	-	-	-DNAT	net	tvr:192.168.70.27	tcp	80	-	195.144.238.208	-DNAT	net	tvr:192.168.70.27	tcp	443	-	195.144.238.208	-ACCEPT	net	tvr:192.168.70.27	tcp	80,443	-	-	-ACCEPT	loc,dmiac	dmz:192.168.2.201	tcp	80,443	-	-	-### IKIGAI NEW CONTOUR ###ACCEPT	dmiac	gov:10.128.66.165	tcp	8104	-	-	-ACCEPT	dmiac	ad:192.168.10.20,192.168.10.9	all	-	-	-	-ACCEPT	dmiac	dmz:192.168.2.83	all	-	-	-	-ACCEPT	dmiac	ad:192.168.10.23	tcp	3268	-	-	-ACCEPT	edu	gov:10.146.138.124,10.146.136.24	tcp	80	-	-	-### Ticket 13853 ###ACCEPT	loc	gov:10.146.141.236-10.146.141.238	tcp	80	-	-	-ACCEPT	loc	gov:10.146.141.229	tcp	80	-	-	-ACCEPT	loc	gov:10.146.141.230-10.146.141.233	tcp	80,443	-	-	-### Ticket 13890 ###ACCEPT	edu	net:46.243.177.33,46.243.177.34	tcp	80	-	-	-### Ticket 14012 (TEMP TILL 14.08.19)ACCEPT	dmiac	gov:10.146.136.90,10.146.138.124	tcp	80,443	-	-	-ACCEPT	dmiac	gov:10.146.136.98	tcp	22,80,443,3690	-	-	-ACCEPT	dmiac	tvr:192.168.70.18	tcp	80,443,3128	-	-	-ACCEPT	dmiac	tvr:192.168.70.98-192.168.70.100	tcp	80,443,8080:8089	-	-	-ACCEPT	dmiac	tvr:192.168.70.101	tcp	22,5432	-	-	-ACCEPT	dmiac	tvr:192.168.70.105	tcp	80,443	-	-	-ACCEPT	dmiac	tvr:192.168.70.106	tcp	8080	-	-	-ACCEPT	dmiac	tvr:192.168.70.107	tcp	80,443,8080	-	-	-ACCEPT	dmiac	tvr:192.168.70.108	tcp	80,8080:8089,9080:9089	-	-	-ACCEPT	dmiac	gov:10.146.139.63	tcp	22,80,8080,9080	-	-	-ACCEPT	dmiac	gov:10.146.139.64	tcp	22,80,7010,7020,5000,8080,9080	-	-	-### Ticket 14017 ###ACCEPT	tvr:192.168.70.98-192.168.70.100	gov:10.146.139.59	tcp	6311	-	-	-### Tania ipad temp ###ACCEPT	loc:192.168.42.29	net	all	-	-	-	-### Ticket 14117 ###ACCEPT	loc	gov:10.146.142.65	tcp	8560:8590,7980:7990,8080:8090	-	-	-### Ticket 14183 ###ACCEPT		gov:10.146.137.129	tcp	80,443	-	-	-### Ticket 14194 ###ACCEPT	tvr:192.168.70.98-192.168.70.100,192.168.70.36,192.168.70.38	gov:10.146.138.210	tcp	80,443	-	-	-### Ticket 14320 ###ACCEPT	tvr:192.168.152.10	gov:10.146.141.156,10.146.142.11	tcp	10050,10051	-	-	-### Ticket 14343 ###ACCEPT	tvr:192.168.70.98	gov:10.146.136.44	tcp	80,443	-	-	-### Ticket 14404 ###ACCEPT	loc	gov:10.146.136.142	tcp	80	-	-	-### Ticket 14435 ###ACCEPT	loc	gov:10.146.137.20	tcp	80,443	-	-	-ACCEPT	dmiac:~48-2A-E3-2F-84-14	peer	all	-	-	-	-### Ticket 14486 ###ACCEPT	tvr:192.168.152.11	net	all	-	-	-	-ACCEPT	loc	tvr:192.168.152.5	tcp	80,443	-	-	-### ACCESS FROM LOC TO ADC EXTERNAL IP'S ###ACCEPT	loc	net:46.243.177.0/24	tcp	80,443	-	-	-### Ticket 14641 ###ACCEPT	tvr:192.168.70.105	gov:10.146.136.130	tcp	80	-	-	-ACCEPT	tvr:192.168.70.105	net:46.243.177.35	tcp	80,443	-	-	-### Ticket 14523 ###ACCEPT	tvr:192.168.70.96/27,192.168.70.16/29	gov:10.146.136.214	tcp	2049,2051,111	-	-	-### Ticket 14672 ###ACCEPT	tvr:192.168.70.36,192.168.70.38,192.168.70.98-192.168.70.100	gov:10.146.138.210	tcp	443	-	-	-### Ticket 14682 ###ACCEPT	tvr:192.168.70.98-192.168.70.100	gov:10.146.138.87	tcp	80,443	-	-	-ACCEPT	tvr:192.168.70.98-192.168.70.100,192.168.70.36,192.168.70.38	net:46.243.177.163	tcp	80,443	-	-	-ACCEPT	tvr:192.168.70.108	gov:10.146.138.87	tcp	80	-	-	-### Ticket 14846 ###ACCEPT	phone:192.168.20.10	dmz:192.168.2.94	tcp	3128		-	-### rover-db ###ACCEPT	tvr:192.168.152.12	net	all	-	-	-	-### Ticket 14935 ###ACCEPT	loc	gov:10.129.157.90	tcp	8080	-	-	-### Ticket 15047 ###ACCEPT	sec:192.168.4.54	phone:192.168.20.5	all	-	-	-	-### Ticket 15076 ###ACCEPT	tvr:192.168.152.14	net	tcp	80,443	-	-	-ACCEPT	gov	tvr:192.168.152.14	tcp	80,443	-	-	-ACCEPT	loc,nr,pvpn,dmiac,peer	tvr:192.168.152.14	tcp	80,443	-	-	-### Zabbix proxy i.zubov ###ACCEPT	tvr:192.168.152.15	net	all	-	-	-	-### 12.12.19 ###ACCEPT	dmiac	gov:10.128.67.46	tcp	1194:1203	-	-	-### SKUD DC ###ACCEPT	loc	gov:10.146.142.201	tcp	3389	-	-	-### Ticket 15452 ###ACCEPT	tvr:192.168.152.9	gov:10.146.138.154	tcp	80,443	-	-	-### Test VKS 105 ###ACCEPT	loc:~B4-2E-99-5D-BD-B8,~18-8B-9D-4A-03-1C	net	all	-	-	-	-ACCEPT	loc:~B4-2E-99-5D-BD-B8,~18-8B-9D-4A-03-1C	gov:10.128.2.102	tcp	80,443	-	-	-### 15572 ###ACCEPT	tvr:192.168.70.98-192.168.70.100	gov:10.128.66.165	tcp	8107	-	-	-### 15586 ###ACCEPT	tvr:192.168.70.98-192.168.70.100	gov:10.146.142.11	tcp	80,443	-	-	-### 15881 ###ACCEPT	tvr:192.168.70.96/27	gov:10.146.140.198	tcp	5432	-	-	-###15886###ACCEPT	net	dmz:192.168.2.165	tcp	80,443	-	-	-ACCEPT	dmz:192.168.2.165	net:213.59.255.129	all		-	-	-ACCEPT	dmz:192.168.2.165	gov:172.20.3.12	all	-	-	-	-ACCEPT	loc:$ag_masnik	dmz:192.168.2.165	tcp	80,443,3389	-	-	-ACCEPT	loc:$ag_masnik	dmz:195.144.238.233	tcp	80,443	-	-	-ACCEPT	loc,pvpn	gov:10.146.143.100-10.146.143.119	all	-	-	-	-### 15989 ###ACCEPT	tvr:192.168.152.17	net	all	-	-	-	-### 16066 ###ACCEPT	tvr:192.168.152.16	net	all	-	-	-	-### 16078 ### ACCEPT	tvr:192.168.152.10	gov:10.146.143.12,10.146.143.29,10.146.142.11,10.146.141.156,10.146.141.10,10.146.136.102,10.146.142.246,10.146.136.103,10.146.138.154,10.146.142.247	tcp	80,443,10050	-	-	-ACCEPT	gov:10.146.143.12,10.146.143.29,10.146.142.11,10.146.141.156,10.146.141.10,10.146.136.102,10.146.142.246,10.146.136.103,10.146.138.154,10.146.142.247	tvr:192.168.152.10	tcp	10051	-	-	-### nextcloud ###ACCEPT	tvr:192.168.152.7	net	all	-	-	-	-ACCEPT	tvr:192.168.152.7	ad:192.168.10.19	tcp	389	-	-	-### JITSI ###ACCEPT	test:192.168.14.37	tvr:192.168.152.19	all	-	-	-	-ACCEPT	tvr:192.168.152.19	test:192.168.14.37	all	-	-	-	-### 16405 ###ACCEPT	loc	gov:10.146.141.213	tcp	8080	-	-	-### 16474 ###ACCEPT	tvr:192.168.70.98-192.168.70.100	gov:10.146.138.243	tcp	5672	-	-	-### 16606 ###ACCEPT	tvr:192.168.70.98-192.168.70.100	gov:10.146.138.250	tcp	5672	-	-	-### izubov request 21-05-2020 ###ACCEPT	tvr:192.168.152.10	net	tcp	80,443		-	-### 16828 ###ACCEPT	tvr:192.168.70.183	net	tcp	80,443	-	-	-### 16833 ###ACCEPT	tvr:192.168.70.98-192.168.70.100	gov:10.128.48.48	tcp	5041	-	-	-### seafile ###ACCEPT	tvr:192.168.152.20	net	all	-	-	-	-### web 1c zakirov ###ACCEPT	ad:192.168.10.21	loc	all	-	-	-	-### 16981 & 17051 ###ACCEPT	tvr:192.168.70.106/27	gov:10.192.11.129	tcp	9080:9082	-	-	-ACCEPT	tvr:192.168.70.106/27	gov:10.192.11.127	tcp	80	-	-	-### Wireguard VM ###ACCEPT	vpn:192.168.7.2	net,loc	all	-	-	-	-### Wireguard VPN ###DNAT	net	vpn:192.168.7.10	udp	13337	-	217.195.78.228	-ACCEPT	net	vpn:192.168.7.10	udp	13337	-	-	-### Kasper ###ACCEPT	ad:192.168.10.13	net,loc,peer,gov,nr	all	-	-	-	-ACCEPT	loc,nr,peer	ad:192.168.10.13	all	-	-	-	-### 17216 ###ACCEPT	test:192.168.14.153	gov:10.146.136.44	tcp	80	-	-	-### 17254 ###ACCEPT	tvr:192.168.70.106	gov:10.192.11.129	tcp	9083	-	-	-### 17309 ###ACCEPT	tvr:192.168.70.106	gov:10.146.139.60,10.146.139.69	tcp	1521	-	-	-### 17320 ###ACCEPT	tvr:192.168.70.197,192.168.70.195	net	tcp	22,80,443	-	-	-### 17477 ###ACCEPT	test:192.168.14.153	gov:10.146.139.44	tcp	8091	-	-	-### 17498 ###ACCEPT	tvr:192.168.70.98-192.168.70.100	gov:10.146.136.22	tcp	80,443	-	-	-### 17516 ###ACCEPT	tvr:192.168.70.98-192.168.70.100	gov:10.146.142.11	tcp	80,443	-	-	-### 17522 ###ACCEPT	tvr:192.168.70.194	net	tcp	22,80,443	-	-	-### 17531 ###ACCEPT	tvr:192.168.70.113	net	tcp	80,443	-	-	-ACCEPT	tvr:192.168.70.113	gov:10.146.136.61	tcp	10180	-	-	-ACCEPT	tvr:192.168.70.113	net:213.59.255.129	tcp	7500		-	-ACCEPT	edu	tvr:192.168.70.113	tcp	80,443	-	-	-ACCEPT	dmiac	tvr:192.168.70.113	tcp	80,443,8080:8089	-	-	-ACCEPT	tvr:192.168.70.113	gov:10.146.139.59	tcp	6311	-	-	-ACCEPT	tvr:192.168.70.113	gov:10.146.138.210	tcp	80,443	-	-	-ACCEPT	tvr:192.168.70.113	gov:10.146.136.44	tcp	80,443	-	-	-ACCEPT	tvr:192.168.70.113	gov:10.146.138.210	tcp	443	-	-	-ACCEPT	tvr:192.168.70.113	gov:10.146.138.87	tcp	80,443	-	-	-ACCEPT	tvr:192.168.70.113	net:46.243.177.163	tcp	80,443	-	-	-ACCEPT	tvr:192.168.70.113	gov:10.128.66.165	tcp	8107	-	-	-ACCEPT	tvr:192.168.70.113	gov:10.146.142.11	tcp	80,443	-	-	-ACCEPT	tvr:192.168.70.113	gov:10.146.138.243	tcp	5672	-	-	-ACCEPT	tvr:192.168.70.113	gov:10.146.138.250	tcp	5672	-	-	-ACCEPT	tvr:192.168.70.113	gov:10.128.48.48	tcp	5041	-	-	-ACCEPT	tvr:192.168.70.113	gov:10.146.136.22	tcp	80,443	-	-	-ACCEPT	tvr:192.168.70.113	gov:10.146.142.11	tcp	80,443	-	-	-### 17541 ###ACCEPT	tvr:192.168.70.196	net	tcp	22,80,443	-	-	-### 17561 ###ACCEPT	tvr:192.168.70.104	net	tcp	80,443	-	-	-ACCEPT	tvr:192.168.70.104	gov:10.146.136.61	tcp	10180	-	-	-ACCEPT	tvr:192.168.70.104	net:213.59.255.129	tcp	7500		-	-ACCEPT	edu	tvr:192.168.70.104	tcp	80,443	-	-	-ACCEPT	dmiac	tvr:192.168.70.104	tcp	80,443,8080:8089		-	-ACCEPT	tvr:192.168.70.104	gov:10.146.139.59	tcp	6311	-	-	-ACCEPT	tvr:192.168.70.104	gov:10.146.138.210	tcp	80,443	-	-	-ACCEPT	tvr:192.168.70.104	gov:10.146.136.44	tcp	80,443	-	-	-ACCEPT	tvr:192.168.70.104	gov:10.146.138.210	tcp	443	-	-	-ACCEPT	tvr:192.168.70.104	gov:10.146.138.87	tcp	80,443	-	-	-ACCEPT	tvr:192.168.70.104	net:46.243.177.163	tcp	80,443	-	-	-ACCEPT	tvr:192.168.70.104	gov:10.128.66.165	tcp	8107	-	-	-ACCEPT	tvr:192.168.70.104	gov:10.146.142.11	tcp	80,443	-	-	-ACCEPT	tvr:192.168.70.104	gov:10.146.138.243	tcp	5672	-	-	-ACCEPT	tvr:192.168.70.104	gov:10.146.138.250	tcp	5672	-	-	-ACCEPT	tvr:192.168.70.104	gov:10.128.48.48	tcp	5041	-	-	-ACCEPT	tvr:192.168.70.104	gov:10.146.136.22	tcp	80,443	-	-	-ACCEPT	tvr:192.168.70.104	gov:10.146.142.11	tcp	80,443	-	-	-### temp ###ACCEPT	edu	loc	tcp	3389	-	-	-### temp for Kyrnyshev ###ACCEPT	loc,pvpn	gov:10.146.143.227-10.146.143.231	all	-	-	-	-### 17765 ###ACCEPT	tvr:192.168.70.66	gov:10.146.142.8	tcp	80,8080:8089,9080:9089	-	-	-### 17803 ###ACCEPT	edu	net:46.20.69.242	tcp	80,443,7881	-	-	-### 17974 ###ACCEPT	gov	tvr:192.168.70.112	tcp	389,636	-	-	-### 18031 ###ACCEPT	tvr:192.168.70.72	gov:10.146.142.9	tcp	80,443	-	-	-###ACCEPT	loc:~1C-69-7A-00-B2-26	net	all	-	-	-	-ACCEPT	loc:~1C-69-7A-00-B2-26	gov:10.128.28.119	all	-	-	-	-### 18118 & 19027 ###ACCEPT	tvr:192.168.152.21	net	tcp	80,443,993,143,587,465	-	-	-ACCEPT	gov	tvr:192.168.152.21	tcp	80,443	-	-	-ACCEPT	tvr:192.168.152.21	gov:10.146.143.250	tcp	80,443	-	-	-### 18248 ###ACCEPT	tvr:192.168.152.48	net	tcp	80,443	-	-	-###ACCEPT	test:192.168.14.201	phone:192.168.20.10	tcp	10050	-	-	-### 18518 ###ACCEPT	tvr:192.168.152.21	net	tcp	143,587	-	-	-### 18519 ###ACCEPT	loc,nr,peer,dmiac,pvpn,gov	tvr:192.168.152.21	tcp	80,443	-	-	-### 18612 ###ACCEPT	sec:192.168.4.52	net:108.177.14.153	tcp	80,443	-	-	-### 18626 ###ACCEPT	tvr:192.168.70.106,192.168.70.108	gov:10.1.222.19-10.1.222.37	tcp	9080:9083	-	-	-### ACCEPT	tvr:192.168.152.3	net	all	-	-	-	-###ACCEPT	test:192.168.14.201	phone:192.168.20.5,192.168.20.10	tcp	9100	-	-	-### 18688 ###ACCEPT	test:192.168.14.201	tvr:192.168.152.41,192.168.70.27	tcp	9100	-	-	-ACCEPT	test:192.168.14.201	dmz:192.168.2.61,192.168.2.86	tcp	9100	-	-	-###ACCEPT	dmiac	gov:10.128.67.46	tcp	1194:1203	-	-	-### 18889 ###ACCEPT	sec:192.168.4.52	net:173.194.220.153	tcp	80,443	-	-	-### 18901 ###ACCEPT	sec:192.168.4.93,192.168.4.94	gov:10.241.0.66,10.241.0.67	tcp	3389	-	-	-### 18818 ###ACCEPT	gov	dmz:192.168.2.15,192.168.2.240	all	-	-	-	-ACCEPT	dmz:192.168.2.15,192.168.2.240	loc,gov	all	-	-	-	-ACCEPT	loc	dmz:192.168.2.15,192.168.2.240	tcp	17490:17494,17496,17501,17502,17900,3389	-	-	-ACCEPT	loc	dmz:192.168.2.15,192.168.2.240	icmp	-	-	-	-ACCEPT	sec	dmz:192.168.2.240	all	-	-	-	-### Netbox ###ACCEPT	tvr:192.168.152.22	net	all	-	-	-	-### 19163 ###ACCEPT	gov	tvr:192.168.152.11	tcp	80,443	-	-	-### 19244 ###ACCEPT	tvr:192.168.152.21	gov:10.241.0.91	tcp	80,443,1443,25,5222,5223,8890,8891,8893,8894	-	-	-### Ivan Petrov Printer ###AACCEPT	loc:~00-50-AA-2E-61-FC	net	all	-	-	-	-### 19260 ###ACCEPT	tvr:192.168.152.14,192.168.70.165,192.168.152.9,192.168.152.4,192.168.152.11,192.168.152.16,192.168.152.5,192.168.152.18	gov:10.241.0.100	tcp	10050,10051	-	-	-### temp Oculus ###ACCEPT	loc:~44-8A-5B-63-58-F9	net	all	-	-	-	-### 193000 ###ACCEPT	tvr:192.168.152.11	gov:10.241.0.100	tcp	10050,10051	-	-	-### 19318 ###ACCEPT	tvr:192.168.152.3	gov:10.241.0.100	tcp	10050,10051	-	-	-### 19368 ###ACCEPT	gov	tvr:192.168.152.3	tcp	10050,10051	-	-	-### 19370 ###ACCEPT	tvr:192.168.152.3	net	all	-	-	-	-### 19446 ###ACCEPT	test:192.168.14.119	dmz:192.168.2.94	tcp	3128	-	-	-### temp ###ACCEPT	loc:~84-A9-3E-0D-B6-B6	gov:10.146.142.165	all	-	-	-	-### mail.adc.spb.ru ###ACCEPT	loc,nr	net:46.243.177.13	tcp	465,993,995,25,587,110	-	-	-###ACCEPT	peer:192.168.6.225	tvr:192.168.152.9	all	-	-	-	-### ghost ###ACCEPT	net	tvr:192.168.152.18	tcp	80,443	-	-	-ACCEPT	tvr:192.168.152.18	net	all	-	-	-	-### 19936 ###ACCEPT	tvr:192.168.70.98-192.168.70.100,192.168.70.113,192.168.70.104	gov:10.128.66.94	tcp	7778	-	-	-###ACCEPT	nr:192.168.31.22,192.168.31.209	net	all	-	-	-	-ACCEPT	nr:192.168.31.129	loc:192.168.41.96	tcp	3389	-	-	-### 20026 ###ACCEPT	tvr:192.168.70.106	gov:10.1.222.36	tcp	22,80	-	-	-### 20133 ###ACCEPT	gov	tvr:192.168.70.72	tcp	22,80,443	-	-	-### 20158 ###ACCEPT	tvr:192.168.152.23	net	tcp	80,443,465	-	-	-### 20285 ###ACCEPT	edu	gov:10.1.222.19-10.1.222.38	tcp	80,443	-	-	-###ACCEPT	peer:192.168.6.225	test:192.168.14.205	all	-	-	-	-### 20368 ###ACCEPT	sec:192.168.4.52	net:64.233.165.153	tcp	80,443	-	-	-### 20549 ###ACCEPT	sec	gov:10.146.141.203	all	-	-	-	-### 20606 ###ACCEPT	loc	gov:10.241.0.195	tcp	8080,8443	-	-	-### 20620 ###ACCEPT	tvr:192.168.152.17	gov:10.146.140.198,10.146.140.191	tcp	5432	-	-	-###ACCEPT	tvr:192.168.70.75	gov:10.128.66.160	all	-	-	-	-### 20645 ###ACCEPT	gov	dmz:192.168.2.8	tcp	137:139,445	-	-	-ACCEPT	gov	ad:192.168.10.6	tcp	137:139,445	-	-	-ACCEPT	gov	dmz:192.168.2.94	tcp	3128	-	-	-ACCEPT	gov	dmz:217.195.78.199	tcp	993,465	-	-	-### 20776 ###ACCEPT	sec:192.168.4.52	net:173.194.222.153	tcp	80,443	-	-	-### ACCEPT	test:192.168.14.205	dmz:192.168.2.253	tcp	1433,1434	-	-	-ACCEPT	test	dmz:192.168.2.94	tcp	3128	-	-	-### 27675 28627 Telegram ACCEPT	loc	net:149.154.160.0/22,149.154.164.0/22,91.108.4.0/22,91.108.56.0/22,91.108.8.0/22,95.161.64.0/20	-	-	-	-	-### mail gorzdrav ###ACCEPT	all	net:37.230.144.86	tcp	25	-	-	-### for ovpn test ###ACCEPT	pvpn:192.168.7.6	all	-	-	-	-	-##Nginx-proxy-internetDNAT	net	dmz:192.168.2.201	tcp	80,443	-	195.144.238.199	-##TEST VREMENNO poka clomalsya WAF 29/08/2024DNAT	net	tvr:192.168.152.9	tcp	80,443,8893,8894,5222,5223	-	217.195.78.225	-ACCEPT	net	dmz:192.168.2.123,192.168.2.220	tcp	80,443	-	-	-ACCEPT	net	tvr:192.168.152.14,192.168.152.9	tcp	80,443,8893,8894,5222,5223	-	-	-##No internet for Atlassian ??REJECT	dmz:192.168.2.202	net	-	-	-	-	-##ExpressDNAT	net	test:192.168.14.207	tcp	80,443	-	217.195.78.221	-DNAT	net	test:192.168.14.208	tcp	3478	-	217.195.78.222	-DNAT	net	test:192.168.14.208	udp	3478,20000-40000	-	217.195.78.222	-ACCEPT	net	test:192.168.14.207	tcp	80,443	-	-	-ACCEPT	net	test:192.168.14.208	tcp	3478	-	-	-ACCEPT	net	test:192.168.14.208	udp	3478,20000-40000	-	-	-##test Vetrenko RedmineACCEPT	loc	dmz:192.168.2.71	tcp	80,443	-	-	-##27930ACCEPT	tvr:192.168.152.11	tvr:192.168.70.72	tcp	443	-	-	-ACCEPT	tvr:192.168.152.11	net:195.144.238.245	tcp	80,443	-	-	-##27959ACCEPT	tvr:192.168.70.18	tvr:192.168.70.119	tcp	80,443,3000-3005	-	-	-##for RuporBlitzACCEPT	phone:192.168.20.8	net	all	-	-	-	-ACCEPT	phone:192.168.20.8	dmz:192.168.2.4	tcp	25,565,110,pop3s,imap,imaps,www,https,993,587	-	-	-##Video server to KMS-serverACCEPT	video,skud	gov:10.128.0.24	tcp	1688	-	-	-## 1C-ITILDNAT	net	dmz:192.168.2.134	tcp	80,443,24591	-	217.195.78.219	-ACCEPT	loc	dmz:192.168.2.134	tcp	80,443,24591	-	-	-##Inet for 1C-bd & 1C-tsACCEPT	peer:192.168.6.229,192.168.6.230	net	all	-	-	-	-##TrueconfDNAT	net	dmz:192.168.2.99	tcp	80,443,4307,1720,5060,52000:52499,52500:52999,50000:51999,554,53000:55000	-	217.195.78.197	-DNAT	net	dmz:192.168.2.99	udp	1718,1719,5060,52500:52999,50000:51999,53000:55000	-	217.195.78.197	-##WAF-server 08.2024DNAT	net	dmz:192.168.2.195	tcp	80,443	-	217.195.78.236	-ACCEPT	net	dmz:192.168.2.195	tcp	80,443	-	-	-##Gitlab какой-тоACCEPT	tvr:192.168.152.11	tvr:192.168.70.72	tcp	80,443	-	-	-ACCEPT	tvr:192.168.152.11	net:217.195.78.220	tcp	80,443	-	-	-DNAT	net	tvr:192.168.70.72	tcp	80,443	-	217.195.78.220	-ACCEPT	net	tvr:192.168.70.72	tcp	80,443	-	-	-##Orca ZendToDNAT	net	dmz:192.168.2.12	tcp	80	-	217.195.78.200	-DNAT	net	dmz:192.168.2.12	tcp	443	-	217.195.78.200	-ACCEPT	net	dmz:192.168.2.12	tcp	80,443	-	-	-############ ЭТИ СТРОКИ ДОЛЖНЫ БЫТЬ ПОСЛЕДНИМИ!!! #####################REJECT	loc	net	tcp	smtp	-	-	-
+# /etc/shorewall/rules 
+#
+# Rules in this file govern connection establishment. Requests and
+# responses are automatically allowed using connection tracking.
+#
+# In most places where an IP address or subnet is allowed, you
+# can preceed the address/subnet with "!" (e.g., !192.168.1.0/24) to
+# indicate that the rule matches all addresses except the address/subnet
+# given. Notice that no white space is permitted between "!" and the
+# address/subnet.
+#
+# If any of the following columns contain the word "none" then the rule
+# is ignored:
+#
+# PORT(S), CLIENT PORT(S), CLIENT(S) and SERVER.
+#
+# Columns are:
+#
+#
+# RESULT ACCEPT, DROP or REJECT
+#
+# ACCEPT -- allow the connection request
+# DROP -- ignore the request
+# REJECT -- disallow the request and return an
+# icmp-unreachable packet.
+#
+# May optionally be followed by ":" and a syslog log
+# level (e.g, REJECT:info). This causes the packet to be
+# logged at the specified level.
+#
+# CLIENT(S) Hosts permitted to be clients. May be a zone defined
+# in /etc/shorewall/zones or $FW to indicate the
+# firewall itself.
+#
+# Clients may be further restricted to a list of subnets
+# and/or hosts by appending ":" and a comma-separated
+# list of subnets and/or hosts. Hosts may be specified 
+# by IP or MAC address; mac addresses must begin with
+# "~" and must use "-" as a separator.
+#
+# dmz:192.168.2.2 Host 192.168.2.2 in the DMZ
+#
+# net:155.186.235.0/24 Subnet 155.186.235.0/24 on the
+# Internet
+#
+# loc:192.168.1.1,192.168.1.2
+# Hosts 192.168.1.1 and
+# 192.168.1.2 in the local zone.
+# loc:~00-A0-C9-15-39-78 Host in the local zone with 
+# MAC address 00:A0:C9:15:39:78.
+#
+# Alternatively, clients may be specified by interface
+# by appending ":" followed by the interface name. For
+# example, loc:eth1 specifies a client that
+# communicates with the firewall system through eth1.
+#
+# SERVER Location of Server. May be a zone defined in
+# /etc/shorewall/zones or $FW to indicate the firewall
+# itself.
+#
+# The server may be further restricted to a particular
+# subnet, host or interface by appending ":" and the
+# subnet, host or interface. See above.
+#
+# The port that the server is listening on may be
+# included and separated from the server's IP address by
+# ":". If omitted, the firewall will not modifiy the
+# destination port.
+#
+# Example: loc:192.168.1.3:8080 specifies a local
+# server at IP address 192.168.1.3 and listening on port
+# 8080. The port number MUST be specified as an integer
+# and not as a name from /etc/services.
+#
+# PROTO Protocol - Must be "tcp", "udp", "icmp", a number,
+# "all" or "related". If "related", the remainder of the
+# entry must be omitted and connection requests that are
+# related to existing requests will be accepted.
+#
+# PORT(S) Destination Ports. A comma-separated list of Port
+# names (from /etc/services), port numbers or port
+# ranges; if the protocol is "icmp", this column is
+# interpreted as the destination icmp-type(s).
+#
+# This column is ignored if PROTOCOL = all but must be
+# entered if any of the following ields are supplied.
+# In that case, it is suggested that this field contain
+# "-"
+#
+# CLIENT PORT(S) (Optional) Port(s) used by the client. If omitted,
+# any source port is acceptable. Specified as a comma-
+# separated list of port names, port numbers or port
+# ranges.
+#
+# If you don't want to restrict client ports but need to
+# specify an ADDRESS in the next column, then place "-"
+# in this column.
+#
+# ADDRESS (0ptional) If included and different from the IP
+# address given in the SERVER column, this is an address
+# on some interface on the firewall and connections to
+# that address will be forwarded to the IP and port
+# specified in the SERVER column.
+#
+# If the special value "all" is used, then requests from
+# the client zone given in the CLIENT(s) column with the
+# destination port given in PORT(s) will be forwarded to
+# the IP address given in SERVER. The value "all" is
+# intended to be used when your internet IP address is
+# dynamic and you want to do port forwarding or you want
+# to do proxy redirection. IT SHOULD NOT BE USED IN ANY
+# OTHER SITUATION.
+#
+# The address (or "all") may optionally be followed by
+# a colon (":") an an IP address. This causes Shorewall
+# to use the specified IP address as the source address
+# in forwarded packets. See the Shorewall documentation
+# for restrictions concerning this feature. If no source
+# IP address is given, the original source address is not
+# altered.
+#
+# Example: Forward all ssh and http connection requests from the internet
+# to local system 192.168.1.3
+#
+# #RESULT CLIENTS SERVER(S) PROTO PORT(S) CLIENT PORT(S) ADDRESS
+# ACCEPT net loc:192.168.1.3 tcp ssh,http - all
+#
+# Example: Redirect all locally-originating www connection requests to
+# port 8080 on the firewall (Squid running on the firewall
+# system)except when the destination address is 192.168.2.2
+#
+# #RESULT CLIENTS SERVER(S) PROTO PORTS(S) CLIENT PORT(S) ADDRESS
+# ACCEPT loc $FW::8080 tcp www - !192.168.2.2
+##############################################################################
+#RESULT CLIENT(S) SERVER(S) PROTO PORT(S) CLIENT PORT(S) ADDRESS
+#-------------------------------------------------------------------------------
+Ping/ACCEPT all all
+ACCEPT all dmz:192.168.2.4 tcp,udp 123,53
+ACCEPT all ad:192.168.10.19,192.168.10.23,192.168.10.30 tcp,udp 123,53
+
+ACCEPT pvpn ad:192.168.10.10 icmp
+ACCEPT dmz pvpn all
+##########
+
+DROP all net:$block_dst_web tcp 80,443
+DROP net:69.6.0.0/16,103.104.0.0/16,110.0.0.0/8,79.132.0.0/16,45.16.0.0/16,173.212.0.0/16,196.0.0.0/8,118.64.0.0/10,141.98.10.0/24,45.9.0.0/16,13.235.0.0/16 all tcp 25,110,143,465,587,993,995,53,22,3389
+
+DROP all net:5.9.159.14 tcp 9001
+DROP all net:204.11.50.131 tcp 9001
+DROP all net:85.248.227.164 tcp 9002
+DROP all net:217.79.190.25 tcp 9090
+DROP all net:128.31.0.39 tcp 9101
+
+DROP all net:$block_dst all
+DROP net:$block_src all all
+DROP net:92.27.39.134 dmz:$MUKSUN tcp pop3,imap
+DROP net:92.27.39.134 dmz:$ODELLE tcp pop3,imap
+
+ACCEPT loc:$router_tr6 net all
+REJECT loc:$router_tr6 any
+### TEMP tung2 ###
+ACCEPT test:192.168.14.244 net all
+ACCEPT test:192.168.14.244 dmz:192.168.2.4 tcp smtp,ssmtp,pop3,pop3s,imap,imaps,www,https,587
+ACCEPT test:192.168.14.244 tvr:192.168.152.11 all
+REJECT test:192.168.14.244 any 
+ACCEPT test:192.168.14.244 loc:192.168.41.100 all
+ACCEPT peer:192.168.6.225 test:192.168.14.244 all
+ACCEPT tvr:192.168.152.11 test:192.168.14.244 tcp 80
+ACCEPT test:192.168.14.244 peer:192.168.6.255 all
+ACCEPT test:192.168.14.244 pvpn:192.168.29.126 all
+ACCEPT pvpn:192.168.29.126 test:192.168.14.244 tcp 3389
+
+### TEMP RUFF2 ###
+ACCEPT test:192.168.14.245 net all
+ACCEPT test:192.168.14.245 loc:192.168.41.100 all
+ACCEPT loc:192.168.41.100,192.168.41.41 test:192.168.14.245 all
+REJECT test:192.168.14.245 any
+REJECT ad test:192.168.14.245 all
+REJECT dmz test:192.168.14.245 all
+REJECT loc test:192.168.14.245 all
+REJECT loc:~EE-EE-EE-EE-EE-01 all
+ACCEPT vdi net tcp 80,443
+ACCEPT dmz:192.168.154.161 loc all
+REJECT dmz:192.168.154.0/24 any
+ACCEPT loc gov:10.144.2.39,10.144.2.43 tcp 8080
+ACCEPT loc gov:10.146.138.128 tcp 80
+ACCEPT loc gov:10.146.136.50 tcp 9090
+ACCEPT loc gov:10.146.136.161 tcp 8200
+ACCEPT loc gov:10.146.137.245,10.146.137.247 tcp 80,443
+ACCEPT loc gov:10.146.138.201,10.146.138.202 all
+ACCEPT loc:192.168.40.91 test:192.168.14.88 all
+ACCEPT test:192.168.14.88 dmz:192.168.2.118 tcp 22
+ACCEPT test:192.168.14.88 gov:10.149.218.109 tcp 8443
+
+### illegal router###
+DROP loc:~00-1C-F0-D4-F2-DA any all
+ 
+ACCEPT loc iao:192.168.5.240 tcp 80,443
+
+##KK notebook
+ACCEPT loc:~F8-A9-63-DB-24-84 all
+
+###
+ACCEPT loc nr tcp 80,443
+
+######IPERF UDP 24567
+ACCEPT all $FW udp 24567
+
+######Grechushkin TV
+ACCEPT loc:192.168.41.22,192.168.41.26,192.168.41.95 net all
+ACCEPT loc:192.168.41.26 dmz
+ACCEPT loc:192.168.41.26 gov
+
+###Phone 114
+ACCEPT loc:192.168.41.5 net
+
+#####TEST SMEV-TMP
+ACCEPT loc gov:10.146.136.55 tcp
+
+#CUD SMEV
+ACCEPT gov sec:192.168.4.5 tcp 80
+
+####GU-TEMP
+ACCEPT loc net:176.97.34.43 tcp 80,443
+
+###GARANTSP PROD
+ACCEPT loc gov:10.146.138.222 tcp 5051
+ACCEPT asa edu all
+ACCEPT asa loc:192.168.40.72 all
+ACCEPT edu ad:$GHOST all
+ACCEPT ad:$GHOST edu all
+ACCEPT loc:$router_32_dev net all
+DROP loc:$router_32_dev all
+DROP loc:$RouterTr6_ net:$VK all
+ACCEPT loc:$RouterTr6_ net all
+REJECT loc:$RouterTr6_ dmz,loc,gov,edu,vpn,iao,sec,wmz,oop,vpn2,test,phone,ad,oemts,eedu,kfin all
+ACCEPT loc gov:10.146.136.49-10.146.136.50 tcp 80,443,8080,9200
+
+### Helpdesk ####
+ACCEPT loc,nr,pvpn,peer,dmiac dmz:$HELPDESK tcp 80,443
+### vpn stuff ###
+ACCEPT pvpn:192.168.36.0/23 loc,nr all
+ACCEPT pvpn:192.168.26.0/23 loc,nr all
+ACCEPT pvpn dmz:192.168.2.86 tcp 80,443
+
+### Bank Rossiya ###
+ACCEPT pvpn:192.168.26.0/23,192.168.36.0/23 net:193.232.104.86,82.138.40.68,193.232.104.75 all
+
+### 16683 ###
+ACCEPT pvpn net:217.195.78.192/26 tcp 80,443
+
+### VKS IOGV ###
+ACCEPT pvpn:192.168.26.0/23,192.168.36.0/23 gov:10.128.2.102 tcp 80,443
+ACCEPT loc gov:10.128.2.102 tcp 80,443
+ACCEPT pvpn:192.168.26.0/23,192.168.36.0/23 gov:10.128.2.98-10.128.2.101 all
+ACCEPT loc gov:10.128.2.98-10.128.2.101
+
+#audit
+ACCEPT loc:~90-2B-34-9B-79-E8 peer all
+ACCEPT loc:~00-50-56-B6-7C-84 net all
+
+#opros.iac.spb.ru
+ACCEPT gov dmz:192.168.2.74 tcp 80,443,8080
+ACCEPT pvpn dmz:192.168.2.74 tcp 80,443,8080
+
+########################## Administrators ##########################
+# Work places in IAC
+ACCEPT ad loc udp
+ACCEPT sec:192.168.4.3,192.168.4.51,$SEC_PROXMOX iao,ad all
+ACCEPT ad sec:192.168.4.3,192.168.4.51,$SEC_PROXMOX all
+
+DNAT loc,pvpn dmz:192.168.2.4 tcp smtp,ssmtp,pop3,pop3s,imap,imaps,www,https,587 - 217.195.78.199
+DNAT vpn,vpn2,net,peer,wmz,sec,gov,iao,test,edu,ad,dmiac,phone dmz:192.168.2.4 tcp smtp,ssmtp,pop3,pop3s,imap,imaps,www,https - 217.195.78.199
+
+#Moodle-test
+DNAT net  dmz:192.168.2.10 tcp www,https - 195.144.238.220
+
+####### Phone zone ########
+ACCEPT loc phone:192.168.20.10 tcp 80
+ACCEPT pvpn:~58-BF-EA-11-68-E6 phone all
+
+#### Temp rule for necro ####
+ACCEPT test:192.168.14.23 net all
+
+#### access to update.maxpatrol.com ###
+ACCEPT sec:$MAXPATROL_ net:194.87.255.12 tcp 2002,https
+ACCEPT gov sec:192.168.4.16 tcp 2002
+ACCEPT sec:192.168.4.16,192.168.4.90 iao:$USB_HUB all
+ACCEPT dmz:$HAKE iao:$USB_HUB all
+ACCEPT loc dmz:$HAKE tcp 6473
+ACCEPT sec:192.168.4.16 net:213.247.168.194 tcp https,2002
+ACCEPT sec:192.168.4.16 net:217.28.246.15 tcp 2002
+### Maxpatrol Reserve ###
+ACCEPT sec:192.168.4.16 net:192.70.197.143,192.70.197.145 tcp 2002
+
+#######
+ACCEPT gov sec:192.168.4.40 tcp 80,ftp-data,ftp,ssh
+
+###192.168.2.90###
+ACCEPT dmz:$LATES iao:$USB_HUB all
+ACCEPT dmz:$LATES sec:192.168.4.16 tcp 2002
+ACCEPT dmz:$LATES gov:10.248.51.2-10.248.51.254 all
+ACCEPT dmz:$LATES gov:10.146.138.178 tcp 3333
+ACCEPT dmz:$LATES gov:10.146.136.73 tcp 443
+
+### Papin resilio 
+ACCEPT iao:192.168.5.54 gov all
+REJECT iao:192.168.5.54 net all
+ACCEPT gov iao:192.168.5.54 all
+
+#### Temp for Belyankin and Netrika
+ACCEPT edu net tcp http,https,9999
+
+# Remote administration from X11 forwarding
+ACCEPT loc vpn tcp x11
+ACCEPT loc vpn udp x11
+
+########################## Departmens ###############################
+ACCEPT peer:$Doronina_ gov:10.128.0.11 tcp 3128
+
+########################## Buhgalteria #############################
+# SED KIS
+ACCEPT peer:192.168.6.225 dmz:192.168.2.4 tcp 465,995 
+
+############### From EMTS access to local services ##################
+ACCEPT gov dmz:$NS tcp,udp domain
+ACCEPT gov dmz:$MAILER tcp smtp
+
+### edu zone to bk.ru ###
+ACCEPT edu net:94.100.177.2 tcp smtp,2525
+ACCEPT edu net:94.100.180.86 tcp pop3
+
+############## From different local's to EMTS resources ############
+ACCEPT loc,dmz,test,wmz,sec,iao,dmzt,pvpn	gov:10.128.66.160 tcp 80,443
+
+# Antispam from our to global net (reject access to smtp port), exclude our mail server
+
+#==================================================================================================================
+ACCEPT loc,tvr,dmiac dmz:$MAILER tcp smtp,ssmtp,pop3,pop3s,imap,imaps,www,https,587
+ACCEPT loc dmz:$MUKSUN tcp smtp,ssmtp,pop3,pop3s,imap,imaps,www,https - $MUKSUN_NET
+ACCEPT dmiac dmz:$MUKSUN tcp smtp,ssmtp,pop3,pop3s,imap,imaps,www,https,587 - $MUKSUN_NET
+
+### Ticket 12891 ###
+ACCEPT test:192.168.14.153 net:46.243.177.13 tcp 25
+ACCEPT edu,dmz,wmz,sec,iao,peer,vpn,vpn2,pvpn,test,phone,ad dmz:$MAILER tcp smtp,ssmtp,pop3,pop3s,imap,imaps,www,https,587
+ACCEPT edu,dmz,wmz,sec,iao,peer,vpn,vpn2,pvpn,test,phone,ad dmz:$ODELLE tcp smtp,ssmtp,pop3,pop3s,imap,imaps,www,https - $ODELLE_NET
+ACCEPT loc,net	dmz:$ODELLE tcp smtp,ssmtp,pop3,pop3s,imap,imaps,www,https,587 - $ODELLE_NET
+ACCEPT dmz:$MAILER_ net tcp smtp
+ACCEPT dmz:$MAILSPBARCHIVES_ net tcp smtp
+REJECT edu,dmz,wmz,sec,peer,vpn,vpn2,pvpn,test,phone,ad net tcp smtp
+ACCEPT net dmz:$MUKSUN tcp smtp,ssmtp,pop3,pop3s,imap,imaps,www,https - $MUKSUN_NET
+
+# Mail boxes from our users on Smolniy Post Server
+ACCEPT loc gov:10.128.0.10 tcp smtp,pop3
+
+#==================================================================================================================
+ACCEPT loc,edu,dmz,dmzt,wmz,sec,iao,peer,vpn,vpn2,test,phone,ad dmz:$NS tcp,udp domain
+
+ACCEPT dmz:$NS_ net tcp domain
+ACCEPT dmz:$NS_ net udp domain
+ACCEPT net,loc,dmz dmz:$ODELLE	tcp,udp domain - $ODELLE_NET
+ACCEPT net,loc,dmz dmz:192.168.2.100 tcp,udp domain - $MUKSUN_NET
+ACCEPT gov 	dmz:$ODELLE tcp,udp 53 - $ODELLE_NET
+
+# LDAP Servers
+ACCEPT loc,peer,vpn,test,ad dmz:$LDAP tcp ldap
+ACCEPT ad:192.168.10.15 loc all
+ACCEPT loc ad:192.168.10.15 all
+
+# KRB
+###AD###
+ACCEPT dmz,loc,vpn,test,peer,gov ad:$AD_SRV all
+ACCEPT sec ad:192.168.10.19,192.168.10.23 all
+ACCEPT ad:192.168.10.3,192.168.10.23,192.168.10.19,192.168.10.6,192.168.10.7 loc,gov all
+
+###AD###
+#SCUD
+ACCEPT ad:192.168.10.52 loc:192.168.41.32 all
+
+# NTP servers
+ACCEPT all dmz:$NTP udp ntp
+
+# Antivirus servers
+ACCEPT sec:$WARTHOG gov:10.128.67.2 tcp ftp,ftp-data,41000:41010
+
+#Solncev goverment antivirus
+ACCEPT gov sec:192.168.4.12 tcp 20,21,6000,6001
+ACCEPT sec:192.168.4.14 net:87.242.75.215 tcp 80,443
+
+# WSUS server wsus.adc.vpn
+ACCEPT loc,peer,ad,test,sec,dmz gov:10.128.66.99 tcp 8530
+
+# ====== почистить
+ACCEPT ad:$WSUS_ net all
+ACCEPT loc,sec,peer ad:192.168.10.20 all
+ACCEPT ad,loc,test,sec,peer,nr,dmz gov:10.128.0.20,10.128.0.24,10.128.0.25 all
+
+##
+# UC EMTS #
+ACCEPT loc,test,sec,peer,dmz gov:10.128.31.65 tcp http
+
+# Corporate chat (TEMPORARY)
+ACCEPT peer ad:$PIKE tcp 9750
+
+# Monitoring servers
+# System administrators monitoring system (nagios)
+ACCEPT dmz:$LAN_MONITOR_ net tcp http
+ACCEPT dmz:$LAN_MONITOR_ gov udp,tcp snmp
+ACCEPT dmz:192.168.2.48 loc tcp,udp snmp
+
+##### ovirug.adc.spb ########
+ACCEPT loc gov:$DB_OVIRUG_ADC tcp http,https
+
+ACCEPT test:$GRIFFON gov:10.128.66.99 tcp ssh,oracle
+ACCEPT test:$GRIFFON gov:10.128.66.101 tcp 1521
+ACCEPT gov:10.128.66.2-10.128.66.254 test:$GRIFFON tcp 1521
+ACCEPT gov:10.146.136.0/21 test:$GRIFFON tcp 1521
+
+##### iac to cod sr.adc.spb ########
+ACCEPT loc gov:10.128.66.103,10.128.66.104 tcp 22,80
+
+##### iac to cod odb.acs-ucs ########
+ACCEPT loc gov:$COD_ODB_ACS_UCS tcp 1433,7007
+ACCEPT dmz:$DUNKEN_,$ECHIDNA_ gov:$COD_ODB_ACS_UCS tcp 1433,msrdp
+
+##### IAC to COD TORIS TEST ######
+ACCEPT edu:$YakovkinEDU_ gov:10.128.66.109 tcp msrdp
+
+##### IAC to MFC TEST ########
+ACCEPT loc gov:10.146.138.113,10.146.137.31,10.146.137.30 tcp 80
+
+# Dmitriev
+ACCEPT loc dmz:$WATERBUCK tcp http,https,ssh,1521,1158,8000
+
+# Aleksandrov monitoring
+ACCEPT gov sec:$SZI_MONITOR tcp 80
+ACCEPT sec:$SZI_MONITOR net tcp 5222
+
+# Data storages
+ACCEPT sec dmz tcp,udp nfs
+ACCEPT sec dmz tcp,udp sunrpc
+ACCEPT sec dmz tcp,udp 32764:32769
+ACCEPT sec:$SEC_PM dmz:192.168.2.250 all
+ACCEPT sec:192.168.4.10 net:83.69.4.14 tcp 9022
+ACCEPT sec:192.168.4.10 net:83.69.4.14 udp 500,4500
+ACCEPT sec:192.168.4.10 net:83.69.4.14 50
+
+#### Zastava #####
+ACCEPT sec:217.195.78.231 net 50
+ACCEPT sec:217.195.78.231 net 51
+ACCEPT sec:217.195.78.231 net tcp 9022
+ACCEPT sec:217.195.78.231 net udp 500,4500
+ACCEPT net:83.69.4.14,80.245.116.102,31.28.8.93 sec:217.195.78.231 50
+ACCEPT net sec:217.195.78.231 50
+ACCEPT net sec:217.195.78.231 udp 500,4500,5001
+ACCEPT net sec:217.195.78.231 tcp 5001
+
+################## Other Administration #####################
+
+######################## PROGECTS ###########################
+
+###################### AIS Medspravka ######################
+# Access from external users
+ACCEPT gov dmz:$SNAKE tcp http,tomcat,https,10180
+
+# Access to MIAC
+ACCEPT dmz:$SNAKE_ gov:10.144.4.250 tcp ms-sql-s
+ACCEPT dmz:$SNAKE_ gov:10.144.4.253 tcp tomcat
+
+# Access to MFC
+ACCEPT test:$WOMBAT net tcp 443
+ACCEPT test:$WOMBAT dmz:192.168.2.138 tcp 10180
+ACCEPT test:$WOMBAT dmz:$SPARROW tcp 8280
+ACCEPT test:192.168.14.220 gov:10.146.136.44,10.20.31.198 tcp 80
+
+#2850 kudu -> technology of processing (port 80)
+ACCEPT dmz:$KUDU gov:10.146.65.2 tcp http
+
+##################### PORTAL IAC.SPB.RU #####################
+ACCEPT loc dmz:$NGINX tcp http
+ACCEPT dmz:$RHINOCEROS net tcp http
+
+####################### PORTAL (IOGV) Currently moved to 23 dept.(Belkina) #######################
+
+# I.Bezginov support & develope GAS "Intellekt" on server TIGERNEW
+ACCEPT gov:10.128.66.99 dmz:$FROGVM tcp 1521
+ACCEPT gov:10.128.66.101 dmz:$FROGVM tcp 1521
+ACCEPT gov:10.128.66.102 dmz:$FROGVM tcp 1521
+ACCEPT test:$GRASSHOPPER dmz:$FROGVM tcp oracle
+ACCEPT test:$GRASSHOPPER dmz:192.168.2.138 tcp 10180
+ACCEPT test:$GRASSHOPPER,192.168.14.27 dmz:$HYENA tcp 1521
+ACCEPT test:$GRASSHOPPER oop:192.168.12.16 tcp 80
+
+########################## E-MOST ###########################
+ACCEPT gov dmz:$UEK tcp tomcat
+
+#### CUD TORIS ############
+ACCEPT dmiac:$ANALITIC_105_ dmz:$CUDVM tcp http,https
+ACCEPT dmiac:$ANALITIC_105_ gov:10.146.136.44 
+ACCEPT dmiac:$ANALITIC_105_ gov:10.146.136.148 tcp 80,443,8080,8081
+ACCEPT dmiac:$ANALITIC_105_ dmz:192.168.2.95 tcp 80,443
+ACCEPT test:$EEL_ dmz:$CUDVM tcp 80,443
+ACCEPT loc dmz:$CUDVM tcp 80,443
+ACCEPT gov dmz:$CUDVM tcp 80,443,oracle
+
+##################### AIS TO #############################
+ACCEPT dmiac:$ANALITIC_105_ dmz:192.168.2.108 tcp msrdp
+ACCEPT gov oop:192.168.12.15 tcp 7001
+
+ACCEPT loc dmz:$TAPIR tcp oracle,1158
+ACCEPT loc dmz:$ASPIS tcp 5019,22
+
+# Project antinar
+ACCEPT loc gov:$XZEBRA,$XZEBRA_EMTS tcp http
+ACCEPT test:$ANT dmz:$TAPIR tcp oracle
+ACCEPT test:$ANT dmz:192.168.2.219 tcp 1521
+ACCEPT gov:$COD_DB_REG_GIS_TEST dmz:$TAPIR tcp oracle
+
+# For project omsu-anapolitic-mpsr database
+ACCEPT gov:$XZEBRA dmz:$RAVEN tcp 8011,8012
+# For project omsu-anapolitic project
+ACCEPT iao:192.168.5.102 dmz:192.168.2.69 tcp 8200:8210,9200:9210,22,80,443,21,20
+
+### ticket2574
+ACCEPT test:192.168.14.107 gov:10.128.28.41 tcp 80,443
+ACCEPT test:192.168.14.107 gov:10.128.28.57 tcp 80,443,4040
+ACCEPT test:192.168.14.107 gov:10.128.28.58 tcp 1521
+ACCEPT test:192.168.14.107 gov:10.128.28.81 tcp 8180,8280,8380,8480,8580
+ACCEPT test:192.168.14.107 gov:10.128.28.82 tcp 80,8180,8280
+ACCEPT test:192.168.14.107 gov:10.128.28.15 tcp 7001
+
+########################### EAS #############################
+# KOBR Schoolfood
+ACCEPT test:$SCHOOLFOOD_TEST_ gov:10.128.72.254 tcp 8080
+
+#!!!!!!!!!!!
+ACCEPT test:$SCHOOLFOOD_TEST_ net tcp 80,443
+
+######################### AIS OOPP #########################
+# KIS server activate Microsoft products
+ACCEPT oop gov:10.128.0.20 all
+
+# NTP Server
+ACCEPT oop gov:10.128.0.2 udp ntp
+
+# DNS Servers
+ACCEPT oop gov:10.128.0.9 udp,tcp domain
+
+########################### DATA POWER ######################
+# Administrators DP
+ACCEPT sec:$SEC_AP_ dmz:$DP1_E0,$DP2_E0,192.168.2.138 all
+ACCEPT sec:$SEC_AP_ iao:$DP1_M,$DP2_M all
+ACCEPT wmz:$OW_CA_ dmz:$DP1_E0,$DP2_E0,192.168.2.138 all
+ACCEPT wmz:$OW_CA_ iao:$DP1_M,$DP2_M all
+ACCEPT iao:$DP1_M_,$DP2_M_ sec:$SEC_AP tcp http
+ACCEPT dmz:$DP1_E0_,$DP2_E0_,192.168.2.138 sec:$SEC_AP tcp http
+
+# Misc rules for projects with DP
+ACCEPT gov dmz:$DP1_E0,$DP2_E0,192.168.2.138 tcp 6060,7070,10080,10180,10220,10240,10210
+ACCEPT iao:$DP1_M_,$DP2_M_ gov:10.128.4.64 tcp 8080,8180
+ACCEPT dmz:$DP1_E0_,$DP2_E0_,192.168.2.138 gov:10.128.4.64 tcp 8080,8180
+ACCEPT iao:$DP1_M_,$DP2_M_ gov:10.128.4.65 all
+ACCEPT dmz:$DP1_E0_,$DP2_E0_,192.168.2.138 gov:10.128.4.65 all
+ACCEPT iao:$DP1_M_,$DP2_M_ gov:10.128.56.36 tcp 8080
+ACCEPT dmz:$DP1_E0_,$DP2_E0_,192.168.2.138 gov:10.128.56.36 tcp 8080
+ACCEPT dmz:$DP1_E0_,$DP2_E0_,192.168.2.138 gov:10.128.176.10 tcp 8001
+ACCEPT iao:$DP1_M_,$DP2_M_ wmz:$OW_CA tcp 80
+ACCEPT dmz:$DP1_E0_,$DP2_E0_,192.168.2.138 wmz:$OW_CA tcp 80
+ACCEPT test:$FLS_EDO_DEVELOPMENT dmz:192.168.2.138 tcp 10180
+
+### ESIA service ###
+ACCEPT test:$FLS_EDO_DEVELOPMENT net:46.61.231.6 tcp 7777
+
+###################### EDUCATION (K. Orlova) #####################
+ACCEPT gov dmz:$SPARROW tcp 22,80,5432,6556,9443,8243,8280,8080
+
+#temp rules do 15.11.13
+ACCEPT sec:$VIPNET_AP_ net tcp 5222
+ACCEPT sec:$VIPNET_AP gov:10.128.114.154,10.128.114.153,10.149.160.190 tcp 22
+ACCEPT sec:$SEC_AP_ wmz:$OW_CA tcp 1414
+ACCEPT sec:$SEC_AP_ net:87.226.159.124,77.222.40.117,109.207.14.3,194.50.152.26,83.222.213.248 tcp http
+ACCEPT sec:$SEC_AP_ gov:10.20.1.8 tcp http
+
+# Access from Support group
+# demo centr
+ACCEPT test:192.168.14.22 dmzt:192.168.19.7 tcp http,https
+
+################## ELECTRONNIY KURIER #######################
+ACCEPT loc dmz:$SWAN,$SWAN_NET tcp 80,443
+
+# MIAC access to mantis
+ACCEPT gov:10.144.4.254 dmz:$SWAN tcp http,https
+
+###################### COD ####################
+ACCEPT gov:10.0.0.0/8 sec:192.168.4.90 tcp http,https
+ACCEPT gov sec:192.168.4.14 tcp http
+ACCEPT gov sec:192.168.4.90 tcp http,https
+
+# Full access from developers to COD-CGALI, COD-CGA VMs
+# COD-CGALI
+# COD-CGA
+ACCEPT test:$FOSS_ gov:10.128.66.231 tcp 1433
+ACCEPT dmz:$SPARROW gov:10.128.66.189 tcp http,8081
+ACCEPT test:$SPARROW_DEV_ net:195.88.249.125 tcp 80
+ACCEPT dmiac:$ANALITIC_105_ gov:10.128.66.190,10.128.66.189,10.128.66.188,10.128.66.210 tcp ssh,81,9001:9006
+ACCEPT dmiac:$ANALITIC_105_ gov:10.128.66.142 tcp msrdp
+ACCEPT edu:~E8-40-F2-E1-68-14 gov:10.128.66.142 tcp msrdp
+
+#################### WIKI & SVN & CRM #######################
+# Project service system
+ACCEPT loc dmz:$PERCH all
+ACCEPT vpn dmz:$PERCH all
+ACCEPT pvpn dmz:$PERCH all
+# SVN
+
+############################ CA #############################
+ACCEPT loc:$ag_masnik,$sa_alekseev wmz:217.195.78.217,192.168.3.223 tcp 8080
+ACCEPT loc:$sa_alekseev wmz:217.195.78.217,192.168.3.223 tcp 8080
+ACCEPT loc:$av_nikitenkova wmz:217.195.78.217 tcp 8080
+DROP loc wmz:217.195.78.217,192.168.3.223 tcp 8080
+
+###Dokumentooborot AETP####
+# Access to caiac.ru to administrators CA
+###################### TEST MFC CHR #########################
+# Access to federal gosreestr, chr gosreestr (port 8090)
+##################### PROGECT ARCHIVES ######################
+# RDP Access for Archive team to KFFD archive on Tavricheskaya
+### Post server for x.spbarchives.ru
+ACCEPT loc,dmz,net dmz:$MAILSPBARCHIVES_NET tcp smtp,smtps,pop3,pop3s,imap,imaps,ssmtp,587
+ACCEPT gov dmz:$MAILSPBARCHIVES tcp smtp,smtps,pop3,pop3s,imap,imaps,ssmtp,587,143,993
+# Connect from clients to OSSEC service
+ACCEPT gov dmz:$MAILSPBARCHIVES udp 1514
+ACCEPT dmz:$ECHIDNA_,$DUNKEN_ gov:10.128.216.33 tcp 7003
+ACCEPT gov dmz:$ECHIDNA,$DUNKEN tcp 3389
+ACCEPT dmz:$ECHIDNA_,$DUNKEN_ gov:10.144.36.37 tcp msrdp
+
+######################### TORIS #############################
+ACCEPT edu gov:192.168.9.50 tcp 18080,18180,18543,19543
+ACCEPT edu gov:192.168.9.51 tcp 28180,28543
+ACCEPT loc gov:10.146.138.205 tcp 80
+
+##################### IP-telephone ###########################
+ACCEPT phone:$DIPPER_VOIP net:178.16.26.122,144.76.42.108 all
+DNAT oemts phone:$DIPPER_VOIP icmp - - 10.225.4.161
+DNAT oemts phone:$DIPPER_VOIP udp 5060,5090,7078 - 10.225.4.161
+DNAT oemts phone:$DIPPER_VOIP tcp 5060,5090,7078 - 10.225.4.161
+ACCEPT gov phone:$DIPPER_VOIP icmp 
+ACCEPT gov phone:$DIPPER_VOIP udp,tcp 5060,5090,7078
+ACCEPT gov phone:$DIPPER_VOIP udp 10000:20000
+ACCEPT loc dmz:$CRM tcp 80,443
+ACCEPT phone:$DIPPER_VOIP dmz:$CRM tcp 80,443
+
+################## ROSTELECOM ##############################
+###### From zone net to internal resources (Proxy ARP) ######
+# Backdoor for IAC lan (webcache.lan.iac.spb.ru)
+ACCEPT net dmz:$SWAN_NET tcp 80,443
+
+######################### DNAT ############################
+### For Letsencrypt ###
+#########
+##openvpn-nat
+DNAT net pvpn:192.168.7.6:1026 tcp 1026 - 217.195.78.228
+DNAT net pvpn:192.168.7.6:1027 tcp 1027 - 217.195.78.228
+DNAT net pvpn:192.168.7.6:1033 tcp 1033 - 217.195.78.228
+DNAT net pvpn:192.168.7.6:1034 tcp 1034 - 217.195.78.228
+DNAT net pvpn:192.168.7.6:1069 tcp 1069 - 217.195.78.228
+DNAT net pvpn:192.168.7.6:1420 tcp 1420 - 217.195.78.228
+DNAT net pvpn:192.168.7.7:1425 udp 1425 - 217.195.78.228
+##openvpn-nat
+### TEMP RULE FOR KIWI ##
+####
+
+### Артефакт – не удалять ###
+##ebanoe srochnoe pravilo lkz udzlcovskogo govna do 25.02.2014!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#DNAT net test:$HCS_BALANCER:80 tcp 10080 - 217.195.78.239
+#DNAT loc test:$HCS_BALANCER:80 tcp 10080 - 217.195.78.239
+#DNAT net test:$HCS_BALANCER:443 tcp 10443 - 217.195.78.239
+#DNAT loc test:$HCS_BALANCER:443 tcp 10443 - 217.195.78.239
+##
+
+#For Exigen to MFC maket (Hardware Servers)
+# In Telesyn add static record arp address
+# Access from GIRC to mfc-portal-n2 throught Internet zone (applied 3-6.12.2012)
+ACCEPT gov dmz:192.168.2.40 tcp http
+
+########################## Test Zone ##########################
+ACCEPT test:$GRASSHOPPER_ dmz:$FROGVM tcp 1521
+ACCEPT gov:$XZEBRA dmz:$HAKE tcp 6473
+ACCEPT gov,dmzt test:192.168.14.11 tcp 80
+ACCEPT gov test:192.168.14.48 tcp 8090
+##############################################################
+###### Video ######
+ACCEPT loc gov:10.128.2.100 all
+#################################################
+
+#IAS MFC BEGIN
+ACCEPT dmz:$XANT_ gov:10.128.72.254 tcp 8050,80
+ACCEPT loc dmz:$XANT tcp 80,8080
+# GRN
+#-------------------------------------------------------------------------------
+ACCEPT wmz:$OW_CA_ gov:$GIRAFFE tcp 1521
+
+
+# Allow DEVELOPMENT
+#
+ACCEPT loc wmz:$CA_OW tcp 3389,http
+ACCEPT peer:$Yakovleva_,$Doronina_ net:$UFMSREG tcp http,https
+###### TEMP FOR S.Smirnov till 24/02/2014
+ACCEPT edu loc tcp msrdp
+ACCEPT dmiac:$ANALITIC_105_ loc tcp msrdp,http,3050
+
+# Security Department zone access
+#------------------------------------------------------------------------------
+ACCEPT dmz:$XANT_ sec:$SEC_AP tcp 80
+ACCEPT dmiac:$ANALITIC_105_ sec all
+ACCEPT $FW net tcp ssh
+ACCEPT loc gov:172.21.70.137 all
+
+#########################################
+# Infomaty
+ACCEPT loc dmz:$AXIS tcp http
+ACCEPT dmz:$AXIS oemts:10.220.5.195,10.227.28.132,10.229.0.67,10.24.135.67,10.238.1.131,10.238.1.198 tcp 5900:5906
+ACCEPT dmz:$AXIS oemts:10.238.1.131 tcp 4899
+ACCEPT dmz:$AXIS oemts:10.130.229.242,10.130.215.134 tcp 4499,4899,5900:5906
+ACCEPT dmz:$AXIS oemts:10.220.5.195,10.227.28.132,10.229.0.67,10.24.135.67,10.238.1.131,10.238.1.198,10.130.215.134,10.130.229.242 icmp
+ACCEPT gov dmz:$AXIS tcp
+# Komitet po sportu
+# IOGV
+
+##################
+# Temp access for Bakhtiarov to his project
+ACCEPT loc sec:192.168.4.3 all
+ACCEPT dmz sec tcp nfs
+ACCEPT wmz sec tcp nfs
+# Temp access server with bacula to clients for debuging
+# For development bugtracker & crm & subversion system
+# DC-Track
+# Gosreestr temp
+ACCEPT gov test:192.168.14.29 tcp 8090,5432
+ACCEPT loc gov:10.144.2.36 tcp 8090
+ACCEPT loc dmz:192.168.2.14 tcp 5432,8090,8010
+
+############### GNK #####################
+ACCEPT dmiac:~14-da-e9-6d-4f-ac test:192.168.14.31 tcp 7878
+ACCEPT gov:10.128.4.66 test:192.168.14.63 tcp 8081
+ACCEPT gov:10.128.4.67 test:192.168.14.63 tcp 8081
+
+####### Grechushkin dlya Solnceva
+ACCEPT gov sec:192.168.4.13 all
+
+###### TEMP RULE FOR EDU EXPIRE 31.08.2012 ##################
+ACCEPT edu net tcp http,https
+
+#### RENTAWEB DO NOT TOUCH
+############# med-llo-hd ########################
+###### TEMP RULES ############
+ACCEPT ad:192.168.10.15 dmz:192.168.2.4 tcp 22
+ACCEPT dmiac:$ANALITIC_105_ net:195.88.249.106 tcp 20003
+ACCEPT dmiac:$ANALITIC_105_ loc:192.168.11.142,192.168.11.122 tcp msrdp
+
+### temp AGFA ###
+### for videoconferenc with minzdrav ###
+##### For I. Udaltsov #####
+
+## TEMP EMTS MAP MONITOR
+ACCEPT sec:192.168.4.90 gov:192.168.9.34 tcp 6473
+
+### GIT IAC###
+ACCEPT test:192.168.14.44,192.168.14.42 net all
+ACCEPT test:192.168.14.44 gov:172.21.65.6 tcp 80,443
+ACCEPT test:192.168.14.44 dmz:192.168.2.138 tcp 10180
+
+##### DS #####
+#### Kom Fin #####
+ACCEPT kfin loc:192.168.41.10 tcp 5900
+ACCEPT kfin loc:192.168.41.11 tcp 5900
+
+##### ВИСИТ-СПБ! VISIT-PETERSBURG #####
+ACCEPT dmz:192.168.2.66 net all
+
+#### kyrnyshev ####
+ACCEPT iao:192.168.5.58 loc:192.168.43.131 all
+ACCEPT test:192.168.14.85 net all
+
+#### nod32 ####
+ACCEPT ad:$GHOST net all
+ACCEPT ad:$GHOST loc all
+ACCEPT loc ad:$GHOST all
+ACCEPT peer ad:$GHOST all
+ACCEPT ad:$GHOST peer all
+
+###Temp DEMO (Grechushkin)
+##TEMP BUGH
+ACCEPT peer:~94-de-80-48-2b-ca net all
+#####
+
+###### ZendTo (Grechushkin)
+ACCEPT loc dmz:192.168.2.12 tcp 80
+ACCEPT loc dmz:192.168.2.12 tcp 443
+
+######Temp Ticket 2198 31.08.2014 Почистить Cisco-ASA
+ACCEPT loc net:195.144.238.206 tcp 80,443
+
+# MFC ADC ################
+# INFRA ##################
+# access server
+ACCEPT loc gov:10.146.137.81 tcp ssh
+ACCEPT vpn gov:10.146.137.81 tcp ssh
+ACCEPT pvpn gov:10.146.137.81 tcp ssh
+ACCEPT loc gov:10.146.138.127 tcp 8001,8002
+# some rules
+# jira
+ACCEPT loc gov:10.146.137.80 tcp ssh,http,https
+ACCEPT vpn gov:10.146.137.80 tcp ssh,http,https
+# some rules
+# INFRA END
+# PRODUCTION #############
+# PRODUCTION END
+# TEST ###################
+# TEST END ###############
+# EDU ####################
+# VMWare machines moved from IAC
+# oracle rac
+# new portal on power7
+# EDU END ################
+# DEVELOPMENT ############
+# DEVELOPMENT END ########
+# MFC ADC END ############
+#################ADD AFTER THIS LINE !!!!!!!! #########################
+ACCEPT dmiac:$ANALITIC_105_,$TROT_ gov:10.146.136.22 tcp 80
+# colt soft installation
+ACCEPT test:192.168.14.104 net tcp 80,443
+ACCEPT test:192.168.14.45 gov tcp 22
+#######ПОКАЗ НОУТ НЕТ В ФАЙЛЕ######################
+ACCEPT test:192.168.14.212,192.168.14.217,192.168.14.231,192.168.14.237,192.168.14.244,192.168.14.247 net all
+ACCEPT peer test:192.168.14.219 tcp 443,3389
+ACCEPT dmzt:192.168.19.2 test:$WOMBAT udp 12201
+ACCEPT dmzt:192.168.19.2 dmz:192.168.2.133 tcp 10230
+#До 13 ноября
+ACCEPT test:192.168.14.5 gov:10.128.4.63 tcp 8080
+ACCEPT sec:192.168.4.54 phone:192.168.20.10 all
+ACCEPT phone:192.168.20.10 net tcp 5065,5060
+ACCEPT phone:192.168.20.10 net udp 5060
+ACCEPT phone:192.168.20.10 gov:10.128.66.58 udp
+ACCEPT gov:192.168.9.140 net:176.97.34.16 tcp 80,443
+ACCEPT test:192.168.14.222 gov:10.146.137.131 tcp 1521
+ACCEPT gov:10.146.137.131 test:192.168.14.222 tcp 1521
+ACCEPT dmiac:$ANALITIC_105_ test:192.168.14.31 tcp 8180
+ACCEPT loc,vpn,pvpn gov:10.146.137.82 tcp,udp 3389,445,137,138,139
+ACCEPT gov dmz:192.168.2.224 tcp 1521
+ACCEPT loc:$ya_andreev net tcp 80,443
+ACCEPT gov sec:192.168.4.92 tcp 8080
+ACCEPT test:192.168.14.82 net:195.88.249.110 tcp 80,443
+ACCEPT test:192.168.14.82 gov:10.146.136.203 tcp 1521
+ACCEPT gov test:192.168.14.22 tcp 80,443
+ACCEPT gov test:192.168.14.145 tcp 8080
+ACCEPT test:192.168.14.145 dmz:192.168.2.19 tcp 80
+ACCEPT dmz:192.168.2.245 gov:10.146.137.1,10.146.132.1 tcp 8081
+ACCEPT dmz:192.168.2.245 gov:10.146.136.56 tcp 80
+ACCEPT dmz:192.168.2.245 gov:100.127.255.6 tcp 8088
+ACCEPT test:$WOMBAT gov:10.146.137.3 tcp 80
+ACCEPT test:$WOMBAT gov:10.146.137.1 tcp 8081
+ACCEPT gov:10.146.137.2 dmz:192.168.2.138 tcp 10230
+ACCEPT peer loc:192.168.42.236 tcp,udp 5001
+ACCEPT loc:192.168.43.201 dmzt:192.168.19.6 all
+ACCEPT test:192.168.14.56 dmz:192.168.2.177 tcp 1521
+ACCEPT dmiac:~14-da-e9-6d-4f-ac loc:192.168.44.29 tcp 3389
+ACCEPT loc:~3C-97-0E-25-31-ED,~3C-97-0E-25-31-EC,~3C-97-0E-25-31-37 dmz:192.168.2.90 all
+ACCEPT test:192.168.14.222 dmzt:192.168.19.2 tcp 8443
+ACCEPT test:192.168.14.82 net:46.61.231.190,212.116.96.45 tcp 80
+ACCEPT test:192.168.14.82 dmz:192.168.2.74 tcp 3128
+ACCEPT test:192.168.14.82 gov:10.146.136.118 tcp 1521
+ACCEPT sec:192.168.4.43 iao:192.168.5.126 all
+ACCEPT dmzt:192.168.19.2 net:176.97.34.144 tcp 80,443
+ACCEPT phone:192.168.20.10 net:185.45.152.160/27,185.45.152.129,185.45.152.130 all
+ACCEPT gov:10.146.0.0/16,10.128.0.0/16  dmz:192.168.2.138 tcp 10180
+ACCEPT sec:192.168.4.52 gov tcp 10050,5900,5901,4899
+ACCEPT sec:192.168.4.52 gov icmp
+ACCEPT sec:192.168.4.52 gov:10.146.136.52,10.128.3.251  tcp 80
+ACCEPT sec:192.168.4.52 gov:10.146.136.240 udp 161,162 
+ACCEPT sec:192.168.4.13 gov:10.128.67.114,10.128.67.115 all
+ACCEPT sec:192.168.4.13 gov:10.0.0.0/8 tcp 13000,13291,14000,14001,15000
+ACCEPT sec:192.168.4.13 gov:10.0.0.0/8 udp 13000,15000 
+ACCEPT sec:192.168.4.13 net tcp 80,443
+
+#####Доступ для svn.iac.spb.ru#####
+ACCEPT loc,vpn dmz:$LYNX tcp 80,443
+##################################
+
+ACCEPT loc test:192.168.14.15 tcp 3389,4899
+ACCEPT loc dmz:192.168.2.98 tcp 3389
+ACCEPT loc:192.168.42.7 dmz:192.168.2.91 tcp 20,21,22
+ACCEPT loc dmz:192.168.2.91 tcp 22,80
+ACCEPT loc:$i_petrov gov:10.128.66.97 all
+ACCEPT loc dmzt:192.168.19.8 tcp 22,80,443,8000:9999
+ACCEPT dmzt:192.168.19.8 loc all
+ACCEPT dmzt:192.168.19.8 gov:10.144.2.10 tcp
+ACCEPT dmzt:192.168.19.8 gov:10.146.136.131 tcp 1521
+
+### Infowatch Traffic Monitor ###
+ACCEPT gov dmz:192.168.2.90 tcp 2002,135,139,445,593,15003,15004,15101,15505,15506
+ACCEPT gov dmz:192.168.2.90 udp 137,138,15100
+ACCEPT dmz:192.168.2.90 gov:10.128.66.57,10.129.157.56,10.148.33.3 tcp 2002
+ACCEPT dmz:192.168.2.90 gov:10.128.1.254 tcp 2002,135,139,445,593,15003,15004,15101,15505,15506
+ACCEPT dmz:192.168.2.90 gov:10.128.1.254 udp 137,138,15100
+ACCEPT test:192.168.14.83 net:91.189.89.223 all
+ACCEPT gov:192.168.9.2 dmz:192.168.2.93 all
+ACCEPT dmz:192.168.2.93 gov:192.168.9.2 all
+ACCEPT loc,peer,vpn ad:$IACFS,192.168.10.9 tcp 445,136,137,139
+ACCEPT pvpn:192.168.26.0/23,192.168.36.0/23 ad:$IACFS,192.168.10.9 tcp 445,136,137,139
+ACCEPT ad:$IACFS,192.168.10.9 iao tcp 80,443,8543
+ACCEPT loc,vpn ad:$PIKE tcp 445,136,137,139
+ACCEPT ad:$PIKE loc tcp 445,136,137,139
+ACCEPT dmzt:192.168.19.8 gov:10.146.136.32,10.146.136.53,10.146.136.49,10.128.5.238 tcp 80,443
+ACCEPT dmzt:192.168.19.5 gov:10.146.138.221 tcp 80,443
+ACCEPT dmzt:192.168.19.5 gov:10.146.136.61 tcp 10180
+
+### till 30.09 ###
+ACCEPT test:192.168.14.59 net tcp 80
+ACCEPT test:192.168.14.59 gov:10.128.66.101 tcp 1521 
+
+####################################
+ACCEPT test:192.168.14.59 dmzt:192.168.19.8 tcp 8201
+ACCEPT test:192.168.14.240 net all
+###ipam###
+ACCEPT loc dmz:192.168.2.83 tcp 80,443
+ACCEPT vpn dmz:192.168.2.83 tcp 80,443
+#############
+ACCEPT loc dmz:192.168.2.74 tcp 80,443,3128
+ACCEPT peer dmz:192.168.2.74 tcp 80,443,3128
+ACCEPT sec dmz:192.168.2.74 tcp 80,443,3128
+ACCEPT ad dmz:192.168.2.74 tcp 80,443,3128
+ACCEPT loc gov:10.146.137.85 tcp 22
+ACCEPT vpn gov:10.146.137.85 tcp 22
+### confluence.hcs.adc.spb ###
+ACCEPT loc gov:10.128.66.41 tcp 80,443
+### confluence.hcs.adc.spb ###
+ACCEPT loc gov:10.128.66.42 tcp 80,443
+ACCEPT sec:$SEC_AP net:83.229.175.11 all
+###NTP
+ACCEPT ad:$SKUNK gov:10.128.0.2 udp 123
+####
+ACCEPT test:192.168.14.119 dmz:192.168.2.224 tcp 1521
+ACCEPT test:192.168.14.119 dmz:192.168.2.223 tcp 8080
+ACCEPT test:192.168.14.119 dmz:192.168.2.21 tcp 1433
+###Security Department###
+ACCEPT sec gov:10.146.138.129 all
+###
+###temp###
+ACCEPT loc:~00-1d-60-24-d5-54,~44-8a-5b-8e-3e-0e peer all
+#####
+ACCEPT gov dmz:192.168.2.105 all
+ACCEPT dmz:192.168.2.105 gov all
+
+ACCEPT edu:$EDU_110 gov:10.146.136.22,10.146.136.44,10.146.136.148,10.146.136.24,10.146.136.87 tcp 80,443
+ACCEPT edu:$EDU_110 gov:10.146.136.205,10.146.136.206 tcp 8080
+ACCEPT edu:$EDU_110 gov:10.146.136.111,10.146.136.162,10.146.136.182,10.146.138.3,10.146.136.130 tcp 80
+ACCEPT edu:$EDU_110 dmzt:192.168.19.8 tcp 8301
+ACCEPT edu:$EDU_110 dmz:192.168.2.16 tcp 3389
+ACCEPT edu:$EDU_110 gov:10.128.66.111 tcp 8082
+ACCEPT edu:$EDU_110 dmzt:192.168.19.8 tcp 9301
+ACCEPT edu:$EDU_110 gov:10.128.66.105 tcp 80,211,1433
+ACCEPT edu:$EDU_110 gov:10.146.136.175 tcp 80,211,1433,1434
+ACCEPT edu:$EDU_110 gov:10.146.139.57 tcp 8201
+ACCEPT edu:$EDU_110 gov:10.146.136.181 tcp 6473,1433,80
+ACCEPT edu:$EDU_110 gov:192.168.19.8 tcp 8701
+ACCEPT edu:$EDU_110 net all
+ACCEPT dmzt:192.168.19.8 dmz:192.168.2.94 tcp 6473
+ACCEPT loc,peer,sec,ad dmz:192.168.2.94 tcp 80,443,3128
+ACCEPT gov:192.168.9.10,192.168.9.11 dmz:192.168.2.94 tcp 80,443,3128
+ACCEPT sec:192.168.4.5 net:109.207.0.0/16 all
+ACCEPT sec:192.168.4.5 net:95.161.154.197,85.143.127.77 tcp 80,443
+ACCEPT gov:192.168.9.11 dmz:192.168.2.97 tcp 22
+###До 1.12
+ACCEPT dmiac:$ANALITIC_105_ gov:10.146.136.24 tcp 80
+ACCEPT dmiac:$ANALITIC_105_ dmz:192.168.2.19 tcp 80
+###
+ACCEPT loc ad:192.168.10.3 tcp 80
+ACCEPT test:192.168.14.119 dmz:192.168.2.222 tcp 5432
+###Antinar###
+ACCEPT dmz:192.168.2.36 gov:10.146.136.111 tcp 22,80,443,6311,6473,8000:8250,9000:9250,10050
+ACCEPT dmz:192.168.2.36 gov:10.146.136.112 tcp 22,1158,1521
+ACCEPT loc gov:10.146.136.112 tcp 22,1158,1521,10050
+ACCEPT dmz:192.168.2.36 gov:10.146.136.113 tcp 22,80,443,8000:8100,9000:9100,10050
+ACCEPT gov:10.146.136.0/21 dmz:192.168.2.36 tcp 80,10051,10052
+ACCEPT loc gov:10.146.136.113 tcp 22,80,443,8000:8100,9000:9100,10050
+ACCEPT loc gov:10.146.136.136 tcp 3389,10050,80,443,8080,8443,8011,8012,8001,8002
+####
+###Analytica###
+ACCEPT loc gov:10.146.136.130 tcp 22,80,443,6473,8000:8250,9000:9250,10050
+ACCEPT loc gov:10.146.136.131 tcp 22,10050,1521,1158
+ACCEPT loc gov:10.146.136.132 tcp 22,10050,8000:8250,9000:9250,80,443
+ACCEPT loc gov:10.146.136.137 tcp 3389,10050,80,443,8080,8443,8011,8012,8001,8002
+ACCEPT loc gov:10.146.136.138 tcp 3389,10050,6473
+ACCEPT loc gov:10.146.136.139 tcp 3389,10050,80,443,8000:8100
+ACCEPT loc gov:10.146.136.141 tcp 22,10050,8560,8580,8590,8180,5450,8569,8589,8599,8181,8561,8581,8591,8080,7980,8343,7080,7443,6969
+ACCEPT loc gov:10.146.136.111 tcp 22,10050,8000:8250,9000:9250,6311,80,443
+###
+ACCEPT test:192.168.14.119 dmz:192.168.2.241 tcp 22,3000,7780
+ACCEPT loc gov:10.128.66.140 tcp 8001,8002,8101,8102
+##TEMP 5485
+#ACCEPT loc gov:10.146.136.89 tcp 22
+###drweb-iogv###
+ACCEPT gov sec:192.168.4.17 tcp 
+ACCEPT sec:192.168.4.17 gov all
+###
+ACCEPT test:192.168.14.85 net all
+ACCEPT sec:192.168.4.54 gov:10.146.136.52 tcp 80
+ACCEPT loc dmz:192.168.2.111 tcp 80,443
+ACCEPT loc dmz:192.168.2.238 tcp 8300:8350
+###POB###
+ACCEPT loc,vpn gov:10.146.136.124,10.146.136.125,10.146.136.126 tcp 80,443
+###
+###for 109###
+ACCEPT loc:~e8-40-f2-18-ee-25 net all
+###
+ACCEPT gov dmz:192.168.2.106 tcp 8080,50001
+ACCEPT loc net:46.61.231.6 tcp 7777
+####105!!!
+ACCEPT dmiac any icmp
+ACCEPT dmiac gov,net all
+ACCEPT dmiac dmz:192.168.2.9 all
+ACCEPT dmiac any udp 53
+ACCEPT dmiac dmz:217.195.78.215 tcp 80,443
+##########
+###ASOV03###
+ACCEPT loc:~74-d0-2b-0e-a0-08 gov:10.146.24.11,10.146.24.12,10.146.82.11,10.146.103.11,10.147.80.11,10.146.22.13,10.146.21.11 tcp 8080
+ACCEPT loc:~74-d0-2b-0e-a0-08 gov:192.168.9.49 all
+###
+###router_stepanov_v33###
+ACCEPT loc:$router_stepanov_v33 net all
+DROP loc:$router_stepanov_v33 all
+###
+###Роутер Вани Петрова##
+ACCEPT loc:$router101 net all
+DROP loc:$router101 all
+###
+ACCEPT loc gov:10.146.136.162 tcp 80,443
+ACCEPT test:192.168.14.220 net:84.17.20.254 tcp 8080
+ACCEPT gov:10.146.136.0/24,10.128.66.0/24 dmz:192.168.2.222 tcp 5432
+###5799###
+ACCEPT loc gov:10.146.136.161 tcp 2200:2299,1521,3389
+###
+###5867##
+ACCEPT loc,vpn gov:10.146.137.241,10.146.137.242 tcp 8081
+ACCEPT loc gov:10.146.137.243 tcp 80
+###
+###6018
+ACCEPT gov:10.146.136.139,10.146.136.141 test:192.168.14.59 tcp 1521
+ACCEPT gov:10.146.136.131,10.146.136.112,10.146.139.60,10.146.139.69  test:192.168.14.59 tcp 22
+###
+###До битрикса gu и gu pre###
+ACCEPT vpn net:46.243.177.206,46.243.177.207,46.243.177.201,46.243.177.205,46.243.177.211,46.243.177.220,46.243.177.221,46.243.177.222,46.243.177.233 tcp 80,443
+###
+ACCEPT loc net:46.243.177.17 tcp 8569,8589,8181,8599
+ACCEPT dmiac ad:192.168.10.10 tcp 445
+ACCEPT test:192.168.14.236 net all
+ACCEPT loc gov:10.146.137.137 tcp 8081
+###temp# shiryaev##
+ACCEPT iw gov all
+ACCEPT dmz:192.168.2.245 net:85.143.127.133 tcp 7500
+ACCEPT test:192.168.14.82 net:85.143.127.133 tcp 7500
+ACCEPT sec:192.168.4.54 gov all
+ACCEPT sec:192.168.4.54 net:198.23.135.230 tcp 9023 
+###Video conf
+ACCEPT loc gov:10.146.136.198 all
+ACCEPT test:192.168.14.205 gov:10.128.66.190 tcp 8080
+ACCEPT test:192.168.14.82 net:85.143.127.199 tcp 7500
+ACCEPT test:192.168.14.59 gov:10.146.136.112 tcp 1521
+ACCEPT loc net:195.5.155.66 tcp 5555
+###to vc.fire.iac ###
+ACCEPT gov iao:192.168.5.110 all
+###
+ACCEPT loc gov:10.128.66.64 tcp 80,443
+ACCEPT loc gov:10.146.136.162 tcp 80
+ACCEPT dmiac net all
+ACCEPT dmiac gov all
+###Proektor 214 
+ACCEPT loc:$pr_214 gov:10.146.136.32 tcp 80
+ACCEPT gov dmz:192.168.2.94 tcp 3128
+####
+ACCEPT loc gov:10.146.137.150 tcp 80,443
+###Sitnikiv 6996###
+ACCEPT gov:10.144.2.0/24,10.128.66.24 dmz:192.168.2.86 tcp 80
+ACCEPT test:192.168.14.37 gov:10.144.2.254 tcp 880
+ACCEPT test:192.168.14.37 dmz:192.168.2.94 tcp 3128
+###
+###Stop VK###
+DROP loc:$dementiev net:$VK all
+###
+ACCEPT loc gov:10.146.136.245 tcp 80,443
+###pypi###
+ACCEPT loc,test,dmz gov:10.128.66.129 tcp 80,443
+###
+###AUDIT BUH
+ACCEPT loc:~78-2B-CB-E5-EB-E4,~FC-3F-DB-32-FD-D2,~E8-9D-87-AA-02-28,~98-ee-cb-18-72-34 peer all
+###
+ACCEPT loc gov:10.146.137.85 tcp 80,8081,18081
+ACCEPT loc gov:10.146.137.20 tcp 80
+###ROUTER-202
+ACCEPT loc:~54-E6-FC-C1-EA-1B net,vpn all
+DROP loc:~54-E6-FC-C1-EA-1B all
+### 
+###
+ACCEPT edu:$EDU_110 gov:10.146.136.181 tcp 6473,1433,80
+ACCEPT edu:$EDU_110 gov:10.146.136.87 tcp 80,443
+ACCEPT edu:$EDU_110 gov:192.168.19.8 tcp 8701
+ACCEPT peer test:192.168.14.45 all
+ACCEPT sec:192.168.4.93,192.168.4.94 gov:10.146.136.52,10.146.136.198 tcp 80
+ACCEPT sec:192.168.4.93,192.168.4.94 gov:10.146.136.52,10.146.136.198 icmp
+##ESEDD
+ACCEPT pvpn gov:10.128.66.165 all
+###ЭО
+ACCEPT loc,dmiac,pvpn,nr dmz:192.168.2.95 tcp 80,443,8081
+ACCEPT loc,gov,nr,dmiac,pvpn,peer,edu ad:192.168.10.50 tcp 80,443,8081
+###VPN-gate-Kolokolov###
+ACCEPT net:91.220.218.252 dmz:195.144.238.221,192.168.2.15 all
+#DROP dmz:192.168.2.15 all 
+###
+ACCEPT loc gov:10.146.138.3 tcp 80
+ACCEPT gov sec:192.168.4.93 all
+ACCEPT test:192.168.14.47 gov:10.128.66.104 tcp 22
+ACCEPT loc gov:10.146.138.152 tcp 80,443
+###Доступ до vCenter###
+ACCEPT loc gov:10.128.66.85,10.128.66.65 tcp 80,443,9443,902
+ACCEPT loc gov:10.146.140.222 tcp 80,443,8444
+ACCEPT loc gov:10.146.140.229 tcp 80,443
+ACCEPT pvpn gov:10.146.140.229 tcp 80,443
+### BLOCK KISU from Grechushkin ###
+ACCEPT pvpn gov:10.146.140.222 tcp 80,443,8444
+###
+ACCEPT loc gov:10.146.138.95 tcp 80,443
+ACCEPT loc gov:10.146.138.91 tcp 1521
+ACCEPT loc gov:10.146.138.94 tcp 22
+ACCEPT loc gov:10.146.138.117 tcp 22,80
+###NewVpn##
+ACCEPT pvpn:192.168.9.210 net all
+ACCEPT pvpn:192.168.9.210 gov:10.128.66.160 tcp 80
+ACCEPT pvpn:192.168.9.210 dmz:192.168.2.4,192.168.2.100 tcp 389
+ACCEPT pvpn:192.168.9.210 dmz:192.168.2.4 udp 123
+ACCEPT pvpn:192.168.9.210 dmz:192.168.2.118 tcp 22
+ACCEPT pvpn:192.168.9.210 dmz:192.168.2.120 all 
+ACCEPT pvpn:192.168.9.210,192.168.7.6 dmz:192.168.2.130 tcp 389
+ACCEPT sec:192.168.4.16,192.168.4.93 gov:10.146.138.178 udp 138,137
+ACCEPT sec:192.168.4.16,192.168.4.93 gov:10.146.138.178 tcp 139,445
+ACCEPT sec:192.168.4.16,192.168.4.93 gov:10.146.138.178 tcp 1024:65535
+ACCEPT sec:192.168.4.95 gov:10.146.138.178 tcp 3389,5671,5672
+ACCEPT sec:192.168.4.93,192.168.4.94,192.168.4.95 gov:10.146.139.109 tcp 5432
+ACCEPT gov sec:192.168.4.95 tcp 3389
+ACCEPT gov:192.168.9.49 dmz:192.168.2.4 udp 123
+###For all from IAC
+### IAC 
+ACCEPT loc gov:10.146.139.57,10.146.139.58,10.146.139.65,10.146.139.67 tcp 8000:8999
+ACCEPT loc gov:10.146.139.59,10.146.139.61,10.146.139.69 tcp 1521,1158
+ACCEPT loc gov:10.146.139.70,10.146.139.62 tcp 5432
+ACCEPT loc gov:10.146.139.66,10.146.139.79 tcp 80,443
+ACCEPT loc gov:10.146.138.60,10.146.138.61,10.146.138.206,10.146.136.24,10.146.139.44,10.146.137.224,10.146.139.46,10.146.139.47 tcp 80
+ACCEPT gov:10.128.28.60 dmz:217.195.78.199,192.168.2.4 tcp 25
+ACCEPT loc gov:10.146.139.63 tcp 80,443,5432
+ACCEPT loc gov:10.146.139.64 tcp 443,5000
+ACCEPT loc gov:10.146.139.60 tcp 1521
+ACCEPT sec:192.168.4.78 phone:192.168.20.10 all
+ACCEPT loc gov:10.146.139.45 tcp 22,80
+ACCEPT test:192.168.14.13 gov:10.146.136.40 tcp 1521
+ACCEPT ad:192.168.10.6 gov:172.21.65.6 tcp 80
+ACCEPT ad:192.168.10.6 gov:172.21.65.6 icmp
+ACCEPT ad:192.168.10.20 iao all
+ACCEPT loc gov:10.146.136.28 tcp 8280
+ACCEPT loc gov:10.146.139.65 tcp 8800:8810
+ACCEPT loc gov:10.146.139.65 tcp 8080,8081
+ACCEPT test:192.168.14.133,192.168.14.134,192.168.14.143,192.168.14.141 net tcp 80,443
+ACCEPT loc gov:10.146.139.33 tcp 9614
+ACCEPT test:192.168.14.133 dmz:192.168.2.120 udp 2055
+ACCEPT phone:192.168.20.11 dmz:192.168.2.94 tcp 80,443,3128
+ACCEPT loc gov:10.146.139.59,10.146.139.68 tcp 6311
+ACCEPT dmiac gov:10.146.139.79 tcp 80,443
+ACCEPT test:192.168.14.88 dmz:192.168.2.119,192.168.2.94,192.168.2.98,192.168.2.65,192.168.2.100,192.168.2.97,192.168.2.244,192.168.2.4,192.168.2.19,192.168.2.120 tcp 22
+ACCEPT test:192.168.14.88 pvpn:192.168.9.210 tcp 22
+ACCEPT net sec:$ZASTAVA_INET all
+ACCEPT test:192.168.14.143 net:46.243.177.13 tcp 25,465
+ACCEPT test:192.168.14.146 net all
+ACCEPT test:192.168.14.143 gov:10.146.137.242 tcp 8081
+ACCEPT edu gov all 
+ACCEPT edu loc:192.168.42.158 all
+ACCEPT edu ad:192.168.10.10 all
+ACCEPT sec:192.168.4.59 net tcp 80,443
+ACCEPT test:192.168.14.147 gov:10.146.139.159,10.149.222.0/28 all
+###VUPSAR###
+ACCEPT test:192.168.14.153 net tcp 80,443
+ACCEPT test:192.168.14.153 gov:10.146.139.45 tcp 80
+###
+ACCEPT gov test:192.168.14.45 all
+ACCEPT gov dmz:192.168.2.89 tcp 80,443
+###VDI##
+ACCEPT vdi gov:10.128.0.24 tcp 1688
+ACCEPT vdi ad:192.168.10.19,192.168.10.23,192.168.10.11 all
+ACCEPT vdi iao:192.168.5.45 all
+ACCEPT loc iao:192.168.5.45 all
+####
+###inv###
+ACCEPT loc asa:192.168.25.2 tcp 80,443,8080
+ACCEPT loc asa:192.168.25.4 tcp 80,443
+###
+###uzk###
+ACCEPT test:192.168.14.155 net tcp 80,443
+ACCEPT test:192.168.14.155 gov:10.146.139.45 tcp 80
+###
+ACCEPT loc,peer gov:10.128.66.165 tcp 8104,6104,10000,7104,445
+###zabbix для Кудрявцева###
+ACCEPT test:192.168.14.154 gov:10.146.137.81 all
+ACCEPT test:192.168.14.154 gov:10.146.137.20 tcp 80
+###
+ACCEPT edu peer:192.168.6.225 all
+###
+ACCEPT gov:10.162.19.4,10.146.140.228 $FW all
+ACCEPT nr $FW all
+ACCEPT $FW nr all
+ACCEPT tvr $FW all
+ACCEPT $FW tvr all
+
+ACCEPT loc gov:10.146.141.1,10.146.141.55 tcp 80
+ACCEPT ad tvr:192.168.152.0/23 all
+ACCEPT tvr:192.168.152.0/23 ad all
+ACCEPT tvr:192.168.70.0/28 net tcp 80,443
+ACCEPT tvr gov:10.128.66.160 tcp 80,443
+ 
+ACCEPT sec:192.168.4.40 ad,loc all
+ACCEPT sec:192.168.4.40 dmz:192.168.2.5 tcp 80,443
+ACCEPT sec:192.168.4.40 dmz:192.168.2.95 tcp 80,443
+ACCEPT loc ad:192.168.10.24 all
+ACCEPT test:192.168.14.158 net all
+ACCEPT dmiac test:192.168.14.152 tcp 80
+ACCEPT test:192.168.14.88 dmz:192.168.2.130 tcp 22
+ACCEPT gov dmz:192.168.2.245 tcp 8281
+ACCEPT loc tvr:192.168.70.2 tcp 9890,9443,80
+ACCEPT nr:192.168.31.0/24 tvr:192.168.70.0/28 all
+ACCEPT tvr:192.168.152.0/24 dmz:192.168.2.4/24 tcp 25,465
+ACCEPT loc dmz:192.168.2.19 all
+ACCEPT pvpn dmz:192.168.2.19 tcp 80,443
+ACCEPT loc gov:10.146.141.1 tcp 8443
+ACCEPT loc gov:10.146.138.154 tcp 80,443
+ACCEPT test:192.168.14.153 gov:10.146.136.22 tcp 80,443
+ACCEPT loc gov:10.146.138.154 all
+ACCEPT loc net:46.243.177.93 tcp 22,80,443
+
+ACCEPT gov:10.146.136.0/21,10.128.66.0/24 iao:192.168.5.127 all
+ACCEPT gov:10.162.19.4 dmz:192.168.2.111 tcp 80
+ACCEPT loc gov:10.146.141.57 tcp 8000:8250
+ACCEPT tvr:192.168.152.9 ad all
+ACCEPT loc tvr:192.168.152.9 tcp 80,443,8008,8443,8843
+ACCEPT loc tvr:192.168.152.3 tcp 80,443
+ACCEPT pvpn tvr:192.168.152.5 all
+ACCEPT pvpn:192.168.9.210 tvr:192.168.152.9 all
+ACCEPT dmz:192.168.2.94 tvr:192.168.152.9 tcp 80,443,8008,8443,8843
+ACCEPT tvr dmz:192.168.2.4 all
+ACCEPT tvr ad:192.168.10.19 all
+ACCEPT oemts:10.5.18.160,10.3.189.23 fw all
+ACCEPT loc gov:10.146.141.156 tcp 80,443
+ACCEPT loc net:46.243.177.168 all
+ACCEPT loc gov:10.146.139.64 tcp 7000
+ACCEPT loc gov:10.146.141.103 tcp 5432
+ACCEPT loc gov:10.146.139.58 tcp 9200,9300,9600,5601
+ACCEPT dmz:192.168.2.36 gov:10.146.141.103 tcp 10051
+ACCEPT loc gov:10.146.139.64  tcp 7000:7010
+ACCEPT loc	gov:10.146.139.58,10.146.141.104,10.146.141.105 tcp 8000:9000
+ACCEPT tvr:192.168.70.32/27  net all	
+ACCEPT tvr:192.168.152.42 net all
+### Gitlab Jira ###
+ACCEPT tvr:192.168.70.64/27 net all
+ACCEPT loc,gov,pvpn tvr:192.168.70.68,192.168.70.69,192.168.70.73,192.168.70.76 tcp 80,443
+ACCEPT tvr:192.168.70.73 net all
+DNAT net,loc,pvpn,dmz tvr:192.168.70.68:80 tcp 80 - 217.195.78.226
+DNAT net,loc,pvpn,dmz tvr:192.168.70.68:443 tcp 443 - 217.195.78.226
+DNAT net,loc,pvpn,dmz tvr:192.168.70.68:4567 tcp 4567 - 217.195.78.226
+ACCEPT net tvr:217.195.78.226 tcp 80,443
+ACCEPT tvr:192.168.70.72 gov:10.146.136.210 all
+ACCEPT loc,nr,pvpn,peer,dmiac,dmz tvr:$GITLAB tcp 22,80,443
+ACCEPT loc,nr,pvpn,peer,dmiac tvr:$GITLAB_PROXY tcp 22,80,443
+ACCEPT dmz:192.168.2.120 tvr:192.168.70.63/27 tcp 9100
+### Gitlab ###
+ACCEPT net tvr:192.168.70.72 tcp 22,80,443
+ACCEPT loc,nr,pvpn,peer,dmiac,edu,dmz,ad,test tvr:192.168.70.72 tcp 22,80,443
+### Nalbandyan (Ticket 12436) ###
+ACCEPT tvr:192.168.152.9 dmz:192.168.2.4 tcp 993
+### vpn to gitlab ###
+ACCEPT pvpn:192.168.9.210 tvr:192.168.70.65/27 tcp 22,80,443
+ACCEPT tvr:192.168.70.0/24 gov:10.146.136.214 all
+### Ticket 12512 ###
+ACCEPT gov:10.146.136.21 net:77.234.204.251 tcp 18180
+### Ticket 12549 (6) ###
+ACCEPT tvr:192.168.70.16/29,192.168.70.96/27 gov:10.146.139.63 tcp 80
+### Ticket 12549 (4) ### 27781
+DNAT net tvr:192.168.70.18 tcp 80,443 - 195.144.238.227
+DNAT net,dmz,loc,edu tvr:192.168.70.18:80 tcp 80  - 195.144.238.227
+DNAT net,dmz,loc,edu tvr:192.168.70.18:443 tcp 443 - 195.144.238.227
+ACCEPT tvr:192.168.70.18 net all
+ACCEPT net tvr:192.168.70.18 tcp 80,443
+### Ticket 12549 (5) ###
+ACCEPT tvr:192.168.70.106,192.168.70.108 net tcp 80,443
+### Ticket 12549 (1) ###
+ACCEPT gov tvr:192.168.70.106 all
+### Ticket 12570 ###
+ACCEPT gov:10.146.136.21 net:176.97.38.169 tcp 18180
+ACCEPT loc,pvpn gov:10.128.66.83 tcp 80,443,9443,902
+ACCEPT ad:192.168.10.28 peer:192.168.6.255 all
+ACCEPT gov:10.146.139.64 tvr:192.168.70.106 tcp 80,8080
+### Ticket 12680 ###
+#ACCEPT loc net:195.144.238.227 tcp 80,443
+### Ticket 12691  portal.iac.spb.ru ###
+ACCEPT loc,nr,pvpn,peer,dmiac,edu tvr:$PORTAL tcp 80,443,25,5222,5223,8890,8891,8893,8894
+### Ticket 12702 ###
+ACCEPT tvr:192.168.152.9 net all
+### Ticket 12738 ###
+ACCEPT tvr:192.168.70.32/27 gov:10.128.66.160,10.146.139.63 tcp 80
+### Ticket 12879 ###
+ACCEPT tvr:192.168.70.98-192.168.70.100 net tcp 80,443
+ACCEPT tvr:192.168.70.98-192.168.70.100 gov:10.146.136.61 tcp 10180
+### Ticket 12882 ###
+ACCEPT test:192.168.14.153 net:46.243.177.13 tcp 25,587,465
+### Ticket 12899 ###
+ACCEPT tvr:192.168.70.40 gov:10.146.136.61 tcp 10180
+### Ticket 12895 ###
+ACCEPT tvr:192.168.152.41 net all
+ACCEPT tvr:192.168.152.41 phone:192.168.20.10 all   
+### Ticket 12928 ###
+ACCEPT gov tvr:192.168.70.18,192.168.70.35 all
+### Ticket 13001 ###
+ACCEPT tvr:192.168.70.72 gov:10.146.141.183 tcp 80,443,6443
+### Ticket 13015 ###
+ACCEPT tvr:192.168.70.98-192.168.70.100 net:213.59.255.129 tcp 7500 
+### Ticket 13040 ###
+ACCEPT tvr:192.168.70.72 gov:10.146.139.110 tcp 8080
+ACCEPT tvr:192.168.152.8 gov:10.128.66.99 all
+ACCEPT tvr:192.168.152.8 gov:10.128.0.24 tcp 1688
+### Ticket 13068 ###
+ACCEPT tvr:192.168.70.72 gov:10.146.136.210 tcp 9090
+### Ticket 13106 ###
+ACCEPT edu tvr:192.168.70.98-192.168.70.100 tcp 80,443
+ACCEPT gov tvr:192.168.70.40 all
+ACCEPT tvr:192.168.70.40 gov all
+### Ticket 13245 ###
+ACCEPT loc gov:10.146.136.75 tcp 80
+### Ticket 13323 ###
+ACCEPT loc tvr:192.168.70.36,192.168.70.38 tcp 80
+### Ticket 13342 ###
+ACCEPT loc tvr:192.168.70.18 tcp 80,443
+ACCEPT loc gov:10.128.28.88 tcp 80,443
+ACCEPT pvpn ad tcp 3268,3269
+### cloud.iac.spb.ru from 105 ###
+ACCEPT dmiac dmz:192.168.2.65 all
+### Ticket 13496 ###
+ACCEPT edu net:95.213.245.117 tcp 80,81
+### Ticket 13503 ###
+ACCEPT gov tvr:192.168.70.108 all
+### Proxmox 61 otd ###
+ACCEPT sec:192.168.4.41,192.168.4.42,192.168.4.44,192.168.4.62-192.168.4.64 gov:10.162.32.0/24 tcp 22,11,2049 
+ACCEPT sec:192.168.4.41,192.168.4.42,192.168.4.44,192.168.4.62-192.168.4.64 gov:10.162.32.0/24 udp 11,2049
+ACCEPT gov:10.162.32.0/24 sec:192.168.4.41,192.168.4.42,192.168.4.44,192.168.4.62-192.168.4.64 tcp 22,11,2049
+ACCEPT gov:10.162.32.0/24 sec:192.168.4.41,192.168.4.42,192.168.4.44,192.168.4.62-192.168.4.64 udp 11,2049
+ACCEPT sec loc:192.168.41.52 all
+### Ticket 13532 (Sitnikov VOIP) ###
+ACCEPT phone:192.168.20.5 net all
+### Server to storage Slava Zakirov ###
+#ACCEPT ad:192.168.10.11 loc:192.168.41.39 all
+### Ticket 13632 ###
+ACCEPT loc gov:10.146.139.44 tcp 8090:8093
+### Ticket 13572, 13586, 13630, 13723 (Medspravka Sitnikov) ###
+ACCEPT tvr:192.168.70.27 net all
+ACCEPT tvr:192.168.70.27 dmz:192.168.2.21 tcp 1433
+ACCEPT tvr:192.168.70.27 dmz:$MAILER tcp smtp,ssmtp
+ACCEPT tvr:192.168.70.27 gov:10.144.4.250 tcp ms-sql-s
+ACCEPT tvr:192.168.70.27 gov:10.144.4.253 tcp tomcat
+ACCEPT test:192.168.14.119 tvr:192.168.70.27 tcp 8080
+ACCEPT gov tvr:192.168.70.27 tcp http,tomcat,https,10180
+DNAT net tvr:192.168.70.27:80 tcp 80  - 195.144.238.208
+DNAT net tvr:192.168.70.27:443 tcp 443 - 195.144.238.208
+ACCEPT net tvr:192.168.70.27 tcp 80,443
+ACCEPT loc,dmiac dmz:192.168.2.201 tcp 80,443
+### IKIGAI NEW CONTOUR ###
+ACCEPT dmiac gov:10.128.66.165 tcp 8104
+ACCEPT dmiac ad:192.168.10.20,192.168.10.9 all
+ACCEPT dmiac dmz:192.168.2.83 all
+ACCEPT dmiac ad:192.168.10.23 tcp 3268
+ACCEPT edu gov:10.146.138.124,10.146.136.24 tcp 80
+### Ticket 13853 ###
+ACCEPT loc gov:10.146.141.236-10.146.141.238 tcp 80
+ACCEPT loc gov:10.146.141.229 tcp 80
+ACCEPT loc gov:10.146.141.230-10.146.141.233 tcp 80,443
+### Ticket 13890 ###
+ACCEPT edu net:46.243.177.33,46.243.177.34 tcp 80
+### Ticket 14012 (TEMP TILL 14.08.19)
+ACCEPT dmiac gov:10.146.136.90,10.146.138.124 tcp 80,443
+ACCEPT dmiac gov:10.146.136.98 tcp 22,80,443,3690
+ACCEPT dmiac tvr:192.168.70.18 tcp 80,443,3128
+ACCEPT dmiac tvr:192.168.70.98-192.168.70.100 tcp 80,443,8080:8089
+ACCEPT dmiac tvr:192.168.70.101 tcp 22,5432
+ACCEPT dmiac tvr:192.168.70.105 tcp 80,443
+ACCEPT dmiac tvr:192.168.70.106 tcp 8080
+ACCEPT dmiac tvr:192.168.70.107 tcp 80,443,8080
+ACCEPT dmiac tvr:192.168.70.108 tcp 80,8080:8089,9080:9089
+ACCEPT dmiac gov:10.146.139.63 tcp 22,80,8080,9080
+ACCEPT dmiac gov:10.146.139.64 tcp 22,80,7010,7020,5000,8080,9080
+### Ticket 14017 ###
+ACCEPT tvr:192.168.70.98-192.168.70.100 gov:10.146.139.59 tcp 6311
+### Tania ipad temp ###
+ACCEPT loc:192.168.42.29 net all
+### Ticket 14117 ###
+ACCEPT loc gov:10.146.142.65 tcp 8560:8590,7980:7990,8080:8090
+### Ticket 14183 ###
+ACCEPT vdi gov:10.146.137.129 tcp 80,443
+### Ticket 14194 ###
+ACCEPT tvr:192.168.70.98-192.168.70.100,192.168.70.36,192.168.70.38 gov:10.146.138.210 tcp 80,443
+### Ticket 14320 ###
+ACCEPT tvr:192.168.152.10 gov:10.146.141.156,10.146.142.11 tcp 10050,10051
+### Ticket 14343 ###
+ACCEPT tvr:192.168.70.98 gov:10.146.136.44 tcp 80,443
+### Ticket 14404 ###
+ACCEPT loc gov:10.146.136.142 tcp 80
+### Ticket 14435 ###
+ACCEPT loc gov:10.146.137.20 tcp 80,443
+## AUDIT ###
+ACCEPT dmiac:~48-2A-E3-2F-84-14 peer all
+### Ticket 14486 ###
+ACCEPT tvr:192.168.152.11 net all
+ACCEPT loc tvr:192.168.152.5 tcp 80,443
+### ACCESS FROM LOC TO ADC EXTERNAL IP'S ###
+ACCEPT loc net:46.243.177.0/24 tcp 80,443
+### Ticket 14641 ###
+ACCEPT tvr:192.168.70.105 gov:10.146.136.130 tcp 80
+ACCEPT tvr:192.168.70.105 net:46.243.177.35 tcp 80,443
+### Ticket 14523 ###
+ACCEPT tvr:192.168.70.96/27,192.168.70.16/29 gov:10.146.136.214 tcp 2049,2051,111
+### Ticket 14672 ###
+ACCEPT tvr:192.168.70.36,192.168.70.38,192.168.70.98-192.168.70.100 gov:10.146.138.210 tcp 443
+### Ticket 14682 ###
+ACCEPT tvr:192.168.70.98-192.168.70.100 gov:10.146.138.87 tcp 80,443
+ACCEPT tvr:192.168.70.98-192.168.70.100,192.168.70.36,192.168.70.38 net:46.243.177.163 tcp 80,443
+ACCEPT tvr:192.168.70.108 gov:10.146.138.87 tcp 80
+### Ticket 14846 ###
+ACCEPT phone:192.168.20.10 dmz:192.168.2.94 tcp 3128 
+### rover-db ###
+ACCEPT tvr:192.168.152.12 net all
+### Ticket 14935 ###
+ACCEPT loc gov:10.129.157.90 tcp 8080
+### Ticket 15047 ###
+ACCEPT sec:192.168.4.54 phone:192.168.20.5 all
+### Ticket 15076 ###
+ACCEPT tvr:192.168.152.14 net tcp 80,443
+ACCEPT gov tvr:192.168.152.14 tcp 80,443
+ACCEPT loc,nr,pvpn,dmiac,peer tvr:192.168.152.14 tcp 80,443
+
+### Zabbix proxy i.zubov ###
+ACCEPT tvr:192.168.152.15 net all
+### 12.12.19 ###
+ACCEPT dmiac gov:10.128.67.46 tcp 1194:1203
+### SKUD DC ###
+ACCEPT loc gov:10.146.142.201 tcp 3389
+### Ticket 15452 ###
+ACCEPT tvr:192.168.152.9 gov:10.146.138.154 tcp 80,443
+### Test VKS 105 ###
+ACCEPT loc:~B4-2E-99-5D-BD-B8,~18-8B-9D-4A-03-1C net all
+ACCEPT loc:~B4-2E-99-5D-BD-B8,~18-8B-9D-4A-03-1C gov:10.128.2.102 tcp 80,443
+### 15572 ###
+ACCEPT tvr:192.168.70.98-192.168.70.100 gov:10.128.66.165 tcp 8107
+### 15586 ###
+ACCEPT tvr:192.168.70.98-192.168.70.100 gov:10.146.142.11 tcp 80,443
+### 15881 ###
+ACCEPT tvr:192.168.70.96/27 gov:10.146.140.198 tcp 5432
+###15886###
+ACCEPT net dmz:192.168.2.165 tcp 80,443
+ACCEPT dmz:192.168.2.165 net:213.59.255.129 all 
+ACCEPT dmz:192.168.2.165 gov:172.20.3.12 all
+ACCEPT loc:$ag_masnik dmz:192.168.2.165 tcp 80,443,3389
+ACCEPT loc:$ag_masnik dmz:195.144.238.233 tcp 80,443
+ACCEPT loc,pvpn gov:10.146.143.100-10.146.143.119 all
+### 15989 ###
+ACCEPT tvr:192.168.152.17 net all
+### 16066 ###
+ACCEPT tvr:192.168.152.16 net all
+### 16078 ### 
+ACCEPT tvr:192.168.152.10 gov:10.146.143.12,10.146.143.29,10.146.142.11,10.146.141.156,10.146.141.10,10.146.136.102,10.146.142.246,10.146.136.103,10.146.138.154,10.146.142.247 tcp 80,443,10050
+ACCEPT gov:10.146.143.12,10.146.143.29,10.146.142.11,10.146.141.156,10.146.141.10,10.146.136.102,10.146.142.246,10.146.136.103,10.146.138.154,10.146.142.247 tvr:192.168.152.10  tcp 10051
+### nextcloud ###
+ACCEPT tvr:192.168.152.7 net all
+ACCEPT tvr:192.168.152.7 ad:192.168.10.19 tcp 389
+### JITSI ###
+ACCEPT test:192.168.14.37 tvr:192.168.152.19 all
+ACCEPT tvr:192.168.152.19 test:192.168.14.37 all
+### 16405 ###
+ACCEPT loc gov:10.146.141.213 tcp 8080
+### 16474 ###
+ACCEPT tvr:192.168.70.98-192.168.70.100 gov:10.146.138.243 tcp 5672
+### 16606 ###
+ACCEPT tvr:192.168.70.98-192.168.70.100 gov:10.146.138.250 tcp 5672
+### izubov request 21-05-2020 ###
+ACCEPT tvr:192.168.152.10 net tcp 80,443 
+### 16828 ###
+ACCEPT tvr:192.168.70.183 net tcp 80,443
+### 16833 ###
+ACCEPT tvr:192.168.70.98-192.168.70.100 gov:10.128.48.48 tcp 5041
+### seafile ###
+ACCEPT tvr:192.168.152.20 net all
+### web 1c zakirov ###
+ACCEPT ad:192.168.10.21 loc all
+### 16981 & 17051 ###
+ACCEPT tvr:192.168.70.106/27 gov:10.192.11.129 tcp 9080:9082
+ACCEPT tvr:192.168.70.106/27 gov:10.192.11.127 tcp 80
+### Wireguard VM ###
+ACCEPT vpn:192.168.7.2 net,loc all
+### Wireguard VPN ###
+DNAT net vpn:192.168.7.10:13337 udp 13337 - 217.195.78.228
+ACCEPT net vpn:192.168.7.10 udp 13337
+### Kasper ###
+ACCEPT ad:192.168.10.13 net,loc,peer,gov,nr all
+ACCEPT loc,nr,peer ad:192.168.10.13 all
+### 17216 ###
+ACCEPT test:192.168.14.153 gov:10.146.136.44 tcp 80
+### 17254 ###
+ACCEPT tvr:192.168.70.106 gov:10.192.11.129 tcp 9083
+### 17309 ###
+ACCEPT tvr:192.168.70.106 gov:10.146.139.60,10.146.139.69 tcp 1521
+### 17320 ###
+ACCEPT tvr:192.168.70.197,192.168.70.195 net tcp 22,80,443
+### 17477 ###
+ACCEPT test:192.168.14.153 gov:10.146.139.44 tcp 8091
+### 17498 ###
+ACCEPT tvr:192.168.70.98-192.168.70.100 gov:10.146.136.22 tcp 80,443
+### 17516 ###
+ACCEPT tvr:192.168.70.98-192.168.70.100 gov:10.146.142.11 tcp 80,443
+### 17522 ###
+ACCEPT tvr:192.168.70.194 net tcp 22,80,443
+### 17531 ###
+ACCEPT tvr:192.168.70.113 net tcp 80,443
+ACCEPT tvr:192.168.70.113 gov:10.146.136.61 tcp 10180
+ACCEPT tvr:192.168.70.113 net:213.59.255.129 tcp 7500 
+ACCEPT edu tvr:192.168.70.113 tcp 80,443
+ACCEPT dmiac tvr:192.168.70.113 tcp 80,443,8080:8089
+ACCEPT tvr:192.168.70.113 gov:10.146.139.59 tcp 6311
+ACCEPT tvr:192.168.70.113 gov:10.146.138.210 tcp 80,443
+ACCEPT tvr:192.168.70.113 gov:10.146.136.44 tcp 80,443
+ACCEPT tvr:192.168.70.113 gov:10.146.138.210 tcp 443
+ACCEPT tvr:192.168.70.113 gov:10.146.138.87 tcp 80,443
+ACCEPT tvr:192.168.70.113 net:46.243.177.163 tcp 80,443
+ACCEPT tvr:192.168.70.113 gov:10.128.66.165 tcp 8107
+ACCEPT tvr:192.168.70.113 gov:10.146.142.11 tcp 80,443
+ACCEPT tvr:192.168.70.113 gov:10.146.138.243 tcp 5672
+ACCEPT tvr:192.168.70.113 gov:10.146.138.250 tcp 5672
+#ACCEPT tvr:192.168.70.113 dmz:217.195.78.247 tcp 80,443
+ACCEPT tvr:192.168.70.113 gov:10.128.48.48 tcp 5041
+ACCEPT tvr:192.168.70.113 gov:10.146.136.22 tcp 80,443
+ACCEPT tvr:192.168.70.113 gov:10.146.142.11 tcp 80,443
+### 17541 ###
+ACCEPT tvr:192.168.70.196 net tcp 22,80,443
+### 17561 ###
+ACCEPT tvr:192.168.70.104 net tcp 80,443
+ACCEPT tvr:192.168.70.104 gov:10.146.136.61 tcp 10180
+ACCEPT tvr:192.168.70.104 net:213.59.255.129 tcp 7500 
+ACCEPT edu tvr:192.168.70.104 tcp 80,443
+ACCEPT dmiac tvr:192.168.70.104 tcp 80,443,8080:8089 
+ACCEPT tvr:192.168.70.104 gov:10.146.139.59 tcp 6311
+ACCEPT tvr:192.168.70.104 gov:10.146.138.210 tcp 80,443
+ACCEPT tvr:192.168.70.104 gov:10.146.136.44 tcp 80,443
+ACCEPT tvr:192.168.70.104 gov:10.146.138.210 tcp 443
+ACCEPT tvr:192.168.70.104 gov:10.146.138.87 tcp 80,443
+ACCEPT tvr:192.168.70.104 net:46.243.177.163 tcp 80,443
+ACCEPT tvr:192.168.70.104 gov:10.128.66.165 tcp 8107
+ACCEPT tvr:192.168.70.104 gov:10.146.142.11 tcp 80,443
+ACCEPT tvr:192.168.70.104 gov:10.146.138.243 tcp 5672
+ACCEPT tvr:192.168.70.104 gov:10.146.138.250 tcp 5672
+ACCEPT tvr:192.168.70.104 gov:10.128.48.48 tcp 5041
+ACCEPT tvr:192.168.70.104 gov:10.146.136.22 tcp 80,443
+ACCEPT tvr:192.168.70.104 gov:10.146.142.11 tcp 80,443
+### temp ###
+ACCEPT edu loc tcp 3389
+### temp for Kyrnyshev ###
+ACCEPT loc,pvpn gov:10.146.143.227-10.146.143.231 all
+### 17765 ###
+ACCEPT tvr:192.168.70.66 gov:10.146.142.8 tcp 80,8080:8089,9080:9089
+### 17803 ###
+ACCEPT edu net:46.20.69.242 tcp 80,443,7881
+### 17974 ###
+ACCEPT gov tvr:192.168.70.112 tcp 389,636
+### 18031 ###
+ACCEPT tvr:192.168.70.72 gov:10.146.142.9 tcp 80,443
+###
+ACCEPT loc:~1C-69-7A-00-B2-26 net all
+ACCEPT loc:~1C-69-7A-00-B2-26 gov:10.128.28.119 all
+### 18118 & 19027 ###
+ACCEPT tvr:192.168.152.21 net tcp 80,443,993,143,587,465
+ACCEPT gov tvr:192.168.152.21 tcp 80,443
+ACCEPT tvr:192.168.152.21 gov:10.146.143.250 tcp 80,443
+### 18248 ###
+ACCEPT tvr:192.168.152.48 net tcp 80,443
+###
+ACCEPT test:192.168.14.201 phone:192.168.20.10 tcp 10050
+### 18518 ###
+ACCEPT tvr:192.168.152.21 net tcp 143,587
+### 18519 ###
+ACCEPT loc,nr,peer,dmiac,pvpn,gov tvr:192.168.152.21 tcp 80,443
+### 18612 ###
+ACCEPT sec:192.168.4.52 net:108.177.14.153 tcp 80,443
+### 18626 ###
+ACCEPT tvr:192.168.70.106,192.168.70.108 gov:10.1.222.19-10.1.222.37 tcp 9080:9083
+### 
+ACCEPT tvr:192.168.152.3 net all
+###
+ACCEPT test:192.168.14.201 phone:192.168.20.5,192.168.20.10 tcp 9100
+### 18688 ###
+ACCEPT test:192.168.14.201 tvr:192.168.152.41,192.168.70.27 tcp 9100
+ACCEPT test:192.168.14.201 dmz:192.168.2.61,192.168.2.86 tcp 9100
+###
+ACCEPT dmiac gov:10.128.67.46 tcp 1194:1203
+
+### 18889 ###
+ACCEPT sec:192.168.4.52 net:173.194.220.153 tcp 80,443
+### 18901 ###
+ACCEPT sec:192.168.4.93,192.168.4.94 gov:10.241.0.66,10.241.0.67 tcp 3389
+### 18818 ###
+ACCEPT gov dmz:192.168.2.15,192.168.2.240 all
+ACCEPT dmz:192.168.2.15,192.168.2.240 loc,gov all
+ACCEPT loc dmz:192.168.2.15,192.168.2.240 tcp 17490:17494,17496,17501,17502,17900,3389
+ACCEPT loc dmz:192.168.2.15,192.168.2.240 icmp
+ACCEPT sec dmz:192.168.2.240 all
+### Netbox ###
+ACCEPT tvr:192.168.152.22 net all
+### 19163 ###
+ACCEPT gov tvr:192.168.152.11 tcp 80,443
+### 19244 ###
+ACCEPT tvr:192.168.152.21 gov:10.241.0.91 tcp 80,443,1443,25,5222,5223,8890,8891,8893,8894
+### Ivan Petrov Printer ###A
+ACCEPT loc:~00-50-AA-2E-61-FC net all
+### 19260 ###
+ACCEPT tvr:192.168.152.14,192.168.70.165,192.168.152.9,192.168.152.4,192.168.152.11,192.168.152.16,192.168.152.5,192.168.152.18 gov:10.241.0.100 tcp 10050,10051
+### temp Oculus ###
+ACCEPT loc:~44-8A-5B-63-58-F9 net all
+### 193000 ###
+ACCEPT tvr:192.168.152.11 gov:10.241.0.100 tcp 10050,10051
+### 19318 ###
+ACCEPT tvr:192.168.152.3 gov:10.241.0.100 tcp 10050,10051
+### 19368 ###
+ACCEPT gov tvr:192.168.152.3 tcp 10050,10051
+### 19370 ###
+ACCEPT tvr:192.168.152.3 net all
+### 19446 ###
+ACCEPT test:192.168.14.119 dmz:192.168.2.94 tcp 3128
+### temp ###
+ACCEPT loc:~84-A9-3E-0D-B6-B6 gov:10.146.142.165 all
+### mail.adc.spb.ru ###
+ACCEPT loc,nr net:46.243.177.13 tcp 465,993,995,25,587,110
+
+###
+ACCEPT peer:192.168.6.225 tvr:192.168.152.9 all
+### ghost ###
+ACCEPT net tvr:192.168.152.18 tcp 80,443
+ACCEPT tvr:192.168.152.18 net all
+### 19936 ###
+ACCEPT tvr:192.168.70.98-192.168.70.100,192.168.70.113,192.168.70.104 gov:10.128.66.94 tcp 7778
+###
+ACCEPT nr:192.168.31.22,192.168.31.209 net all
+ACCEPT nr:192.168.31.129 loc:192.168.41.96 tcp 3389
+### 20026 ###
+ACCEPT tvr:192.168.70.106 gov:10.1.222.36 tcp 22,80
+### 20133 ###
+ACCEPT gov tvr:192.168.70.72 tcp 22,80,443
+### 20158 ###
+ACCEPT tvr:192.168.152.23 net tcp 80,443,465
+### 20285 ###
+ACCEPT edu gov:10.1.222.19-10.1.222.38 tcp 80,443
+###
+ACCEPT peer:192.168.6.225 test:192.168.14.205 all
+### 20368 ###
+ACCEPT sec:192.168.4.52 net:64.233.165.153 tcp 80,443
+### 20549 ###
+ACCEPT sec gov:10.146.141.203 all
+### 20606 ###
+ACCEPT loc gov:10.241.0.195 tcp 8080,8443
+### 20620 ###
+ACCEPT tvr:192.168.152.17 gov:10.146.140.198,10.146.140.191 tcp 5432
+###
+ACCEPT tvr:192.168.70.75 gov:10.128.66.160 all
+### 20645 ###
+ACCEPT gov dmz:192.168.2.8 tcp 137:139,445
+ACCEPT gov ad:192.168.10.6 tcp 137:139,445
+ACCEPT gov dmz:192.168.2.94 tcp 3128
+ACCEPT gov dmz:217.195.78.199 tcp 993,465
+### 20776 ###
+ACCEPT sec:192.168.4.52 net:173.194.222.153 tcp 80,443
+### 
+ACCEPT test:192.168.14.205 dmz:192.168.2.253 tcp 1433,1434
+ACCEPT test dmz:192.168.2.94 tcp 3128
+### 27675 28627 Telegram 
+ACCEPT loc net:149.154.160.0/22,149.154.164.0/22,91.108.4.0/22,91.108.56.0/22,91.108.8.0/22,95.161.64.0/20
+### mail gorzdrav ###
+ACCEPT all net:37.230.144.86 tcp 25
+### for ovpn test ###
+ACCEPT pvpn:192.168.7.6 all
+##Nginx-proxy-internet
+DNAT net dmz:192.168.2.201 tcp 80,443 - 195.144.238.199
+##TEST VREMENNO poka clomalsya WAF 29/08/2024
+DNAT net tvr:192.168.152.9 tcp 80,443,8893,8894,5222,5223 - 217.195.78.225
+ACCEPT net dmz:192.168.2.123,192.168.2.220 tcp 80,443
+ACCEPT net tvr:192.168.152.14,192.168.152.9 tcp 80,443,8893,8894,5222,5223
+##No internet for Atlassian ??
+REJECT dmz:192.168.2.202 net
+##Express
+DNAT net test:192.168.14.207 tcp 80,443 - 217.195.78.221
+DNAT net test:192.168.14.208 tcp 3478 - 217.195.78.222
+DNAT net test:192.168.14.208 udp 3478,20000-40000 - 217.195.78.222
+ACCEPT net test:192.168.14.207 tcp 80,443
+ACCEPT net test:192.168.14.208 tcp 3478
+ACCEPT net test:192.168.14.208 udp 3478,20000-40000
+##test Vetrenko Redmine
+ACCEPT loc dmz:192.168.2.71 tcp 80,443
+##27930
+ACCEPT tvr:192.168.152.11 tvr:192.168.70.72 tcp 443
+ACCEPT tvr:192.168.152.11 net:195.144.238.245 tcp 80,443
+##27959
+ACCEPT tvr:192.168.70.18 tvr:192.168.70.119 tcp 80,443,3000-3005
+##for RuporBlitz
+ACCEPT phone:192.168.20.8 net all
+ACCEPT phone:192.168.20.8 dmz:192.168.2.4 tcp 25,565,110,pop3s,imap,imaps,www,https,993,587
+##Video server to KMS-server
+ACCEPT video,skud gov:10.128.0.24 tcp 1688
+## 1C-ITIL
+DNAT net dmz:192.168.2.134 tcp 80,443,24591 - 217.195.78.219
+ACCEPT loc dmz:192.168.2.134 tcp 80,443,24591
+##Inet for 1C-bd & 1C-ts
+ACCEPT peer:192.168.6.229,192.168.6.230 net all
+##Trueconf
+DNAT net dmz:192.168.2.99 tcp 80,443,4307,1720,5060,52000:52499,52500:52999,50000:51999,554,53000:55000 - 217.195.78.197
+DNAT net dmz:192.168.2.99 udp 1718,1719,5060,52500:52999,50000:51999,53000:55000 - 217.195.78.197
+##WAF-server 08.2024
+DNAT net dmz:192.168.2.195 tcp 80,443 - 217.195.78.236
+ACCEPT net dmz:192.168.2.195 tcp 80,443
+##Gitlab какой-то
+ACCEPT tvr:192.168.152.11 tvr:192.168.70.72 tcp 80,443
+ACCEPT tvr:192.168.152.11 net:217.195.78.220 tcp 80,443
+DNAT net tvr:192.168.70.72 tcp 80,443 - 217.195.78.220
+ACCEPT net tvr:192.168.70.72 tcp 80,443
+##Orca ZendTo
+DNAT net dmz:192.168.2.12:80 tcp 80 - 217.195.78.200
+DNAT net dmz:192.168.2.12:443 tcp 443 - 217.195.78.200
+ACCEPT net dmz:192.168.2.12 tcp 80,443
+############ ЭТИ СТРОКИ ДОЛЖНЫ БЫТЬ ПОСЛЕДНИМИ!!! #####################
+?INCLUDE /etc/shorewall/rules.d/rules.local
+?INCLUDE /etc/shorewall/rules.d/rules.vpn-int
+?INCLUDE /etc/shorewall/rules.d/rules.vpn-ext
+?INCLUDE /etc/shorewall/rules.d/rules.wg
+REJECT loc net tcp smtp
+#LAST LINE -- ADD YOUR ENTRIES BEFORE THIS ONE -- DO NOT REMOVE
+
